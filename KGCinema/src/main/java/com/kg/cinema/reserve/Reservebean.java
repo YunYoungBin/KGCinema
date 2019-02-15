@@ -1,4 +1,4 @@
-package cinema_common;
+package com.kg.cinema.reserve;
 
 public class Reservebean {
 	private int no;

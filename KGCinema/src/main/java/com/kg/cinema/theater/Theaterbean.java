@@ -1,4 +1,4 @@
-package cinema_common;
+package com.kg.cinema.theater;
 
 public class Theaterbean {
 	private int no;

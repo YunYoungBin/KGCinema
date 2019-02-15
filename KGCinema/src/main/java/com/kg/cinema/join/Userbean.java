@@ -1,4 +1,4 @@
-package cinema_common;
+package com.kg.cinema.join;
 
 public class Userbean {
 	private String id;

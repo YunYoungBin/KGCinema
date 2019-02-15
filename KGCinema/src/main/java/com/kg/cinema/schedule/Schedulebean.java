@@ -1,4 +1,4 @@
-package cinema_common;
+package com.kg.cinema.schedule;
 
 public class Schedulebean {
 	private int id;

@@ -1,4 +1,4 @@
-package cinema_common;
+package com.kg.cinema.movie;
 
 public class Moviebean {
    private int no;
@@ -20,7 +20,7 @@ public class Moviebean {
    private String steal5;
    
    
-   //ì˜í™”ìˆ˜ì • ì´ë¯¸ì§€ ë¹„êµìš©
+   //?˜?™”?ˆ˜? • ?´ë¯¸ì? ë¹„êµ?š©
    private String poster2;
    private String steal12;
    private String steal22;

@@ -1,6 +1,6 @@
-package cinema_common;
+package com.kg.cinema.moviereply;
 
-public class DetailReplybean {
+public class MovieReplybean {
   private int drno;
   private String drid;
   private java.util.Date drdate;

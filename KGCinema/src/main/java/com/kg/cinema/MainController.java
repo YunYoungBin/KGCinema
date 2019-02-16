@@ -2,7 +2,12 @@ package com.kg.cinema;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,18 +18,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kg.cinema.movie.MovieDAO;
+import com.kg.cinema.movie.Moviebean;
+
 @Controller
 public class MainController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
-	//@Autowired
-	//MovieDAO mdao = new MovieDAO();
+	@Inject
+	@Autowired
+	MovieDAO mdao;
 	
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
-	public ModelAndView main() {
+	public ModelAndView main(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		/*
+		HttpSession session = request.getSession();
 		
+		if(session.getAttribute("temp") == null) {
+			
+		} else {
+			
+		}
+		*/
+		
+		List<Moviebean> movieList = mdao.movieSelect();
+		
+		mav.addObject("movie", movieList);
+		mav.setViewName("main/main");
 		return mav;
 	}
 	

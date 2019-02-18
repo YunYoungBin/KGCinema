@@ -40,6 +40,11 @@ public class JoinController {
 		return mav;
 	}
 	
+	@RequestMapping("/insert.do")
+	public void join_insertSave(Joinbean bean) {
+		dao.
+	}
+	
 	@RequestMapping("/check.do")
 	public void check(HttpServletResponse response, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();

@@ -15,6 +15,10 @@ public class JoinDAO {
 	@Autowired
 	SqlSessionTemplate temp;
 	
+	public void insertSave(Joinbean bean) {
+		temp.insert("join.insert", bean);
+	}
+	
 	public int idCheck(String id) {
 		int check = temp.selectOne("join.idCheck", id);
 		return check;

@@ -6,6 +6,7 @@
 <%@ page import="cinema_common.GlobalVariable" %>
 
 
+
 <!DOCTYPE html>
 <html>
 <head>

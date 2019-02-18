@@ -9,39 +9,39 @@
 	
 //====다 체크하고 submit
 	function check(){
-		var id = iform.id.value;
-		var name = iform.name.value;
-		var pwd = iform.pwd.value;
-		var pwd2 = iform.pwd2.value;
+		var id = iform.j_id.value;
+		var name = iform.j_name.value;
+		var pwd = iform.j_pwd.value;
+		var pwd2 = iform.j_pwd2.value;
 		var code = iform.code.value;
-		var juso1 = iform.juso1.value;
-		var juso2 = iform.juso2.value;
+		var juso1 = iform.j_juso1.value;
+		var juso2 = iform.j_juso2.value;
 		var year = iform.year.value;
 		var month = iform.month.value;
 		var day = iform.day.value;
 		var num1 = iform.num1.value;
 		var num2 = iform.num2.value;
 		var num3 = iform.num3.value;
-		var email = iform.email.value;
+		var email = iform.j_email.value;
 		
 		if (id==null||id==""){
 			alert('아이디를 입력하세요');
-			iform.sabun.focus();
+			iform.j_id.focus();
 			return;
 		}
 		if (name==null||name==""){
 			alert('이름을 입력하세요.');
-			iform.name.focus();
+			iform.j_name.focus();
 			return;
 		}
 		if (pwd==null||pwd==""){
 			alert('비밀번호를 입력하세요.');
-			iform.pw.focus();
+			iform.j_pwd.focus();
 			return;
 		}
 		if (pwd2==null||pwd2==""){
 			alert('비밀번호를 재입력하세요.');
-			iform.pw2.focus();
+			iform.j_pwd2.focus();
 			return;
 		}
 		if (code==null||code==""||juso1==null||juso1==""||juso2==null||juso2==""){
@@ -61,7 +61,7 @@
 		}
 		if (email==null||email==""){
 			alert('이메일을 입력하세요.');
-			iform.email.focus();
+			iform.j_email.focus();
 			return;
 		}
 
@@ -75,7 +75,7 @@
 		
 		if(flagP==false){	//비번 확인 틀렸을때
 			alert('비밀번호가 일치하지 않습니다.');
-			iform.pwd2.focus();
+			iform.j_pwd2.focus();
 			return;
 		}
 		
@@ -92,19 +92,19 @@
 	
 	
 //====아이디 체크
-	function checkId(){//사번 입력체크하고 중복확인 팝업창 열어주기
-		var id = iform.id.value;
+	function checkId(){//아이디 입력체크하고 중복확인 팝업창 열어주기
+		var id = iform.j_id.value;
 		var label = document.getElementById("idlabel");
 		var id_reg = /^[a-z]+[a-z0-9]{5,14}/;//첫번째영문자 부터 영문자와 숫자 6-20자
 		if(id==""||id==null){
 			label.innerHTML = "&nbsp;&nbsp;<font color='red'>아이디를 입력하세요.</font>";
-			iform.id.focus();
+			iform.j_id.focus();
 			return;
 		} else {
 			if(id_reg.test(id)==false){
 				label.innerHTML = "&nbsp;&nbsp;<font color='red'>영문과 숫자 6~15자를 입력하세요.</font>";
-				iform.id.value="";
-				iform.id.focus();
+				iform.j_id.value="";
+				iform.j_id.focus();
 				return;
 			}
 		}
@@ -118,18 +118,18 @@
 	
 	//이름 확인
 	function checkName() {
-		var name = iform.name.value;
+		var name = iform.j_name.value;
 		var label = document.getElementById("namelabel");
 		var name_reg = /^[가-힣]{2,6}$/;
 		if(name=="" || name==null) {
 			label.innerHTML = "&nbsp;&nbsp;<font color='red'>이름을 입력하세요.</font>";
-			iform.name.focus();
+			iform.j_name.focus();
 			return;
 		} else {
 			if(name_reg.test(name)==false) {
 				label.innerHTML = "&nbsp;&nbsp;<font color='red'>2~6자 한글이어야 합니다.</font>";
-				iform.name.value="";
-				ifrom.name.focus();
+				iform.j_name.value="";
+				ifrom.j_name.focus();
 				return;
 			}
 		}
@@ -140,7 +140,7 @@
 //====비밀번호 확인
 	function checkPwd(){//비밀번호 확인 체크
 		var str = document.getElementById("pwdlabel");
-		if(iform.pwd.value == iform.pwd2.value) {
+		if(iform.j_pwd.value == iform.j_pwd2.value) {
 			str.innerHTML = "비밀번호가 일치합니다.";
 			flagP = true;	//비번일치플래그 true로 해줌
 		} else {
@@ -179,12 +179,12 @@
 	
 //====email 형식체크
 	function emailcheck( ){
-		  var mail=iform.email.value;
+		  var mail=iform.j_email.value;
 		  var mail_reg=/^([\S]{2,16})@([a-zA-Z]{2,10})\.([a-zA-Z]{2,10})$/;
 		  if(mail_reg.test(mail)==false){
 			 msg="<font color=red>이메일 형식 체크하세요</font>"; 
 			 document.getElementById("email_ch").innerHTML=msg;
-			 iform.email.value="";
+			 iform.j_email.value="";
 			 return;
 		  }else{
 		  	flagE = true;

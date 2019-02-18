@@ -24,7 +24,7 @@
 				<tr>
 					<th>* 아이디</th>
 					<td >
-						<input type="text" size="19" name="id"  onkeyup="checklen(this,15)" value="whalsanr"> 
+						<input type="text" size="19" name="j_id"  onkeyup="checklen(this,15)" value="whalsanr"> 
 						<input type="button" class="button button1" onclick="checkId()" style="vertical-align: middle;" value="중복확인">
 						<label id="idlabel"></label>
 					</td>
@@ -32,18 +32,18 @@
 				<tr>
 					<th>* 이름</th>
 					<td>
-					    <input type="text" size="19" name="name" onchange="checkName()" onkeyup="checklen(this,15)" value="조민묵">
+					    <input type="text" size="19" name="j_name" onchange="checkName()" onkeyup="checklen(this,15)" value="조민묵">
 					    <label id="namelabel"></label>    
 					</td>
 				</tr>
 				<tr>
 					<th>* 비밀번호</th>
-					<td ><input type="password" name="pwd" onkeyup="checklen(this,10)" value="wmf892"></td>
+					<td ><input type="password" name="j_pwd" onkeyup="checklen(this,10)" value="wmf892"></td>
 				</tr>
 				<tr>
 					<th>* 비밀번호 확인</th>
 					<td>
-						<input type="password" name="pwd2" onkeyup="checkPwd();" value="wmf892">
+						<input type="password" name="j_pwd2" onkeyup="checkPwd();" value="wmf892">
 						<label id="pwdlabel">&nbsp;&nbsp;비밀번호를 한번 더 입력해주세요.</label>
 					</td>
 
@@ -52,8 +52,8 @@
 					<th>* 주소</th>
 					<td colspan= "2">
 						<input type="text" size="10" id="code" name="code" readonly value="06267"> <input type="button" class="post" onclick="DaumPostcode()" value="우편번호 검색"><p>
-						<input type="text" size="40" id="juso1" name="juso1" readonly value="강남대로"><p>
-						<input type="text" size="40" id="juso2" name="juso2" onkeyup="checklen(this,30)" value="123">&nbsp;&nbsp;상세주소를 입력하세요 <br>
+						<input type="text" size="40" id="juso1" name="j_juso1" readonly value="강남대로"><p>
+						<input type="text" size="40" id="juso2" name="j_juso2" onkeyup="checklen(this,30)" value="123">&nbsp;&nbsp;상세주소를 입력하세요 <br>
 					</td>
 				</tr>
 				
@@ -79,14 +79,14 @@
 				<tr>
 					<th>* email</th>
 					<td colspan= "2">
-						<input type="text" size="40" name="email" onblur="emailcheck()" onkeyup="checklen(this,30)" placeholder="aaa@aaa.aa형식으로 입력" value="alsanr@naver.com">
+						<input type="text" size="40" name="j_email" onblur="emailcheck()" onkeyup="checklen(this,30)" placeholder="aaa@aaa.aa형식으로 입력" value="alsanr@naver.com">
 						<span id="email_ch"></span>
 					</td>
 				</tr>
 
 			</table>
 			<p>
-			<input type="button" class="button button2" value="취소" onclick="location.href='index.jsp'">&nbsp;&nbsp;&nbsp;
+			<input type="button" class="button button2" value="취소" onclick="location.href='main.do'">&nbsp;&nbsp;&nbsp;
 			<input type="button" class="button button3" value="등록" onclick="check()">
 		</form>
 	</div>

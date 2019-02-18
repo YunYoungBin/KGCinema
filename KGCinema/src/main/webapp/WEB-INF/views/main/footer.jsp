@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>footer.jsp</title>
-  <link href="css/agency.min.css" rel="stylesheet">
+  <link href="./resources/css/agency.min.css" rel="stylesheet">
     
   <style type="text/css">
     html, body {margin: 0;padding: 0;}

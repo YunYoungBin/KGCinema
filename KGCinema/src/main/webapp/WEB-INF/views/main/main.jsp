@@ -10,18 +10,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-<title>index.jsp</title>
-    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="css/full-slider.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick-theme.css">
-    <script src="vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
-    <script src="js/agency.min.js"></script>
+<title>main.jsp</title>
+    <link href="./resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="./resources/css/full-slider.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick-theme.css">
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
+    <script src="./resources/js/agency.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script src="./slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link href="vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
-    <link href="css/agency.min.css" rel="stylesheet">
+    <script src="./resources/slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
+    <link href="./resources/css/agency.min.css" rel="stylesheet">
     
   <style type="text/css">
     html, body {margin: 0;padding: 0;}
@@ -99,21 +99,21 @@
         </ol>
         <div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active" style="background-image: url('images/main_slide_1.jpg');height:600px;">
+          <div class="carousel-item active" style="background-image: url('./resources/images/main_slide_1.jpg');height:600px;">
             <div class="carousel-caption d-none d-md-block">
               <h3>First Slide</h3>
               <p>This is a description for the first slide.</p>
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('images/main_slide_2.jpg');height:600px;">
+          <div class="carousel-item" style="background-image: url('./resources/images/main_slide_2.jpg');height:600px;">
             <div class="carousel-caption d-none d-md-block">
               <h3>Second Slide</h3>
               <p>This is a description for the second slide.</p>
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('images/main_slide_3.jpg');height:600px;">
+          <div class="carousel-item" style="background-image: url('./resources/images/main_slide_3.jpg');height:600px;">
             <div class="carousel-caption d-none d-md-block">
               <h3>Third Slide</h3>
               <p>This is a description for the third slide.</p>
@@ -187,18 +187,18 @@
        <h3 style="height: 37px;color: #333;font-size: 20px;letter-spacing: -0.5px;">새로운 이벤트</h3>
        <div class="new_event_main">
         <div class="event_box1" style="overflow: hidden;position: relative;z-index: 1;width: 632px;height: 317px;border: 1px solid #ccc;">
-         <img src="images/new_event1.jpg">
+         <img src="./resources/images/new_event1.jpg">
         </div>
         <div class="event_box2" style="width: 632px;height: 315px;border: 1px solid #ccc;border-top: none;position: relative;z-index: 2;">
          <div class="event_box2_left" style="width: 315px;height: 315px;border-right: 1px solid #ccc;float: left;">
-          <img src="images/new_event2.jpg">
+          <img src="./resources/images/new_event2.jpg">
          </div>
          <div class="event_box2_right" style="float:left;">
-          <img src="images/new_event3.jpg">
+          <img src="./resources/images/new_event3.jpg">
          </div>
         </div>
         <div class="event_box3" style="width: 327px;height: 632px;position: absolute;right: 0;top: 47px;">
-         <img src="images/new_event4.jpg">
+         <img src="./resources/images/new_event4.jpg">
         </div>
        </div>       
       </div>
@@ -254,21 +254,21 @@
         <div class="" style="position: relative;">
          <div class="part_event_left" style="width: 632px;height: 632px;border: 1px solid #ccc;">
           <div style="float: left;width: 315px;height: 315px;">
-           <img src="images/part_event1.png">
+           <img src="./resources/images/part_event1.png">
           </div>
           <div style="float: left;width: 315px;height: 315px;">
-           <img src="images/part_event2.jpg">
+           <img src="./resources/images/part_event2.jpg">
           </div>
           <div style="float: left;width: 315px;height: 315px;">
-           <img src="images/part_event3.jpg">
+           <img src="./resources/images/part_event3.jpg">
           </div>
           <div style="float: left;width: 315px;height: 315px;">
-           <img src="images/part_event4.jpg">
+           <img src="./resources/images/part_event4.jpg">
           </div>                    
          </div>
          
          <div class="part_event_right" style="width: 327px;height: 632px;position: absolute;right: 0;top: 0px;">
-           <img src="images/part_event5.jpg">
+           <img src="./resources/images/part_event5.jpg">
          </div>
         </div>
       </div>

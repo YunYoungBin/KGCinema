@@ -76,11 +76,11 @@
 <body>
 
   <c:choose>
-   <c:when test="${bean.id le '' || not empty bean.id}">
+   <c:when test="${bean.j_id le '' || not empty bean.j_id}">
     <!-- head login -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color:white;height:50px;border-bottom: 1px solid #D5D5D5;">
       <div class="container" style="width:970px;padding-left:0px;padding-right:0px;position: relative;">
-        <a class="navbar-brand js-scroll-trigger" href="index.do" style="font-weight:bold;">KG CINEMA</a>
+        <a class="navbar-brand js-scroll-trigger" href="main.do" style="font-weight:bold;">KG CINEMA</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
@@ -105,18 +105,18 @@
           <div class="photo">
            <img src="http://image2.megabox.co.kr/mop/home/user/bg_myphoto.png" alt="프로필사진배경" style="position: absolute;left: 0;top: 0;">
            <c:choose>
-            <c:when test="${bean.file eq '' || empty bean.file}">
+            <c:when test="${bean.j_file1 eq '' || empty bean.j_file1}">
              <img src="http://image2.megabox.co.kr/mop/home/user/profile_m.png" alt='프로필사진' style='position: absolute;left: 0;top: 0;'>
             </c:when>
             <c:otherwise>
-             <img src="<%=request.getContextPath()%>/storage/${bean.file}" alt='프로필사진' style='position: absolute;left: 0;top: 0;'>
+             <img src="<%=request.getContextPath()%>/storage/${bean.j_file1}" alt='프로필사진' style='position: absolute;left: 0;top: 0;'>
             </c:otherwise>
            </c:choose>                     
            <i class="icon member_icon normal">일반</i>
           </div>
           <div class="name">
            <a href="#" class="name_btn">
-            <strong>${bean.name}<span>님</span></strong>
+            <strong>${bean.j_name}<span>님</span></strong>
             <span class="name_arrow" style="width:12px;height:17px;"><i class="fa fa-chevron-down" style="width:12px;height:12px;">▼</i></span>
            </a>
            <a class="name_membership" style="color:#198591;">예매확인/취소</a>
@@ -129,7 +129,7 @@
         <div class="login_info_form">
          <div class="login_info_top">
           <div class="login_info_title">
-           <p><strong>${bean.id}</strong> 님</p>
+           <p><strong>${bean.j_id}</strong> 님</p>
           </div>
          </div>
          <div class="login_info_middle">
@@ -167,7 +167,7 @@
     <!-- head logout -->   
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color:white;height:50px;border-bottom: 1px solid #D5D5D5;">
       <div class="container" style="width:970px;padding-left:0px;padding-right:0px;">
-        <a class="navbar-brand js-scroll-trigger" href="index.do" style="font-weight:bold;">KG CINEMA</a>
+        <a class="navbar-brand js-scroll-trigger" href="main.do" style="font-weight:bold;">KG CINEMA</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
@@ -228,7 +228,7 @@
          <div class="join_btn" >
           <ul>
            <li><a>ID/PW찾기</a></li>
-           <li><a href="Input.jsp">회원가입</a></li>
+           <li><a href="write.do">회원가입</a></li>
           </ul>
          </div>
          

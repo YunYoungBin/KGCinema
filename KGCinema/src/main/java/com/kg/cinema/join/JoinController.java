@@ -1,5 +1,7 @@
 package com.kg.cinema.join;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -35,6 +38,26 @@ public class JoinController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("join/Input");
 		return mav;
+	}
+	
+	@RequestMapping("/check.do")
+	public void check(HttpServletResponse response, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		PrintWriter out;
+		try {
+			out = response.getWriter();
+			String id = request.getParameter("id");
+			int count = dao.idCheck(id);
+			if(count == 1) {
+				out.print(count);
+			} else {
+				mav.addObject("check", count);
+				out.print(count);
+			}
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		return ;
 	}
 	
 }

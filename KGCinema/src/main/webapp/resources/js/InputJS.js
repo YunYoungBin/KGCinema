@@ -90,30 +90,8 @@
 		} else { return; }
 	}//check end
 	
-	
-//====아이디 체크
-	function checkId(){//아이디 입력체크하고 중복확인 팝업창 열어주기
-		var id = iform.j_id.value;
-		var label = document.getElementById("idlabel");
-		var id_reg = /^[a-z]+[a-z0-9]{5,14}/;//첫번째영문자 부터 영문자와 숫자 6-20자
-		if(id==""||id==null){
-			label.innerHTML = "&nbsp;&nbsp;<font color='red'>아이디를 입력하세요.</font>";
-			iform.j_id.focus();
-			return;
-		} else {
-			if(id_reg.test(id)==false){
-				label.innerHTML = "&nbsp;&nbsp;<font color='red'>영문과 숫자 6~15자를 입력하세요.</font>";
-				iform.j_id.value="";
-				iform.j_id.focus();
-				return;
-			}
-		}
-		label.innerHTML = "";
-		open('openSb.jsp','oepnSb','width=400, height=150, left=100, top=200');
-	}//checkSb end
-	
-	function flagI_t(){//아이디 플래그를 true로 바꿔주는 메소드(팝업창에서 작동)
-		flagI=true;
+	function idChangeCheck() { // 중복체크후 사용자가 임의로 변경한 경우 플래그값 초기화
+		flagI = false;
 	}
 	
 	//이름 확인

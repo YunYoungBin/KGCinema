@@ -8,22 +8,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
 <title>myInfo.jsp</title>
-    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="css/full-slider.css" rel="stylesheet">
+    <link href="./resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="./resources/css/full-slider.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick-theme.css">
-    <script src="vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
-    <script src="js/agency.min.js"></script>
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
+    <script src="./resources/js/agency.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <script src="./slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
    
-    <link href="vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
-    <link href="css/agency.min.css" rel="stylesheet">
+    <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
+    <link href="./resources/css/agency.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/InputCSS1.css">
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-    <script src="./js/EditJS2.js"></script>
+    <script src="./resources/js/EditJS2.js"></script>
     
   <style type="text/css">
     html, body {margin: 0;padding: 0;border:0;vertical-align: baseline;}

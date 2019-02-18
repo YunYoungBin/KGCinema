@@ -196,7 +196,7 @@
    <div style="margin-bottom: 50px;height:396px;">
    
     <div class="left" style="float: left;width: 230px;margin-right: 25px;">
-     <span style="position: relative;display: block;width: 230px;height: 336px;"><img src="<%=request.getContextPath()%>/storage/${movie.poster}" style="width:230px;height:336px;"></span>
+     <span style="position: relative;display: block;width: 230px;height: 336px;"><img src="<%=request.getContextPath()%>/storage/${movie.m_poster}" style="width:230px;height:336px;"></span>
      <a class="a" style="display: inline-block;text-decoration: none;" href="reserve.do">예매하기</a>
     </div>
     
@@ -226,11 +226,11 @@
        <a class="img_btn movie btn_reservation" href="reserve.do">예매하기</a>       
       </div>     
       <ul class="info">
-       <li><strong>타입</strong> : ${movie.type}</li>
-       <li><strong>개봉일</strong> : <fmt:formatDate pattern="yyyy.MM.dd" value="${movie.premiere}" /></li>  
-       <li><strong>감독</strong> : ${movie.director}</li>
-       <li><strong>출연진</strong> : ${movie.actor}</li>
-       <li><strong>장르</strong> : ${movie.genre} / 125 분</li>
+       <li><strong>타입</strong> : ${movie.m_type}</li>
+       <li><strong>개봉일</strong> : <fmt:formatDate pattern="yyyy.MM.dd" value="${movie.m_premiere}" /></li>  
+       <li><strong>감독</strong> : ${movie.m_director}</li>
+       <li><strong>출연진</strong> : ${movie.m_actor}</li>
+       <li><strong>장르</strong> : ${movie.m_genre} / 125 분</li>
        <li><strong>누적관객</strong> : 241,423명<span style="display: inline-block;width: 1px;height: 20px;margin: 0 10px;vertical-align: middle;background-color: #e1e1e1;"></span><strong>전일관객</strong> : 219,242명 </li>
       </ul>  
      </div>
@@ -259,7 +259,7 @@
    <div style="margin-bottom: 60px;">
     <h3 class="content">줄거리</h3>
     <div class="content_text">
-     ${movie.story }
+     ${movie.m_story}
     </div>
    </div>
    

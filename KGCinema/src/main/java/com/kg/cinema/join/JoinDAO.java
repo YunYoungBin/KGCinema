@@ -15,9 +15,9 @@ public class JoinDAO {
 	@Autowired
 	SqlSessionTemplate temp;
 	
-	public List<Moviebean> movieSelect() {
-		List<Moviebean> list = temp.selectList("movie.selectAllDynamic");
-		return list;
+	public int idCheck(String id) {
+		int check = temp.selectOne("join.idCheck", id);
+		return check;
 	}
 
 }

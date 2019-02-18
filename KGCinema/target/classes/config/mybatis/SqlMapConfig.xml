@@ -11,6 +11,7 @@
 		<mapper resource="config/mybatis/movie.xml"/>
 		<mapper resource="config/mybatis/notice.xml"/>
 		<mapper resource="config/mybatis/event.xml"/>
+		<mapper resource="config/mybatis/join.xml"/>
 	</mappers>
 
 

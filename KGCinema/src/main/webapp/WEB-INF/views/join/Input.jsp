@@ -8,12 +8,56 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 
-<link rel="stylesheet" type="text/css" href="./css/InputCSS1.css">
+<link rel="stylesheet" type="text/css" href="./resources/css/InputCSS1.css">
+<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="./resources/js/InputJS.js"></script>
 
 </head>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script src="./js/InputJS.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+
+	$(document).ready(function(){
+		$('#checkBtn').click(function(){
+			var id_reg = /^[a-z]+[a-z0-9]{5,14}/;//첫번째영문자 부터 영문자와 숫자 6-20자
+			if(id_reg.test($('#checkId').val())==false){
+				alert("영문과 숫자 6-15자를 입력하세요");
+				$('#checkId').val("");
+				$('#checkId').focus();
+				return;
+			}
+			if($('#checkId').val() == "") {
+				alert("아이디를 입력해주세요");
+				return ;
+			} else {
+				$.ajax({
+					url: '${pageContext.request.contextPath}/check.do?id='+$("#checkId").val(),
+					type: 'GET',
+					success: function(data) {
+						if(data == 1) {
+							alert("아이디가 중복됩니다");
+							$('#checkId').val("");
+							$('#checkId').focus();
+							flagI = false;
+						} else {
+							alert("사용 가능한 아이디입니다");
+							flagI = true;
+						}
+					},
+					error: function(data) {
+						console.log(data);
+					} 
+				});
+			}
+		});
+	});
+
+</script>
 
 <body>
 	<div class="all" align="center">
@@ -24,8 +68,8 @@
 				<tr>
 					<th>* 아이디</th>
 					<td >
-						<input type="text" size="19" name="j_id"  onkeyup="checklen(this,15)" value="whalsanr"> 
-						<input type="button" class="button button1" onclick="checkId()" style="vertical-align: middle;" value="중복확인">
+						<input type="text" size="19" name="j_id" id=checkId onchange="idChangeCheck()" onkeyup="checklen(this,15)" value="whalsanr"> 
+						<input type="button" class="button button1" id="checkBtn"  style="vertical-align: middle;" value="중복확인">
 						<label id="idlabel"></label>
 					</td>
 				</tr>

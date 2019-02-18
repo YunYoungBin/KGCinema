@@ -8,17 +8,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 <title>movieList.jsp</title>
-    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="css/full-slider.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick-theme.css">
-    <script src="vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
-    <script src="js/agency.min.js"></script>
+    <link href="./resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="./resources/css/full-slider.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick-theme.css">
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
+    <script src="./resources/js/agency.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script src="./slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link href="vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
-    <link href="css/agency.min.css" rel="stylesheet">
+    <script src="./resources/slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
+    <link href="./resources/css/agency.min.css" rel="stylesheet">
     
   <style type="text/css">
     html, body {margin: 0;padding: 0;}
@@ -186,42 +186,42 @@
         </ol>
         <div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active li_1" style="background-image: url('images/movie_slideList_1.jpg');height:420px;">
+          <div class="carousel-item active li_1" style="background-image: url('./resources/images/movie_slideList_1.jpg');height:420px;">
             <div class="carousel-caption d-none d-md-block">
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item li_2" style="background-image: url('images/movie_slideList_2.jpg');height:420px;">
+          <div class="carousel-item li_2" style="background-image: url('./resources/images/movie_slideList_2.jpg');height:420px;">
             <div class="carousel-caption d-none d-md-block">
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
-          <div class="carousel-item li_3" style="background-image: url('images/movie_slideList_3.jpg');height:420px;">
+          <div class="carousel-item li_3" style="background-image: url('./resources/images/movie_slideList_3.jpg');height:420px;">
             <div class="carousel-caption d-none d-md-block">
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item li_4" style="background-image: url('images/movie_slideList_4.jpg');height:420px;">
+          <div class="carousel-item li_4" style="background-image: url('./resources/images/movie_slideList_4.jpg');height:420px;">
             <div class="carousel-caption d-none d-md-block">
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item li_5" style="background-image: url('images/movie_slideList_5.jpg');height:420px;">
+          <div class="carousel-item li_5" style="background-image: url('./resources/images/movie_slideList_5.jpg');height:420px;">
             <div class="carousel-caption d-none d-md-block">
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item li_6" style="background-image: url('images/movie_slideList_6.jpg');height:420px;">
+          <div class="carousel-item li_6" style="background-image: url('./resources/images/movie_slideList_6.jpg');height:420px;">
             <div class="carousel-caption d-none d-md-block">
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item li_7" style="background-image: url('images/movie_slideList_7.jpg');height:420px;">
+          <div class="carousel-item li_7" style="background-image: url('./resources/images/movie_slideList_7.jpg');height:420px;">
             <div class="carousel-caption d-none d-md-block">
             </div>
           </div>          
           <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item li_8" style="background-image: url('images/movie_slideList_8.jpg');height:420px;">
+          <div class="carousel-item li_8" style="background-image: url('./resources/images/movie_slideList_8.jpg');height:420px;">
             <div class="carousel-caption d-none d-md-block">
             </div>
           </div>                                                
@@ -254,14 +254,14 @@
        <li class="list_1">
         <div style="position: relative;">
          <span class="img">
-          <a style="display: block;"><img src="<%=request.getContextPath()%>/storage/${item.poster}"></a>
+          <a style="display: block;"><img src="<%=request.getContextPath()%>/storage/${item.m_poster}"></a>
          </span>
         </div>
         
         <div class="hover_1" style="display: block;width: 228px;height: 335px;padding: 114px 20px 0;opacity:0;position: absolute;left: 0;top: 0;color: #fff;text-align: center;font-size: 14px;line-height: 27px;z-index:999;">
            <a href="resev.do" style="display:none;text-decoration:none;display:block;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">예매하기</a>
            <div style="display:none;margin-top:10px;">
-           <a href="moviedetail.do?idx=${item.no}" style="text-decoration:none;display:block;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">상세보기</a>
+           <a href="moviedetail.do?idx=${item.m_no}" style="text-decoration:none;display:block;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">상세보기</a>
            </div>  
        </div>
 
@@ -269,13 +269,13 @@
          <dt>
           <span class="grade_15" style="">
            <c:choose>
-           <c:when test="${item.grade eq 0}">
+           <c:when test="${item.m_grade eq 0}">
             <img src="images/bg_grade_all.png" style="margin-top:-1px;">
            </c:when>
-           <c:when test="${item.grade eq 12}">
+           <c:when test="${item.m_grade eq 12}">
             <img src="images/bg_grade_12.png" style="margin-top:-1px;">
            </c:when>
-           <c:when test="${item.grade eq '15'}">
+           <c:when test="${item.m_grade eq '15'}">
             <img src="images/bg_grade_15.png" style="margin-top:-1px;">
            </c:when>
            <c:otherwise>
@@ -284,7 +284,7 @@
 
           </c:choose>
           </span>
-          <a>${item.title}</a>
+          <a>${item.m_title}</a>
          </dt>
         </dl>
        </li>
@@ -304,14 +304,14 @@
        <li class="list_1">
         <div style="position: relative;">
          <span class="img">
-          <a style="display: block;"><img src="<%=request.getContextPath()%>/storage/${nextItem.poster}"></a>
+          <a style="display: block;"><img src="<%=request.getContextPath()%>/storage/${nextItem.m_poster}"></a>
          </span>
         </div>
         
         <div class="hover_2" style="display:block;width: 228px;height: 335px;padding: 114px 20px 0;position: absolute;left: 0;top: 0;color: #fff;text-align: center;font-size: 14px;line-height: 27px;z-index:999;">
            <a href="resev.do" style="display:none;text-decoration:none;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">예매하기</a>
            <div style="display:none;margin-top:10px;">
-           <a href="moviedetail.do?idx=${nextItem.no}" style="text-decoration:none;display:block;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">상세보기</a>
+           <a href="moviedetail.do?idx=${nextItem.m_no}" style="text-decoration:none;display:block;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">상세보기</a>
            </div>  
        </div>
 
@@ -319,13 +319,13 @@
          <dt>
           <span class="grade_15" style="">
            <c:choose>
-           <c:when test="${nextItem.grade eq 0}">
+           <c:when test="${nextItem.m_grade eq 0}">
             <img src="images/bg_grade_all.png" style="margin-top:-1px;">
            </c:when>
-           <c:when test="${nextItem.grade eq 12}">
+           <c:when test="${nextItem.m_grade eq 12}">
             <img src="images/bg_grade_12.png" style="margin-top:-1px;">
            </c:when>
-           <c:when test="${nextItem.grade eq '15'}">
+           <c:when test="${nextItem.m_grade eq '15'}">
             <img src="images/bg_grade_15.png" style="margin-top:-1px;">
            </c:when>
            <c:otherwise>
@@ -334,7 +334,7 @@
 
           </c:choose>
           </span>
-          <a>${nextItem.title}</a>
+          <a>${nextItem.m_title}</a>
          </dt>
         </dl>
        </li>

@@ -10,17 +10,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 <title>movieDetail.jsp</title>
-    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="css/full-slider.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick-theme.css">
-    <script src="vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
-    <script src="js/agency.min.js"></script>
+    <link href="./resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="./resources/css/full-slider.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick-theme.css">
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
+    <script src="./resources/js/agency.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script src="./slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link href="vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
-    <link href="css/agency.min.css" rel="stylesheet">
+    <script src="./resources/slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
+    <link href="./resources/css/agency.min.css" rel="stylesheet">
     
   <style type="text/css">
     html, body {margin: 0;padding: 0;border:0;vertical-align: baseline;}
@@ -153,19 +153,19 @@
   <header style="background-color:#231f20;min-width: 980px;padding:10px;">
    <div class="lazy slider" data-sizes="50vw">
     <div>
-      <img data-lazy="<%=request.getContextPath()%>/storage/${movie.steal1}">
+      <img data-lazy="<%=request.getContextPath()%>/storage/${movie.m_steal1}">
     </div>
     <div>
-      <img data-lazy="<%=request.getContextPath()%>/storage/${movie.steal2}">
+      <img data-lazy="<%=request.getContextPath()%>/storage/${movie.m_steal2}">
     </div>
     <div>
-      <img data-lazy="<%=request.getContextPath()%>/storage/${movie.steal3}">
+      <img data-lazy="<%=request.getContextPath()%>/storage/${movie.m_steal3}">
     </div>
     <div>
-      <img data-lazy="<%=request.getContextPath()%>/storage/${movie.steal4}">
+      <img data-lazy="<%=request.getContextPath()%>/storage/${movie.m_steal4}">
     </div>
     <div>
-      <img data-lazy="<%=request.getContextPath()%>/storage/${movie.steal5}">
+      <img data-lazy="<%=request.getContextPath()%>/storage/${movie.m_steal5}">
     </div>
    </div> 
   </header>
@@ -175,19 +175,19 @@
    <div><p style="text-align:center;font-weight:bold;color:#231f20;font-size:22px;">트레일러·스틸컷</p></div>
    <div class="center slider">
     <div>
-      <img src="<%=request.getContextPath()%>/storage/${movie.steal1}" width="120" height="100">
+      <img src="<%=request.getContextPath()%>/storage/${movie.m_steal1}" width="120" height="100">
     </div>
     <div>
-      <img src="<%=request.getContextPath()%>/storage/${movie.steal2}" width="120" height="100">
+      <img src="<%=request.getContextPath()%>/storage/${movie.m_steal2}" width="120" height="100">
     </div>
     <div>
-      <img src="<%=request.getContextPath()%>/storage/${movie.steal3}" width="120" height="100">
+      <img src="<%=request.getContextPath()%>/storage/${movie.m_steal3}" width="120" height="100">
     </div>
     <div>
-      <img src="<%=request.getContextPath()%>/storage/${movie.steal4}" width="120" height="100">
+      <img src="<%=request.getContextPath()%>/storage/${movie.m_steal4}" width="120" height="100">
     </div>
     <div>
-      <img src="<%=request.getContextPath()%>/storage/${movie.steal5}" width="120" height="100">
+      <img src="<%=request.getContextPath()%>/storage/${movie.m_steal5}" width="120" height="100">
     </div>
    </div>
   </section>
@@ -204,8 +204,8 @@
     
      <div class="title" style="overflow: visible;">
       <h2>
-       <sapn>${movie.title}</sapn>
-       <p style="padding-left:3px;">${movie.subtitle}</p>
+       <sapn>${movie.m_title}</sapn>
+       <p style="padding-left:3px;">${movie.m_subtitle}</p>
       </h2>
      </div>
      

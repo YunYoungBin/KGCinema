@@ -7,5 +7,13 @@
 		select * from movie where m_premiere <![CDATA[<]]> sysdate order by m_premiere desc
 	</select>
 	
+	<select id="selectAllNext" resultType="dto">
+		select * from movie where m_premiere <![CDATA[>]]> sysdate order by m_premiere desc
+	</select>
+	
+	<select id="detail" parameterType="int" resultType="dto">
+	   select * from movie where m_no=#{m_no}
+	</select>
+	
 
 </mapper>

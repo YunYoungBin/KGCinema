@@ -19,5 +19,13 @@ public class MovieDAO {
 		List<Moviebean> list = temp.selectList("movie.selectAllDynamic");
 		return list;
 	}
+	public List<Moviebean> movieSelectNext() {
+		List<Moviebean> list = temp.selectList("movie.selectAllNext");
+		return list;
+	}
+	public Moviebean movieDetail(int data) {
+		Moviebean mdto=temp.selectOne("movie.detail",data);
+		return mdto;
+	}//end
 
 }

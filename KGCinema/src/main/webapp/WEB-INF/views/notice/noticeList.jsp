@@ -7,13 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>noticeListCopy</title>
-    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <script src="vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
-    <script src="js/agency.min.js"></script>
+    <link href="./resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
+    <script src="./resources/js/agency.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link href="vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
-    <link href="css/agency.min.css" rel="stylesheet">
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
+    <link href="./resources/css/agency.min.css" rel="stylesheet">
 </head>
 <style>
     html, body {margin: 0;padding: 0;border:0;vertical-align: baseline;}
@@ -166,10 +166,10 @@
           <tbody>
           <c:forEach var="item" items="${naver}">
            <tr>
-            <td headers="th_noticelist_no" class="pl25">${item.nrn}</td>
-            <td headers="th_noticelist_cinema">${item.nloc}</td>
-            <td headers="th_noticelist_title"><a href="noticedetail.do?idx=${item.nno}" style="color: #666;" href="#" title="공지사항 상세보기">${item.ntitle}</a></td>
-            <td headers="th_noticelist_create" class="text-right pr30">${item.ndate}</td>       
+            <td headers="th_noticelist_no" class="pl25">${item.rn}</td>
+            <td headers="th_noticelist_cinema">${item.n_loc}</td>
+            <td headers="th_noticelist_title"><a href="noticedetail.do?idx=${item.n_no}" style="color: #666;" href="#" title="공지사항 상세보기">${item.n_title}</a></td>
+            <td headers="th_noticelist_create" class="text-right pr30"><fmt:formatDate value="${item.n_redate}" pattern="yyyy/MM/dd" /></td>       
            </tr>
           </c:forEach> 
           </tbody>

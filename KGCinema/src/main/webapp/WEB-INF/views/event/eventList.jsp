@@ -7,13 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>EventList</title>
-    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <script src="vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
-    <script src="js/agency.min.js"></script>
+    <link href="./resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
+    <script src="./resources/js/agency.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link href="vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
-    <link href="css/agency.min.css" rel="stylesheet">
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
+    <link href="./resources/css/agency.min.css" rel="stylesheet">
 </head>
 <style>
     html, body {margin: 0;padding: 0;border:0;vertical-align: baseline;}
@@ -156,12 +156,12 @@
         <div class="full-width">
          <div id="eventList">
           <ul id="event_wrapper">
-          <c:forEach var="item" items="${edb}">
+          <c:forEach var="item" items="${naver}">
            <li class="item">
-            <a href="eventdetail.do?idx=${item.eno}">
-             <img src="<%=request.getContextPath()%>/storage/${item.efile}">
-             <span class="title">${item.etitle}</span>
-             <span>${item.eperiod}</span>
+            <a href="eventdetail.do?idx=${item.e_no}">
+             <img src="<%=request.getContextPath()%>/storage/${item.e_file}">
+             <span class="title">${item.e_title}</span>
+             <span>${item.e_period}</span>
             </a>
            </li>
           </c:forEach>          

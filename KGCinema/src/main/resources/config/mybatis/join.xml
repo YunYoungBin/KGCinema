@@ -11,5 +11,12 @@
 		select count(*) from join where j_id = #{id}
 	</select>
 	
+	<insert id="insert" parameterType="com.kg.cinema.join.Joinbean">
+		insert into join values(join_seq.nextval,#{j_id},#{j_name},#{j_pwd},#{j_juso1},#{j_juso2},to_date(#{j_birth},'yyyy-mm-dd'),#{j_phone},#{j_email},null)
+	</insert>
+	
+	<select id="myInfo" resultType="com.kg.cinema.join.Joinbean" parameterType="String">
+		select * from join where j_id = #{id}
+	</select>
 
 </mapper>

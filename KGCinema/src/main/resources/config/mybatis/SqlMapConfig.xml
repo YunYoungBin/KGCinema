@@ -12,6 +12,7 @@
 		<mapper resource="config/mybatis/notice.xml"/>
 		<mapper resource="config/mybatis/event.xml"/>
 		<mapper resource="config/mybatis/join.xml"/>
+		<mapper resource="config/mybatis/login.xml"/>
 	</mappers>
 
 

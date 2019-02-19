@@ -16,7 +16,7 @@
 <table height=300></table>
 
  <table align="center" width=1000 border=0 cellspacing=0 cellpadding=5>
-  <tr align="center"><td colspan=4><img src="<%=request.getContextPath()%>/storage/${bean.econtent}" width=700 height=2380> </td>  </tr>
+  <tr align="center"><td colspan=4><img src="<%=request.getContextPath()%>/storage/${event.e_content}" width=700 height=2380> </td>  </tr>
   <p>
   <form action="eventlist.do">
    <tr align="center">

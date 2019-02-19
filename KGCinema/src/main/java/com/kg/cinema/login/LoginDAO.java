@@ -1,4 +1,4 @@
-package com.kg.cinema.join;
+package com.kg.cinema.login;
 
 import java.util.List;
 
@@ -9,23 +9,15 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Component
-public class JoinDAO {
+public class LoginDAO {
 	
 	//org.mybatis.spring.SqlSessionTemplate
 	@Autowired
 	SqlSessionTemplate temp;
-	
-	public void insertSave(Joinbean bean) {
-		temp.insert("join.insert", bean);
-	}
-	
-	public int idCheck(String id) {
-		int check = temp.selectOne("join.idCheck", id);
+
+	public int login(Loginbean bean) {
+		int check = temp.selectOne("login.check", bean);
 		return check;
-	}
-	
-	public Joinbean myInfo(String id) {
-		return temp.selectOne("join.myInfo", id);
 	}
 
 }

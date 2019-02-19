@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kg.cinema.movie.MovieDAO;
+import com.kg.cinema.movie.Moviebean;
 
 @Controller
 public class NoticeController {
@@ -96,5 +97,15 @@ public class NoticeController {
 		mav.setViewName("notice/noticeList");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/noticedetail.do", method = RequestMethod.GET)
+	public ModelAndView noticeDetail(HttpServletRequest request) {
+	  ModelAndView mav = new ModelAndView( );
+	  int data=Integer.parseInt(request.getParameter("idx")); 
+	  Noticebean ndto=ndao.NoticeDetail(data);
+	  mav.addObject("notice", ndto);
+	  mav.setViewName("notice/noticeDetail");
+	  return mav;
+	}//end
 	
 }

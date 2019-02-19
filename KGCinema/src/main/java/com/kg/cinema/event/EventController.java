@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kg.cinema.movie.MovieDAO;
+import com.kg.cinema.movie.Moviebean;
 
 @Controller
 public class EventController {
@@ -96,5 +97,15 @@ public class EventController {
 		mav.setViewName("event/eventList");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/eventdetail.do", method = RequestMethod.GET)
+	public ModelAndView eventDetail(HttpServletRequest request) {
+	  ModelAndView mav = new ModelAndView( );
+	  int data=Integer.parseInt(request.getParameter("idx")); 
+	  Eventbean edto=edao.EventDetail(data);
+	  mav.addObject("event", edto);
+	  mav.setViewName("event/eventDetail");
+	  return mav;
+	}//end
 	
 }

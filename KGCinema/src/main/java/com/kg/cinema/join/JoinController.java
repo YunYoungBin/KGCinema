@@ -2,6 +2,7 @@ package com.kg.cinema.join;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -38,6 +39,14 @@ public class JoinController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("join/Input");
 		return mav;
+	}
+	
+	@RequestMapping("/join.do")
+	public String join_insertSave(Joinbean bean) {
+		bean.setJ_birth(bean.getYear()+"-"+bean.getMonth()+"-"+bean.getDay());
+		bean.setJ_phone(bean.getNum1()+"-"+bean.getNum2()+"-"+bean.getNum3());
+		dao.insertSave(bean);
+		return "redirect:/main.do";
 	}
 	
 	@RequestMapping("/check.do")

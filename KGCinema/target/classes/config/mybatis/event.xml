@@ -18,5 +18,9 @@
 	<select id="countAllSearch" parameterType="com.kg.cinema.event.Eventbean"  resultType="int">
  	   select  count(*) from event where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%'  
  	</select>
+ 	
+ 	<select id="detail" parameterType="int" resultType="com.kg.cinema.event.Eventbean">
+	   select * from event where e_no=#{e_no}
+	</select>
 	
 </mapper>

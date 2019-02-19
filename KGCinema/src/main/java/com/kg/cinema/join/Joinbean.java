@@ -11,7 +11,46 @@ public class Joinbean {
 	private String j_email;
 	private String j_file1;
 	
+	private int num1, num2, num3;
+	private int year, month, day;
 	
+	
+	public int getNum1() {
+		return num1;
+	}
+	public void setNum1(int num1) {
+		this.num1 = num1;
+	}
+	public int getNum2() {
+		return num2;
+	}
+	public void setNum2(int num2) {
+		this.num2 = num2;
+	}
+	public int getNum3() {
+		return num3;
+	}
+	public void setNum3(int num3) {
+		this.num3 = num3;
+	}
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
+	public int getMonth() {
+		return month;
+	}
+	public void setMonth(int month) {
+		this.month = month;
+	}
+	public int getDay() {
+		return day;
+	}
+	public void setDay(int day) {
+		this.day = day;
+	}
 	public String getJ_id() {
 		return j_id;
 	}

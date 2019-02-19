@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import com.kg.cinema.movie.Moviebean;
+
 @Repository
 @Component
 public class NoticeDAO {
@@ -42,6 +44,11 @@ public class NoticeDAO {
 		System.out.println(sval);
 		int cnt=(Integer)temp.selectOne("notice.countAllSearch" , dto);
 		return cnt;
+	}//end
+	
+	public Noticebean NoticeDetail(int data) {
+		Noticebean ndto=temp.selectOne("notice.detail",data);
+		return ndto;
 	}//end
 
 }

@@ -13,6 +13,7 @@
 		<mapper resource="config/mybatis/event.xml"/>
 		<mapper resource="config/mybatis/join.xml"/>
 		<mapper resource="config/mybatis/login.xml"/>
+		<mapper resource="config/mybatis/admin.xml"/>
 	</mappers>
 
 

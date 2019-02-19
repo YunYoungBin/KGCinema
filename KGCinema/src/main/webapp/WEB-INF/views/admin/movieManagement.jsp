@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  %>
+<%@ include file="admin_top.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-<%@ page import="cinema_adminController.NoticeListController" %>
-<%@ page import="cinema_common.GlobalVariable" %>
-
 
 <!DOCTYPE html>
 <html>
@@ -22,21 +19,8 @@
   <script type="text/javascript">
   </script>
  </head>
- <jsp:include page="admin_top.jsp"></jsp:include>
 <body>
-   <%
-   String sval=(String)request.getAttribute("sval");
-   int Gtotal3 = (int)request.getAttribute("Gtotal");
-   int Stotal3 = (int)request.getAttribute("Stotal");
-   int pageNUM3 = (int)request.getAttribute("pageNUM");
-   int num2;
-   if(sval==null || sval=="") {
-       num2=Gtotal3-(pageNUM3-1)*10;
-   }else {
-    num2=Stotal3-(pageNUM3-1)*10;  
-   }
-  
-   %>
+   
 <div>
 
 <p style="text-align:center;">영화정보 관리</p>
@@ -71,20 +55,20 @@
      <th width=150 style="border-left-width:0px; border-right-width: 0px;">개봉일</th>
      <th width=150 style="border-left-width:0px;">수정/삭제</th>
   </tr>
-   <c:forEach var="mbean" items="${movie}">
+   <c:forEach var="movie" items="${naver}">
    <tr align="center">
     
 
-   <td style="border-left-width:0px; border-right-width: 0px;"><%=num2--%></td>
+   <td style="border-left-width:0px; border-right-width: 0px;">${movie.m_rn}</td>
      
     
-     <td style="border-left-width:0px; border-right-width: 0px;"> ${mbean.title}  </td>
-     <td style="border-left-width:0px; border-right-width: 0px;"> ${mbean.type} </td>
-     <td style="border-left-width:0px; border-right-width: 0px;"> ${mbean.genre} </td>
-     <td style="border-left-width:0px; border-right-width: 0px;"> ${mbean.premiere} </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${movie.m_title}  </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${movie.m_type} </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${movie.m_genre} </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> <fmt:formatDate value="${movie.m_premiere}" pattern="yyyy/MM/dd" /> </td>
      <td style="border-left-width:0px;">
-      <a href="movieEdit.do?idx=${mbean.no}">[수정]</a>
-      <a href="movieDelete.do?idx=${mbean.no}">[삭제]</a> 
+      <a href="movieEdit.do?idx=${movie.m_no}">[수정]</a>
+      <a href="movieDelete.do?idx=${movie.m_no}">[삭제]</a> 
      </td>
    </tr>  
    </c:forEach>

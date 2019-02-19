@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="admin_top.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -14,7 +15,6 @@
     <link href="vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
     <link href="css/agency.min.css" rel="stylesheet">
 </head>
-<jsp:include page="admin_top.jsp"></jsp:include>
 <style>
     html, body {margin: 0;padding: 0;border:0;vertical-align: baseline;}
     * {box-sizing: border-box;font-family: '나눔고딕','NanumGothic','맑은 고딕','Malgun Gothic','돋움',dotum,'Apple SD Gothic Neo',sans-serif;}
@@ -136,12 +136,12 @@
         <div class="full-width">
          <div id="eventList">
           <ul id="event_wrapper">
-          <c:forEach var="item" items="${edb2}">
+          <c:forEach var="item" items="${naver}">
            <li class="item">
-            <a href="eventdetail.do?idx=${item.eno}">
-             <img src="<%=request.getContextPath()%>/storage/${item.efile}">
-             <span class="title">${item.etitle}</span>
-             <span style="font-size:13px;">${item.eperiod}</span>
+            <a href="eventdetail.do?idx=${item.e_no}">
+             <img src="<%=request.getContextPath()%>/storage/${item.e_file}">
+             <span class="title">${item.e_title}</span>
+             <span style="font-size:13px;">${item.e_period}</span>
             </a>
            </li>
           </c:forEach> 

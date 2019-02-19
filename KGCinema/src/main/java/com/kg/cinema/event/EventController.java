@@ -67,13 +67,13 @@ public class EventController {
 		else {pageNUM=Integer.parseInt(pnum);}
 		  
 		//[7클릭] 숫자7을 pageNUM변수가 기억
-		start=(pageNUM-1)*10+1;
-		end=(pageNUM)*10;
+		start=(pageNUM-1)*8+1;
+		end=(pageNUM)*8;
 		  
 		int Gtotal=edao.EventCount(); //레코드전체갯수
 		  
-		if(SearchTotal%10==0){ pagecount=SearchTotal/10; } 
-		else {pagecount=(SearchTotal/10)+1;}
+		if(SearchTotal%8==0){ pagecount=SearchTotal/8; } 
+		else {pagecount=(SearchTotal/8)+1;}
 
 		temp=(pageNUM-1)%10;
 		startpage=pageNUM-temp;

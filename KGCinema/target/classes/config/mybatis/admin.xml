@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+	<!-- notice -->
+	
+	<insert id="noticeInsert">
+	  insert into notice(n_no,n_loc,n_title,n_redate,n_content)
+	 	values(notice_seq.nextval, #{n_loc}, #{n_title},sysdate,#{n_content})
+	</insert>
+	
+	<delete id="noticeDelete" parameterType="int">
+	    delete from notice where n_no = #{n_no} 
+	</delete>
+
+
+    <!-- movie -->
+	
+</mapper>

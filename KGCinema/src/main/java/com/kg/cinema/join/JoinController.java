@@ -43,11 +43,10 @@ public class JoinController {
 	
 	@RequestMapping("/join.do")
 	public String join_insertSave(Joinbean bean) {
-		System.out.println("이름 = " + bean.getJ_name());
 		bean.setJ_birth(bean.getYear()+"-"+bean.getMonth()+"-"+bean.getDay());
 		bean.setJ_phone(bean.getNum1()+"-"+bean.getNum2()+"-"+bean.getNum3());
 		dao.insertSave(bean);
-		return "redirect:/home.do";
+		return "redirect:/main.do";
 	}
 	
 	@RequestMapping("/check.do")

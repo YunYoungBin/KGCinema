@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
     <script src="./resources/js/agency.min.js"></script>
+    <script src="./resources/js/Head.js"></script>
     <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
     <link href="./resources/css/agency.min.css" rel="stylesheet">
 </head>
@@ -215,7 +216,7 @@
               </span>
              </span>
             </p>
-             <input type="submit" id="btnlogin" value="로그인" title="로그인" class="img_login" onclick="move();" style="background-image: url(http://image2.megabox.co.kr/mop/home/btns/btn_member.png);">
+             <input type="button" id="btnlogin" value="로그인" title="로그인" class="img_login" style="background-image: url(http://image2.megabox.co.kr/mop/home/btns/btn_member.png);">
            </div>
           </div>
           </form>
@@ -251,9 +252,7 @@
           $(".login_hidden").css({'display' : 'none'});
           });
         });
-        function move(){
-	     document.myform.submit();
-        }
+
        </script>                   
     <!-- head logout end -->         
      </c:otherwise>

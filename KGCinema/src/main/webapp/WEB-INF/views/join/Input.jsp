@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원가입</title>
 
 <link rel="stylesheet" type="text/css" href="./resources/css/InputCSS1.css">
@@ -63,7 +63,7 @@
 	<div class="all" align="center">
 		<div class="title"><br><div><h2>회원가입<span class="ml10">KG CINEMA에 오신것을 환영합니다</span></h2></div></div>
 		<div class="cf"><br><span class="text-sub mb10">* 표시 항목은 필수입력 항목입니다.</span></div>
-		<form name="iform" method="post" action="join.do"> <!-- enctype="multipart/form-data" -->
+		<form name="iform" method="post" action="join.do" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" -->
 			<table class="table1">
 				<tr>
 					<th>* 아이디</th>

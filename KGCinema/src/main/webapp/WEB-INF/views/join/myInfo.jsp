@@ -137,9 +137,9 @@
         </c:otherwise>
        </c:choose>
         <div class="pull-left textArea">
-         <strong>${bean.j_id}</strong> <input type='text' hidden="" name="id" value="${bean.j_id}">
+         <strong>${bean.j_id}</strong> <input type='text' hidden="" name="j_id" value="${bean.j_id}">
          <span class="profile_btn_wrap">
-          <input type="file" id="file" name="file" class="img_btn user fake_section file_button">
+          <input type="file" id="file" name="upload_f" class="img_btn user fake_section file_button">
           <!--<button id="imgDeleteBtn" name="imgDeleteBtn" class="img_btn user profile_del">삭제</button>-->
           <input type="button" class="img_btn user profile_del"
           style="width: 70px;height: 26px;background-position: -476px -200px;display: inline-block;">
@@ -159,7 +159,7 @@
            <label>*비밀번호</label>
           </th>
           <td>
-           <input type="password" name="pwd" fieldname="비밀번호" value="" onkeyup="checklen(this,10)">
+           <input type="password" name="j_pwd" fieldname="비밀번호" value="" onkeyup="checklen(this,10)">
            <input type='text' hidden="" name="pass" value="${bean.j_pwd}">
           </td>
          </tr>
@@ -168,10 +168,10 @@
            <label>*이름</label>
           </th>
           <td>
-           <input type="text" name="name" fieldname="이름" value="${bean.j_name}" readonly>
-           <input id="filename" type="hidden" name="filename" fieldname="이름" value="${bean.j_file1}">
+           <input type="text" name="j_name" fieldname="이름" value="${bean.j_name}" readonly>
+           <input id="filename" type="hidden" name="j_file1" fieldname="이름" value="${bean.j_file1}">
           </td>
-         </tr>     
+         </tr>
          <tr>
           <th scope="row" id="th_myInfo_birthday">
            <label>*생년월일</label>
@@ -203,7 +203,7 @@
            <label>*이메일</label>
           </th>
           <td>
-           <input type="text" name="email" value="${bean.j_email}" onblur="emailcheck()" onkeyup="checklen(this,30)">
+           <input type="text" name="j_email" value="${bean.j_email}" onblur="emailcheck()" onkeyup="checklen(this,30)">
            <span id="email_ch"></span>
           </td>
          </tr>            
@@ -213,8 +213,8 @@
         </th>
          <td>
           <input type="text" size="10" id="code" name="code" value="12345" readonly> <input type="button" onclick="DaumPostcode()" value="우편번호"><p>
-         <input type="text" size="40" id="juso1" name="juso1" value="${bean.j_juso1}" readonly><p>
-         <input type="text" size="40" id="juso2" name="juso2" value="${bean.j_juso2}" onkeyup="checklen(this,30)">&nbsp;&nbsp;상세주소를 입력하세요 <br>
+         <input type="text" size="40" id="juso1" name="j_juso1" value="${bean.j_juso1}" readonly><p>
+         <input type="text" size="40" id="juso2" name="j_juso2" value="${bean.j_juso2}" onkeyup="checklen(this,30)">&nbsp;&nbsp;상세주소를 입력하세요 <br>
        </td>
       </tr>                        
         </tbody>
@@ -222,7 +222,7 @@
       </div>
      </div>
       <div class="btn_wrap text-center mt50">
-       <a href="index.jsp"><button type="button" class="img_btn user cancel mr7" onclick="">취소</button></a>
+       <button type="button" class="img_btn user cancel mr7" onclick="location.href='main.do'">취소</button>
        <button type="button" class="img_btn user modify ml7" onclick="check()" style="background: url(http://image2.megabox.co.kr/mop/home/mypage/bg_mypage_160114.png) -200px -650px no-repeat;"></button>
       </div>
      

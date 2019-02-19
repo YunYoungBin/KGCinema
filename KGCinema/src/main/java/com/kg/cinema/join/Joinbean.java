@@ -1,5 +1,7 @@
 package com.kg.cinema.join;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Joinbean {
 	private String j_id;
 	private String j_name;
@@ -11,44 +13,54 @@ public class Joinbean {
 	private String j_email;
 	private String j_file1;
 	
-	private int num1, num2, num3;
-	private int year, month, day;
+	private MultipartFile upload_f;
+	
+	private String num1, num2, num3;
+	private String year, month, day;
 	
 	
-	public int getNum1() {
+	public MultipartFile getUpload_f() {
+		return upload_f;
+	}
+	public void setUpload_f(MultipartFile upload_f) {
+		this.upload_f = upload_f;
+	}
+	
+
+	public String getNum1() {
 		return num1;
 	}
-	public void setNum1(int num1) {
+	public void setNum1(String num1) {
 		this.num1 = num1;
 	}
-	public int getNum2() {
+	public String getNum2() {
 		return num2;
 	}
-	public void setNum2(int num2) {
+	public void setNum2(String num2) {
 		this.num2 = num2;
 	}
-	public int getNum3() {
+	public String getNum3() {
 		return num3;
 	}
-	public void setNum3(int num3) {
+	public void setNum3(String num3) {
 		this.num3 = num3;
 	}
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
-	public int getMonth() {
+	public String getMonth() {
 		return month;
 	}
-	public void setMonth(int month) {
+	public void setMonth(String month) {
 		this.month = month;
 	}
-	public int getDay() {
+	public String getDay() {
 		return day;
 	}
-	public void setDay(int day) {
+	public void setDay(String day) {
 		this.day = day;
 	}
 	public String getJ_id() {

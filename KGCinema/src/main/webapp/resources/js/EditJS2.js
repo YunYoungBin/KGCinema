@@ -8,22 +8,22 @@
    
 //====다 체크하고 submit
    function check(){
-      var pwd = iform.pwd.value;
+      var pwd = iform.j_pwd.value;
       var pass = iform.pass.value;
       var code = iform.code.value;
-      var juso1 = iform.juso1.value;
-      var juso2 = iform.juso2.value;
+      var juso1 = iform.j_juso1.value;
+      var juso2 = iform.j_juso2.value;
       var year = iform.year.value;
       var month = iform.month.value;
       var day = iform.day.value;
       var num1 = iform.num1.value;
       var num2 = iform.num2.value;
       var num3 = iform.num3.value;
-      var email = iform.email.value;
+      var email = iform.j_email.value;
       
       if (pwd==null||pwd==""){
          alert('비밀번호를 입력하세요.');
-         iform.pw.focus();
+         iform.j_pwd.focus();
          return;
       }
       if (code==null||code==""||juso1==null||juso1==""||juso2==null||juso2==""){
@@ -43,7 +43,7 @@
       }
       if (email==null||email==""){
          alert('이메일을 입력하세요.');
-         iform.email.focus();
+         iform.j_email.focus();
          return;
       }
 
@@ -51,7 +51,7 @@
       flag=true;
       
       //비번체크
-      if(iform.pwd.value == iform.pass.value) {
+      if(iform.j_pwd.value == iform.pass.value) {
          flagP = true;
       } else {
          flagP = false;
@@ -60,13 +60,13 @@
       
       if(flagP == false){   //비번 확인 틀렸을때
          alert('비밀번호가 잘못되었습니다.');
-         iform.pwd.focus();
+         iform.j_pwd.focus();
          return;
       }
       
       if(flagE == false){   //이메일 확인 틀렸을때
          alert('이메일이 잘못되었습니다.');
-         iform.email.focus();
+         iform.j_email.focus();
          return;
       }
       
@@ -120,7 +120,7 @@
    
 //====email 형식체크
    function emailcheck( ){
-        var mail=iform.email.value;
+        var mail=iform.j_email.value;
         var mail_reg=/^([\S]{2,16})@([a-zA-Z]{2,10})\.([a-zA-Z]{2,10})$/;
         if(mail_reg.test(mail)==false){
           return;

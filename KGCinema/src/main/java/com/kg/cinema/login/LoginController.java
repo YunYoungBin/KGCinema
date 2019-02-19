@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kg.cinema.join.JoinDAO;
@@ -41,25 +43,28 @@ public class LoginController {
 		ModelAndView mav = new ModelAndView();
 		PrintWriter out = response.getWriter();
 		
-		HttpSession session = request.getSession();
-		
 		int count = dao.login(bean);
 		if(count > 0) {
-			session.setAttribute("temp", bean.getUserid());
+			request.getSession().setAttribute("temp", bean.getUserid());
+			
+			EgovHttpSessionBindingListener listener = new EgovHttpSessionBindingListener();
+			request.getSession().setAttribute(bean.getUserid(), listener);
 			out.print("{\"check\": \""+ count + "\"}");
 		} else {
-			
 			out.print("{\"check\": \""+ count + "\"}");
 		}
 		
 	}
 	
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
-	public String main(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		PrintWriter out = response.getWriter();
-		
-		HttpSession session = request.getSession();
-		session.invalidate();
+	public String main(HttpServletRequest request) throws Exception {
+		try {
+			RequestContextHolder.getRequestAttributes().removeAttribute("temp", RequestAttributes.SCOPE_SESSION);
+			
+			request.getSession().invalidate();
+		} catch (Exception e) {
+			System.out.println("Error : " + e);
+		}
 		return "redirect:/main.do";
 	}
 	

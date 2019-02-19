@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kg.cinema.join.JoinDAO;
 import com.kg.cinema.join.Joinbean;
+import com.kg.cinema.login.EgovHttpSessionBindingListener;
 import com.kg.cinema.movie.MovieDAO;
 import com.kg.cinema.movie.Moviebean;
 
@@ -39,12 +40,11 @@ public class MainController {
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
 		
-		if(session.getAttribute("temp") == null) {
+		if(request.getSession().getAttribute("temp") == null) {
 			
 		} else {
-			Joinbean bean = jdao.myInfo((String)session.getAttribute("temp"));
+			Joinbean bean = jdao.myInfo((String)request.getSession().getAttribute("temp"));
 			mav.addObject("bean", bean);
 		}
 		

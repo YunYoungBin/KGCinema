@@ -26,6 +26,10 @@
         <beans:property name="maxUploadSize" value="31457280" />
         <beans:property name="defaultEncoding" value="UTF-8" />
     </beans:bean>
+    
+    <beans:bean id="egovSession" class="com.kg.cinema.login.EgovHttpSessionBindingListener">
+    	
+    </beans:bean>
 	
 	<context:component-scan base-package="com.kg.*" />
 	

@@ -39,8 +39,6 @@ public class LoginController {
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public void main(Loginbean bean, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(bean.getUserid());
-		System.out.println(bean.getUserpw());
 		PrintWriter out = response.getWriter();
 		
 		HttpSession session = request.getSession();

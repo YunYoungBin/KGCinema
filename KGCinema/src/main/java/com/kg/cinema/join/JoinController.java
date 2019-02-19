@@ -78,7 +78,6 @@ public class JoinController {
 			return mav;
 		} else {
 			Joinbean bean = dao.myInfo((String)session.getAttribute("temp"));
-			System.out.println(bean.getJ_birth());
 			
 			mav.addObject("bean", bean);
 			mav.setViewName("join/myInfo");

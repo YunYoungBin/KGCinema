@@ -110,7 +110,7 @@
              <img src="http://image2.megabox.co.kr/mop/home/user/profile_m.png" alt='프로필사진' style='position: absolute;left: 0;top: 0;'>
             </c:when>
             <c:otherwise>
-             <img src="<%=request.getContextPath()%>/storage/${bean.j_file1}" alt='프로필사진' style='position: absolute;left: 0;top: 0;'>
+             <img src="${pageContext.request.contextPath}/resources/storage/${bean.j_file1}" alt='프로필사진' style='position: absolute;left: 0;top: 0;'>
             </c:otherwise>
            </c:choose>                     
            <i class="icon member_icon normal">일반</i>

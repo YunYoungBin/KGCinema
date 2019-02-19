@@ -8,13 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>noticeListCopy</title>
-    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <script src="vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
-    <script src="js/agency.min.js"></script>
+    <link href="./resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
+    <script src="./resources/js/agency.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link href="vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
-    <link href="css/agency.min.css" rel="stylesheet">
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
+    <link href="./resources/css/agency.min.css" rel="stylesheet">
 </head>
 <style>
     html, body {margin: 0;padding: 0;border:0;vertical-align: baseline;}
@@ -117,19 +117,19 @@
         <tr>
          <th scope="row" id="th_noticedetail_title">제목</th>
          <td headers="th_noticedetail_title" colspan="3">
-          <strong class="c_purple">${fn:replace(notice.ntitle,br,cn)}</strong>
+          <strong class="c_purple">${fn:replace(notice.n_title,br,cn)}</strong>
          </td>
         </tr>
         <tr>
          <th scope="row" id="th_noticedetail_cinema">영화관</th>
-         <td headers="th_noticedetail_cinema">${notice.nloc}</td>
+         <td headers="th_noticedetail_cinema">${notice.n_loc}</td>
          <th scope="row" id="th_noticedetail_createdate">등록일</th>
-         <td headers="th_noticedetail_createdate">${notice.ndate}</td>
+         <td headers="th_noticedetail_createdate"><fmt:formatDate value="${notice.n_redate}" pattern="yyyy/MM/dd" /></td>
         </tr>
        </tbody>
       </table>
       <div class="contents">
-       ${fn:replace(notice.ncontent,br,cn)}
+       ${fn:replace(notice.n_content,br,cn)}
       </div>
      </div>
      <div class="clearfix mt10">
@@ -139,12 +139,12 @@
       <li class="prev">
        <span>이전</span>
        <i class="fa fa-chevron-up">▲</i>
-       <a href="noticedetail.do?idx=${item.nno}" title="공지사항 상세보기">${fn:replace(notice.ntitle,br,cn)}</a>
+       <a href="noticedetail.do?idx=${item.n_no}" title="공지사항 상세보기">${fn:replace(notice.n_title,br,cn)}</a>
       </li>
       <li class="next">
        <span>다음</span>
        <i class="fa fa-chevron-down">▼</i>
-       <a href="noticedetail.do?idx=${item.nno}" title="공지사항 상세보기">${fn:replace(notice.ntitle,br,cn)}</a>
+       <a href="noticedetail.do?idx=${item.n_no}" title="공지사항 상세보기">${fn:replace(notice.n_title,br,cn)}</a>
       </li>
      </ul>
     </div>

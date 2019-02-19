@@ -56,4 +56,14 @@ public class LoginController {
 		
 	}
 	
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+	public String main(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();
+		
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "redirect:/main.do";
+	}
+	
+	
 }

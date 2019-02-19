@@ -258,33 +258,5 @@
      </c:otherwise>
     </c:choose>       
     
-         <c:if test="${fail eq false}">
-         <div class="custom_alert" style="position: absolute; top: 393px; left: 735px;">
-          <div class="ca_header">
-            <h6>로그인</h6>
-          </div>
-          <div class="ca_body">
-           <p>로그인 정보가 잘못되었습니다.</p>
-         </div>
-         <div class="ca_footer">
-          <button type="button" class="img_btn booking ok"></button>
-         </div>
-         <button type="button" class="img_btn booking btn_ca_close"></button>
-        </div>
-        
-       <script type="text/javascript">
-        $('html, body').css({'overflow': 'hidden', 'height': '100%'});
-        $(document).on('ready', function() {     
-          $(".ok").click(function(){
-          $(".custom_alert").css({'display' : 'none'});
-          $('html, body').css({'overflow': 'inherit', 'height': '100%'});
-          });
-        $(".btn_ca_close").click(function(){
-          $(".custom_alert").css({'display' : 'none'});
-          $('html, body').css({'overflow': 'inherit', 'height': '100%'});
-          });
-        });
-      </script>     
-       </c:if>
 </body>
 </html>

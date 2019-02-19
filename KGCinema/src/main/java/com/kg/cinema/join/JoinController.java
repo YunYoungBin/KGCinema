@@ -69,4 +69,21 @@ public class JoinController {
 		return ;
 	}
 	
+	@RequestMapping("/mypage.do")
+	public ModelAndView join_mypage(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("temp") == null) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		} else {
+			Joinbean bean = dao.myInfo((String)session.getAttribute("temp"));
+			System.out.println(bean.getJ_birth());
+			
+			mav.addObject("bean", bean);
+			mav.setViewName("join/myInfo");
+		}
+		return mav;
+	}
+	
 }

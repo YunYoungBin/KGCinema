@@ -76,6 +76,47 @@
          return;
       }
       
+      // 생년월일 입력확인
+         var year=iform.year.value;
+         var month=iform.month.value;
+         var day=iform.day.value;
+         var month_reg=/[(0-9)]{2}/;
+
+         var today = new Date(); // 날짜 변수 선언
+         var yearNow = today.getFullYear(); // 올해 년도 가져옴
+
+         
+         if(month_reg.test(month)==false) {
+            iform.month.value = "0" + month;
+         } else if(month_reg.test(day)==false) {
+            iform.day.value = "0" + day;
+         }
+         
+         if(1900 > year || year > yearNow) {
+            flagB=false;
+            iform.year.focus();
+         } else if(month < 1 || month > 12) {
+            flagB=false;
+            iform.month.focus();
+         } else if(day < 1 || day > 31) {
+            flagB=false;
+            iform.day.focus();
+         } else if((month==4||month==6||month==9||month==11) && day == 31) {
+            label.innerHTML = msg;
+         } else if(month==2) {
+            var isleap = (year%4==0 && (year % 100 != 0 || year%400==0));
+            if(day > 29 || (day==29 && !isleap)) {
+               flagB=false;
+            } else {
+               flagB=true;
+            }
+         } else {
+            flagB=true;
+         }
+         // 생년월일 체크 end
+         
+
+      
       if(flagB == false){   //생년월일 확인 틀렸을때
          alert('생년월일이 잘못되었습니다.');
          iform.year.focus();
@@ -188,48 +229,6 @@
       if(test1==true||test2==true||test3==true){
          flagN=true;   
       }
-   }//end
-   
-   // 생년월일 입력확인
-   function birth(){
-      var year=iform.year.value;
-      var month=iform.month.value;
-      var day=iform.day.value;
-      var month_reg=/[(0-9)]{2}/;
-
-      var today = new Date(); // 날짜 변수 선언
-      var yearNow = today.getFullYear(); // 올해 년도 가져옴
-
-      
-      if(month_reg.test(month)==false) {
-         iform.month.value = "0" + month;
-      } else if(month_reg.test(day)==false) {
-         iform.day.value = "0" + day;
-      }
-      
-      if(1900 > year || year > yearNow) {
-         flagB=false;
-         iform.year.focus();
-      } else if(month < 1 || month > 12) {
-         flagB=false;
-         iform.month.focus();
-      } else if(day < 1 || day > 31) {
-         flagB=false;
-         iform.day.focus();
-      } else if((month==4||month==6||month==9||month==11) && day == 31) {
-         label.innerHTML = msg;
-      } else if(month==2) {
-         var isleap = (year%4==0 && (year % 100 != 0 || year%400==0));
-         if(day > 29 || (day==29 && !isleap)) {
-            flagB=false;
-         } else {
-            flagB=true;
-         }
-      } else {
-         flagB=true;
-      }
-
-      
    }//end
    
 

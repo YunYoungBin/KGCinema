@@ -31,6 +31,9 @@ public class MainController {
 	@Inject
 	@Autowired
 	MovieDAO mdao;
+	
+	@Inject
+	@Autowired
 	JoinDAO jdao;
 	
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
@@ -41,6 +44,7 @@ public class MainController {
 		if(session.getAttribute("temp") == null) {
 			
 		} else {
+			System.out.println(session.getAttribute("temp"));
 			Joinbean bean = jdao.myInfo((String)session.getAttribute("temp"));
 			mav.addObject("bean", bean);
 		}

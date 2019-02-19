@@ -133,7 +133,7 @@
          <img id="preview" class="img-circle pull-left image_width" name="basic" src="http://image2.megabox.co.kr/mop/home/user/profile_m.png">
         </c:when>
         <c:otherwise>
-         <img id="preview" class="img-circle pull-left image_width" name="sujung_img" src="<%=request.getContextPath()%>/storage/${bean.j_file1}">
+         <img id="preview" class="img-circle pull-left image_width" name="sujung_img" src="${pageContext.request.contextPath}/resources/storage/${bean.j_file1}">
         </c:otherwise>
        </c:choose>
         <div class="pull-left textArea">

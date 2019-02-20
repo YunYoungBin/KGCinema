@@ -41,9 +41,7 @@ public class MainController {
 	public ModelAndView main(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
-		if(request.getSession().getAttribute("temp") == null) {
-			
-		} else {
+		if(request.getSession().getAttribute("temp") != null) {
 			Joinbean bean = jdao.myInfo((String)request.getSession().getAttribute("temp"));
 			mav.addObject("bean", bean);
 		}

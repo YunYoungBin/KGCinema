@@ -146,7 +146,7 @@
            <i style="margin: 0 12px;border-right: 1px solid #fff;height: 13px;vertical-align: middle;"></i>
            <a style="font-weight: bold;font-size: 14px;color: #fff;line-height: 13px;" href="#">VIP</a>
           </span>
-           <a href="reserve.do">
+           <a href="reserveMain.do">
           <button href="reserve.do" class="fast_reserv fast_btn" type="button" style="cursor: pointer;background-image: url(http://image2.megabox.co.kr/mop/home/btns/btn_header.png);background-position: -150px -100px;padding-right: 19px;">
           </button>
           </a>

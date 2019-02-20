@@ -24,6 +24,8 @@ import com.kg.cinema.join.Joinbean;
 import com.kg.cinema.login.EgovHttpSessionBindingListener;
 import com.kg.cinema.movie.MovieDAO;
 import com.kg.cinema.movie.Moviebean;
+import com.kg.cinema.schedule.ScheduleDAO;
+import com.kg.cinema.schedule.Schedulebean;
 import com.kg.cinema.theater.TheaterDAO;
 import com.kg.cinema.theater.Theaterbean;
 
@@ -43,6 +45,10 @@ public class ReserveController {
 	@Inject
 	@Autowired
 	TheaterDAO tdao;
+	
+	@Inject
+	@Autowired
+	ScheduleDAO sdao;
 	
 	@RequestMapping(value = "/reserveMain.do", method = RequestMethod.GET)
 	public ModelAndView reserve_main(HttpServletRequest request) {
@@ -71,6 +77,46 @@ public class ReserveController {
 		mav.addObject("date", today);
 		mav.addObject("movie", movieList);
 		mav.addObject("movie", movieList);
+		mav.setViewName("reserve/movieReserve");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/reserveMovie.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView reserve_movie(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		
+		if(request.getSession().getAttribute("temp") != null) {
+			Joinbean bean = jdao.myInfo((String)request.getSession().getAttribute("temp"));
+			mav.addObject("bean", bean);
+		}
+		
+		String date = request.getParameter("date");
+		String theater = request.getParameter("theater");
+		String movieNo = request.getParameter("no");
+		
+		
+		Moviebean mbean = new Moviebean();
+		if(!movieNo.equals("")) {
+			int no = Integer.parseInt(movieNo);
+			mbean = mdao.movieDetail(no);
+			
+			mav.addObject("mbean", mbean);
+		}
+		
+		if(mbean.getM_title() == null) {
+			mbean.setM_title("");
+		}
+
+		List<Schedulebean> scheduleList = sdao.scheduleSelect(date, theater, mbean.getM_title());
+		
+		List<Moviebean> movieList = mdao.movieSelect();
+		List<Theaterbean> theaterList = tdao.theaterSelect();
+		
+		mav.addObject("date", date);
+		mav.addObject("tbean", theater);
+		mav.addObject("theater", theaterList);
+		mav.addObject("movie", movieList);
+		mav.addObject("schedule", scheduleList);
 		mav.setViewName("reserve/movieReserve");
 		return mav;
 	}

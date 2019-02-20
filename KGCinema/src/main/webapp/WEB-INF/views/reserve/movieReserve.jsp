@@ -13,9 +13,9 @@
     <script src="./resources/slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick-theme.css">
-    <link href="css/agency.min.css" rel="stylesheet">
+    <link href="./resources/css/agency.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="./resources/demos/style.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
    <script type="text/javascript">

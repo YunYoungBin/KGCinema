@@ -24,4 +24,19 @@ public class AdminDAO {
 	public void NoticeDelete(int data) {
 		 temp.delete("admin.noticeDelete", data);
 	}//end
+	public void NoticeEdit(Noticebean ndto) {
+		temp.update("admin.noticeEdit",ndto);
+	}//end
+	
+	//movie
+	public void MovieInsert(Moviebean mdto) {
+		temp.insert("admin.movieInsert", mdto);
+	}//end
+	public void MovieDelete(int data) {
+		 temp.delete("admin.movieDelete", data);
+	}//end
+	public void MovieEdit(Moviebean mdto) {
+		temp.update("admin.movieEdit",mdto);
+	}//end
+	
 }

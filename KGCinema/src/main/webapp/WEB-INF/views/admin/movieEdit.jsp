@@ -14,98 +14,98 @@
 <body>
 
 
-<form name="adminform" action="movieEditSave.do" method="post" enctype="multipart/form-data">
+<form name="adminform" action="movieeditsave.do" method="post" enctype="multipart/form-data">
  <table>
   <tr>
    <th>수정항목</th> <th>수정내용</th>
   </tr>
   <tr>
-   <td><input type="hidden" name=ed_nno value="${bean.no}"></td>
+   <td><input type="hidden" name=m_no value="${movie.m_no}"></td>
   </tr>
   <tr>
-   <td>제목</td><td><input type="text" name=ed_title value="${bean.title}"></td>
+   <td>제목</td><td><input type="text" name=m_title value="${movie.m_title}"></td>
   </tr>
   <tr>
-   <td>부제</td><td><input type="text" name=ed_subtitle value="${bean.subtitle}"></td>
+   <td>부제</td><td><input type="text" name=m_subtitle value="${movie.m_subtitle}"></td>
   </tr>
   <tr>
-   <td>등급</td><td><input type="text" name=ed_grade value="${bean.grade}"></td>
+   <td>등급</td><td><input type="text" name=m_grade value="${movie.m_grade}"></td>
   </tr>
   <tr>
-   <td>타입</td><td><input type="text" name=ed_type value="${bean.type}"></td>
+   <td>타입</td><td><input type="text" name=m_type value="${movie.m_type}"></td>
   </tr>
   <tr>
-   <td>개봉일</td><td><input type="text" name=ed_premiere value="${bean.premiere}"></td>
+   <td>개봉일</td><td><input type="text" name=upload_premiere value="${movie.m_premiere}"></td>
   </tr>
   <tr>
-   <td>감독</td><td><input type="text" name=ed_director value="${bean.director}"></td>
+   <td>감독</td><td><input type="text" name=m_director value="${movie.m_director}"></td>
   </tr>
   <tr>
-   <td>배우</td><td><input type="text" name=ed_actor value="${bean.actor}"></td>
+   <td>배우</td><td><input type="text" name=m_actor value="${movie.m_actor}"></td>
   </tr>
   <tr>
-   <td>장르</td><td><input type="text" name=ed_genre value="${bean.genre}"></td>
+   <td>장르</td><td><input type="text" name=m_genre value="${movie.m_genre}"></td>
   </tr>
   <tr>
-   <td>줄거리</td><td><input type="text" name=ed_story value="${bean.story}"></td>
+   <td>줄거리</td><td><input type="text" name=m_story value="${movie.m_story}"></td>
   </tr>
   <tr>
    <td>포스터</td>
    <td>
 
-    <img id="preview" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/storage/${bean.poster}">
+    <img id="preview" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/resources/storage/${movie.m_poster}">
 
    </td>
-   <td><input type="file" name="ed_poster" id="file">
-   <input type="hidden" name="ed_poster2"  value="${bean.poster}">
+   <td><input type="file" name="upload_poster" id="file">
+   <input type="hidden" name="m_poster"  value="${movie.m_poster}">
    
    </td>
   </tr>
   <tr>
    <td>스틸컷1</td>
    <td>
-    <img id="preview2" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/storage/${bean.steal1}">
+    <img id="preview2" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/resources/storage/${movie.m_steal1}">
    </td>
    <td>
-    <input type="file" name="ed_steal1" id="file2" >
-     <input type="hidden" name="ed_steal11"  value="${bean.steal1}">
+    <input type="file" name="upload_steal1" id="file2" >
+     <input type="hidden" name="m_steal1"  value="${movie.m_steal1}">
    </td>
   </tr>
   <tr>
    <td>스틸컷2</td>
    <td>
-    <img id="preview3" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/storage/${bean.steal2}">
+    <img id="preview3" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/resources/storage/${movie.m_steal2}">
    </td>
    <td>
-    <input type="file" name="ed_steal2" id="file3">
-    <input type="hidden" name="ed_steal22"  value="${bean.steal2}">
+    <input type="file" name="upload_steal2" id="file3">
+    <input type="hidden" name="m_steal2"  value="${movie.m_steal2}">
    </td>
   </tr>
   <tr>
    <td>스틸컷3</td>
-   <td><img id="preview4" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/storage/${bean.steal3}">
+   <td><img id="preview4" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/resources/storage/${movie.m_steal3}">
    </td>
    <td>
-    <input type="file" name="ed_steal3" id="file4">
-    <input type="hidden" name="ed_steal33"  value="${bean.steal3}">
+    <input type="file" name="upload_steal3" id="file4">
+    <input type="hidden" name="m_steal3"  value="${movie.m_steal3}">
    </td>
   </tr>
   <tr>
    <td>스틸컷4</td>
-   <td><img id="preview5" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/storage/${bean.steal4}">
+   <td><img id="preview5" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/resources/storage/${movie.m_steal4}">
    </td>
    <td>
-    <input type="file" name="ed_steal4" id="file5">
-    <input type="hidden" name="ed_steal44"  value="${bean.steal4}">
+    <input type="file" name="upload_steal4" id="file5">
+    <input type="hidden" name="m_steal4"  value="${movie.m_steal4}">
    </td>
   </tr>
   <tr>
    <td>스틸컷5</td>
-   <td><img id="preview6" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/storage/${bean.steal5}">
+   <td><img id="preview6" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/resources/storage/${movie.m_steal5}">
    </td>
    <td>
-    <input type="file" name="ed_steal5" id="file6">
-    <input type="hidden" name="ed_steal55"  value="${bean.steal5}">
+    <input type="file" name="upload_steal5" id="file6">
+    <input type="hidden" name="m_steal5"  value="${movie.m_steal5}">
    </td>
   </tr>
   

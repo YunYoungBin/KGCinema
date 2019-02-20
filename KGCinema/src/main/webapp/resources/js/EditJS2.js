@@ -64,11 +64,15 @@
          return;
       }
       
+      emailcheck();
+      
       if(flagE == false){   //이메일 확인 틀렸을때
          alert('이메일이 잘못되었습니다.');
          iform.j_email.focus();
          return;
       }
+      
+      num();
       
       if(flagN==false){   //전화번호 올바르지 않을때
          alert('전화번호를 올바르게 입력하세요.');
@@ -76,46 +80,7 @@
          return;
       }
       
-      // 생년월일 입력확인
-         var year=iform.year.value;
-         var month=iform.month.value;
-         var day=iform.day.value;
-         var month_reg=/[(0-9)]{2}/;
-
-         var today = new Date(); // 날짜 변수 선언
-         var yearNow = today.getFullYear(); // 올해 년도 가져옴
-
-         
-         if(month_reg.test(month)==false) {
-            iform.month.value = "0" + month;
-         } else if(month_reg.test(day)==false) {
-            iform.day.value = "0" + day;
-         }
-         
-         if(1900 > year || year > yearNow) {
-            flagB=false;
-            iform.year.focus();
-         } else if(month < 1 || month > 12) {
-            flagB=false;
-            iform.month.focus();
-         } else if(day < 1 || day > 31) {
-            flagB=false;
-            iform.day.focus();
-         } else if((month==4||month==6||month==9||month==11) && day == 31) {
-            label.innerHTML = msg;
-         } else if(month==2) {
-            var isleap = (year%4==0 && (year % 100 != 0 || year%400==0));
-            if(day > 29 || (day==29 && !isleap)) {
-               flagB=false;
-            } else {
-               flagB=true;
-            }
-         } else {
-            flagB=true;
-         }
-         // 생년월일 체크 end
-         
-
+      birth();
       
       if(flagB == false){   //생년월일 확인 틀렸을때
          alert('생년월일이 잘못되었습니다.');
@@ -127,6 +92,45 @@
          document.iform.submit();
       } else { return; }
    }//check end
+   
+   function birth() { // 생년월일 입력확인
+      var year=iform.year.value;
+      var month=iform.month.value;
+      var day=iform.day.value;
+      var month_reg=/[(0-9)]{2}/;
+
+      var today = new Date(); // 날짜 변수 선언
+      var yearNow = today.getFullYear(); // 올해 년도 가져옴
+
+      
+      if(month_reg.test(month)==false) {
+         iform.month.value = "0" + month;
+      } else if(month_reg.test(day)==false) {
+         iform.day.value = "0" + day;
+      }
+      
+      if(1900 > year || year > yearNow) {
+         flagB=false;
+         iform.year.focus();
+      } else if(month < 1 || month > 12) {
+         flagB=false;
+         iform.month.focus();
+      } else if(day < 1 || day > 31) {
+         flagB=false;
+         iform.day.focus();
+      } else if((month==4||month==6||month==9||month==11) && day == 31) {
+         label.innerHTML = msg;
+      } else if(month==2) {
+         var isleap = (year%4==0 && (year % 100 != 0 || year%400==0));
+         if(day > 29 || (day==29 && !isleap)) {
+            flagB=false;
+         } else {
+            flagB=true;
+         }
+      } else {
+         flagB=true;
+      }
+   }   // 생년월일 체크 end
 
    
       
@@ -221,12 +225,13 @@
       var str1=iform.num1.value;
       var str2=iform.num2.value;
       var str3=iform.num3.value;
-      var num_reg=/[(0-9)]{3,4}/;
+      var num3_reg=/^01([0|1|6|7|8|9])$/;
+      var num4_reg=/^([0-9]){4}$/;
       var label=document.getElementById("numlabel");
-      var test1=num_reg.test(str1);
-      var test2=num_reg.test(str2);
-      var test3=num_reg.test(str3);
-      if(test1==true||test2==true||test3==true){
+      var test1=num3_reg.test(str1);
+      var test2=num4_reg.test(str2);
+      var test3=num4_reg.test(str3);
+      if(test1==true&&test2==true&&test3==true){
          flagN=true;   
       }
    }//end

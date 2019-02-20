@@ -28,7 +28,7 @@
  <table width=900 border=1 cellspacing=0 style="margin:0 auto;">
  <tr align="right">
   <td colspan="6">
-  <form action="movieInsert.jsp">
+  <form action="moviewrite.do">
        <input type="submit" value="영화 추가">
       </form>
   </td>
@@ -67,7 +67,7 @@
      <td style="border-left-width:0px; border-right-width: 0px;"> ${movie.m_genre} </td>
      <td style="border-left-width:0px; border-right-width: 0px;"> <fmt:formatDate value="${movie.m_premiere}" pattern="yyyy/MM/dd" /> </td>
      <td style="border-left-width:0px;">
-      <a href="movieEdit.do?idx=${movie.m_no}">[수정]</a>
+      <a href="movieedit.do?idx=${movie.m_no}">[수정]</a>
       <a href="movieDelete.do?idx=${movie.m_no}">[삭제]</a> 
      </td>
    </tr>  

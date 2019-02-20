@@ -24,7 +24,7 @@
 <body>
 
 
-<form name=noticeEDform action="noticeedit.do">
+<form name=noticeEDform action="noticeeditsave.do">
  <table>
   <tr>
    <td></td><td><input type="hidden" name=n_no value="${notice.n_no}"></td>

@@ -177,11 +177,11 @@
            <label>*생년월일</label>
           </th>
           <td>
-           <input class="w67" type="text" name="year" fieldname="생년월일"  maxlength="4" value="${bean.getJ_birth().substring(0,4)}" onfocus="birth()" onchange="birth()" >
+           <input class="w67" type="text" name="year" fieldname="생년월일"  maxlength="4" value="${bean.getJ_birth().substring(0,4)}"  >
            <span class="text-sub ml5 mr8">년</span>
-           <input class="w44" type="text" name="month" fieldname="생년월일"  maxlength="2" value="${bean.getJ_birth().substring(5,7)}" onchange="birth()">
+           <input class="w44" type="text" name="month" fieldname="생년월일"  maxlength="2" value="${bean.getJ_birth().substring(5,7)}" >
            <span class="text-sub ml5 mr8">월</span>
-           <input class="w44" type="text" name="day" fieldname="생년월일" maxlength="2" value="${bean.getJ_birth().substring(8,10)}" onchange="birth()">
+           <input class="w44" type="text" name="day" fieldname="생년월일" maxlength="2" value="${bean.getJ_birth().substring(8,10)}" >
            <span class="text-sub ml5 mr8">일</span>
           </td>
          </tr>      
@@ -191,11 +191,11 @@
            <label>*휴대폰</label>
           </th>
           <td>
-           <input class="w67" type="text" name="num1" onfocus="num()" onchange="num()" maxlength="3" value="${bean.j_phone.substring(0,3)}">
+           <input class="w67" type="text" name="num1" maxlength="3" value="${bean.j_phone.substring(0,3)}">
            <span class="text-sub ml2 mr2">-</span>
-           <input class="w67" type="text" name="num2" onchange="num()" maxlength="4" value="${bean.j_phone.substring(4,8)}">
+           <input class="w67" type="text" name="num2" maxlength="4" value="${bean.j_phone.substring(4,8)}">
            <span class="text-sub ml2 mr2">-</span>
-           <input class="w67" type="text" name="num3" onchange="num()" maxlength="4" value="${bean.j_phone.substring(9)}">
+           <input class="w67" type="text" name="num3" maxlength="4" value="${bean.j_phone.substring(9)}">
           </td>
          </tr>     
          <tr>
@@ -203,7 +203,7 @@
            <label>*이메일</label>
           </th>
           <td>
-           <input type="text" name="j_email" value="${bean.j_email}" onblur="emailcheck()" onkeyup="checklen(this,30)">
+           <input type="text" name="j_email" value="${bean.j_email}" onkeyup="checklen(this,30)">
            <span id="email_ch"></span>
           </td>
          </tr>            

@@ -16,56 +16,56 @@
 </script>
 
 <body>
-<form name="adminform" action="movieInsert.do" enctype="multipart/form-data" method="post">
+<form name="adminform" action="movieinsert.do" enctype="multipart/form-data" method="post">
  <table>
   <tr>
    <th>등록항목</th> <th>등록내용</th>
   </tr>
   <tr>
-   <td>제목</td><td><input type="text" name=title></td>
+   <td>제목</td><td><input type="text" name=m_title></td>
   </tr>
   <tr>
-   <td>부제</td><td><input type="text" name=subtitle></td>
+   <td>부제</td><td><input type="text" name=m_subtitle></td>
   </tr>
   <tr>
-   <td>등급</td><td><input type="text" name=grade></td>
+   <td>등급</td><td><input type="text" name=m_grade></td>
   </tr>
   <tr>
-   <td>타입</td><td><input type="text" name=type></td>
+   <td>타입</td><td><input type="text" name=m_type></td>
   </tr>
   <tr>
-   <td>개봉일</td><td><input type="text" name=premiere placeholder="yyyy-mm-dd"></td>
+   <td>개봉일</td><td><input type="text" name=upload_premiere placeholder="yyyy-mm-dd"></td>
   </tr>
   <tr>
-   <td>감독</td><td><input type="text" name=director></td>
+   <td>감독</td><td><input type="text" name=m_director></td>
   </tr>
   <tr>
-   <td>배우</td><td><input type="text" name=actor></td>
+   <td>배우</td><td><input type="text" name=m_actor></td>
   </tr>
   <tr>
-   <td>장르</td><td><input type="text" name=genre></td>
+   <td>장르</td><td><input type="text" name=m_genre></td>
   </tr>
   <tr>
    <td>줄거리</td><td><textarea name="textarea" id="textarea" rows="15" cols="85"></textarea>
-  <textarea hidden="" name="story" id="temp" rows="10" cols="10"></textarea></td>
+  <textarea hidden="" name="m_story" id="temp" rows="10" cols="10"></textarea></td>
   </tr>
   <tr>
-   <td>포스터</td><td><input type="file" name=poster></td>
+   <td>포스터</td><td><input type="file" name="upload_poster"></td>
   </tr>
   <tr>
-   <td>스틸컷1</td><td><input type="file" name=steal1></td>
+   <td>스틸컷1</td><td><input type="file" name="upload_steal1"></td>
   </tr>
   <tr>
-   <td>스틸컷2</td><td><input type="file" name=steal2></td>
+   <td>스틸컷2</td><td><input type="file" name="upload_steal2"></td>
   </tr>
   <tr>
-   <td>스틸컷3</td><td><input type="file" name=steal3></td>
+   <td>스틸컷3</td><td><input type="file" name="upload_steal3"></td>
   </tr>
   <tr>
-   <td>스틸컷4</td><td><input type="file" name=steal4></td>
+   <td>스틸컷4</td><td><input type="file" name="upload_steal4"></td>
   </tr>
   <tr>
-   <td>스틸컷5</td><td><input type="file" name=steal5></td>
+   <td>스틸컷5</td><td><input type="file" name="upload_steal5"></td>
   </tr>
   
  </table>

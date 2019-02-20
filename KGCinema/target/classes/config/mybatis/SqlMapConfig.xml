@@ -14,6 +14,7 @@
 		<mapper resource="config/mybatis/join.xml"/>
 		<mapper resource="config/mybatis/login.xml"/>
 		<mapper resource="config/mybatis/admin.xml"/>
+		<mapper resource="config/mybatis/theater.xml"/>
 	</mappers>
 
 

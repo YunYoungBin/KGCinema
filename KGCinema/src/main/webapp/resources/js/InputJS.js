@@ -221,13 +221,14 @@
 		var str1=iform.num1.value;
 		var str2=iform.num2.value;
 		var str3=iform.num3.value;
-		var num_reg=/[(0-9)]{3,4}/;
+		var num3_reg=/^01([0|1|6|7|8|9])$/;
+	    var num4_reg=/^([0-9]){4}$/;
 		var label=document.getElementById("numlabel");
-		var test1=num_reg.test(str1);
-		var test2=num_reg.test(str2);
-		var test3=num_reg.test(str3);
+		var test1=num3_reg.test(str1);
+		var test2=num4_reg.test(str2);
+		var test3=num4_reg.test(str3);
 		if(test1==false||test2==false||test3==false){
-			label.innerHTML = "&nbsp;&nbsp;숫자3~4자리 입력하세요";
+			label.innerHTML = "&nbsp;&nbsp;형식이 올바르지 않습니다";
 		} else {
 			label.innerHTML = "";
 			flagN=true;

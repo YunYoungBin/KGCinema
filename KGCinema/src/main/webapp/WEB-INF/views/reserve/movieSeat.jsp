@@ -171,8 +171,21 @@
            <div id="seatPositionList" class="seat_position" style="width: 453px;height: 250px;">
             <span class="exit top" style="width: 28px;height: 17px;top: 252px;left: 61px;"></span>
             <span class="exit left" style="width: 17px;height: 28px;top:-18px; left:-33px;background-position: 0 -50px;"></span>
-            <span class="line line_a" style="left:0px; top: 0px;">A</span>
-            <button type="button" title="A1(일반석)" id="" class="seat_normal" seatgroup="A" seatno="1" seattype="" style="width: 16px;height: 16px;left: 23px;top: 0px;">1</button>
+            <c:forEach var="bean" items="${seatbean}">
+            	<c:if test="">
+            		<span class="line line_a" style="left:0px; top: ${bean.top}px;">${bean.seatgroup }</span>
+            	</c:if>
+            	<button type="button" title="${bean.seatgroup}${bean.seatno}(일반석)" id="seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}" class="seat_normal" 
+seatgroup="${bean.seatgroup}" seatno="${bean.seatno}" seattype="${bean.seattype}" 
+popupyn="N" seatlinecnt="" 
+style="width: 16px; height: 16px; left: ${bean.left}px; top: ${bean.top}px;"  
+onmouseover="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
+onmouseout="BookingSeatDatas.seatMouseOut(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
+onclick="BookingSeatDatas.checkSeat(this)" onkeyup="" onblur="" 
+onkeypress="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)">${bean.seatno}</button>
+            </c:forEach>
+            
+            
             
            </div>
           </div>

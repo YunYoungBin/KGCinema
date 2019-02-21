@@ -27,6 +27,10 @@ import com.kg.cinema.movie.MovieDAO;
 import com.kg.cinema.movie.Moviebean;
 import com.kg.cinema.schedule.ScheduleDAO;
 import com.kg.cinema.schedule.Schedulebean;
+import com.kg.cinema.screen.ScreenDAO;
+import com.kg.cinema.screen.Screenbean;
+import com.kg.cinema.seat.SeatDAO;
+import com.kg.cinema.seat.Seatbean;
 import com.kg.cinema.theater.TheaterDAO;
 import com.kg.cinema.theater.Theaterbean;
 
@@ -50,6 +54,14 @@ public class ReserveController {
 	@Inject
 	@Autowired
 	ScheduleDAO sdao;
+	
+	@Inject
+	@Autowired
+	ScreenDAO scrdao;
+	
+	@Inject
+	@Autowired
+	SeatDAO seatdao;
 	
 	@RequestMapping(value = "/reserveMain.do", method = RequestMethod.GET)
 	public ModelAndView reserve_main(HttpServletRequest request) {
@@ -133,11 +145,14 @@ public class ReserveController {
 		sbean = sdao.scheduleDetail(Integer.parseInt(idx));
 		
 		Moviebean mbean = new Moviebean();
-		mbean = mdao.movieDetail(sbean.getTitle());		
+		mbean = mdao.movieDetail(sbean.getTitle());
 		
+		Screenbean scrbean = scrdao.screenSelect(sbean.getTheater(), sbean.getScrno());
+		List<Seatbean> seatList = seatdao.seatSelect(scrbean.getS_seatstyle());
 		
-
-		
+		System.out.println("좌석 값없지 ? "+seatList.isEmpty());
+		System.out.println(seatList.get(0).getSeatgroup());
+		mav.addObject("seatbean", seatList);
 		mav.addObject("sbean", sbean);
 		mav.addObject("scrno", idx);
 		mav.addObject("mbean", mbean);

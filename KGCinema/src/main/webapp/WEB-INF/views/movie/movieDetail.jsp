@@ -153,19 +153,19 @@
   <header style="background-color:#231f20;min-width: 980px;padding:10px;">
    <div class="lazy slider" data-sizes="50vw">
     <div>
-      <img data-lazy="<%=request.getContextPath()%>/storage/${movie.m_steal1}">
+      <img data-lazy="<%=request.getContextPath()%>/resources/storage/${movie.m_steal1}">
     </div>
     <div>
-      <img data-lazy="<%=request.getContextPath()%>/storage/${movie.m_steal2}">
+      <img data-lazy="<%=request.getContextPath()%>/resources/storage/${movie.m_steal2}">
     </div>
     <div>
-      <img data-lazy="<%=request.getContextPath()%>/storage/${movie.m_steal3}">
+      <img data-lazy="<%=request.getContextPath()%>/resources/storage/${movie.m_steal3}">
     </div>
     <div>
-      <img data-lazy="<%=request.getContextPath()%>/storage/${movie.m_steal4}">
+      <img data-lazy="<%=request.getContextPath()%>/resources/storage/${movie.m_steal4}">
     </div>
     <div>
-      <img data-lazy="<%=request.getContextPath()%>/storage/${movie.m_steal5}">
+      <img data-lazy="<%=request.getContextPath()%>/resources/storage/${movie.m_steal5}">
     </div>
    </div> 
   </header>
@@ -175,19 +175,19 @@
    <div><p style="text-align:center;font-weight:bold;color:#231f20;font-size:22px;">트레일러·스틸컷</p></div>
    <div class="center slider">
     <div>
-      <img src="<%=request.getContextPath()%>/storage/${movie.m_steal1}" width="120" height="100">
+      <img src="<%=request.getContextPath()%>/resources/storage/${movie.m_steal1}" width="120" height="100">
     </div>
     <div>
-      <img src="<%=request.getContextPath()%>/storage/${movie.m_steal2}" width="120" height="100">
+      <img src="<%=request.getContextPath()%>/resources/storage/${movie.m_steal2}" width="120" height="100">
     </div>
     <div>
-      <img src="<%=request.getContextPath()%>/storage/${movie.m_steal3}" width="120" height="100">
+      <img src="<%=request.getContextPath()%>/resources/storage/${movie.m_steal3}" width="120" height="100">
     </div>
     <div>
-      <img src="<%=request.getContextPath()%>/storage/${movie.m_steal4}" width="120" height="100">
+      <img src="<%=request.getContextPath()%>/resources/storage/${movie.m_steal4}" width="120" height="100">
     </div>
     <div>
-      <img src="<%=request.getContextPath()%>/storage/${movie.m_steal5}" width="120" height="100">
+      <img src="<%=request.getContextPath()%>/resources/storage/${movie.m_steal5}" width="120" height="100">
     </div>
    </div>
   </section>
@@ -196,7 +196,7 @@
    <div style="margin-bottom: 50px;height:396px;">
    
     <div class="left" style="float: left;width: 230px;margin-right: 25px;">
-     <span style="position: relative;display: block;width: 230px;height: 336px;"><img src="<%=request.getContextPath()%>/storage/${movie.m_poster}" style="width:230px;height:336px;"></span>
+     <span style="position: relative;display: block;width: 230px;height: 336px;"><img src="<%=request.getContextPath()%>/resources/storage/${movie.m_poster}" style="width:230px;height:336px;"></span>
      <a class="a" style="display: inline-block;text-decoration: none;" href="reserve.do">예매하기</a>
     </div>
     

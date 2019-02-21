@@ -31,8 +31,8 @@
 	</delete>
 	
 	<update id="movieEdit" parameterType="com.kg.cinema.movie.Moviebean">
-	 update movie set m_title=#{m_title},m_subtitle=#{m_subtitle},m_grade=#{m_grade},m_type=#{m_type},m_premiere=#{m_premiere},
-	 m_premiere=to_date(#{upload_premiere},'yyyy-mm-dd'),m_director=#{m_director},m_actor=#{m_actor},m_genre=#{m_genre},m_story=#{m_story},
+	 update movie set m_title=#{m_title},m_subtitle=#{m_subtitle},m_grade=#{m_grade},m_type=#{m_type},m_premiere=to_date(#{upload_premiere},'yyyy-mm-dd'),
+	 m_director=#{m_director},m_actor=#{m_actor},m_genre=#{m_genre},m_story=#{m_story},
 	 m_poster=#{m_poster},m_steal1=#{m_steal1},m_steal2=#{m_steal2},m_steal3=#{m_steal3},m_steal4=#{m_steal4},m_steal5=#{m_steal5}
 	 where m_no=#{m_no}
 	</update>

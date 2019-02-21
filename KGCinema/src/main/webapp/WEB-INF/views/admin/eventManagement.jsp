@@ -139,7 +139,7 @@
           <c:forEach var="item" items="${naver}">
            <li class="item">
             <a href="eventdetail.do?idx=${item.e_no}">
-             <img src="<%=request.getContextPath()%>/storage/${item.e_file}">
+             <img src="<%=request.getContextPath()%>/resources/storage/${item.e_file}">
              <span class="title">${item.e_title}</span>
              <span style="font-size:13px;">${item.e_period}</span>
             </a>

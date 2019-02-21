@@ -35,7 +35,7 @@
    <td>타입</td><td><input type="text" name=m_type value="${movie.m_type}"></td>
   </tr>
   <tr>
-   <td>개봉일</td><td><input type="text" name=upload_premiere value="${movie.m_premiere}"></td>
+   <td>개봉일</td><td><input type="text" name=upload_premiere value="<fmt:formatDate value="${movie.m_premiere}" pattern="yyyy-MM-dd" />"></td>
   </tr>
   <tr>
    <td>감독</td><td><input type="text" name=m_director value="${movie.m_director}"></td>
@@ -57,7 +57,7 @@
 
    </td>
    <td><input type="file" name="upload_poster" id="file">
-   <input type="hidden" name="m_poster"  value="${movie.m_poster}">
+   <input type="text" name="m_poster"  value="${movie.m_poster}">
    
    </td>
   </tr>

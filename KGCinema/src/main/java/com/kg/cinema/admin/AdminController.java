@@ -327,65 +327,65 @@ public class AdminController {
 	    	e1.printStackTrace();
 	    }
 		  String path=application.getRealPath("/resources/storage");
-		  MultipartFile mf1=mdto.getUpload_poster();
-		  MultipartFile mf2=mdto.getUpload_steal1();
-		  MultipartFile mf3=mdto.getUpload_steal2();
-		  MultipartFile mf4=mdto.getUpload_steal3();
-		  MultipartFile mf5=mdto.getUpload_steal4();
-		  MultipartFile mf6=mdto.getUpload_steal5();
-		  String poster=mf1.getOriginalFilename();
-		  String steal1=mf2.getOriginalFilename();
-		  String steal2=mf3.getOriginalFilename();
-		  String steal3=mf4.getOriginalFilename();
-		  String steal4=mf5.getOriginalFilename();
-		  String steal5=mf6.getOriginalFilename();
 		  
 		  if(!mdto.getUpload_poster().getOriginalFilename().equals("")) {
+			  MultipartFile mf1=mdto.getUpload_poster();
+			  String poster=mf1.getOriginalFilename();
 			  File file1=new File(path, poster);
 			  FileCopyUtils.copy(mdto.getUpload_poster().getBytes(), file1);
+			  mdto.setM_poster(poster);
+		  }else {
+			  mdto.setM_poster(mdto.getM_poster());
 		  }
 		  if(!mdto.getUpload_steal1().getOriginalFilename().equals("")) {
+			  MultipartFile mf2=mdto.getUpload_steal1();
+			  String steal1=mf2.getOriginalFilename();
 			  File file2=new File(path, steal1);
 			  FileCopyUtils.copy(mdto.getUpload_steal1().getBytes(), file2);
+			  mdto.setM_steal1(steal1);
+		  }else {
+			  mdto.setM_steal1(mdto.getM_steal1());
 		  }
 		  if(!mdto.getUpload_steal2().getOriginalFilename().equals("")) {
+			  MultipartFile mf3=mdto.getUpload_steal2();
+			  String steal2=mf3.getOriginalFilename();
 			  File file3=new File(path, steal2);
 			  FileCopyUtils.copy(mdto.getUpload_steal2().getBytes(), file3);
+			  mdto.setM_steal2(steal2);
+		  }else {
+			  mdto.setM_steal2(mdto.getM_steal2());
 		  }
 		  if(!mdto.getUpload_steal3().getOriginalFilename().equals("")) {
+			  MultipartFile mf4=mdto.getUpload_steal3();
+			  String steal3=mf4.getOriginalFilename();
 			  File file4=new File(path, steal3);
 			  FileCopyUtils.copy(mdto.getUpload_steal3().getBytes(), file4);
+			  mdto.setM_steal3(steal3);
+		  }else {
+			  mdto.setM_steal3(mdto.getM_steal3());
 		  }
 		  if(!mdto.getUpload_steal4().getOriginalFilename().equals("")) {
+			  MultipartFile mf5=mdto.getUpload_steal4();
+			  String steal4=mf5.getOriginalFilename();
 			  File file5=new File(path, steal4);
 			  FileCopyUtils.copy(mdto.getUpload_steal4().getBytes(), file5);
+			  mdto.setM_steal4(steal4);
+		  }else {
+			  mdto.setM_steal4(mdto.getM_steal4());
 		  }
 		  if(!mdto.getUpload_steal5().getOriginalFilename().equals("")) {
+			  MultipartFile mf6=mdto.getUpload_steal5();
+			  String steal5=mf6.getOriginalFilename();
 			  File file6=new File(path, steal5);
 			  FileCopyUtils.copy(mdto.getUpload_steal5().getBytes(), file6);
+			  mdto.setM_steal5(steal5);
+		  }else {
+			  mdto.setM_steal5(mdto.getM_steal5());   
 		  }
-		  
-		  File file1=new File(path, poster);
-		  File file2=new File(path, steal1);
-		  File file3=new File(path, steal2);
-		  File file4=new File(path, steal3);
-		  File file5=new File(path, steal4);
-		  File file6=new File(path, steal5);
-		  try{
-		    FileCopyUtils.copy(mdto.getUpload_poster().getBytes(), file1);
-		    FileCopyUtils.copy(mdto.getUpload_steal1().getBytes(), file2);
-		    FileCopyUtils.copy(mdto.getUpload_steal2().getBytes(), file3);
-		    FileCopyUtils.copy(mdto.getUpload_steal3().getBytes(), file4);
-		    FileCopyUtils.copy(mdto.getUpload_steal4().getBytes(), file5);
-		    FileCopyUtils.copy(mdto.getUpload_steal5().getBytes(), file6);
-		  }catch(Exception ex){ }
-		   mdto.setM_poster(poster);
-		   mdto.setM_steal1(steal1);
-		   mdto.setM_steal2(steal2);
-		   mdto.setM_steal3(steal3);
-		   mdto.setM_steal4(steal4);
-		   mdto.setM_steal5(steal5);  
+
 		   mdto.setM_premiere(ee);
+		   
+		  
 		   
 			System.out.println("no : " + mdto.getM_no());
 			System.out.println("actor : " + mdto.getM_actor());

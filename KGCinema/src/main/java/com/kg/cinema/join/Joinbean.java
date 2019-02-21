@@ -1,5 +1,7 @@
 package com.kg.cinema.join;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Joinbean {
 	private String j_id;
 	private String j_name;
@@ -11,7 +13,56 @@ public class Joinbean {
 	private String j_email;
 	private String j_file1;
 	
+	private MultipartFile upload_f;
 	
+	private String num1, num2, num3;
+	private String year, month, day;
+	
+	
+	public MultipartFile getUpload_f() {
+		return upload_f;
+	}
+	public void setUpload_f(MultipartFile upload_f) {
+		this.upload_f = upload_f;
+	}
+	
+
+	public String getNum1() {
+		return num1;
+	}
+	public void setNum1(String num1) {
+		this.num1 = num1;
+	}
+	public String getNum2() {
+		return num2;
+	}
+	public void setNum2(String num2) {
+		this.num2 = num2;
+	}
+	public String getNum3() {
+		return num3;
+	}
+	public void setNum3(String num3) {
+		this.num3 = num3;
+	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
+	public String getDay() {
+		return day;
+	}
+	public void setDay(String day) {
+		this.day = day;
+	}
 	public String getJ_id() {
 		return j_id;
 	}

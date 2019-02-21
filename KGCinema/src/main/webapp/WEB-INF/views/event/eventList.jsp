@@ -8,7 +8,9 @@
 <meta charset="UTF-8">
 <title>EventList</title>
     <link href="./resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
+    <script src="./resources/js/Event3.js"></script>
+    <script src="./resources/js/jquery.magnific-popup.js"></script>
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script> 
     <script src="./resources/js/agency.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -158,8 +160,8 @@
           <ul id="event_wrapper">
           <c:forEach var="item" items="${naver}">
            <li class="item">
-            <a href="eventdetail.do?idx=${item.e_no}">
-             <img src="<%=request.getContextPath()%>/storage/${item.e_file}">
+            <a onclick="eventdetail(${item.e_no})">
+             <img src="<%=request.getContextPath()%>/resources/storage/${item.e_file}">
              <span class="title">${item.e_title}</span>
              <span>${item.e_period}</span>
             </a>
@@ -169,6 +171,22 @@
          </div>
         </div>
        </div>
+       
+    <div class="eventpopup mfp-hide">         
+	<div class="e_hidden">  </div>   	
+	<button type='button' class='mfp-close'>×</button>
+	
+	<div class="e_top">	          
+		<div class="e_title"> </div>   
+	</div>
+	
+	<div class="e_middle">	
+		<div>
+			<img src="" style="max-width: 800px;">				
+		</div>					
+    </div>
+	</div>
+       
        
        <ul class="custom-pagination mt25">
        <c:if test="${startpage>10}">

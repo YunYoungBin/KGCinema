@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import com.kg.cinema.movie.Moviebean;
+
 @Repository
 @Component
 public class EventDAO {
@@ -43,5 +45,18 @@ public class EventDAO {
 		int cnt=(Integer)temp.selectOne("event.countAllSearch" , dto);
 		return cnt;
 	}//end
+	
+	public Eventbean EventDetail(int data) {
+		Eventbean edto=temp.selectOne("event.detail",data);
+		return edto;
+	}//end
+	
+	public Eventbean EventDetail2(String e_no) {
+		Eventbean edto = new Eventbean();
+		edto.setE_no(Integer.parseInt(e_no));
+		edto=temp.selectOne("event.detail",edto);
+		return edto;
+	}//end
+
 
 }

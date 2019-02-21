@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kg.cinema.join.JoinDAO;
+import com.kg.cinema.join.Joinbean;
+import com.kg.cinema.login.EgovHttpSessionBindingListener;
 import com.kg.cinema.movie.MovieDAO;
 import com.kg.cinema.movie.Moviebean;
 
@@ -30,18 +33,18 @@ public class MainController {
 	@Autowired
 	MovieDAO mdao;
 	
+	@Inject
+	@Autowired
+	JoinDAO jdao;
+	
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		/*
-		HttpSession session = request.getSession();
 		
-		if(session.getAttribute("temp") == null) {
-			
-		} else {
-			
+		if(request.getSession().getAttribute("temp") != null) {
+			Joinbean bean = jdao.myInfo((String)request.getSession().getAttribute("temp"));
+			mav.addObject("bean", bean);
 		}
-		*/
 		
 		List<Moviebean> movieList = mdao.movieSelect();
 		

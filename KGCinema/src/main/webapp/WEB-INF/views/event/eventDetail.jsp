@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+ a{text-decoration:none;color:black;}
+</style>
 <meta charset="UTF-8">
 <title> [eventDetail.jsp]</title>
   <style type="text/css">
@@ -16,12 +19,14 @@
 <table height=300></table>
 
  <table align="center" width=1000 border=0 cellspacing=0 cellpadding=5>
-  <tr align="center"><td colspan=4><img src="<%=request.getContextPath()%>/storage/${bean.econtent}" width=700 height=2380> </td>  </tr>
+  <tr align="center"><td colspan=4><img src="<%=request.getContextPath()%>/resources/storage/${event.e_content}" width=700 height=2380> </td>  </tr>
   <p>
   <form action="eventlist.do">
    <tr align="center">
    <td>
-   <input type="submit" value="목록">
+    <button><a href="eventmglist.do">목록</a></button>
+    <button><a href="eventedit.do?idx=${event.e_no}">수정</a></button>
+    <button><a href="eventdelete.do?idx=${event.e_no}">삭제</a></button>
    </td>
    </tr>
   </form>

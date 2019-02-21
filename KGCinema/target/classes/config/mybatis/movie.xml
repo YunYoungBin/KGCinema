@@ -15,5 +15,24 @@
 	   select * from movie where m_no=#{m_no}
 	</select>
 	
+	<select id="detailTitle" parameterType="String" resultType="dto">
+	   select * from movie where m_title=#{title}
+	</select>
+	
+	<select id="movieMgSelectAll"  resultType="com.kg.cinema.movie.Moviebean">	   
+	   select * from (
+	   select rownum m_rn, m.* from
+	   (select * from movie where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%' order by m_no desc) m
+	   ) where m_rn between #{start} and #{end}
+	</select>
+	
+	<select id="movieMgcountAll" resultType="int">
+	     select count(*)  from movie
+	</select>
+	
+	<select id="movieMgcountAllSearch" parameterType="com.kg.cinema.movie.Moviebean"  resultType="int">
+ 	   select  count(*) from movie where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%'  
+ 	</select>
+	
 
 </mapper>

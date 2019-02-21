@@ -12,6 +12,12 @@
 		<mapper resource="config/mybatis/notice.xml"/>
 		<mapper resource="config/mybatis/event.xml"/>
 		<mapper resource="config/mybatis/join.xml"/>
+		<mapper resource="config/mybatis/login.xml"/>
+		<mapper resource="config/mybatis/admin.xml"/>
+		<mapper resource="config/mybatis/theater.xml"/>
+		<mapper resource="config/mybatis/schedule.xml"/>
+		<mapper resource="config/mybatis/screen.xml"/>
+		<mapper resource="config/mybatis/seat.xml"/>
 	</mappers>
 
 

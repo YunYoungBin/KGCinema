@@ -1,9 +1,13 @@
 package com.kg.cinema.event;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.kg.cinema.movie.MovieDAO;
 
 @Controller
 public class EventController {
@@ -66,13 +68,13 @@ public class EventController {
 		else {pageNUM=Integer.parseInt(pnum);}
 		  
 		//[7클릭] 숫자7을 pageNUM변수가 기억
-		start=(pageNUM-1)*10+1;
-		end=(pageNUM)*10;
+		start=(pageNUM-1)*8+1;
+		end=(pageNUM)*8;
 		  
 		int Gtotal=edao.EventCount(); //레코드전체갯수
 		  
-		if(SearchTotal%10==0){ pagecount=SearchTotal/10; } 
-		else {pagecount=(SearchTotal/10)+1;}
+		if(SearchTotal%8==0){ pagecount=SearchTotal/8; } 
+		else {pagecount=(SearchTotal/8)+1;}
 
 		temp=(pageNUM-1)%10;
 		startpage=pageNUM-temp;
@@ -96,5 +98,23 @@ public class EventController {
 		mav.setViewName("event/eventList");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/eventdetail.do", method = RequestMethod.GET)
+	public void eventDetail(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		
+		PrintWriter out = response.getWriter();
+		String e_no = request.getParameter("e_no");
+		System.out.println("e_no= " + e_no);
+		Eventbean edto = edao.EventDetail2(e_no);
+		StringBuilder sb = new StringBuilder();
+		System.out.println("gettitle=" + edto.getE_title());
+		sb.append("{");
+		sb.append("\"e_title\": \"" + edto.getE_title() + "\", " );
+		sb.append("\"e_content\": \""+ edto.getE_content() + "\" ");
+		sb.append("}");
+		out.print(sb.toString());
+	}//end
 	
 }

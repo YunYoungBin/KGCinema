@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  %>
+<%@ include file="admin_top.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-<%@ page import="cinema_adminController.NoticeListController" %>
-<%@ page import="cinema_common.GlobalVariable" %>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,28 +22,14 @@
  	}//end
   </script>
  </head>
- <jsp:include page="admin_top.jsp"></jsp:include>
 <body>
-   <%
-   String sval=(String)request.getAttribute("sval");
-   int Gtotal3 = (int)request.getAttribute("Gtotal");
-   int Stotal3 = (int)request.getAttribute("Stotal");
-   int pageNUM3 = (int)request.getAttribute("pageNUM");
-   int num2;
-   if(sval==null || sval=="") {
-   	 num2=Gtotal3-(pageNUM3-1)*10;
-   }else {
-	 num2=Stotal3-(pageNUM3-1)*10;  
-   }
-  
-   %>
 <div>
 <p style="text-align:center;">공지사항 관리</p>
 
  <table width=900 border=1 cellspacing=0 style="margin:0 auto">
  <tr align="right">
   <td colspan="5">
-  <form action="noticeInsert.jsp">
+  <form action="noticewrite.do">
   	  <input type="submit" value="공지사항 추가">
   	 </form>
   </td>
@@ -74,19 +55,19 @@
   	<th width=150 style="border-left-width:0px; border-right-width: 0px;">등록일</th>
   	<th width=150 style="border-left-width:0px;">수정/삭제</th>
   </tr>
-   <c:forEach var="bean" items="${naver}">
+   <c:forEach var="notice" items="${naver}">
    <tr align="center">
     
 
-	<td style="border-left-width:0px; border-right-width: 0px;"><%=num2--%></td>
+	<td style="border-left-width:0px; border-right-width: 0px;">${notice.rn}</td>
      
     
-     <td style="border-left-width:0px; border-right-width: 0px;"> ${bean.nloc}  </td>
-     <td style="border-left-width:0px; border-right-width: 0px;"> <a href="noticedetail.do?idx=${bean.nno}">${bean.ntitle}</a> </td>
-     <td style="border-left-width:0px; border-right-width: 0px;"> ${bean.ndate} </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${notice.n_loc}  </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> <a style="font-size:20px;" href="noticedetail.do?idx=${notice.n_no}">${notice.n_title}</a> </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> <fmt:formatDate value="${notice.n_redate}" pattern="yyyy/MM/dd" /> </td>
      <td style="border-left-width:0px;">
-      <a href="noticeEdit.jsp?idx=${bean.nno}&loc=${bean.nloc}&title=${bean.ntitle}&content=${bean.ncontent}">[수정]</a>
-      <a href="noticeDelete.do?idx=${bean.nno}">[삭제]</a> 
+      <a href="noticeedit.do?idx=${notice.n_no}">[수정]</a>
+      <a href="noticedelete.do?idx=${notice.n_no}">[삭제]</a> 
      </td>
    </tr>  
    </c:forEach>

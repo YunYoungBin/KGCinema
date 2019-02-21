@@ -23,5 +23,13 @@ public class JoinDAO {
 		int check = temp.selectOne("join.idCheck", id);
 		return check;
 	}
+	
+	public Joinbean myInfo(String id) {
+		return temp.selectOne("join.myInfo", id);
+	}
+	
+	public void edit(Joinbean bean) {
+		temp.update("join.edit", bean);
+	}
 
 }

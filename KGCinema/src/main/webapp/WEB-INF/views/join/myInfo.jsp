@@ -10,18 +10,18 @@
 <title>myInfo.jsp</title>
     <link href="./resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="./resources/css/full-slider.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick-theme.css">
     <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
     <script src="./resources/js/agency.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script src="./slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./resources/slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
    
     <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
     <link href="./resources/css/agency.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./css/InputCSS1.css">
+    <link rel="stylesheet" type="text/css" href="./resources/css/InputCSS1.css">
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <script src="./resources/js/EditJS2.js"></script>
     
@@ -129,17 +129,17 @@
        </div>
        <div class="clearfix myInfoArea1">
        <c:choose>
-        <c:when test="${bean.file eq '' || empty bean.file}">
+        <c:when test="${bean.j_file1 eq '' || empty bean.j_file1}">
          <img id="preview" class="img-circle pull-left image_width" name="basic" src="http://image2.megabox.co.kr/mop/home/user/profile_m.png">
         </c:when>
         <c:otherwise>
-         <img id="preview" class="img-circle pull-left image_width" name="sujung_img" src="<%=request.getContextPath()%>/storage/${bean.file}">
+         <img id="preview" class="img-circle pull-left image_width" name="sujung_img" src="${pageContext.request.contextPath}/resources/storage/${bean.j_file1}">
         </c:otherwise>
        </c:choose>
         <div class="pull-left textArea">
-         <strong>${bean.id}</strong> <input type='text' hidden="" name="id" value="${bean.id}">
+         <strong>${bean.j_id}</strong> <input type='text' hidden="" name="j_id" value="${bean.j_id}">
          <span class="profile_btn_wrap">
-          <input type="file" id="file" name="file" class="img_btn user fake_section file_button">
+          <input type="file" id="file" name="upload_f" class="img_btn user fake_section file_button">
           <!--<button id="imgDeleteBtn" name="imgDeleteBtn" class="img_btn user profile_del">삭제</button>-->
           <input type="button" class="img_btn user profile_del"
           style="width: 70px;height: 26px;background-position: -476px -200px;display: inline-block;">
@@ -159,8 +159,8 @@
            <label>*비밀번호</label>
           </th>
           <td>
-           <input type="password" name="pwd" fieldname="비밀번호" value="" onkeyup="checklen(this,10)">
-           <input type='text' hidden="" name="pass" value="${bean.pwd}">
+           <input type="password" name="j_pwd" fieldname="비밀번호" value="" onkeyup="checklen(this,10)">
+           <input type='text' hidden="" name="pass" value="${bean.j_pwd}">
           </td>
          </tr>
          <tr>
@@ -168,20 +168,20 @@
            <label>*이름</label>
           </th>
           <td>
-           <input type="text" name="name" fieldname="이름" value="${bean.name}" readonly>
-           <input id="filename" type="hidden" name="filename" fieldname="이름" value="${bean.file}">
+           <input type="text" name="j_name" fieldname="이름" value="${bean.j_name}" readonly>
+           <input id="filename" type="hidden" name="j_file1" fieldname="이름" value="${bean.j_file1}">
           </td>
-         </tr>     
+         </tr>
          <tr>
           <th scope="row" id="th_myInfo_birthday">
            <label>*생년월일</label>
           </th>
           <td>
-           <input class="w67" type="text" name="year" fieldname="생년월일"  maxlength="4" value="${bean.getBirth().substring(0,4)}" onfocus="birth()" onchange="birth()" >
+           <input class="w67" type="text" name="year" fieldname="생년월일"  maxlength="4" value="${bean.getJ_birth().substring(0,4)}"  >
            <span class="text-sub ml5 mr8">년</span>
-           <input class="w44" type="text" name="month" fieldname="생년월일"  maxlength="2" value="${bean.getBirth().substring(5,7)}" onchange="birth()">
+           <input class="w44" type="text" name="month" fieldname="생년월일"  maxlength="2" value="${bean.getJ_birth().substring(5,7)}" >
            <span class="text-sub ml5 mr8">월</span>
-           <input class="w44" type="text" name="day" fieldname="생년월일" maxlength="2" value="${bean.getBirth().substring(8)}" onchange="birth()">
+           <input class="w44" type="text" name="day" fieldname="생년월일" maxlength="2" value="${bean.getJ_birth().substring(8,10)}" >
            <span class="text-sub ml5 mr8">일</span>
           </td>
          </tr>      
@@ -191,11 +191,11 @@
            <label>*휴대폰</label>
           </th>
           <td>
-           <input class="w67" type="text" name="num1" onfocus="num()" onchange="num()" maxlength="3" value="${bean.phone.substring(0,3)}">
+           <input class="w67" type="text" name="num1" maxlength="3" value="${bean.j_phone.substring(0,3)}">
            <span class="text-sub ml2 mr2">-</span>
-           <input class="w67" type="text" name="num2" onchange="num()" maxlength="4" value="${bean.phone.substring(4,8)}">
+           <input class="w67" type="text" name="num2" maxlength="4" value="${bean.j_phone.substring(4,8)}">
            <span class="text-sub ml2 mr2">-</span>
-           <input class="w67" type="text" name="num3" onchange="num()" maxlength="4" value="${bean.phone.substring(9)}">
+           <input class="w67" type="text" name="num3" maxlength="4" value="${bean.j_phone.substring(9)}">
           </td>
          </tr>     
          <tr>
@@ -203,7 +203,7 @@
            <label>*이메일</label>
           </th>
           <td>
-           <input type="text" name="email" value="${bean.email}" onblur="emailcheck()" onkeyup="checklen(this,30)">
+           <input type="text" name="j_email" value="${bean.j_email}" onkeyup="checklen(this,30)">
            <span id="email_ch"></span>
           </td>
          </tr>            
@@ -213,8 +213,8 @@
         </th>
          <td>
           <input type="text" size="10" id="code" name="code" value="12345" readonly> <input type="button" onclick="DaumPostcode()" value="우편번호"><p>
-         <input type="text" size="40" id="juso1" name="juso1" value="${bean.juso1}" readonly><p>
-         <input type="text" size="40" id="juso2" name="juso2" value="${bean.juso2}" onkeyup="checklen(this,30)">&nbsp;&nbsp;상세주소를 입력하세요 <br>
+         <input type="text" size="40" id="juso1" name="j_juso1" value="${bean.j_juso1}" readonly><p>
+         <input type="text" size="40" id="juso2" name="j_juso2" value="${bean.j_juso2}" onkeyup="checklen(this,30)">&nbsp;&nbsp;상세주소를 입력하세요 <br>
        </td>
       </tr>                        
         </tbody>
@@ -222,7 +222,7 @@
       </div>
      </div>
       <div class="btn_wrap text-center mt50">
-       <a href="index.jsp"><button type="button" class="img_btn user cancel mr7" onclick="">취소</button></a>
+       <button type="button" class="img_btn user cancel mr7" onclick="location.href='main.do'">취소</button>
        <button type="button" class="img_btn user modify ml7" onclick="check()" style="background: url(http://image2.megabox.co.kr/mop/home/mypage/bg_mypage_160114.png) -200px -650px no-repeat;"></button>
       </div>
      

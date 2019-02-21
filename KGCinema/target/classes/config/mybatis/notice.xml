@@ -18,5 +18,9 @@
 	<select id="countAllSearch" parameterType="com.kg.cinema.notice.Noticebean"  resultType="int">
  	   select  count(*) from notice where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%'  
  	</select>
+ 	
+ 	<select id="detail" parameterType="int" resultType="com.kg.cinema.notice.Noticebean">
+	   select * from notice where n_no=#{n_no}
+	</select>
 	
 </mapper>

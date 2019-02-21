@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
     <script src="./resources/js/agency.min.js"></script>
+    <script src="./resources/js/Head.js"></script>
     <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
     <link href="./resources/css/agency.min.css" rel="stylesheet">
 </head>
@@ -109,9 +110,9 @@
              <img src="http://image2.megabox.co.kr/mop/home/user/profile_m.png" alt='프로필사진' style='position: absolute;left: 0;top: 0;'>
             </c:when>
             <c:otherwise>
-             <img src="<%=request.getContextPath()%>/storage/${bean.j_file1}" alt='프로필사진' style='position: absolute;left: 0;top: 0;'>
+             <img src="${pageContext.request.contextPath}/resources/storage/${bean.j_file1}" alt='프로필사진' style='position: absolute;left: 0;top: 0;'>
             </c:otherwise>
-           </c:choose>                     
+           </c:choose>
            <i class="icon member_icon normal">일반</i>
           </div>
           <div class="name">
@@ -135,7 +136,7 @@
          <div class="login_info_middle">
           <ul class="login_info_middle_center">
            <li><a class="item1" href="mypage.do"></a></li>
-           <li><a class="item2" href="adminMain.jsp"></a></li>
+           <li><a class="item2" href="noticemglist.do"></a></li>
            <li><a class="item3" href="#"></a></li>
           </ul>
          </div>
@@ -198,7 +199,7 @@
         <div class="login_form" style="height: auto;width: 380px;box-shadow: 0 5px 6px rgba(0,0,0,0.5);background-color: #fff;border-radius: 5px;z-index: 1000;top: 0px;right: 0;position: absolute;">
          <sapn style="display: block;height: 50px;"></sapn>
          <div class="login_middle" style="padding: 0 33px 0 36px;">
-         <form name="myform" method="post" action="login.do">
+         <form name="loginForm" method="post" action="login.do">
           <div>
            <h4 style="background: url(http://image2.megabox.co.kr/mop/home/btns/socialLogin_bg.png) 0 -8px no-repeat;height: 17px;padding-left: 75px;font-size: 16px;font-weight: 500;margin: 0 0 10px 0;">
             <sapn style="display: block;overflow: hidden;position: absolute;top: -1000em;left: -1000em;font-size: 16px;font-weight: 500;">KGCINEMA</sapn>로그인
@@ -215,7 +216,7 @@
               </span>
              </span>
             </p>
-             <input type="submit" id="btnlogin" value="로그인" title="로그인" class="img_login" onclick="move();" style="background-image: url(http://image2.megabox.co.kr/mop/home/btns/btn_member.png);">
+             <input type="submit" id="btnlogin" value="로그인" title="로그인" class="img_login" style="background-image: url(http://image2.megabox.co.kr/mop/home/btns/btn_member.png);">
            </div>
           </div>
           </form>
@@ -251,41 +252,11 @@
           $(".login_hidden").css({'display' : 'none'});
           });
         });
-        function move(){
-	     document.myform.submit();
-        }
+
        </script>                   
     <!-- head logout end -->         
      </c:otherwise>
     </c:choose>       
     
-         <c:if test="${fail eq false}">
-         <div class="custom_alert" style="position: absolute; top: 393px; left: 735px;">
-          <div class="ca_header">
-            <h6>로그인</h6>
-          </div>
-          <div class="ca_body">
-           <p>로그인 정보가 잘못되었습니다.</p>
-         </div>
-         <div class="ca_footer">
-          <button type="button" class="img_btn booking ok"></button>
-         </div>
-         <button type="button" class="img_btn booking btn_ca_close"></button>
-        </div>
-        
-       <script type="text/javascript">
-        $('html, body').css({'overflow': 'hidden', 'height': '100%'});
-        $(document).on('ready', function() {     
-          $(".ok").click(function(){
-          $(".custom_alert").css({'display' : 'none'});
-          $('html, body').css({'overflow': 'inherit', 'height': '100%'});
-          });
-        $(".btn_ca_close").click(function(){
-          $(".custom_alert").css({'display' : 'none'});
-          $('html, body').css({'overflow': 'inherit', 'height': '100%'});
-          });
-        });
-      </script>     
-       </c:if>
 </body>
 </html>

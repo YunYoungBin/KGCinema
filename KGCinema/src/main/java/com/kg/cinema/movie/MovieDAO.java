@@ -23,9 +23,44 @@ public class MovieDAO {
 		List<Moviebean> list = temp.selectList("movie.selectAllNext");
 		return list;
 	}
+	
 	public Moviebean movieDetail(int data) {
 		Moviebean mdto=temp.selectOne("movie.detail",data);
 		return mdto;
 	}//end
+	
+	public Moviebean movieDetail(String title) {
+		Moviebean mdto=temp.selectOne("movie.detailTitle",title);
+		return mdto;
+	}//end
+	
+	public List<Moviebean> MovieMgSelect(int start, int end, String skey, String sval){
+		Moviebean dto = new Moviebean();
+		dto.setStart(start);
+		dto.setEnd(end);
+		dto.setSkey(skey);
+		dto.setSval(sval);
+		System.out.println(start);
+		System.out.println(end);
+		System.out.println(skey);
+		System.out.println(sval);
+		List<Moviebean> list=temp.selectList("movie.movieMgSelectAll", dto);
+	return list;
+	}//end
+		
+	public int MovieMgCount() {
+		int cnt=(Integer)temp.selectOne("movie.movieMgcountAll");
+		return cnt;
+	}//end
+		 
+	public int MovieMgCountSearch(String skey, String sval) {
+		Moviebean dto = new Moviebean();
+		dto.setSkey(skey);
+		dto.setSval(sval);
+		System.out.println(skey);
+		System.out.println(sval);
+		int cnt=(Integer)temp.selectOne("movie.movieMgcountAllSearch" , dto);
+		return cnt;
+	}//end	
 
 }

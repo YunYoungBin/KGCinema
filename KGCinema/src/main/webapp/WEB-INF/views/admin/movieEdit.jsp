@@ -9,11 +9,20 @@
 </head>
 <jsp:include page="admin_top.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	function check() {
+		var str = document.getElementById("textarea").value;
+		document.getElementById("temp").value = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+		document.adminform.submit();
+	}
+	function check2() {
+		var str2 = document.getElementById("temp").value;
+		document.getElementById("textarea").value = str2.replace(/(?:<br>)/g, '\n');
+	}
+</script>
 
 
-<body>
-
-
+<body onload="check2()">
 <form name="adminform" action="movieeditsave.do" method="post" enctype="multipart/form-data">
  <table>
   <tr>
@@ -47,7 +56,8 @@
    <td>장르</td><td><input type="text" name=m_genre value="${movie.m_genre}"></td>
   </tr>
   <tr>
-   <td>줄거리</td><td><input type="text" name=m_story value="${movie.m_story}"></td>
+   <td>줄거리</td><td><textarea name="m_story" id="textarea" rows="15" cols="85"></textarea>
+  <textarea hidden="" name="textarea" id="temp" rows="10" cols="10">${movie.m_story}</textarea></td></td>
   </tr>
   <tr>
    <td>포스터</td>

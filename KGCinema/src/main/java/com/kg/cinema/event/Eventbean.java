@@ -1,5 +1,7 @@
 package com.kg.cinema.event;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Eventbean { 
   //eventList 
   private int e_no;
@@ -10,11 +12,27 @@ public class Eventbean {
   private int e_rn;
   private String e_period;
   
+  private MultipartFile upload_file;
+  private MultipartFile upload_content;
+  
+  
   private int start, end;
   private String skey,sval;
   
   
   
+	public MultipartFile getUpload_file() {
+	return upload_file;
+	}
+	public void setUpload_file(MultipartFile upload_file) {
+		this.upload_file = upload_file;
+	}
+	public MultipartFile getUpload_content() {
+		return upload_content;
+	}
+	public void setUpload_content(MultipartFile upload_content) {
+		this.upload_content = upload_content;
+	}
 	public int getStart() {
 		return start;
 	}

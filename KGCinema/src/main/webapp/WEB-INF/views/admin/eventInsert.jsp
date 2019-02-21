@@ -7,22 +7,22 @@
 <title>eventInsert.jsp</title>
 </head>
 <body>
-<form name="adminform" action="eventInsert.do"  enctype="multipart/form-data" method="post">
+<form name="adminform" action="eventinsert.do"  enctype="multipart/form-data" method="post">
  <table>
   <tr>
    <th>등록항목</th> <th>등록내용</th>
   </tr>
   <tr>
-   <td>이벤트제목</td><td><input type="text" name=etitle></td>
+   <td>이벤트제목</td><td><input type="text" name=e_title></td>
   </tr>
   <tr>
-   <td>이벤트기간</td><td><input type="text" name=eperiod></td>
+   <td>이벤트기간</td><td><input type="text" name=e_period></td>
   </tr>
   <tr>
-   <td>이벤트내용</td><td><input type="file" name=econtent></td>
+   <td>이벤트내용</td><td><input type="file" name=upload_content></td>
   </tr>
   <tr>
-   <td>메인이미지</td><td><input type="file" name=efile></td>
+   <td>메인이미지</td><td><input type="file" name=upload_file></td>
   </tr>
   
   

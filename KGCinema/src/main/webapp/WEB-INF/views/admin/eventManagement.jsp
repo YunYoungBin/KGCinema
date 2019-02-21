@@ -131,6 +131,9 @@
         </botton>
        </form> 
        </div>
+       <div>
+        <a href="eventwrite.do"><input type="submit" class="add" id="btnNoticeSearchMEG" value="이벤트추가" style="width:65px;text-indent: 0px;line-height:0px;float:right;"></a>
+       </div>
        
        <div id="container" class="pt20">
         <div class="full-width">

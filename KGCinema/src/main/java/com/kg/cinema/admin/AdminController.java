@@ -481,4 +481,77 @@ public class AdminController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/eventwrite.do", method = RequestMethod.GET)
+	public String eventWrite(Locale locale, Model model) {
+		return "admin/eventInsert";
+	}//end
+	
+	@RequestMapping(value = "/eventinsert.do", method = RequestMethod.POST)
+	public String eventInsert(Eventbean edto) {  
+
+		  String path=application.getRealPath("/resources/storage");
+		  String img=edto.getUpload_file().getOriginalFilename();
+		  String content=edto.getUpload_content().getOriginalFilename();
+		  
+		  File file1 = new File( path, img);
+		  File file2 = new File( path, content);
+		    
+		try{ 
+			edto.getUpload_file().transferTo(file1); 
+			edto.getUpload_content().transferTo(file2);
+			
+		}catch(Exception ex){ }
+		
+		edto.setE_file(img);
+		edto.setE_content(content);
+		adao.EventInsert(edto);
+		return "redirect:/eventmglist.do" ;
+	}//end
+	
+	@RequestMapping(value = "/eventdelete.do", method = RequestMethod.GET)
+	public ModelAndView eventDelete(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView( );
+		int data=Integer.parseInt(request.getParameter("idx"));
+		adao.EventDelete(data);
+		mav.setViewName("redirect:/eventmglist.do");
+		return mav;
+	}//end
+	
+	@RequestMapping(value = "/eventedit.do", method = RequestMethod.GET)
+	public ModelAndView eventEdit(HttpServletRequest request) {
+	  ModelAndView mav = new ModelAndView( );
+	  int data=Integer.parseInt(request.getParameter("idx"));
+	  Eventbean edto=edao.EventDetail(data);
+	  mav.addObject("event", edto);
+	  mav.setViewName("admin/eventEdit");
+	  return mav;
+	}//end
+	
+	@RequestMapping(value = "/eventeditsave.do", method = RequestMethod.POST)
+	public String eventEditSave(Eventbean edto) throws IOException {   
+	 String path=application.getRealPath("/resources/storage");
+	 
+	 if(!edto.getUpload_file().getOriginalFilename().equals("")) {
+		 MultipartFile mf1=edto.getUpload_file();
+		 String img=mf1.getOriginalFilename();
+		 File file1=new File(path, img);
+		 FileCopyUtils.copy(edto.getUpload_file().getBytes(), file1);
+		 edto.setE_file(img);
+	 }else {
+		 edto.setE_file(edto.getE_file());
+	 }
+		  
+	 if(!edto.getUpload_file().getOriginalFilename().equals("")) {
+		 MultipartFile mf2=edto.getUpload_content();
+		 String content=mf2.getOriginalFilename();	  
+		 File file2=new File(path, content);	  
+		 FileCopyUtils.copy(edto.getUpload_content().getBytes(), file2);	  
+		 edto.setE_content(content);
+	 }else {
+		 edto.setE_content(edto.getE_content());
+	 }	  
+	 adao.EventEdit(edto); 
+	 return "redirect:/eventmglist.do";
+	}//end
+	
 }

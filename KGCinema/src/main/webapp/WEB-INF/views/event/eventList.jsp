@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>EventList</title>
     <link href="./resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="./resources/js/event.js"></script>
     <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
     <script src="./resources/js/agency.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
@@ -158,7 +159,7 @@
           <ul id="event_wrapper">
           <c:forEach var="item" items="${naver}">
            <li class="item">
-            <a href="eventdetail.do?idx=${item.e_no}">
+            <a href="eventdetail.do?idx=${item.e_no}" onclick="eventdetail(${item.e_no})">
              <img src="<%=request.getContextPath()%>/resources/storage/${item.e_file}">
              <span class="title">${item.e_title}</span>
              <span>${item.e_period}</span>

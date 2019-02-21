@@ -68,7 +68,7 @@
      <td style="border-left-width:0px; border-right-width: 0px;"> <fmt:formatDate value="${movie.m_premiere}" pattern="yyyy/MM/dd" /> </td>
      <td style="border-left-width:0px;">
       <a href="movieedit.do?idx=${movie.m_no}">[수정]</a>
-      <a href="movieDelete.do?idx=${movie.m_no}">[삭제]</a> 
+      <a href="moviedelete.do?idx=${movie.m_no}">[삭제]</a> 
      </td>
    </tr>  
    </c:forEach>

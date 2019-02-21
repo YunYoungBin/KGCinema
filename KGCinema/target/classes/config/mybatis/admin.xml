@@ -37,4 +37,17 @@
 	 where m_no=#{m_no}
 	</update>
 	
+	<!-- event -->
+   	<insert id="eventInsert">
+	  insert into event(e_no,e_title,e_period,e_content,e_date,e_file)
+	  values(event_seq.nextval,#{e_title},#{e_period},#{e_content},sysdate,#{e_file})
+	</insert>
+	
+	<delete id="eventDelete" parameterType="int">
+	    delete from event where e_no = #{e_no} 
+	</delete>
+	
+	<update id="eventEdit" parameterType="com.kg.cinema.event.Eventbean">
+	 update event set e_title=#{e_title},e_period=#{e_period},e_content=#{e_content},e_file=#{e_file} where e_no=#{e_no}
+	</update>
 </mapper>

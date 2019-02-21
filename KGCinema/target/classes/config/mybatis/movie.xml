@@ -15,6 +15,10 @@
 	   select * from movie where m_no=#{m_no}
 	</select>
 	
+	<select id="detailTitle" parameterType="String" resultType="dto">
+	   select * from movie where m_title=#{title}
+	</select>
+	
 	<select id="movieMgSelectAll"  resultType="com.kg.cinema.movie.Moviebean">	   
 	   select * from (
 	   select rownum m_rn, m.* from

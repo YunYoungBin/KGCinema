@@ -11,5 +11,8 @@
 		and starthour <![CDATA[>]]> sysdate
 	</select>
 	
+	<select id="detail" parameterType="int" resultType="com.kg.cinema.schedule.Schedulebean">
+		select * from schedule where schedule_id = #{idx}
+	</select>
 
 </mapper>

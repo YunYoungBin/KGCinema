@@ -169,7 +169,7 @@
              <a href="moviedetail.do?idx=${item.m_no}" style="text-decoration:none;display:block;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">상세보기</a>
              </div>  
          </div>
-         <img src="<%=request.getContextPath()%>/storage/${item.m_poster}">
+         <img src="<%=request.getContextPath()%>/resources/storage/${item.m_poster}">
        </div>
      </c:forEach>  
        

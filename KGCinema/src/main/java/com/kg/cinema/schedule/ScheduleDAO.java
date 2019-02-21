@@ -24,5 +24,9 @@ public class ScheduleDAO {
 		return list;
 	}
 	
+	public Schedulebean scheduleDetail(int idx) {
+		return temp.selectOne("schedule.detail", idx);
+	}
+	
 
 }

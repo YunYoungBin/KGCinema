@@ -206,13 +206,13 @@
         <div class="row2">
         <div class="title">
         <i class="age age_12">12세관람가</i>
-        <h4>${mbean.title }</h4>
-        <span>${mbean.type }</span>
+        <h4>${mbean.m_title }</h4>
+        <span>${mbean.m_type }</span>
         </div>
         <div style="overflow:hidden;overflow-y:auto;height: 123px;">
         <ul class="info">
          <li>${sbean.theater }<br>${sbean.scrno }</li>
-         <li><fmt:formatDate value="${sbean.date }" pattern="yyyy. MM. dd (E)"/> <fmt:formatDate value="${sbean.starthour }" pattern="HH:mm"/></li>
+         <li><fmt:formatDate value="${sbean.starthour }" pattern="yyyy. MM. dd (E)"/> <fmt:formatDate value="${sbean.starthour }" pattern="HH:mm"/></li>
          <li id="countSelectedByTicket"></li>
         </ul>
         <ul class="seat" id="selectedSeatNumbers1">

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kg.cinema.join.JoinDAO;
@@ -74,9 +75,10 @@ public class ReserveController {
 		
 		String today = year + "-" + month + "-" + day;
 		
+		
 		mav.addObject("date", today);
 		mav.addObject("movie", movieList);
-		mav.addObject("movie", movieList);
+		mav.addObject("theater", theaterList);
 		mav.setViewName("reserve/movieReserve");
 		return mav;
 	}
@@ -99,7 +101,6 @@ public class ReserveController {
 		if(!movieNo.equals("")) {
 			int no = Integer.parseInt(movieNo);
 			mbean = mdao.movieDetail(no);
-			
 			mav.addObject("mbean", mbean);
 		}
 		
@@ -108,7 +109,7 @@ public class ReserveController {
 		}
 
 		List<Schedulebean> scheduleList = sdao.scheduleSelect(date, theater, mbean.getM_title());
-		
+		System.out.println(theater);
 		List<Moviebean> movieList = mdao.movieSelect();
 		List<Theaterbean> theaterList = tdao.theaterSelect();
 		
@@ -118,6 +119,29 @@ public class ReserveController {
 		mav.addObject("movie", movieList);
 		mav.addObject("schedule", scheduleList);
 		mav.setViewName("reserve/movieReserve");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/reserveSeat.do", method = RequestMethod.GET)
+	public ModelAndView reserve_seat(HttpServletRequest request, @RequestParam("idx") String idx) {
+		ModelAndView mav = new ModelAndView();
+		if(request.getSession().getAttribute("temp") != null) {
+			Joinbean bean = jdao.myInfo((String)request.getSession().getAttribute("temp"));
+			mav.addObject("bean", bean);
+		}
+		Schedulebean sbean = new Schedulebean();
+		sbean = sdao.scheduleDetail(Integer.parseInt(idx));
+		
+		Moviebean mbean = new Moviebean();
+		mbean = mdao.movieDetail(sbean.getTitle());		
+		
+		
+
+		
+		mav.addObject("sbean", sbean);
+		mav.addObject("scrno", idx);
+		mav.addObject("mbean", mbean);
+		mav.setViewName("reserve/movieSeat");
 		return mav;
 	}
 	

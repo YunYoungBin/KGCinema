@@ -1,7 +1,7 @@
 package com.kg.cinema.schedule;
 
 public class Schedulebean {
-	private int id;
+	private int schedule_id;
 	private String theater;
 	private String scrno;
 	private String title;
@@ -16,11 +16,12 @@ public class Schedulebean {
 	public void setDate(java.util.Date date) {
 		this.date = date;
 	}
-	public int getId() {
-		return id;
+	
+	public int getSchedule_id() {
+		return schedule_id;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setSchedule_id(int schedule_id) {
+		this.schedule_id = schedule_id;
 	}
 	public String getTheater() {
 		return theater;

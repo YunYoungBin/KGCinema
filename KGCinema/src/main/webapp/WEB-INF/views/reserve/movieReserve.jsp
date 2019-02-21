@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -287,7 +287,7 @@
 </head>
 <body>
    <div class="bin"></div>
-   <form action="reserveMovie.do" method="post" name="mform">
+   <form action="reserveMovie.do" method="post" name="mform" enctype="multipart/form-data">
 
    <div class="wrapper">
     <div class="contents clearfix ReservationBn_ok">
@@ -341,7 +341,7 @@
       </div>
       
    <c:choose>
-    <c:when test="${mbean.poster eq null || mbean.poster eq ''}">
+    <c:when test="${mbean.m_poster eq null || mbean.m_poster eq ''}">
       <div class="select_all" id="selectedAllMovie" style="display:block;">
        <div class="glass">
         <p>모든영화</p>
@@ -359,7 +359,7 @@
         <li class="poster">
           <div class="poster">
            <button type="button" class="close_small" onclick="movieDel();"></button>
-           <img src="/KgCinema/storage/${mbean.poster}">
+           <img src="${pageContext.request.contextPath}/resources/storage/${mbean.m_poster}">
            
           </div>
         </li>
@@ -420,7 +420,7 @@
       <ul id="movieTimeList">
       <div id=div1 >
       <c:forEach var="sbean" items="${schedule }">
-       <li onclick="location.href='/KgCinema/reserveSeat.do?idx=${sbean.id}'">
+       <li onclick="location.href='/cinema/reserveSeat.do?idx=${sbean.schedule_id}'">
         <div class="viewing_time">
          <p class="morning"></p>
          <p class="time_table">
@@ -511,7 +511,7 @@
         <ul class="depth2">
         <c:forEach var="item" items="${theater}">
          <li>
-         <a style="left: 232px;top: 275px;letter-spacing: inherit;">${item.theater}</a>
+         <a style="left: 232px;top: 275px;letter-spacing: inherit;">${item.t_theater}</a>
          </li>
         </c:forEach>
         </ul>
@@ -547,7 +547,7 @@
         <p class="selected_movie">
 
          <input name="title" type="text" style="height:20px;width:150px;" value="" readonly>
-         <input type="text"  name="no" hidden="" style="height:20px;width:150px;" value="${mbean.no }">
+         <input type="text"  name="no" hidden="" style="height:20px;width:150px;" value="${mbean.m_no }">
         </p>
        </div>
        <ul class="sort">
@@ -560,28 +560,28 @@
        
        <c:forEach var="item" items="${movie}">
         <li>
-         <a><span class="blind">${item.title}</span></a>
+         <a><span class="blind">${item.m_title}</span></a>
          <div class="poster">
-           <img src="/KgCinema/storage/${item.poster}" title="${item.title}" no="${item.no }" name="">
+           <img src="${pageContext.request.contextPath}/resources/storage/${item.m_poster}" title="${item.m_title}" no="${item.m_no }" name="">
          </div>
          <p class="title">
          <span class="age2 age_15" style="">
           <c:choose>
-           <c:when test="${item.grade eq 0}">
-            <img src="images/bg_grade_all.png" style="margin-top:-1px;">
+           <c:when test="${item.m_grade eq 0}">
+            <img src="./resources/images/bg_grade_all.png" style="margin-top:-1px;">
            </c:when>
-           <c:when test="${item.grade eq 12}">
-            <img src="images/bg_grade_12.png" style="margin-top:-1px;">
+           <c:when test="${item.m_grade eq 12}">
+            <img src="./resources/images/bg_grade_12.png" style="margin-top:-1px;">
            </c:when>
-           <c:when test="${item.grade eq '15'}">
-            <img src="images/bg_grade_15.png" style="margin-top:-1px;">
+           <c:when test="${item.m_grade eq '15'}">
+            <img src="./resources/images/bg_grade_15.png" style="margin-top:-1px;">
            </c:when>
            <c:otherwise>
-             <img src="images/bg_grade_18.png" style="margin-top:-1px;">
+             <img src="./resources/images/bg_grade_18.png" style="margin-top:-1px;">
            </c:otherwise>
           </c:choose>
          </span>
-         <span>${item.title}</span>
+         <span>${item.m_title}</span>
          </p>
         </li>
        </c:forEach>

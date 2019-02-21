@@ -1,9 +1,13 @@
 package com.kg.cinema.event;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.kg.cinema.movie.MovieDAO;
-import com.kg.cinema.movie.Moviebean;
 
 @Controller
 public class EventController {
@@ -99,13 +100,21 @@ public class EventController {
 	}
 	
 	@RequestMapping(value = "/eventdetail.do", method = RequestMethod.GET)
-	public ModelAndView eventDetail(HttpServletRequest request) {
-	  ModelAndView mav = new ModelAndView( );
-	  int data=Integer.parseInt(request.getParameter("idx")); 
-	  Eventbean edto=edao.EventDetail(data);
-	  mav.addObject("event", edto);
-	  mav.setViewName("event/eventDetail");
-	  return mav;
+	public void eventDetail(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		
+		PrintWriter out = response.getWriter();
+		String e_no = request.getParameter("e_no");
+		System.out.println("e_no= " + e_no);
+		Eventbean edto = edao.EventDetail2(e_no);
+		StringBuilder sb = new StringBuilder();
+		System.out.println("gettitle=" + edto.getE_title());
+		sb.append("{");
+		sb.append("\"e_title\": \"" + edto.getE_title() + "\", " );
+		sb.append("\"e_content\": \""+ edto.getE_content() + "\" ");
+		sb.append("}");
+		out.print(sb.toString());
 	}//end
 	
 }

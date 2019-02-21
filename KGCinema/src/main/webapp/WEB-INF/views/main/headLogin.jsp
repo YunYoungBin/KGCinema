@@ -112,7 +112,7 @@
             <c:otherwise>
              <img src="${pageContext.request.contextPath}/resources/storage/${bean.j_file1}" alt='프로필사진' style='position: absolute;left: 0;top: 0;'>
             </c:otherwise>
-           </c:choose>                     
+           </c:choose>
            <i class="icon member_icon normal">일반</i>
           </div>
           <div class="name">

@@ -36,7 +36,7 @@
 				return ;
 			} else {
 				$.ajax({
-					url: '${pageContext.request.contextPath}/check.do?id='+$("#checkId").val(),
+					url: '${pageContext.request.contextPath}/check.do?id='+document.getElementById("checkId").value,
 					type: 'GET',
 					success: function(data) {
 						if(data == 1) {

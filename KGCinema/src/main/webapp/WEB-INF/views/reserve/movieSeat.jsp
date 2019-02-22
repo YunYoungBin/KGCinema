@@ -17,20 +17,8 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./resources/js/Reserve.js"></script>
     
-    <script type="text/javascript">
-     $(document).on('ready', function() {
-      $("#seatPositionList button").mouseover(function(){
-       $(this).addClass("seat_selected_hover");
-      });  
-      $("#seatPositionList button").mouseout(function(){
-      $(this).removeClass("seat_selected_hover");
-      });     
-      $("#seatPositionList button").click(function(){
-        $(this).toggleClass("seat_selected");
-      });  
-     });
-    </script>
     
   <style type="text/css">
     html, body {margin: 0;padding: 0;border:0;vertical-align: baseline;}
@@ -137,28 +125,17 @@
        <div class="left_wrap">
         <div id="bookingSeatTicket" class="row1">
          <lable style="font-size:12px;font-weight:bold;">성인</lable>
-         <select style="margin:0 12px 0 8px;font-size:12px;" id="ticketTypeCode_1" name="">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
+         <select style="margin:0 12px 0 8px;font-size:12px;" id="ticketTypeCode_01" tickettypecode="01" name="">
+         	<c:forEach var="i" begin="0" end="8">
+         		<option value="${i}">${i}</option>
+         	</c:forEach>
          </select>
+         
          <lable style="font-size:12px;font-weight:bold;">청소년</lable>
-         <select style="margin:0 12px 0 8px;font-size:12px;" id="ticketTypeCode_2" name="">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
+         <select style="margin:0 12px 0 8px;font-size:12px;" id="ticketTypeCode_02" tickettypecode="02" name="">
+         	<c:forEach var="i" begin="0" end="8">
+          		<option value="${i}">${i}</option>
+         	</c:forEach>
          </select>     
          <p class="seat_ex" style="margin-top:0px">인원 선택은 최대 8명까지 가능합니다.</p>
         </div>
@@ -172,13 +149,13 @@
             <span class="exit top" style="width: 28px;height: 17px;top: 252px;left: 61px;"></span>
             <span class="exit left" style="width: 17px;height: 28px;top:-18px; left:-33px;background-position: 0 -50px;"></span>
             <c:forEach var="bean" items="${seatbean}">
-            	<c:if test="">
+            	
             		<span class="line line_a" style="left:0px; top: ${bean.top}px;">${bean.seatgroup }</span>
-            	</c:if>
+            	
             	<button type="button" title="${bean.seatgroup}${bean.seatno}(일반석)" id="seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}" class="seat_normal" 
 seatgroup="${bean.seatgroup}" seatno="${bean.seatno}" seattype="${bean.seattype}" 
 popupyn="N" seatlinecnt="" 
-style="width: 16px; height: 16px; left: ${bean.left}px; top: ${bean.top}px;"  
+style="width: 16px; height: 16px; left: ${bean.left}px ; top: ${bean.top}px;"  
 onmouseover="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
 onmouseout="BookingSeatDatas.seatMouseOut(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
 onclick="BookingSeatDatas.checkSeat(this)" onkeyup="" onblur="" 

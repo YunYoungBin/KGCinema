@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
     <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
+    <script src="./resources/js/jquery.magnific-popup.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="./resources/vendor/jquery/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>

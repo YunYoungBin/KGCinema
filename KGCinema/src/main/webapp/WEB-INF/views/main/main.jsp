@@ -57,6 +57,10 @@
     margin-top: -3px;font-size: 15px;display: inline-block;padding: 0 10px;}
     .item a{margin: 0;width: 235px;height: 100%;top: 0;background: none;text-align: center;color: #fff;letter-spacing: -0.3px;padding-top: 55px;}
     .rel{position: relative;}
+    .subtitle{z-index:100000;display: block;position: relative;width: 970px;margin: 0 auto;top: 230px;letter-spacing: -1px;text-shadow: 1px 1px 1px #000000;behavior: url(/js/css3pie/pie.htc);line-height: 36px;}
+    .subtitle_st{font-size: 36px;color: #fff;font-weight: 400;display: block;padding-top: 2px;padding-bottom: 19px;background: url(http://image2.megabox.co.kr/mop/home/main/h2_bg.png) 0 100% no-repeat;}
+    .subtitle_st em{display: block;font-style: normal;font-weight: 300;font-size: 18px;line-height: 21px;padding: 8px 0;color: #fff;}
+    .subtitle span{display: inline-block;font-size: 24px;line-height: 29px;color: #fff;}
   </style>
 </head>
 
@@ -81,10 +85,13 @@
          $(this).find('a').css({'display' : 'none'});
          $(this).find('div').css({'display' : 'none'});
       });
-
       
-  });
-  
+
+	     $(".carousel-inner .carousel-item:first-child").addClass("active");
+	     $(".carousel-indicators li:first-child").addClass("active");
+       
+   });
+
   </script>
 <body>
     <div class="bin">
@@ -92,34 +99,71 @@
     
     <header>
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <c:choose> 
+       <c:when test="${ms eq '' || empty ms}">
         <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          <li data-target="#carouselExampleIndicators" class="active"></li>
+          <li data-target="#carouselExampleIndicators"></li>
+          <li data-target="#carouselExampleIndicators"></li>
         </ol>
-        <div class="carousel-inner" role="listbox">
+        <div class="carousel-inner" role="listbox">      
           <!-- Slide One - Set the background image for this slide in the line below -->
           <div class="carousel-item active" style="background-image: url('./resources/images/main_slide_1.jpg');height:600px;">
+	        <span class="subtitle">
+	         <strong class="subtitle_st">TITLE<em>SUBTITLE</em></strong>
+	         <span>CONTENT</span>
+	        </span>          
             <div class="carousel-caption d-none d-md-block">
-              <h3>First Slide</h3>
-              <p>This is a description for the first slide.</p>
+              <h3></h3>
+              <p></p>
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
           <div class="carousel-item" style="background-image: url('./resources/images/main_slide_2.jpg');height:600px;">
+	        <span class="subtitle">
+	         <strong class="subtitle_st">TITLE<em>SUBTITLE</em></strong>
+	         <span>CONTENT</span>
+	        </span>          
             <div class="carousel-caption d-none d-md-block">
-              <h3>Second Slide</h3>
-              <p>This is a description for the second slide.</p>
+              <h3></h3>
+              <p></p>
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
           <div class="carousel-item" style="background-image: url('./resources/images/main_slide_3.jpg');height:600px;">
+	        <span class="subtitle">
+	         <strong class="subtitle_st">TITLE<em>SUBTITLE</em></strong>
+	         <span>CONTENT</span>
+	        </span>
             <div class="carousel-caption d-none d-md-block">
-              <h3>Third Slide</h3>
-              <p>This is a description for the third slide.</p>
+              <h3></h3>
+              <p></p>
+            </div>
+          </div>          
+        </div>
+       </c:when>
+       <c:otherwise>
+        <ol class="carousel-indicators">
+         <c:forEach var="item" items="${ms}">     
+          <li data-target="#carouselExampleIndicators" name="${item.ms_date}"></li>
+         </c:forEach> 
+        </ol>
+        <div class="carousel-inner" role="listbox">      
+         <c:forEach var="item" items="${ms}">         
+          <div class="carousel-item" style="background-image: url('${pageContext.request.contextPath}/resources/storage/${item.ms_file}');height:600px;">
+	        <span class="subtitle">
+	         <strong class="subtitle_st">${item.ms_title}<em>${item.ms_subtitle}</em></strong>
+	         <span>${item.ms_content}</span>
+	        </span>
+            <div class="carousel-caption d-none d-md-block">
+              <h3></h3>
+              <p></p>
             </div>
           </div>
-        </div>
+         </c:forEach> 
+        </div> 
+       </c:otherwise>      
+      </c:choose>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
@@ -129,7 +173,7 @@
           <span class="sr-only">Next</span>
         </a>
         
-        <div class="login_hidden2" style="width:970px;height:600px;position:absolute;top:0;left:50%;margin-left:-485px;z-index:998;">
+        <div class="login_hidden2" style="width:970px;height:600px;position:absolute;top:0;left:50%;margin-left:-485px;z-index:998;">        
         
         <div style="width:970px;height:61px;position: relative;margin: 0 auto;margin-bottom: 25px;z-index: 20;">
          <div style="position: absolute;top: 28px;left: 102px;left:0;">

@@ -50,4 +50,18 @@
 	<update id="eventEdit" parameterType="com.kg.cinema.event.Eventbean">
 	 update event set e_title=#{e_title},e_period=#{e_period},e_content=#{e_content},e_file=#{e_file} where e_no=#{e_no}
 	</update>
+	
+	<!-- mainslide -->
+   	<insert id="mainSlideInsert">
+	  insert into mainslide(ms_no,ms_title,ms_subtitle,ms_content,ms_date,ms_file)
+	  values(mainslide_seq.nextval,#{ms_title},#{ms_subtitle},#{ms_content},sysdate,#{ms_file})
+	</insert>
+	
+	<delete id="mainSlideDelete" parameterType="int">
+	    delete from mainslide where ms_no = #{ms_no} 
+	</delete>
+	
+	<update id="mainSlideEdit" parameterType="com.kg.cinema.Mainbean">
+	 update mainslide set ms_title=#{ms_title},ms_subtitle=#{ms_subtitle},ms_content=#{ms_content},ms_file=#{ms_file} where ms_no=#{ms_no}
+	</update>
 </mapper>

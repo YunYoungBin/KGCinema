@@ -1,10 +1,13 @@
 package com.kg.cinema.admin;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import com.kg.cinema.Mainbean;
 import com.kg.cinema.event.Eventbean;
 import com.kg.cinema.movie.Moviebean;
 import com.kg.cinema.notice.Noticebean;
@@ -47,6 +50,17 @@ public class AdminDAO {
 	}//end
 	public void EventEdit(Eventbean edto) {
 		temp.update("admin.eventEdit",edto);
+	}//end
+	
+	//mainslide
+	public void MainSlideInsert(Mainbean msdto) {
+		temp.insert("admin.mainSlideInsert", msdto);
+	}//end
+	public void MainSlideDelete(int data) {
+		 temp.delete("admin.mainSlideDelete", data);
+	}//end
+	public void MainSlideEdit(Mainbean msdto) {
+		temp.update("admin.mainSlideEdit", msdto);
 	}//end
 	
 }

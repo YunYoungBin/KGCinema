@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>movieEdit.jsp</title>
 </head>
-<jsp:include page="admin_top.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 	function check() {
@@ -62,71 +61,73 @@
   <tr>
    <td>포스터</td>
    <td>
-
     <img id="preview" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/resources/storage/${movie.m_poster}">
-
-   </td>
-   <td><input type="file" name="upload_poster" id="file">
-   <input type="text" name="m_poster"  value="${movie.m_poster}">
-   
+	<span>
+	<input type="file" name="upload_poster" id="file">
+    <input type="hidden" name="m_poster"  value="${movie.m_poster}">
+    </span>
    </td>
   </tr>
+  
   <tr>
    <td>스틸컷1</td>
    <td>
     <img id="preview2" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/resources/storage/${movie.m_steal1}">
-   </td>
-   <td>
+    <span>
     <input type="file" name="upload_steal1" id="file2" >
-     <input type="hidden" name="m_steal1"  value="${movie.m_steal1}">
+    <input type="hidden" name="m_steal1"  value="${movie.m_steal1}">
+    </span>
    </td>
   </tr>
+  
   <tr>
    <td>스틸컷2</td>
    <td>
     <img id="preview3" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/resources/storage/${movie.m_steal2}">
-   </td>
-   <td>
+    <span>
     <input type="file" name="upload_steal2" id="file3">
     <input type="hidden" name="m_steal2"  value="${movie.m_steal2}">
+    </span>
    </td>
   </tr>
+  
   <tr>
    <td>스틸컷3</td>
    <td><img id="preview4" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/resources/storage/${movie.m_steal3}">
-   </td>
-   <td>
+   <span>
     <input type="file" name="upload_steal3" id="file4">
     <input type="hidden" name="m_steal3"  value="${movie.m_steal3}">
+   </span>
    </td>
+
   </tr>
+  
   <tr>
    <td>스틸컷4</td>
    <td><img id="preview5" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/resources/storage/${movie.m_steal4}">
-   </td>
-   <td>
+   <span>
     <input type="file" name="upload_steal4" id="file5">
     <input type="hidden" name="m_steal4"  value="${movie.m_steal4}">
+   </span>
    </td>
   </tr>
+  
   <tr>
    <td>스틸컷5</td>
    <td><img id="preview6" class="img-circle pull-left image_width" name="sujung_img" width="250" height="250" src="<%=request.getContextPath()%>/resources/storage/${movie.m_steal5}">
-   </td>
-   <td>
+   <span>
     <input type="file" name="upload_steal5" id="file6">
     <input type="hidden" name="m_steal5"  value="${movie.m_steal5}">
+   </span>
    </td>
   </tr>
   
  </table>
  <table >
  <tr>
-   <input type="submit" value=수정></td>
-   <input type="reset" value=취소></td>
-   
-
-  </tr>
+   <input type="submit" value=수정>
+   <input type="reset" value=취소>
+ </tr>
   </table>
 </form>
 

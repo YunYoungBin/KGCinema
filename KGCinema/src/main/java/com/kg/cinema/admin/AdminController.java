@@ -11,6 +11,7 @@ import java.util.Locale;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kg.cinema.MainDAO;
+import com.kg.cinema.Mainbean;
 import com.kg.cinema.event.EventDAO;
 import com.kg.cinema.event.Eventbean;
 import com.kg.cinema.movie.MovieDAO;
@@ -44,6 +47,8 @@ public class AdminController {
 	EventDAO edao;
 	@Autowired
 	AdminDAO adao;
+	@Autowired
+	MainDAO maindao;	
 	
 	@Autowired
 	private ServletContext  application;
@@ -553,5 +558,92 @@ public class AdminController {
 	 adao.EventEdit(edto); 
 	 return "redirect:/eventmglist.do";
 	}//end
+	
+	//mainslide	
+	@RequestMapping(value = "/msmglist.do", method = RequestMethod.GET)
+	public ModelAndView msMgList(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView( );
+
+		 HttpSession session = request.getSession();
+			
+		 if(session.getAttribute("temp") == null) {
+				
+		 } else {
+				
+		 }
+
+		List<Mainbean> msMgList = maindao.MainSlideSelect();
+	
+		mav.addObject("ms", msMgList);
+
+		mav.setViewName("admin/mainManagement");
+		return mav;		
+	}	
+	
+	@RequestMapping(value = "/mswrite.do", method = RequestMethod.GET)
+	public String msMgWrite(Locale locale, Model model) {
+		return "admin/mainSlideInsert";
+	}//end
+	
+	@RequestMapping(value = "/msinsert.do", method = RequestMethod.POST)
+	public String mainSlideInsert(Mainbean msdto) {  
+
+		  String path=application.getRealPath("/resources/storage");
+		  String img=msdto.getUpload_file().getOriginalFilename();
+		  
+		  File file = new File( path, img);
+		    
+		try{ 
+			msdto.getUpload_file().transferTo(file); 
+		}catch(Exception ex){ }
+		
+		msdto.setMs_file(img);
+		
+		System.out.println("no : " + msdto.getMs_no());
+		System.out.println("title : " + msdto.getMs_title());
+		System.out.println("subtitle : " + msdto.getMs_subtitle());
+		System.out.println("content : " + msdto.getMs_content());
+		System.out.println("date : " + msdto.getMs_date());
+		System.out.println("file : " + msdto.getMs_file());
+		adao.MainSlideInsert(msdto);
+		return "redirect:/msmglist.do" ;
+	}//end
+	
+	@RequestMapping(value = "/msdelete.do", method = RequestMethod.GET)
+	public ModelAndView mainSlideDelete(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView( );
+		int data=Integer.parseInt(request.getParameter("idx"));
+		adao.MainSlideDelete(data);
+		mav.setViewName("redirect:/msmglist.do");
+		return mav;
+	}//end
+	
+	@RequestMapping(value = "/msedit.do", method = RequestMethod.GET)
+	public ModelAndView mainSlideEdit(HttpServletRequest request) {
+	  ModelAndView mav = new ModelAndView( );
+	  int data=Integer.parseInt(request.getParameter("idx"));
+	  Mainbean msdto=maindao.MainSlideDetail(data);
+	  mav.addObject("ms", msdto);
+	  mav.setViewName("admin/mainSlideEdit");
+	  return mav;
+	}//end
+	
+	@RequestMapping(value = "/mseditsave.do", method = RequestMethod.POST)
+	public String mainSlideEditSave(Mainbean msdto) throws IOException {   
+	 String path=application.getRealPath("/resources/storage");
+	 
+	 if(!msdto.getUpload_file().getOriginalFilename().equals("")) {
+		 MultipartFile mf=msdto.getUpload_file();
+		 String img=mf.getOriginalFilename();
+		 File file=new File(path, img);
+		 FileCopyUtils.copy(msdto.getUpload_file().getBytes(), file);
+		 msdto.setMs_file(img);
+	 }else {
+		 msdto.setMs_file(msdto.getMs_file());
+	 }
+
+	 adao.MainSlideEdit(msdto); 
+	 return "redirect:/msmglist.do";
+	}//end	
 	
 }

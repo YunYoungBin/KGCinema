@@ -20,7 +20,6 @@
 	    document.noticeEDform.submit();
  	}
 </script>
-<jsp:include page="admin_top.jsp"></jsp:include>
 <body>
 
 

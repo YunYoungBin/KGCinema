@@ -234,7 +234,7 @@
          }
      });
      
-     $(".theater_list ul li").click(function () { 
+     $(".theater_list .depth2 li").click(function () { 
         var activeSu = $(".activeArea").length
         if(activeSu > 0) {
              $(this).removeClass("activeArea");
@@ -433,11 +433,19 @@
           <span class="age age_12">12세관람가</span>
           <a href=#">${sbean.title }</a>
          </p>
-         <p class="subtitle">디지털(자막)</p>
+         <p class="subtitle"><c:forEach var="type" items="${movie}">
+         	<c:if test="${sbean.title eq type.m_title}">
+         		${type.m_type}
+         	</c:if>
+         </c:forEach></p>
         </div>
         <div class="theater_wrap">
          <p class="theater">${sbean.theater }<br>${sbean.scrno }</p>
-         <p class="seat">0 / 224</p>
+         <p class="seat">0 / <c:forEach var="count" items="${screenCount}">
+         	<c:if test="${sbean.theater eq count.s_theater && sbean.scrno eq count.s_scrno}">
+         		${count.s_seatcnt }
+         	</c:if>
+         </c:forEach></p>
         </div>
        </li>
 

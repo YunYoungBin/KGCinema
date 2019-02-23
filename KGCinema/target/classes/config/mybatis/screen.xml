@@ -7,5 +7,8 @@
 		select * from screen where s_theater = #{s_theater} and s_scrno = #{s_scrno}
 	</select>
 	
+	<select id="count" resultType="com.kg.cinema.screen.Screenbean">
+		select s_theater, s_scrno, s_seatstyle, s_seatcnt from screen group by s_theater, s_scrno, s_seatstyle, s_seatcnt
+	</select>
 
 </mapper>

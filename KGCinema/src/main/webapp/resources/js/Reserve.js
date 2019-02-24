@@ -52,6 +52,7 @@ $(document).ready(function() {
 
 
 
+
 var BookingSeatDatas = {
 		checkSeat: function(data) {
 			var adult = $("#ticketTypeCode_01").val();
@@ -60,11 +61,8 @@ var BookingSeatDatas = {
 				alert("인원을 먼저 선택해주세요.");
 				return;
 			} else {
-				alert("하이");
-				
-			        $(data).toggleClass("seat_selected");
-			     
-				 return;
+			    $(data).toggleClass("seat_selected");
+				return;
 			}
 			alert($(data).attr("seatgroup"));
 			alert($(data).attr("seatno"));
@@ -82,7 +80,13 @@ var BookingSeatDatas = {
 			var pre = bean[0]+"_"+bean[1]+"_"+(Number(bean[2])-1)+"_"+bean[3];
 			var preno = $("#"+pre).attr("seatno");
 			var nextno = $("#"+next).attr("seatno");
-			
+			var adult = $("#ticketTypeCode_01").val();
+			var youth = $("#ticketTypeCode_02").val();
+			/*
+			if((Number(youth)+Number(adult)) > 1) {
+				
+			}
+			*/
 			if(nextno != undefined) {
 				var nextcheck = $("#"+next).attr("style").split(" ")[5].split("px")[0];
 				if(nextpx == nextcheck) {

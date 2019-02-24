@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick-theme.css">
     <link href="css/agency.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="./resources/demos/style.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./resources/js/Reserve.js"></script>
     
@@ -95,6 +95,17 @@
     #select_seat .seat_body .right_wrap .row2 ul.info li, #select_pay .seat_body .right_wrap .row2 ul.info li{padding-left: 8px;margin-bottom: 5px;font-size: 11px;color: #fff;
     background: url(http://image2.megabox.co.kr/mop/home/movie/bg_seat.png) -150px 2px no-repeat;}
     #select_seat .seat_body .right_wrap .row2 ul.seat, #select_pay .seat_body .right_wrap .row2 ul.seat{margin: 8px 0 0 -7px;overflow: hidden;}
+    #select_seat .seat_body .right_wrap .row2 ul.seat, #select_pay .seat_body .right_wrap .row2 ul.seat li{
+    	margin-left: 7px;
+    	margin-bottom: 3px;
+    	float: left;
+    	font-size: 12px;
+    	width: 29px;
+    	height: 16px;
+    	line-height: 16px;
+    	text-align: center;
+    	background-color: #b19bc3;
+    	color: #000;}
     #select_seat .seat_body .right_wrap .row2 p.price, #select_pay .seat_body .right_wrap .row2 p.price{position: absolute;bottom: 47px;left: 12px;right: 12px;padding: 5px 0;font-size: 12px;text-align: right;
     color: #fff;}
     #select_seat .seat_body .right_wrap .row2 p.price strong, #select_pay .seat_body .right_wrap .row2 p.price strong{font-size:18px;}
@@ -124,7 +135,7 @@
       <div class="seat_body">
        <div class="left_wrap">
         <div id="bookingSeatTicket" class="row1">
-         <lable style="font-size:12px;font-weight:bold;">성인</lable>
+         <lable style="font-size:12px;font-weight:bold;">일반</lable>
          <select style="margin:0 12px 0 8px;font-size:12px;" id="ticketTypeCode_01" tickettypecode="01" name="">
          	<c:forEach var="i" begin="0" end="8">
          		<option value="${i}">${i}</option>
@@ -203,9 +214,12 @@ onkeypress="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.s
         <ul class="info">
          <li>${sbean.theater }<br>${sbean.scrno }</li>
          <li><fmt:formatDate value="${sbean.starthour }" pattern="yyyy. MM. dd (E)"/> <fmt:formatDate value="${sbean.starthour }" pattern="HH:mm"/></li>
-         <li id="countSelectedByTicket"></li>
+         <li id="countSelectedByTicket">
+         	<span>일반 2명&nbsp;</span>
+         </li>
         </ul>
         <ul class="seat" id="selectedSeatNumbers1">
+        	<li data-seat-num="A1">A1</li>
         </ul>
         </div>
         <p class="price"><strong id="ticketTotalPrice">0</strong> 원</p>

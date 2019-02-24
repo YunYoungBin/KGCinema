@@ -63,4 +63,36 @@ public class AdminDAO {
 		temp.update("admin.mainSlideEdit", msdto);
 	}//end
 	
+	//mainevent
+	public void MainEventInsert(Mainbean medto) {
+		System.out.println("no : " + medto.getMe_no());
+		System.out.println("date : " + medto.getMe_date());
+		System.out.println("add : " + medto.getMe_add());
+		System.out.println("file1 : " + medto.getMe_file1());
+		System.out.println("file2 : " + medto.getMe_file2());
+		System.out.println("file3 : " + medto.getMe_file3());
+		System.out.println("file4 : " + medto.getMe_file4());
+		System.out.println("file5 : " + medto.getMe_file5());
+		System.out.println("file6 : " + medto.getMe_file6());
+		System.out.println("file7 : " + medto.getMe_file7());
+		System.out.println("file8 : " + medto.getMe_file8());
+		System.out.println("file9 : " + medto.getMe_file9());		
+		temp.insert("admin.mainEventInsert", medto);
+	}//end
+	public void MainEventEdit(Mainbean medto) {
+		System.out.println("no : " + medto.getMe_no());
+		System.out.println("date : " + medto.getMe_date());
+		System.out.println("add : " + medto.getMe_add());
+		System.out.println("file1 : " + medto.getMe_file1());
+		System.out.println("file2 : " + medto.getMe_file2());
+		System.out.println("file3 : " + medto.getMe_file3());
+		System.out.println("file4 : " + medto.getMe_file4());
+		System.out.println("file5 : " + medto.getMe_file5());
+		System.out.println("file6 : " + medto.getMe_file6());
+		System.out.println("file7 : " + medto.getMe_file7());
+		System.out.println("file8 : " + medto.getMe_file8());
+		System.out.println("file9 : " + medto.getMe_file9());
+		temp.update("admin.mainEventEdit", medto);
+	}//end	
+	
 }

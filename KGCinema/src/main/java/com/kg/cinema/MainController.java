@@ -52,14 +52,18 @@ public class MainController {
 		
 		List<Moviebean> movieList = mdao.movieSelect();
 		List<Mainbean> msList = maindao.MainSlideSelect();
+		List<Mainbean> meList = maindao.MainEventSelect();
 		int count = maindao.MainSlideCount();
 		
 		mav.addObject("movie", movieList);
 		mav.addObject("ms", msList);
+		mav.addObject("me", meList);
 		mav.addObject("count", count);
 		mav.setViewName("main/main");
 		return mav;
 	}
+	
+
 	
 	
 }

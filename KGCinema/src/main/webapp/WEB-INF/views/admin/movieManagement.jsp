@@ -12,6 +12,7 @@
     html, body {margin: 0;padding: 0;border:0;vertical-align: baseline;}
     * {box-sizing: border-box;font-family: '나눔고딕','NanumGothic','맑은 고딕','Malgun Gothic','돋움',dotum,'Apple SD Gothic Neo',sans-serif;}
     ul, ol, dl, li, p {margin:0;padding:0;list-style: none;}
+    div{margin:0;padding:0;}
     a{font-size:12pt; font-weight:bold; text-decoration:none; color: black; font-family:NanumGothic; }
     a:hover{font-size:12pt; font-weight:bold; color: #351F66; text-decoration:underline; }                
   </style>
@@ -23,7 +24,7 @@
    
 <div>
 
-<p style="text-align:center;">영화정보 관리</p>
+<p style="text-align:center;margin-bottom:10px;">영화정보 관리</p>
 
  <table width=900 border=1 cellspacing=0 style="margin:0 auto;">
  <tr align="right">

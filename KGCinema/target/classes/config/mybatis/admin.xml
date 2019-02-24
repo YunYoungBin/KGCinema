@@ -64,4 +64,16 @@
 	<update id="mainSlideEdit" parameterType="com.kg.cinema.Mainbean">
 	 update mainslide set ms_title=#{ms_title},ms_subtitle=#{ms_subtitle},ms_content=#{ms_content},ms_file=#{ms_file} where ms_no=#{ms_no}
 	</update>
+	
+	<!-- mainevent -->
+   	<insert id="mainEventInsert">
+	  insert into mainevent(me_no,me_date,me_add,me_file1,me_file2,me_file3,me_file4,me_file5,me_file6,me_file7,me_file8,me_file9)
+	  values(mainevent_seq.nextval,sysdate,#{me_add},#{me_file1},#{me_file2},#{me_file3},#{me_file4},#{me_file5},#{me_file6},#{me_file7},#{me_file8},
+	  #{me_file9})
+	</insert>
+	
+	<update id="mainEventEdit" parameterType="com.kg.cinema.Mainbean">
+	 update mainevent set me_file1=#{me_file1},me_file2=#{me_file2},me_file3=#{me_file3},me_file4=#{me_file4},me_file5=#{me_file5},
+	 me_file6=#{me_file6},me_file7=#{me_file7},me_file8=#{me_file8},me_file9=#{me_file9} where me_no=#{me_no}
+	</update>	
 </mapper>

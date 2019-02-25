@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import com.kg.cinema.Mainbean;
+
 @Repository
 @Component
 public class MovieDAO {
@@ -62,5 +64,17 @@ public class MovieDAO {
 		int cnt=(Integer)temp.selectOne("movie.movieMgcountAllSearch" , dto);
 		return cnt;
 	}//end	
+	
+	public Moviebean movieSlideDetail(int data) {
+		Moviebean mvsdto=temp.selectOne("movie.movieSlideDetail",data);
+		return mvsdto;
+	}//end	
+	
+	public List<Moviebean> MovieSlideSelect() {
+		List<Moviebean> list = temp.selectList("movie.movieSlideSelectAll");
+		return list;
+	}		
+	
+
 
 }

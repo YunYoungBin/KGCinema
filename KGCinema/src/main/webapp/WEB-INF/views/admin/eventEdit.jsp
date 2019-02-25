@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>eventEdit.jsp</title>
+
 </head>
-<jsp:include page="admin_top.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 

@@ -154,7 +154,7 @@ MagnificPopup.prototype = {
 	 * @param  data [description]
 	 */
 	open: function(data) {
-		alert("HI");
+
 		var i;
 
 		if(data.isObj === false) { 

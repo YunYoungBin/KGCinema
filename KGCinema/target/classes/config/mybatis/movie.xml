@@ -33,6 +33,16 @@
 	<select id="movieMgcountAllSearch" parameterType="com.kg.cinema.movie.Moviebean"  resultType="int">
  	   select  count(*) from movie where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%'  
  	</select>
+ 	
+	<select id="movieSlideDetail" parameterType="int" resultType="com.kg.cinema.movie.Moviebean">
+	   select * from movieslide where mvs_no=#{mvs_no}
+	</select> 	
+	
+	<select id="movieSlideSelectAll" resultType="com.kg.cinema.movie.Moviebean">
+		select * from (
+		select rownum mvs_rn, m.* from
+	    (select * from movieslide order by mvs_no desc) m )
+	</select>		
 	
 
 </mapper>

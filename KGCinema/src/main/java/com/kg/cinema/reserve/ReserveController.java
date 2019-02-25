@@ -121,15 +121,17 @@ public class ReserveController {
 		}
 
 		List<Schedulebean> scheduleList = sdao.scheduleSelect(date, theater, mbean.getM_title());
-		System.out.println(theater);
 		List<Moviebean> movieList = mdao.movieSelect();
 		List<Theaterbean> theaterList = tdao.theaterSelect();
+		List<Screenbean> screenCount = scrdao.screenCount();
+		
 		
 		mav.addObject("date", date);
 		mav.addObject("tbean", theater);
 		mav.addObject("theater", theaterList);
 		mav.addObject("movie", movieList);
 		mav.addObject("schedule", scheduleList);
+		mav.addObject("screenCount", screenCount);
 		mav.setViewName("reserve/movieReserve");
 		return mav;
 	}
@@ -150,8 +152,6 @@ public class ReserveController {
 		Screenbean scrbean = scrdao.screenSelect(sbean.getTheater(), sbean.getScrno());
 		List<Seatbean> seatList = seatdao.seatSelect(scrbean.getS_seatstyle());
 		
-		System.out.println("좌석 값없지 ? "+seatList.isEmpty());
-		System.out.println(seatList.get(0).getSeatgroup());
 		mav.addObject("seatbean", seatList);
 		mav.addObject("sbean", sbean);
 		mav.addObject("scrno", idx);

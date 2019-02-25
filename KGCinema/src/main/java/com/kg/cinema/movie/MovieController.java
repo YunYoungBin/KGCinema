@@ -45,9 +45,11 @@ public class MovieController {
 		
 		List<Moviebean> movieList = mdao.movieSelect();
 		List<Moviebean> next = mdao.movieSelectNext();
+		List<Moviebean> mvs = mdao.MovieSlideSelect();
 		
 		mav.addObject("movie", movieList);
 		mav.addObject("next", next);
+		mav.addObject("mvs", mvs);
 		mav.setViewName("movie/movieList");
 		return mav;
 	}

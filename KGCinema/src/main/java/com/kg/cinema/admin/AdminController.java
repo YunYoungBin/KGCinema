@@ -222,6 +222,7 @@ public class AdminController {
 		if(endpage > pagecount) {endpage = pagecount;}
 		
 		List<Moviebean> LG=mdao.MovieMgSelect(start,end,skey,sval);
+		List<Moviebean> mvs=mdao.MovieSlideSelect();
 		
 		mav.addObject("naver", LG);
 		mav.addObject("Gtotal", Gtotal);
@@ -235,6 +236,7 @@ public class AdminController {
 		mav.addObject("sval", sval);
 		mav.addObject("AA", AA);
 		mav.addObject("BB", BB);
+		mav.addObject("mvs", mvs);
 		mav.setViewName("admin/movieManagement");
 		return mav;
 	}
@@ -847,6 +849,84 @@ public class AdminController {
 			}
 		   adao.MainEventEdit(medto); 
 		   return "redirect:/msmglist.do";
+	}//end	
+	
+	//movieslide
+	@RequestMapping(value = "/mvswrite.do", method = RequestMethod.GET)
+	public String mvsMgWrite(Locale locale, Model model) {
+		return "admin/movieSlideInsert";
+	}//end
+	
+	@RequestMapping(value = "/mvsinsert.do", method = RequestMethod.POST)
+	public String movieSlideInsert(Moviebean mvsdto) {  
+
+		  String path=application.getRealPath("/resources/storage");
+		  String img=mvsdto.getUpload_file().getOriginalFilename();
+		  String video=mvsdto.getUpload_video().getOriginalFilename();
+		  
+		  File file1 = new File( path, img);
+		  File file2 = new File( path, video);
+		    
+		try{ 
+			mvsdto.getUpload_file().transferTo(file1);
+			mvsdto.getUpload_video().transferTo(file2);
+		}catch(Exception ex){ }
+		
+		mvsdto.setMvs_file(img);
+		mvsdto.setMvs_video(video);
+		
+		System.out.println("no : " + mvsdto.getMvs_no());
+		System.out.println("img : " + mvsdto.getMvs_file());
+		System.out.println("video : " + mvsdto.getMvs_video());
+
+		adao.MovieSlideInsert(mvsdto);
+		return "redirect:/moviemglist.do" ;
+	}//end
+	
+	@RequestMapping(value = "/mvsdelete.do", method = RequestMethod.GET)
+	public ModelAndView movieSlideDelete(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView( );
+		int data=Integer.parseInt(request.getParameter("idx"));
+		adao.MovieSlideDelete(data);
+		mav.setViewName("redirect:/moviemglist.do");
+		return mav;
+	}//end
+	
+	@RequestMapping(value = "/mvsedit.do", method = RequestMethod.GET)
+	public ModelAndView movieSlideEdit(HttpServletRequest request) {
+	  ModelAndView mav = new ModelAndView( );
+	  int data=Integer.parseInt(request.getParameter("idx"));
+	  Moviebean mvsdto=mdao.movieSlideDetail(data);
+	  mav.addObject("mvs", mvsdto);
+	  mav.setViewName("admin/movieSlideEdit");
+	  return mav;
+	}//end
+	
+	@RequestMapping(value = "/mvseditsave.do", method = RequestMethod.POST)
+	public String movieSlideEditSave(Moviebean mvsdto) throws IOException {   
+	 
+		if(mvsdto.getUpload_file().getOriginalFilename().equals("")) {
+			
+		} else {
+			String path = application.getRealPath("/resources/storage/");
+			mvsdto.setMvs_file(mvsdto.getUpload_file().getOriginalFilename());
+			try {
+				mvsdto.getUpload_file().transferTo(new File(path + mvsdto.getMvs_file()));
+			} catch(Exception e) { }	
+		}
+		
+		if(mvsdto.getUpload_video().getOriginalFilename().equals("")) {
+			
+		} else {
+			String path = application.getRealPath("/resources/storage/");
+			mvsdto.setMvs_video(mvsdto.getUpload_video().getOriginalFilename());
+			try {
+				mvsdto.getUpload_video().transferTo(new File(path + mvsdto.getMvs_video()));
+			} catch(Exception e) { }	
+		}
+
+	 adao.MovieSlideEdit(mvsdto); 
+	 return "redirect:/moviemglist.do";
 	}//end	
 	
 }

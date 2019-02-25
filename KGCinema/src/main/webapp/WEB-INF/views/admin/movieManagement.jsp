@@ -7,31 +7,58 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 <title> [movieManagement.jsp]</title>
   <style type="text/css">
     html, body {margin: 0;padding: 0;border:0;vertical-align: baseline;}
     * {box-sizing: border-box;font-family: '나눔고딕','NanumGothic','맑은 고딕','Malgun Gothic','돋움',dotum,'Apple SD Gothic Neo',sans-serif;}
-    ul, ol, dl, li, p {margin:0;padding:0;list-style: none;}
-    div{margin:0;padding:0;}
+    ul, ol, dl, li, p {margin:0;padding:0;list-style: none;margin:0;padding:0;}
     a{font-size:12pt; font-weight:bold; text-decoration:none; color: black; font-family:NanumGothic; }
-    a:hover{font-size:12pt; font-weight:bold; color: #351F66; text-decoration:underline; }                
+    img{margin:0;padding:0;}
+    div{margin:0;padding:0;}
+    a:hover{font-size:12pt; font-weight:bold; color: #351F66; text-decoration:underline; }       
+    .movie_menu ul li{display: inline-block;}
+    .movie_menu ul li >a{display: block;width: 175px;height: 50px;margin-left: 1px;background: #efebdb;color: #6f6247;font-size: 16px;line-height: 50px;text-align: center;}
+    .movie_menu ul li a.on{background: #231f20 url('images/btn_st02_on.gif') no-repeat 0 0;color: #cdc197;font-weight: bold;}                  
   </style>
 
   <script type="text/javascript">
+  $(document).on('ready', function() {  
+	  $("#remove_1").click(function(){
+	      $("#remove_2").removeClass("on");
+	      $("#remove_1").addClass("on");
+	      $("#remove_1").css({'color' : '#cdc197'});
+	      $("#remove_2").css({'color' : ''});
+	      $(".hidden_1").css({'display' : 'block'});
+	      $(".hidden_2").css({'display' : 'none'});
+	  });    
+	  $("#remove_2").click(function(){
+	      $("#remove_1").removeClass("on");
+	      $("#remove_2").addClass("on");
+	      $("#remove_2").css({'color' : '#cdc197'});
+	      $("#remove_1").css({'color' : ''});
+	      $(".hidden_2").css({'display' : 'block'});
+	      $(".hidden_1").css({'display' : 'none'});           
+	  });
+  });    
   </script>
  </head>
 <body>
+ <div class="movie_menu" style="width: 900px;margin: 0 auto;padding-top: 40px;">
+  <ul style="margin-bottom: 17px;list-style:none;text-align: center;">
+   <li><a id="remove_1" class="on">영화</a></li>
+   <li><a id="remove_2" class="">영화슬라이드</a></li>
+  </ul>
    
-<div>
-
-<p style="text-align:center;margin-bottom:10px;">영화정보 관리</p>
+<div class="hidden_1" style="display: block;padding-bottom:10px;">
+ <p style="text-align:center;margin-bottom:10px;">영화정보 관리</p>
 
  <table width=900 border=1 cellspacing=0 style="margin:0 auto;">
  <tr align="right">
   <td colspan="6">
   <form action="moviewrite.do">
        <input type="submit" value="영화 추가">
-      </form>
+  </form>
   </td>
   </tr>
      </td>
@@ -103,5 +130,46 @@
   </tr>
  </table> 
  </div>
+  
+<div class="hidden_2" style="display: none;padding-bottom:10px;">
+ <p style="text-align:center;margin-bottom:10px;">영화슬라이드 관리</p>
+
+ <table width=900 border=1 cellspacing=0 style="margin:0 auto;">
+ <tr align="right">
+  <td colspan="5">
+  <form action="mvswrite.do">
+  	  <input type="submit" value="영화슬라이드 추가">
+  	 </form>
+  </td>
+  </tr>
+  	</td>
+      
+  <tr align="center">
+  	<th width=150 style="border-left-width:0px; border-right-width: 0px;">NO</th> 
+  	<th width=225 style="border-left-width:0px; border-right-width: 0px;">이미지</th> 
+  	<th width=225 style="border-left-width:0px; border-right-width: 0px;">동영상</th> 
+  	<th width=150 style="border-left-width:0px; border-right-width: 0px;">등록일</th>
+  	<th width=150 style="border-left-width:0px;">수정/삭제</th>
+  </tr>
+   <c:forEach var="mvs" items="${mvs}">
+   <tr align="center">
+    
+
+	<td style="border-left-width:0px; border-right-width: 0px;">${mvs.mvs_rn}</td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${mvs.mvs_file}</td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${mvs.mvs_video}</td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> <fmt:formatDate value="${mvs.mvs_date}" pattern="yyyy/MM/dd" /> </td>
+     <td style="border-left-width:0px;">
+      <a href="mvsedit.do?idx=${mvs.mvs_no}">[수정]</a>
+      <a href="mvsdelete.do?idx=${mvs.mvs_no}">[삭제]</a> 
+     </td>
+   </tr>  
+   </c:forEach>
+   
+ </table> 
+</div>
+  
+ </div>
+
 </body>
 </html>

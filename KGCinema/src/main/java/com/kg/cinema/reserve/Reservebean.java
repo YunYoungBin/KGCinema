@@ -1,127 +1,91 @@
 package com.kg.cinema.reserve;
 
 public class Reservebean {
-	private int no;
-	private String theater;
-	private int scrno;
-	private String id;
-	private int schedule;
-	private int movie;
-	private String type;
-	private String start;
-	private String end;
-	private String title;
-	private String subTitle;
-	private String grade;
-	private String poster;
-	private String seat;
-	private int youth;
-	private int adult;
-	private int price;
+	private int r_no;
+	private String r_theater;
+	private String r_scrno;
+	private String r_id;
+	private String r_title;
+	private String r_type;
+	private java.util.Date r_start;
+	private String r_grade;
+	private String r_inwon;
+	private String r_seat;
+	private int r_price;
 	
+	private String date;
 	
-	public int getNo() {
-		return no;
+	public String getDate() {
+		return date;
 	}
-	public void setNo(int no) {
-		this.no = no;
-	}
-	public String getTheater() {
-		return theater;
-	}
-	public void setTheater(String theater) {
-		this.theater = theater;
-	}
-	public int getScrno() {
-		return scrno;
-	}
-	public void setScrno(int scrno) {
-		this.scrno = scrno;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public int getSchedule() {
-		return schedule;
-	}
-	public void setSchedule(int schedule) {
-		this.schedule = schedule;
-	}
-	public int getMovie() {
-		return movie;
-	}
-	public void setMovie(int movie) {
-		this.movie = movie;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public String getStart() {
-		return start;
-	}
-	public void setStart(String start) {
-		this.start = start;
-	}
-	public String getEnd() {
-		return end;
-	}
-	public void setEnd(String end) {
-		this.end = end;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getSubTitle() {
-		return subTitle;
-	}
-	public void setSubTitle(String subTitle) {
-		this.subTitle = subTitle;
-	}
-	public String getGrade() {
-		return grade;
-	}
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
-	public String getPoster() {
-		return poster;
-	}
-	public void setPoster(String poster) {
-		this.poster = poster;
-	}
-	public String getSeat() {
-		return seat;
-	}
-	public void setSeat(String seat) {
-		this.seat = seat;
-	}
-	public int getYouth() {
-		return youth;
-	}
-	public void setYouth(int youth) {
-		this.youth = youth;
-	}
-	public int getAdult() {
-		return adult;
-	}
-	public void setAdult(int adult) {
-		this.adult = adult;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setDate(String date) {
+		this.date = date;
 	}
 	
-	
+	public int getR_no() {
+		return r_no;
+	}
+	public void setR_no(int r_no) {
+		this.r_no = r_no;
+	}
+	public String getR_theater() {
+		return r_theater;
+	}
+	public void setR_theater(String r_theater) {
+		this.r_theater = r_theater;
+	}
+	public String getR_scrno() {
+		return r_scrno;
+	}
+	public void setR_scrno(String r_scrno) {
+		this.r_scrno = r_scrno;
+	}
+	public String getR_id() {
+		return r_id;
+	}
+	public void setR_id(String r_id) {
+		this.r_id = r_id;
+	}
+	public String getR_title() {
+		return r_title;
+	}
+	public void setR_title(String r_title) {
+		this.r_title = r_title;
+	}
+	public String getR_type() {
+		return r_type;
+	}
+	public void setR_type(String r_type) {
+		this.r_type = r_type;
+	}
+	public java.util.Date getR_start() {
+		return r_start;
+	}
+	public void setR_start(java.util.Date r_start) {
+		this.r_start = r_start;
+	}
+	public String getR_grade() {
+		return r_grade;
+	}
+	public void setR_grade(String r_grade) {
+		this.r_grade = r_grade;
+	}
+	public String getR_inwon() {
+		return r_inwon;
+	}
+	public void setR_inwon(String r_inwon) {
+		this.r_inwon = r_inwon;
+	}
+	public String getR_seat() {
+		return r_seat;
+	}
+	public void setR_seat(String r_seat) {
+		this.r_seat = r_seat;
+	}
+	public int getR_price() {
+		return r_price;
+	}
+	public void setR_price(int r_price) {
+		this.r_price = r_price;
+	}
 }

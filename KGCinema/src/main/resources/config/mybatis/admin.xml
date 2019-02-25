@@ -76,4 +76,18 @@
 	 update mainevent set me_file1=#{me_file1},me_file2=#{me_file2},me_file3=#{me_file3},me_file4=#{me_file4},me_file5=#{me_file5},
 	 me_file6=#{me_file6},me_file7=#{me_file7},me_file8=#{me_file8},me_file9=#{me_file9} where me_no=#{me_no}
 	</update>	
+	
+	<!-- movieslide -->
+   	<insert id="movieSlideInsert">
+	  insert into movieslide(mvs_no,mvs_date,mvs_file,mvs_video)
+	  values(movieslide_seq.nextval,sysdate,#{mvs_file},#{mvs_video})
+	</insert>
+	
+	<delete id="movieSlideDelete" parameterType="int">
+	  delete from movieslide where mvs_no = #{mvs_no} 
+	</delete>
+	
+	<update id="movieSlideEdit" parameterType="com.kg.cinema.movie.Moviebean">
+	 update movieslide set mvs_file=#{mvs_file},mvs_video=#{mvs_video} where mvs_no=#{mvs_no}
+	</update>	
 </mapper>

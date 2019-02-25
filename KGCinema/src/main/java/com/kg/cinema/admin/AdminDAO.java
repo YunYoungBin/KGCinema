@@ -95,4 +95,15 @@ public class AdminDAO {
 		temp.update("admin.mainEventEdit", medto);
 	}//end	
 	
+	//mainslide
+	public void MovieSlideInsert(Moviebean mvsdto) {
+		temp.insert("admin.movieSlideInsert", mvsdto);
+	}//end
+	public void MovieSlideDelete(int data) {
+		 temp.delete("admin.movieSlideDelete", data);
+	}//end
+	public void MovieSlideEdit(Moviebean mvsdto) {
+		temp.update("admin.movieSlideEdit", mvsdto);
+	}//end	
+	
 }

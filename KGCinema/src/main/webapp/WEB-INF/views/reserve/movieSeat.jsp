@@ -63,6 +63,9 @@
     #select_seat .seat_body .left_wrap .row3 .place .seat_wrap .seat_position span, #select_pay .seat_body .left_wrap .row3 .place .seat_wrap .seat_position span{position: absolute;display: block;
     float: none;width: 16px;height: 16px;margin: 0;padding: 0;border: 0;color: #fff;overflow: hidden;font-size: 11px;font-family: tahoma,dotum,sans-serif;cursor: default !important;
     text-align: center;}
+    #select_seat .seat_body .left_wrap .row3 .place .seat_wrap .seat_position .seat_done, #select_pay .seat_body .left_wrap .row3 .place .seat_wrap .seat_position .seat_done{text-indent: -9999px;
+    background-position: 50% -27px;
+    background-color: #ccc;}
     #select_seat .seat_body .left_wrap .row3 .place .seat_wrap .seat_position .line, #select_pay .seat_body .left_wrap .row3 .place .seat_wrap .seat_position .line{border: 1px solid #c2c2c2;background: #f9f9f9;
     font-weight: 700;text-align: center;color: #333;}
     #select_seat .seat_body .left_wrap .row3 .place .seat_wrap .seat_position button, #select_pay .seat_body .left_wrap .row3 .place .seat_wrap .seat_position button{position: absolute;display: block;
@@ -159,18 +162,39 @@
            <div id="seatPositionList" class="seat_position" style="width: 453px;height: 250px;">
             <span class="exit top" style="width: 28px;height: 17px;top: 252px;left: 61px;"></span>
             <span class="exit left" style="width: 17px;height: 28px;top:-18px; left:-33px;background-position: 0 -50px;"></span>
+            <c:set var="flag">true</c:set>
+            <c:set var="spanFlag">Z</c:set>
             <c:forEach var="bean" items="${seatbean}">
+            	<c:choose>
+            		<c:when test="${spanFlag ne bean.seatgroup}">
+            			<span class="line line_a" style="left:0px; top: ${bean.top}px;">${bean.seatgroup }</span>
+            			<c:set var="spanFlag">bean.seatgroup</c:set>
+            		</c:when>
+            	</c:choose>
             	
-            		<span class="line line_a" style="left:0px; top: ${bean.top}px;">${bean.seatgroup }</span>
+            	<c:forEach var="book" items="${booked}">
+            		<c:choose>
+            			<c:when test="${bean.seatgroup eq book.substring(0,1) && bean.seatno eq book.substring(1)}">
+            				<button type="button" title="${bean.seatgroup}${bean.seatno}(선택불가)" id="seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}" class="seat_done" seatgroup="${bean.seatgroup }" seatno="${bean.seatno }" seattype="${bean.seattype }" popupyn="N" seatlinecnt="" style="width: 16px; height: 16px; left: ${bean.left}px; top: ${bean.top}px;" onmouseover="" onmouseout="" onclick="" onkeyup="" onblur="" onkeypress="">${bean.seatno}</button>
+            				<c:set var="flag">false</c:set>
+            			</c:when>
+            			<c:otherwise>
+            				<c:set var="flag">true</c:set>
+            			</c:otherwise>
+            		</c:choose>            	
+            	</c:forEach>
             	
+            	<c:if test="${flag = true }">
             	<button type="button" title="${bean.seatgroup}${bean.seatno}(일반석)" id="seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}" class="seat_normal" 
-seatgroup="${bean.seatgroup}" seatno="${bean.seatno}" seattype="${bean.seattype}" 
-popupyn="N" seatlinecnt="" 
-style="width: 16px; height: 16px; left: ${bean.left}px ; top: ${bean.top}px;"  
-onmouseover="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
-onmouseout="BookingSeatDatas.seatMouseOut(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
-onclick="BookingSeatDatas.checkSeat(this)" onkeyup="" onblur="" 
-onkeypress="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)">${bean.seatno}</button>
+				seatgroup="${bean.seatgroup}" seatno="${bean.seatno}" seattype="${bean.seattype}" 
+				popupyn="N" seatlinecnt="" 
+				style="width: 16px; height: 16px; left: ${bean.left}px ; top: ${bean.top}px;"  
+				onmouseover="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
+				onmouseout="BookingSeatDatas.seatMouseOut(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
+				onclick="BookingSeatDatas.checkSeat(this)" onkeyup="" onblur="" 
+				onkeypress="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)">${bean.seatno}</button>
+            	</c:if>
+            		
             </c:forEach>
             
             

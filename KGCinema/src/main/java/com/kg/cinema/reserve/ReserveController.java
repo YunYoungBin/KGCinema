@@ -1,6 +1,7 @@
 package com.kg.cinema.reserve;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -62,6 +63,10 @@ public class ReserveController {
 	@Inject
 	@Autowired
 	SeatDAO seatdao;
+	
+	@Inject
+	@Autowired
+	ReserveDAO rdao;
 	
 	@RequestMapping(value = "/reserveMain.do", method = RequestMethod.GET)
 	public ModelAndView reserve_main(HttpServletRequest request) {
@@ -152,10 +157,23 @@ public class ReserveController {
 		Screenbean scrbean = scrdao.screenSelect(sbean.getTheater(), sbean.getScrno());
 		List<Seatbean> seatList = seatdao.seatSelect(scrbean.getS_seatstyle());
 		
+		List<Reservebean> reserveList = rdao.reserveSelect(sbean.getTheater(), sbean.getScrno(), sbean.getStarthour());
+		
+		ArrayList<String> booked = new ArrayList<String>();
+		for(Reservebean bean : reserveList) {
+			String[] book = bean.getR_seat().split(",");
+			for(int i = 0; i < book.length; i++) {
+				booked.add(book[i]);
+			}
+		}
+		
+		System.out.println(booked.toString());
+		
 		mav.addObject("seatbean", seatList);
 		mav.addObject("sbean", sbean);
 		mav.addObject("scrno", idx);
 		mav.addObject("mbean", mbean);
+		mav.addObject("booked", booked);
 		mav.setViewName("reserve/movieSeat");
 		return mav;
 	}

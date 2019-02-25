@@ -50,5 +50,13 @@ public class EventDAO {
 		Eventbean edto=temp.selectOne("event.detail",data);
 		return edto;
 	}//end
+	
+	public Eventbean EventDetail2(String e_no) {
+		Eventbean edto = new Eventbean();
+		edto.setE_no(Integer.parseInt(e_no));
+		edto=temp.selectOne("event.detail",edto);
+		return edto;
+	}//end
+
 
 }

@@ -36,7 +36,7 @@
 				return ;
 			} else {
 				$.ajax({
-					url: '${pageContext.request.contextPath}/check.do?id='+$("#checkId").val(),
+					url: '${pageContext.request.contextPath}/check.do?id='+document.getElementById("checkId").value,
 					type: 'GET',
 					success: function(data) {
 						if(data == 1) {
@@ -117,7 +117,7 @@
 						<input type="text" class="w67" size="3" name="num1" onfocus="num()" onchange="num()" maxlength="3" value="010">-
 						<input type="text" class="w67" size="4" name="num2" onchange="num()" maxlength="4" value="7766">-
 						<input type="text" class="w67" size="4" name="num3" onchange="num()" maxlength="4" value="7936">&nbsp;
-						<label id="numlabel">&nbsp;&nbsp;숫자3~4자리 입력하세요></label>
+						<label id="numlabel">&nbsp;&nbsp;숫자3~4자리 입력하세요</label>
 					</td>
 				</tr>
 				<tr>

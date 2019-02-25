@@ -15,22 +15,10 @@
     <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick-theme.css">
     <link href="css/agency.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="./resources/demos/style.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./resources/js/Reserve.js"></script>
     
-    <script type="text/javascript">
-     $(document).on('ready', function() {
-      $("#seatPositionList button").mouseover(function(){
-       $(this).addClass("seat_selected_hover");
-      });  
-      $("#seatPositionList button").mouseout(function(){
-      $(this).removeClass("seat_selected_hover");
-      });     
-      $("#seatPositionList button").click(function(){
-        $(this).toggleClass("seat_selected");
-      });  
-     });
-    </script>
     
   <style type="text/css">
     html, body {margin: 0;padding: 0;border:0;vertical-align: baseline;}
@@ -75,6 +63,9 @@
     #select_seat .seat_body .left_wrap .row3 .place .seat_wrap .seat_position span, #select_pay .seat_body .left_wrap .row3 .place .seat_wrap .seat_position span{position: absolute;display: block;
     float: none;width: 16px;height: 16px;margin: 0;padding: 0;border: 0;color: #fff;overflow: hidden;font-size: 11px;font-family: tahoma,dotum,sans-serif;cursor: default !important;
     text-align: center;}
+    #select_seat .seat_body .left_wrap .row3 .place .seat_wrap .seat_position .seat_done, #select_pay .seat_body .left_wrap .row3 .place .seat_wrap .seat_position .seat_done{text-indent: -9999px;
+    background-position: 50% -27px;
+    background-color: #ccc;}
     #select_seat .seat_body .left_wrap .row3 .place .seat_wrap .seat_position .line, #select_pay .seat_body .left_wrap .row3 .place .seat_wrap .seat_position .line{border: 1px solid #c2c2c2;background: #f9f9f9;
     font-weight: 700;text-align: center;color: #333;}
     #select_seat .seat_body .left_wrap .row3 .place .seat_wrap .seat_position button, #select_pay .seat_body .left_wrap .row3 .place .seat_wrap .seat_position button{position: absolute;display: block;
@@ -107,6 +98,17 @@
     #select_seat .seat_body .right_wrap .row2 ul.info li, #select_pay .seat_body .right_wrap .row2 ul.info li{padding-left: 8px;margin-bottom: 5px;font-size: 11px;color: #fff;
     background: url(http://image2.megabox.co.kr/mop/home/movie/bg_seat.png) -150px 2px no-repeat;}
     #select_seat .seat_body .right_wrap .row2 ul.seat, #select_pay .seat_body .right_wrap .row2 ul.seat{margin: 8px 0 0 -7px;overflow: hidden;}
+    #select_seat .seat_body .right_wrap .row2 ul.seat, #select_pay .seat_body .right_wrap .row2 ul.seat li{
+    	margin-left: 7px;
+    	margin-bottom: 3px;
+    	float: left;
+    	font-size: 12px;
+    	width: 29px;
+    	height: 16px;
+    	line-height: 16px;
+    	text-align: center;
+    	background-color: #b19bc3;
+    	color: #000;}
     #select_seat .seat_body .right_wrap .row2 p.price, #select_pay .seat_body .right_wrap .row2 p.price{position: absolute;bottom: 47px;left: 12px;right: 12px;padding: 5px 0;font-size: 12px;text-align: right;
     color: #fff;}
     #select_seat .seat_body .right_wrap .row2 p.price strong, #select_pay .seat_body .right_wrap .row2 p.price strong{font-size:18px;}
@@ -136,29 +138,18 @@
       <div class="seat_body">
        <div class="left_wrap">
         <div id="bookingSeatTicket" class="row1">
-         <lable style="font-size:12px;font-weight:bold;">성인</lable>
-         <select style="margin:0 12px 0 8px;font-size:12px;" id="ticketTypeCode_1" name="">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
+         <lable style="font-size:12px;font-weight:bold;">일반</lable>
+         <select style="margin:0 12px 0 8px;font-size:12px;" id="ticketTypeCode_01" tickettypecode="01" name="">
+         	<c:forEach var="i" begin="0" end="8">
+         		<option value="${i}">${i}</option>
+         	</c:forEach>
          </select>
+         
          <lable style="font-size:12px;font-weight:bold;">청소년</lable>
-         <select style="margin:0 12px 0 8px;font-size:12px;" id="ticketTypeCode_2" name="">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
+         <select style="margin:0 12px 0 8px;font-size:12px;" id="ticketTypeCode_02" tickettypecode="02" name="">
+         	<c:forEach var="i" begin="0" end="8">
+          		<option value="${i}">${i}</option>
+         	</c:forEach>
          </select>     
          <p class="seat_ex" style="margin-top:0px">인원 선택은 최대 8명까지 가능합니다.</p>
         </div>
@@ -171,8 +162,42 @@
            <div id="seatPositionList" class="seat_position" style="width: 453px;height: 250px;">
             <span class="exit top" style="width: 28px;height: 17px;top: 252px;left: 61px;"></span>
             <span class="exit left" style="width: 17px;height: 28px;top:-18px; left:-33px;background-position: 0 -50px;"></span>
-            <span class="line line_a" style="left:0px; top: 0px;">A</span>
-            <button type="button" title="A1(일반석)" id="" class="seat_normal" seatgroup="A" seatno="1" seattype="" style="width: 16px;height: 16px;left: 23px;top: 0px;">1</button>
+            <c:set var="flag">true</c:set>
+            <c:set var="spanFlag">Z</c:set>
+            <c:forEach var="bean" items="${seatbean}">
+            	<c:choose>
+            		<c:when test="${spanFlag ne bean.seatgroup}">
+            			<span class="line line_a" style="left:0px; top: ${bean.top}px;">${bean.seatgroup }</span>
+            			<c:set var="spanFlag">bean.seatgroup</c:set>
+            		</c:when>
+            	</c:choose>
+            	
+            	<c:forEach var="book" items="${booked}">
+            		<c:choose>
+            			<c:when test="${bean.seatgroup eq book.substring(0,1) && bean.seatno eq book.substring(1)}">
+            				<button type="button" title="${bean.seatgroup}${bean.seatno}(선택불가)" id="seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}" class="seat_done" seatgroup="${bean.seatgroup }" seatno="${bean.seatno }" seattype="${bean.seattype }" popupyn="N" seatlinecnt="" style="width: 16px; height: 16px; left: ${bean.left}px; top: ${bean.top}px;" onmouseover="" onmouseout="" onclick="" onkeyup="" onblur="" onkeypress="">${bean.seatno}</button>
+            				<c:set var="flag">false</c:set>
+            			</c:when>
+            			<c:otherwise>
+            				<c:set var="flag">true</c:set>
+            			</c:otherwise>
+            		</c:choose>            	
+            	</c:forEach>
+            	
+            	<c:if test="${flag = true }">
+            	<button type="button" title="${bean.seatgroup}${bean.seatno}(일반석)" id="seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}" class="seat_normal" 
+				seatgroup="${bean.seatgroup}" seatno="${bean.seatno}" seattype="${bean.seattype}" 
+				popupyn="N" seatlinecnt="" 
+				style="width: 16px; height: 16px; left: ${bean.left}px ; top: ${bean.top}px;"  
+				onmouseover="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
+				onmouseout="BookingSeatDatas.seatMouseOut(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
+				onclick="BookingSeatDatas.checkSeat(this)" onkeyup="" onblur="" 
+				onkeypress="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)">${bean.seatno}</button>
+            	</c:if>
+            		
+            </c:forEach>
+            
+            
             
            </div>
           </div>
@@ -206,16 +231,19 @@
         <div class="row2">
         <div class="title">
         <i class="age age_12">12세관람가</i>
-        <h4>${mbean.title }</h4>
-        <span>${mbean.type }</span>
+        <h4>${mbean.m_title }</h4>
+        <span>${mbean.m_type }</span>
         </div>
         <div style="overflow:hidden;overflow-y:auto;height: 123px;">
         <ul class="info">
          <li>${sbean.theater }<br>${sbean.scrno }</li>
-         <li><fmt:formatDate value="${sbean.date }" pattern="yyyy. MM. dd (E)"/> <fmt:formatDate value="${sbean.starthour }" pattern="HH:mm"/></li>
-         <li id="countSelectedByTicket"></li>
+         <li><fmt:formatDate value="${sbean.starthour }" pattern="yyyy. MM. dd (E)"/> <fmt:formatDate value="${sbean.starthour }" pattern="HH:mm"/></li>
+         <li id="countSelectedByTicket">
+         	<span>일반 2명&nbsp;</span>
+         </li>
         </ul>
         <ul class="seat" id="selectedSeatNumbers1">
+        	<li data-seat-num="A1">A1</li>
         </ul>
         </div>
         <p class="price"><strong id="ticketTotalPrice">0</strong> 원</p>

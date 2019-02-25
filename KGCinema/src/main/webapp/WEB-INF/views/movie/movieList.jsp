@@ -87,6 +87,7 @@
           $("#remove_2").removeClass("on");
           $("#remove_1").addClass("on");
           $("#remove_1").css({'color' : '#cdc197'});
+          $("#remove_2").css({'color' : ''});
           $(".hidden_1").css({'display' : 'block'});
           $(".hidden_2").css({'display' : 'none'});
       });    
@@ -94,6 +95,7 @@
           $("#remove_1").removeClass("on");
           $("#remove_2").addClass("on");
           $("#remove_2").css({'color' : '#cdc197'});
+          $("#remove_1").css({'color' : ''});
           $(".hidden_2").css({'display' : 'block'});
           $(".hidden_1").css({'display' : 'none'});          
       });     
@@ -254,7 +256,7 @@
        <li class="list_1">
         <div style="position: relative;">
          <span class="img">
-          <a style="display: block;"><img src="<%=request.getContextPath()%>/storage/${item.m_poster}"></a>
+          <a style="display: block;"><img src="<%=request.getContextPath()%>/resources/storage/${item.m_poster}"></a>
          </span>
         </div>
         
@@ -270,16 +272,16 @@
           <span class="grade_15" style="">
            <c:choose>
            <c:when test="${item.m_grade eq 0}">
-            <img src="images/bg_grade_all.png" style="margin-top:-1px;">
+            <img src="./resources/images/bg_grade_all.png" style="margin-top:-1px;">
            </c:when>
            <c:when test="${item.m_grade eq 12}">
-            <img src="images/bg_grade_12.png" style="margin-top:-1px;">
+            <img src="./resources/images/bg_grade_12.png" style="margin-top:-1px;">
            </c:when>
            <c:when test="${item.m_grade eq '15'}">
-            <img src="images/bg_grade_15.png" style="margin-top:-1px;">
+            <img src="./resources/images/bg_grade_15.png" style="margin-top:-1px;">
            </c:when>
            <c:otherwise>
-             <img src="images/bg_grade_18.png" style="margin-top:-1px;">
+             <img src="./resources/images/bg_grade_18.png" style="margin-top:-1px;">
            </c:otherwise>
 
           </c:choose>
@@ -304,7 +306,7 @@
        <li class="list_1">
         <div style="position: relative;">
          <span class="img">
-          <a style="display: block;"><img src="<%=request.getContextPath()%>/storage/${nextItem.m_poster}"></a>
+          <a style="display: block;"><img src="<%=request.getContextPath()%>/resources/storage/${nextItem.m_poster}"></a>
          </span>
         </div>
         

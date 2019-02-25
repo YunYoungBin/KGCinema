@@ -3,19 +3,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 <title>movieReserve.jsp</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script src="./slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick-theme.css">
-    <link href="css/agency.min.css" rel="stylesheet">
+    <script src="./resources/slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick-theme.css">
+    <link href="./resources/css/agency.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="./resources/demos/style.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
    <script type="text/javascript">
@@ -234,7 +234,7 @@
          }
      });
      
-     $(".theater_list ul li").click(function () { 
+     $(".theater_list .depth2 li").click(function () { 
         var activeSu = $(".activeArea").length
         if(activeSu > 0) {
              $(this).removeClass("activeArea");
@@ -287,7 +287,7 @@
 </head>
 <body>
    <div class="bin"></div>
-   <form action="reserveMovie.do" method="post" name="mform">
+   <form action="reserveMovie.do" method="post" name="mform" enctype="multipart/form-data">
 
    <div class="wrapper">
     <div class="contents clearfix ReservationBn_ok">
@@ -341,7 +341,7 @@
       </div>
       
    <c:choose>
-    <c:when test="${mbean.poster eq null || mbean.poster eq ''}">
+    <c:when test="${mbean.m_poster eq null || mbean.m_poster eq ''}">
       <div class="select_all" id="selectedAllMovie" style="display:block;">
        <div class="glass">
         <p>모든영화</p>
@@ -359,7 +359,7 @@
         <li class="poster">
           <div class="poster">
            <button type="button" class="close_small" onclick="movieDel();"></button>
-           <img src="/KgCinema/storage/${mbean.poster}">
+           <img src="${pageContext.request.contextPath}/resources/storage/${mbean.m_poster}">
            
           </div>
         </li>
@@ -420,7 +420,7 @@
       <ul id="movieTimeList">
       <div id=div1 >
       <c:forEach var="sbean" items="${schedule }">
-       <li onclick="location.href='/KgCinema/reserveSeat.do?idx=${sbean.id}'">
+       <li onclick="location.href='/cinema/reserveSeat.do?idx=${sbean.schedule_id}'">
         <div class="viewing_time">
          <p class="morning"></p>
          <p class="time_table">
@@ -433,11 +433,19 @@
           <span class="age age_12">12세관람가</span>
           <a href=#">${sbean.title }</a>
          </p>
-         <p class="subtitle">디지털(자막)</p>
+         <p class="subtitle"><c:forEach var="type" items="${movie}">
+         	<c:if test="${sbean.title eq type.m_title}">
+         		${type.m_type}
+         	</c:if>
+         </c:forEach></p>
         </div>
         <div class="theater_wrap">
          <p class="theater">${sbean.theater }<br>${sbean.scrno }</p>
-         <p class="seat">0 / 224</p>
+         <p class="seat">0 / <c:forEach var="count" items="${screenCount}">
+         	<c:if test="${sbean.theater eq count.s_theater && sbean.scrno eq count.s_scrno}">
+         		${count.s_seatcnt }
+         	</c:if>
+         </c:forEach></p>
         </div>
        </li>
 
@@ -511,7 +519,7 @@
         <ul class="depth2">
         <c:forEach var="item" items="${theater}">
          <li>
-         <a style="left: 232px;top: 275px;letter-spacing: inherit;">${item.theater}</a>
+         <a style="left: 232px;top: 275px;letter-spacing: inherit;">${item.t_theater}</a>
          </li>
         </c:forEach>
         </ul>
@@ -547,7 +555,7 @@
         <p class="selected_movie">
 
          <input name="title" type="text" style="height:20px;width:150px;" value="" readonly>
-         <input type="text"  name="no" hidden="" style="height:20px;width:150px;" value="${mbean.no }">
+         <input type="text"  name="no" hidden="" style="height:20px;width:150px;" value="${mbean.m_no }">
         </p>
        </div>
        <ul class="sort">
@@ -560,28 +568,28 @@
        
        <c:forEach var="item" items="${movie}">
         <li>
-         <a><span class="blind">${item.title}</span></a>
+         <a><span class="blind">${item.m_title}</span></a>
          <div class="poster">
-           <img src="/KgCinema/storage/${item.poster}" title="${item.title}" no="${item.no }" name="">
+           <img src="${pageContext.request.contextPath}/resources/storage/${item.m_poster}" title="${item.m_title}" no="${item.m_no }" name="">
          </div>
          <p class="title">
          <span class="age2 age_15" style="">
           <c:choose>
-           <c:when test="${item.grade eq 0}">
-            <img src="images/bg_grade_all.png" style="margin-top:-1px;">
+           <c:when test="${item.m_grade eq 0}">
+            <img src="./resources/images/bg_grade_all.png" style="margin-top:-1px;">
            </c:when>
-           <c:when test="${item.grade eq 12}">
-            <img src="images/bg_grade_12.png" style="margin-top:-1px;">
+           <c:when test="${item.m_grade eq 12}">
+            <img src="./resources/images/bg_grade_12.png" style="margin-top:-1px;">
            </c:when>
-           <c:when test="${item.grade eq '15'}">
-            <img src="images/bg_grade_15.png" style="margin-top:-1px;">
+           <c:when test="${item.m_grade eq '15'}">
+            <img src="./resources/images/bg_grade_15.png" style="margin-top:-1px;">
            </c:when>
            <c:otherwise>
-             <img src="images/bg_grade_18.png" style="margin-top:-1px;">
+             <img src="./resources/images/bg_grade_18.png" style="margin-top:-1px;">
            </c:otherwise>
           </c:choose>
          </span>
-         <span>${item.title}</span>
+         <span>${item.m_title}</span>
          </p>
         </li>
        </c:forEach>

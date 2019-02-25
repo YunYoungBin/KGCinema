@@ -20,11 +20,10 @@
 	    document.noticeEDform.submit();
  	}
 </script>
-<jsp:include page="admin_top.jsp"></jsp:include>
 <body>
 
 
-<form name=noticeEDform action="noticeedit.do">
+<form name=noticeEDform action="noticeeditsave.do">
  <table>
   <tr>
    <td></td><td><input type="hidden" name=n_no value="${notice.n_no}"></td>

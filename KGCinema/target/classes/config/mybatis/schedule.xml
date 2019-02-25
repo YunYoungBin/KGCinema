@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="schedule">
+	<select id="select" parameterType="com.kg.cinema.schedule.ScheduleSelectbean" resultType="com.kg.cinema.schedule.Schedulebean">
+		select * from schedule 
+		where theater like #{theater} 
+		and title like '%' || #{movie} || '%' 
+		and starthour like to_date(#{date},'yyyy-mm-dd') 
+		and starthour <![CDATA[>]]> sysdate
+	</select>
+	
+	<select id="detail" parameterType="int" resultType="com.kg.cinema.schedule.Schedulebean">
+		select * from schedule where schedule_id = #{idx}
+	</select>
+
+</mapper>

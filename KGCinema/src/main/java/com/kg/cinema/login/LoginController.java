@@ -38,7 +38,7 @@ public class LoginController {
 	@Autowired
 	LoginDAO dao;
 	
-	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/login.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public void main(Loginbean bean, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		ModelAndView mav = new ModelAndView();
 		PrintWriter out = response.getWriter();
@@ -50,6 +50,7 @@ public class LoginController {
 			EgovHttpSessionBindingListener listener = new EgovHttpSessionBindingListener();
 			request.getSession().setAttribute(bean.getUserid(), listener);
 			out.print("{\"check\": \""+ count + "\"}");
+			
 		} else {
 			out.print("{\"check\": \""+ count + "\"}");
 		}

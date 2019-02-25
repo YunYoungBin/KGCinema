@@ -37,22 +37,33 @@ public class MainController {
 	@Autowired
 	JoinDAO jdao;
 	
+	@Inject
+	@Autowired
+	MainDAO maindao;
+	
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
-		if(request.getSession().getAttribute("temp") == null) {
-			
-		} else {
+		if(request.getSession().getAttribute("temp") != null) {
 			Joinbean bean = jdao.myInfo((String)request.getSession().getAttribute("temp"));
 			mav.addObject("bean", bean);
 		}
 		
 		List<Moviebean> movieList = mdao.movieSelect();
+		List<Mainbean> msList = maindao.MainSlideSelect();
+		List<Mainbean> meList = maindao.MainEventSelect();
+		int count = maindao.MainSlideCount();
 		
 		mav.addObject("movie", movieList);
+		mav.addObject("ms", msList);
+		mav.addObject("me", meList);
+		mav.addObject("count", count);
 		mav.setViewName("main/main");
 		return mav;
 	}
+	
+
+	
 	
 }

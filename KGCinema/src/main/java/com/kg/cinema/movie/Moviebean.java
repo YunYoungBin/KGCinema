@@ -1,6 +1,7 @@
 package com.kg.cinema.movie;
-
+import org.springframework.web.multipart.MultipartFile;
 public class Moviebean {
+   //무비
    private int m_no;
    private String m_title;
    private String m_subtitle;
@@ -18,15 +19,15 @@ public class Moviebean {
    private String m_steal3;
    private String m_steal4;
    private String m_steal5;
+   private String upload_premiere;
    
    
-   //?��?��?��?�� ?��미�? 비교?��
-   private String poster2;
-   private String steal12;
-   private String steal22;
-   private String steal32;
-   private String steal42;
-   private String steal52;
+   private MultipartFile upload_poster;
+   private MultipartFile upload_steal1;
+   private MultipartFile upload_steal2;
+   private MultipartFile upload_steal3;
+   private MultipartFile upload_steal4;
+   private MultipartFile upload_steal5;
    
    
    private String m_point;
@@ -36,8 +37,23 @@ public class Moviebean {
    private int start, end;
    private String skey,sval;
    
+   //무비슬라이드
+   private int mvs_rn;
+   private int mvs_no;
+   private java.util.Date mvs_date;
+   private String mvs_file;
+   private String mvs_video;
+   
+   private MultipartFile upload_file;
+   private MultipartFile upload_video;
    
    
+   public String getUpload_premiere() {
+	   return upload_premiere;
+   }
+   public void setUpload_premiere(String upload_premiere) {
+	   this.upload_premiere = upload_premiere;
+   }
 	public int getM_rn() {
 		return m_rn;
 	}
@@ -164,41 +180,41 @@ public class Moviebean {
 	public void setM_steal5(String m_steal5) {
 		this.m_steal5 = m_steal5;
 	}
-	public String getPoster2() {
-		return poster2;
+	public MultipartFile getUpload_poster() {
+		return upload_poster;
 	}
-	public void setPoster2(String poster2) {
-		this.poster2 = poster2;
+	public void setUpload_poster(MultipartFile upload_poster) {
+		this.upload_poster = upload_poster;
 	}
-	public String getSteal12() {
-		return steal12;
+	public MultipartFile getUpload_steal1() {
+		return upload_steal1;
 	}
-	public void setSteal12(String steal12) {
-		this.steal12 = steal12;
+	public void setUpload_steal1(MultipartFile upload_steal1) {
+		this.upload_steal1 = upload_steal1;
 	}
-	public String getSteal22() {
-		return steal22;
+	public MultipartFile getUpload_steal2() {
+		return upload_steal2;
 	}
-	public void setSteal22(String steal22) {
-		this.steal22 = steal22;
+	public void setUpload_steal2(MultipartFile upload_steal2) {
+		this.upload_steal2 = upload_steal2;
 	}
-	public String getSteal32() {
-		return steal32;
+	public MultipartFile getUpload_steal3() {
+		return upload_steal3;
 	}
-	public void setSteal32(String steal32) {
-		this.steal32 = steal32;
+	public void setUpload_steal3(MultipartFile upload_steal3) {
+		this.upload_steal3 = upload_steal3;
 	}
-	public String getSteal42() {
-		return steal42;
+	public MultipartFile getUpload_steal4() {
+		return upload_steal4;
 	}
-	public void setSteal42(String steal42) {
-		this.steal42 = steal42;
+	public void setUpload_steal4(MultipartFile upload_steal4) {
+		this.upload_steal4 = upload_steal4;
 	}
-	public String getSteal52() {
-		return steal52;
+	public MultipartFile getUpload_steal5() {
+		return upload_steal5;
 	}
-	public void setSteal52(String steal52) {
-		this.steal52 = steal52;
+	public void setUpload_steal5(MultipartFile upload_steal5) {
+		this.upload_steal5 = upload_steal5;
 	}
 	public String getM_point() {
 		return m_point;
@@ -212,6 +228,50 @@ public class Moviebean {
 	public void setM_audience(String m_audience) {
 		this.m_audience = m_audience;
 	}
+	public int getMvs_no() {
+		return mvs_no;
+	}
+	public void setMvs_no(int mvs_no) {
+		this.mvs_no = mvs_no;
+	}
+	public java.util.Date getMvs_date() {
+		return mvs_date;
+	}
+	public void setMvs_date(java.util.Date mvs_date) {
+		this.mvs_date = mvs_date;
+	}
+	public String getMvs_file() {
+		return mvs_file;
+	}
+	public void setMvs_file(String mvs_file) {
+		this.mvs_file = mvs_file;
+	}
+	public String getMvs_video() {
+		return mvs_video;
+	}
+	public void setMvs_video(String mvs_video) {
+		this.mvs_video = mvs_video;
+	}
+	public MultipartFile getUpload_file() {
+		return upload_file;
+	}
+	public void setUpload_file(MultipartFile upload_file) {
+		this.upload_file = upload_file;
+	}
+	public MultipartFile getUpload_video() {
+		return upload_video;
+	}
+	public void setUpload_video(MultipartFile upload_video) {
+		this.upload_video = upload_video;
+	}
+	public int getMvs_rn() {
+		return mvs_rn;
+	}
+	public void setMvs_rn(int mvs_rn) {
+		this.mvs_rn = mvs_rn;
+	}
+	
+	
    
    
    

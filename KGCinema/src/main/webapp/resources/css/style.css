@@ -15,6 +15,7 @@
   
   /* 메뉴 구성 시작 2, 태그의 id 가 topMenu인 스타일*/  
   #topMenu{
+    margin: 0 auto;
     height: 40px;
     width: 100%;
     background-color: #555555;
@@ -35,7 +36,7 @@
     text-decoration: none;  /* 밑줄 제거 */
     color: white;   
     display: block;   /* A 관련 영역 전부 링크 설정 */
-    width: 150px;
+    width: 100px;
     font-weight: bold;
     font-family:  Segoe UI Symbol , comic Sans MS ; 
     font-size: 16pt;

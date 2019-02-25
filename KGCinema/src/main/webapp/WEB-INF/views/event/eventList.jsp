@@ -7,13 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>EventList</title>
-    <link href="./resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <script src="./resources/js/jquery.magnific-popup.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="./resources/css/magnific-popup.css">
+
+    <script src="./resources/js/Event4.js"></script>
+	<link rel="stylesheet" href="./resources/css/magnific-popup.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="./resources/js/jquery.magnific-popup.js"></script>
     <link href="./resources/css/event1.css" rel="stylesheet">
     <link href="./resources/css/event2.css" rel="stylesheet">
-    <script src="./resources/js/Event4.js"></script>
 </head>
 <script type="text/javascript">
  	function changeclear( ){
@@ -148,7 +148,7 @@
 	<div class="e_top">	          
 		<div class="e_title"> </div>   
 	</div>
-	
+	<br>
 	<div class="e_middle">	
 		<div>
 			<img src="" style="max-width: 800px;">				
@@ -159,7 +159,6 @@
   </div>
   <!-- main end -->
   <div class="bin"></div>
-   
-
+  
 </body>
 </html>

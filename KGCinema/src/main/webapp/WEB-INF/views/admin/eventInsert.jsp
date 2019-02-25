@@ -19,10 +19,10 @@
    <td>이벤트기간</td><td><input type="text" name=e_period></td>
   </tr>
   <tr>
-   <td>이벤트내용</td><td><input type="file" name=upload_content></td>
+   <td>메인이미지</td><td><input type="file" name=upload_file></td>
   </tr>
   <tr>
-   <td>메인이미지</td><td><input type="file" name=upload_file></td>
+   <td>이벤트내용</td><td><input type="file" name=upload_content></td>
   </tr>
   
   

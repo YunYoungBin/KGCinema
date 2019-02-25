@@ -57,6 +57,10 @@
     margin-top: -3px;font-size: 15px;display: inline-block;padding: 0 10px;}
     .item a{margin: 0;width: 235px;height: 100%;top: 0;background: none;text-align: center;color: #fff;letter-spacing: -0.3px;padding-top: 55px;}
     .rel{position: relative;}
+    .subtitle{z-index:100000;display: block;position: relative;width: 970px;margin: 0 auto;top: 230px;letter-spacing: -1px;text-shadow: 1px 1px 1px #000000;behavior: url(/js/css3pie/pie.htc);line-height: 36px;}
+    .subtitle_st{font-size: 36px;color: #fff;font-weight: 400;display: block;padding-top: 2px;padding-bottom: 19px;background: url(http://image2.megabox.co.kr/mop/home/main/h2_bg.png) 0 100% no-repeat;}
+    .subtitle_st em{display: block;font-style: normal;font-weight: 300;font-size: 18px;line-height: 21px;padding: 8px 0;color: #fff;}
+    .subtitle span{display: inline-block;font-size: 24px;line-height: 29px;color: #fff;}
   </style>
 </head>
 
@@ -81,10 +85,13 @@
          $(this).find('a').css({'display' : 'none'});
          $(this).find('div').css({'display' : 'none'});
       });
-
       
-  });
-  
+
+	     $(".carousel-inner .carousel-item:first-child").addClass("active");
+	     $(".carousel-indicators li:first-child").addClass("active");
+       
+   });
+
   </script>
 <body>
     <div class="bin">
@@ -92,34 +99,71 @@
     
     <header>
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <c:choose> 
+       <c:when test="${ms eq '' || empty ms}">
         <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          <li data-target="#carouselExampleIndicators" class="active"></li>
+          <li data-target="#carouselExampleIndicators"></li>
+          <li data-target="#carouselExampleIndicators"></li>
         </ol>
-        <div class="carousel-inner" role="listbox">
+        <div class="carousel-inner" role="listbox">      
           <!-- Slide One - Set the background image for this slide in the line below -->
           <div class="carousel-item active" style="background-image: url('./resources/images/main_slide_1.jpg');height:600px;">
+	        <span class="subtitle">
+	         <strong class="subtitle_st">TITLE<em>SUBTITLE</em></strong>
+	         <span>CONTENT</span>
+	        </span>          
             <div class="carousel-caption d-none d-md-block">
-              <h3>First Slide</h3>
-              <p>This is a description for the first slide.</p>
+              <h3></h3>
+              <p></p>
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
           <div class="carousel-item" style="background-image: url('./resources/images/main_slide_2.jpg');height:600px;">
+	        <span class="subtitle">
+	         <strong class="subtitle_st">TITLE<em>SUBTITLE</em></strong>
+	         <span>CONTENT</span>
+	        </span>          
             <div class="carousel-caption d-none d-md-block">
-              <h3>Second Slide</h3>
-              <p>This is a description for the second slide.</p>
+              <h3></h3>
+              <p></p>
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
           <div class="carousel-item" style="background-image: url('./resources/images/main_slide_3.jpg');height:600px;">
+	        <span class="subtitle">
+	         <strong class="subtitle_st">TITLE<em>SUBTITLE</em></strong>
+	         <span>CONTENT</span>
+	        </span>
             <div class="carousel-caption d-none d-md-block">
-              <h3>Third Slide</h3>
-              <p>This is a description for the third slide.</p>
+              <h3></h3>
+              <p></p>
+            </div>
+          </div>          
+        </div>
+       </c:when>
+       <c:otherwise>
+        <ol class="carousel-indicators">
+         <c:forEach var="item" items="${ms}">     
+          <li data-target="#carouselExampleIndicators" name="${item.ms_date}"></li>
+         </c:forEach> 
+        </ol>
+        <div class="carousel-inner" role="listbox">      
+         <c:forEach var="item" items="${ms}">         
+          <div class="carousel-item" style="background-image: url('${pageContext.request.contextPath}/resources/storage/${item.ms_file}');height:600px;">
+	        <span class="subtitle">
+	         <strong class="subtitle_st">${item.ms_title}<em>${item.ms_subtitle}</em></strong>
+	         <span>${item.ms_content}</span>
+	        </span>
+            <div class="carousel-caption d-none d-md-block">
+              <h3></h3>
+              <p></p>
             </div>
           </div>
-        </div>
+         </c:forEach> 
+        </div> 
+       </c:otherwise>      
+      </c:choose>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
@@ -129,7 +173,7 @@
           <span class="sr-only">Next</span>
         </a>
         
-        <div class="login_hidden2" style="width:970px;height:600px;position:absolute;top:0;left:50%;margin-left:-485px;z-index:998;">
+        <div class="login_hidden2" style="width:970px;height:600px;position:absolute;top:0;left:50%;margin-left:-485px;z-index:998;">        
         
         <div style="width:970px;height:61px;position: relative;margin: 0 auto;margin-bottom: 25px;z-index: 20;">
          <div style="position: absolute;top: 28px;left: 102px;left:0;">
@@ -181,6 +225,168 @@
 
 
     <!-- Page Content -->
+ <c:choose> 
+  <c:when test="${me le '' || not empty me}"> 
+   <c:forEach var="me" items="${me}">    
+    <section class="py-5" style="background-color:white;">
+     <div class="new_event" style="position: relative;padding: 20px 0 80px;">
+      <div class="new_event_content" style="position: relative;z-index: 10;width: 970px;margin: 0 auto;">
+       <h3 style="height: 37px;color: #333;font-size: 20px;letter-spacing: -0.5px;">새로운 이벤트</h3>
+       <div class="new_event_main">
+        <div class="event_box1" style="overflow: hidden;position: relative;z-index: 1;width: 632px;height: 317px;border: 1px solid #ccc;">
+		 <c:choose> 
+		  <c:when test="${me.me_file1 le '' || not empty me.me_file1}">    
+		   <img src="<%=request.getContextPath()%>/resources/storage/${me.me_file1}" style='width:632px;height:317px;'>
+		  </c:when>
+		 <c:otherwise>
+		   <img src="./resources/images/new_event1.jpg">
+		 </c:otherwise>
+		</c:choose>
+        </div>
+        <div class="event_box2" style="width: 632px;height: 315px;border: 1px solid #ccc;border-top: none;position: relative;z-index: 2;">
+         <div class="event_box2_left" style="width: 315px;height: 315px;border-right: 1px solid #ccc;float: left;">
+		  <c:choose> 
+		   <c:when test="${me.me_file2 le '' || not empty me.me_file2}">    
+		    <img src="<%=request.getContextPath()%>/resources/storage/${me.me_file2}" style="width:315px;height:315px;">
+		   </c:when>
+		   <c:otherwise>
+		    <img src="./resources/images/new_event2.jpg">
+		   </c:otherwise>
+		  </c:choose> 
+         </div>
+         <div class="event_box2_right" style="float:left;">
+   		  <c:choose> 
+		   <c:when test="${me.me_file3 le '' || not empty me.me_file3}">    
+		    <img src="<%=request.getContextPath()%>/resources/storage/${me.me_file3}" style="width:315px;height:315px;">
+		   </c:when>
+		   <c:otherwise>
+		    <img src="./resources/images/new_event3.jpg">
+		   </c:otherwise>
+		  </c:choose> 
+         </div>
+        </div>
+        <div class="event_box3" style="width: 327px;height: 632px;position: absolute;right: 0;top: 47px;">
+		 <c:choose> 
+		  <c:when test="${me.me_file4 le '' || not empty me.me_file4}">    
+		   <img src="<%=request.getContextPath()%>/resources/storage/${me.me_file4}" style="width:327px;height:632px;">
+		  </c:when>
+		 <c:otherwise>
+		   <img src="./resources/images/new_event4.jpg">
+		 </c:otherwise>
+		</c:choose>
+        </div>
+       </div>       
+      </div>
+     </div>
+    </section>
+    
+    <section class="py-5" style="width:100%;height:500px;">
+     <div style="margin: 0 auto;position: relative;background-position: 0 0;background-repeat: no-repeat;width: 865px;height: 370px;">
+      <div style="background: url(http://image2.megabox.co.kr//mop/event/2018/C6/D7344C-8AB9-48A9-8A09-7594EC54A5D7.png) no-repeat 0 0;background-size: cover;height: 140px;"></div>
+      <div style="width:100%;margin-top: 30px;text-align: center;z-index:1;position: relative;">
+       <div style="position: relative;overflow: hidden;">
+        <div style="transform: translate3d(0px, 0px, 0px);transition: all 0s ease 0s;width: 900px;position: relative;">
+         <div class="" style="width: 281.667px; margin-right: 10px;float: none;display: inline-block;margin-top: 5px;">
+          <div class="item">
+           <div class="grandOpeningType renewal">리뉴얼 오픈</div>
+           <a>
+            <div class="thArea" style="font-size: 17px;color: #fff;">경상남도</div>
+            <h5 style="font-size: 22px;margin: 10px 0;color: #fff;">양산</h5>
+            <div style="font-size: 17px;color: #fff;">12월 8일</div>
+           </a>
+          </div>
+         </div>
+         <div class="" style="width: 281.667px; margin-right: 10px;float: none;display: inline-block;margin-top: 5px;">
+          <div class="item">
+           <div class="grandOpeningType renewal">리뉴얼 오픈</div>
+           <a>
+            <div class="thArea" style="font-size: 17px;color: #fff;">경상남도</div>
+            <h5 style="font-size: 22px;margin: 10px 0;color: #fff;">사천</h5>
+            <div style="font-size: 17px;color: #fff;">12월 19일</div>
+           </a>
+          </div>
+         </div>
+         <div class="" style="width: 281.667px; margin-right: 10px;float: none;display: inline-block;margin-top: 5px;">
+          <div class="item">
+           <div class="grandOpeningType renewal">리뉴얼 오픈</div>
+           <a>
+            <div class="thArea" style="font-size: 17px;color: #fff;">신규오픈</div>
+            <h5 style="font-size: 22px;margin: 10px 0;color: #fff;">용인테크노벨리</h5>
+            <div style="font-size: 17px;color: #fff;">1월 12일</div>
+           </a>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+    
+    <section class="py-5" style="background-color:white;">
+     <div class="" style="position: relative;padding: 20px 0 80px;">
+      <div class="" style="position: relative;z-index: 10;width: 970px;margin: 0 auto;">
+       <h3 style="height: 37px;color: #333;font-size: 20px;letter-spacing: -0.5px;">제휴 이벤트</h3>
+        <div class="" style="position: relative;">
+         <div class="part_event_left" style="width: 632px;height: 632px;border: 1px solid #ccc;">
+          <div style="float: left;width: 315px;height: 315px;">
+		   <c:choose> 
+			<c:when test="${me.me_file5 le '' || not empty me.me_file5}">    
+		     <img src="<%=request.getContextPath()%>/resources/storage/${me.me_file5}" style="width:315px;height:315px;">
+			</c:when>
+		    <c:otherwise>
+		     <img src="./resources/images/part_event1.png">
+		    </c:otherwise>
+		   </c:choose>
+          </div>
+          <div style="float: left;width: 315px;height: 315px;">
+		   <c:choose> 
+		    <c:when test="${me.me_file6 le '' || not empty me.me_file6}">    
+		     <img src="<%=request.getContextPath()%>/resources/storage/${me.me_file6}" style="width:315px;height:315px;">
+			</c:when>
+		    <c:otherwise>
+		     <img src="./resources/images/part_event2.jpg">
+		    </c:otherwise>
+		   </c:choose>	
+          </div>
+          <div style="float: left;width: 315px;height: 315px;">
+		   <c:choose> 
+		    <c:when test="${me.me_file7 le '' || not empty me.me_file7}">    
+		     <img src="<%=request.getContextPath()%>/resources/storage/${me.me_file7}" style="width:315px;height:315px;">
+			</c:when>
+		    <c:otherwise>
+	         <img src="./resources/images/part_event3.jpg">
+		    </c:otherwise>
+		   </c:choose>
+          </div>
+          <div style="float: left;width: 315px;height: 315px;">
+		   <c:choose> 
+			<c:when test="${me.me_file8 le '' || not empty me.me_file8}">    
+			 <img src="<%=request.getContextPath()%>/resources/storage/${me.me_file8}" style="width:315px;height:315px;">
+			</c:when>
+		    <c:otherwise>
+	         <img src="./resources/images/part_event4.jpg">
+		    </c:otherwise>
+		   </c:choose>	
+          </div>                    
+         </div>
+         
+         <div class="part_event_right" style="width: 327px;height: 632px;position: absolute;right: 0;top: 0px;">
+		  <c:choose> 
+		   <c:when test="${me.me_file9 le '' || not empty me.me_file9}">    
+		    <img src="<%=request.getContextPath()%>/resources/storage/${me.me_file9}" style="width:327px;height:632px;">
+		   </c:when>
+		   <c:otherwise>
+	        <img src="./resources/images/part_event5.jpg">
+		   </c:otherwise>
+		  </c:choose>
+         </div>
+        </div>
+      </div>
+     </div>
+    </section>      
+   </c:forEach>
+  </c:when>
+  <c:otherwise>
     <section class="py-5" style="background-color:white;">
      <div class="new_event" style="position: relative;padding: 20px 0 80px;">
       <div class="new_event_content" style="position: relative;z-index: 10;width: 970px;margin: 0 auto;">
@@ -273,7 +479,9 @@
         </div>
       </div>
      </div>
-    </section>    
+    </section>  
+  </c:otherwise>
+ </c:choose>
   
   <!--  
     <div style="width:100%;height:400px;background-color:black;"> 

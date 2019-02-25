@@ -87,6 +87,7 @@
           $("#remove_2").removeClass("on");
           $("#remove_1").addClass("on");
           $("#remove_1").css({'color' : '#cdc197'});
+          $("#remove_2").css({'color' : ''});
           $(".hidden_1").css({'display' : 'block'});
           $(".hidden_2").css({'display' : 'none'});
       });    
@@ -94,6 +95,7 @@
           $("#remove_1").removeClass("on");
           $("#remove_2").addClass("on");
           $("#remove_2").css({'color' : '#cdc197'});
+          $("#remove_1").css({'color' : ''});
           $(".hidden_2").css({'display' : 'block'});
           $(".hidden_1").css({'display' : 'none'});          
       });     

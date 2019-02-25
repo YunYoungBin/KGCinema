@@ -23,4 +23,9 @@ public class ScreenDAO {
 		return sbean;
 	}
 	
+	public List<Screenbean> screenCount() {
+		List<Screenbean> list = temp.selectList("screen.count");
+		return list;
+	}
+	
 }

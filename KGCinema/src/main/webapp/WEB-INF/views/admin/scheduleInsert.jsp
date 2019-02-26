@@ -27,10 +27,18 @@
  <table>
   
   <tr>
-   <td>지점</td><td><input type="text" name="theater" value="강남"></td>
+   <td>지점</td><td>   
+    <select name="theater">
+     <option>강남</option>
+    </select>
+   </td>
   </tr>
   <tr>
-   <td>상영관</td><td><input type="text" name="scrno"></td>
+   <td>상영관</td><td>
+    <select name="scrno">
+     <option>1관</option>
+    </select>
+   </td>
   </tr>
   <tr>
    <td>제 목</td><td><input type="text" name="title"></td>

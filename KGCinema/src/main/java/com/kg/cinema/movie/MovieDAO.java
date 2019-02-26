@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.kg.cinema.Mainbean;
+import com.kg.cinema.event.Eventbean;
 
 @Repository
 @Component
@@ -73,7 +74,14 @@ public class MovieDAO {
 	public List<Moviebean> MovieSlideSelect() {
 		List<Moviebean> list = temp.selectList("movie.movieSlideSelectAll");
 		return list;
-	}		
+	}
+	
+	public Moviebean VideoPopUp(String mvs_no) {
+		Moviebean mvsdto = new Moviebean();
+		mvsdto.setMvs_no(Integer.parseInt(mvs_no));
+		mvsdto=temp.selectOne("movie.movieSlideDetail",mvsdto);
+		return mvsdto;
+	}//end	
 	
 
 

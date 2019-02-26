@@ -7,6 +7,9 @@
 <title>movieSlideInsert.jsp</title>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 </head>
+<style>
+ .img-circle {border:2px solid black;}
+</style>
 <body>
 <form name="adminform" action="mvsinsert.do"  enctype="multipart/form-data" method="post">
  <table> 
@@ -17,7 +20,7 @@
 
   <tr>
    <td>
-    <img id="preview" class="img-circle pull-left image_width" name="upload_img" width="250" height="250" >
+    <img id="preview" class="img-circle" name="upload_img" width="450" height="200" >
    </td>
    
    <td>
@@ -31,7 +34,7 @@
 
   <tr>
    <td>
-
+    <video id="preview2" class="img-circle" name="upload_video" width="450px" height="200px"></video>
    </td>
    
    <td>
@@ -58,8 +61,8 @@ $(document).ready(function() {
            reader.onload = function (e) {
                $('#preview').attr('src', e.target.result);
                $('#preview').attr('name', escape(e.name));
-               $('#preview').css({'width' : '250px'});
-               $('#preview').css({'height' : '250px'});
+               $('#preview').css({'width' : '450px'});
+               $('#preview').css({'height' : '200px'});
            }
            reader.readAsDataURL(input.files[0]);
        }
@@ -70,6 +73,26 @@ $(document).ready(function() {
    });
    
    });
+   
+$(document).ready(function() {
+	   function readURL(input) {
+	       if (input.files && input.files[0]) {
+	           var reader = new FileReader();
+	           reader.onload = function (e) {
+	               $('#preview2').attr('src', e.target.result);
+	               $('#preview2').attr('name', escape(e.name));
+	               $('#preview2').css({'width' : '450px'});
+	               $('#preview2').css({'height' : '200px'});
+	           }
+	           reader.readAsDataURL(input.files[0]);
+	       }
+	   }
+
+	   $("#file2").change(function () {
+	       readURL(this);
+	   });
+	   
+	   });   
    
 </script>
 

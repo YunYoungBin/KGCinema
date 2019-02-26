@@ -11,6 +11,21 @@
 		and starthour <![CDATA[>]]> sysdate
 	</select>
 	
+	<select id="scheduleMgSelectAll"  resultType="com.kg.cinema.schedule.Schedulebean">	   
+	   select * from (
+	   select rownum rn, s.* from
+	   (select * from schedule where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%' order by schedule_id desc) s
+	   ) where rn between #{start} and #{end}
+	</select>
+	
+	<select id="scheduleMgcountAll" resultType="int">
+	     select count(*)  from schedule
+	</select>
+	
+	<select id="scheduleMgcountAllSearch" parameterType="com.kg.cinema.schedule.Schedulebean"  resultType="int">
+ 	   select  count(*) from schedule where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%'  
+ 	</select>	
+	
 	<select id="detail" parameterType="int" resultType="com.kg.cinema.schedule.Schedulebean">
 		select * from schedule where schedule_id = #{idx}
 	</select>

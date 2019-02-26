@@ -34,6 +34,8 @@ import com.kg.cinema.movie.MovieDAO;
 import com.kg.cinema.movie.Moviebean;
 import com.kg.cinema.notice.NoticeDAO;
 import com.kg.cinema.notice.Noticebean;
+import com.kg.cinema.schedule.ScheduleDAO;
+import com.kg.cinema.schedule.Schedulebean;
 
 @Controller
 public class AdminController {
@@ -51,6 +53,8 @@ public class AdminController {
 	AdminDAO adao;
 	@Autowired
 	MainDAO maindao;	
+	@Autowired
+	ScheduleDAO sdao;
 	
 	@Autowired
 	private ServletContext  application;
@@ -169,6 +173,7 @@ public class AdminController {
 	@RequestMapping(value = "/moviemglist.do", method = RequestMethod.GET)
 	public ModelAndView movieMgList(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView( );
+		String page = request.getParameter("page");
 		/*
 		 HttpSession session = request.getSession();
 			
@@ -237,6 +242,7 @@ public class AdminController {
 		mav.addObject("AA", AA);
 		mav.addObject("BB", BB);
 		mav.addObject("mvs", mvs);
+		mav.addObject("page",page);
 		mav.setViewName("admin/movieManagement");
 		return mav;
 	}
@@ -880,7 +886,7 @@ public class AdminController {
 		System.out.println("video : " + mvsdto.getMvs_video());
 
 		adao.MovieSlideInsert(mvsdto);
-		return "redirect:/moviemglist.do" ;
+		return "redirect:/moviemglist.do?page=mvs" ;
 	}//end
 	
 	@RequestMapping(value = "/mvsdelete.do", method = RequestMethod.GET)
@@ -927,6 +933,101 @@ public class AdminController {
 
 	 adao.MovieSlideEdit(mvsdto); 
 	 return "redirect:/moviemglist.do";
+	}//end	
+	
+	//schedule
+	//schedule
+	@RequestMapping(value = "/schedulemglist.do", method = RequestMethod.GET)
+	public ModelAndView scheduleMgList(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView( );
+		/*
+		 HttpSession session = request.getSession();
+			
+		 if(session.getAttribute("temp") == null) {
+				
+		 } else {
+				
+		 }
+		*/
+		int startpage=1, endpage=10;
+		String pnum="";
+		int pageNUM=1, start=1,end=10;
+		int pagecount=1,temp=0;
+		String AA = "";
+		String BB = "";
+		// 검색
+		
+		String skey="", sval="", returnpage="";  
+		skey=request.getParameter("keyfield");
+		sval=request.getParameter("keyword"); 
+		if(skey == "" || skey == null || sval == "" || sval ==null ) {
+			skey="title"; sval="";
+		}
+		  
+		//if(skey.equals("name")) {AA = skey;}
+		  
+		if(skey.equals("title") && sval!="") {
+			BB = skey; 
+		}
+		  
+		returnpage = "&keyfield=" + skey + "&keyword=" + sval;
+		  
+		int SearchTotal = sdao.ScheduleMgCountSearch(skey, sval); //조회갯수
+		    
+		pnum=request.getParameter("pageNum");
+		if(pnum=="" || pnum==null) {pnum="1";}
+		else {pageNUM=Integer.parseInt(pnum);}
+		  
+		//[7클릭] 숫자7을 pageNUM변수가 기억
+		start=(pageNUM-1)*10+1;
+		end=(pageNUM)*10;
+		  
+		int Gtotal=sdao.ScheduleMgCount(); //레코드전체갯수
+		  
+		if(SearchTotal%10==0){ pagecount=SearchTotal/10; } 
+		else {pagecount=(SearchTotal/10)+1;}
+
+		temp=(pageNUM-1)%10;
+		startpage=pageNUM-temp;
+		endpage=startpage+9; //[31]~~~[40]
+		if(endpage > pagecount) {endpage = pagecount;}
+		
+		List<Schedulebean> LG=sdao.ScheduleMgSelect(start,end,skey,sval);
+		
+		mav.addObject("naver", LG);
+		mav.addObject("Gtotal", Gtotal);
+		mav.addObject("SearchTotal", SearchTotal);
+		mav.addObject("startpage", startpage);
+		mav.addObject("endpage", endpage);
+		mav.addObject("pagecount", pagecount);
+		mav.addObject("pageNUM", pageNUM);
+		mav.addObject("returnpage", returnpage);
+		mav.addObject("skey", skey);
+		mav.addObject("sval", sval);
+		mav.addObject("AA", AA);
+		mav.addObject("BB", BB);
+		mav.setViewName("admin/scheduleManagement");
+		return mav;
+	}		
+	
+	@RequestMapping(value = "/schedulewrite.do", method = RequestMethod.GET)
+	public String scheduleWrite(Locale locale, Model model) {
+		return "admin/scheduleInsert";
+	}//end
+	
+	@RequestMapping(value = "/scheduleinsert.do", method = RequestMethod.GET)
+	public String scheduleInsert(Schedulebean sdto) {  
+		adao.ScheduleInsert(sdto);
+		return "redirect:/schedulemglist.do" ;
+	}//end
+	
+	@RequestMapping(value = "/scheduledelete.do", method = RequestMethod.GET)
+	public ModelAndView scheduleDelete(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView( );
+		int data=Integer.parseInt(request.getParameter("idx"));
+		adao.ScheduleDelete(data);
+		mav.setViewName("redirect:/schedulemglist.do");
+		return mav;
 	}//end	
 	
 }

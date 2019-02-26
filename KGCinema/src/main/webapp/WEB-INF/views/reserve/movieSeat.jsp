@@ -125,9 +125,12 @@
     #select_seat .seat_cant{background: url(http://image2.megabox.co.kr/mop/home/seatselect_160912.png) 0 0 no-repeat;background-position: 50% -54px;background-color: #ccc;}
   </style>
 </head>
-<body>
+<body onload="reserveCheck()">
    <div class="bin"></div>
-   
+   <input type="hidden" name="theaterTemp" class="theaterTemp" id="theaterTemp" value="${sbean.theater }">
+   <input type="hidden" name="scrnoTemp" class="scrnoTemp" id="scrnoTemp" value="${sbean.scrno }">
+   <c:set var="timefmt"><fmt:formatDate value="${sbean.starthour }" pattern="yyyy-MM-dd HH:mm" /></c:set>
+   <input type="hidden" name="timeTemp" class="timeTemp" id ="timeTemp" value="${timefmt}">
    <div class="modal booking_lp booking_lp2 in" id="select_seat" style="display:block;">
     <div class="wrapper">
      <div class="contents">
@@ -172,19 +175,7 @@
             		</c:when>
             	</c:choose>
             	
-            	<c:forEach var="book" items="${booked}">
-            		<c:choose>
-            			<c:when test="${bean.seatgroup eq book.substring(0,1) && bean.seatno eq book.substring(1)}">
-            				<button type="button" title="${bean.seatgroup}${bean.seatno}(선택불가)" id="seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}" class="seat_done" seatgroup="${bean.seatgroup }" seatno="${bean.seatno }" seattype="${bean.seattype }" popupyn="N" seatlinecnt="" style="width: 16px; height: 16px; left: ${bean.left}px; top: ${bean.top}px;" onmouseover="" onmouseout="" onclick="" onkeyup="" onblur="" onkeypress="">${bean.seatno}</button>
-            				<c:set var="flag">false</c:set>
-            			</c:when>
-            			<c:otherwise>
-            				<c:set var="flag">true</c:set>
-            			</c:otherwise>
-            		</c:choose>            	
-            	</c:forEach>
-            	
-            	<c:if test="${flag = true }">
+
             	<button type="button" title="${bean.seatgroup}${bean.seatno}(일반석)" id="seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}" class="seat_normal" 
 				seatgroup="${bean.seatgroup}" seatno="${bean.seatno}" seattype="${bean.seattype}" 
 				popupyn="N" seatlinecnt="" 
@@ -193,7 +184,6 @@
 				onmouseout="BookingSeatDatas.seatMouseOut(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
 				onclick="BookingSeatDatas.checkSeat(this)" onkeyup="" onblur="" 
 				onkeypress="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)">${bean.seatno}</button>
-            	</c:if>
             		
             </c:forEach>
             

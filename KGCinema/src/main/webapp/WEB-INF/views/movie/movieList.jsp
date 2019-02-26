@@ -8,18 +8,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 <title>movieList.jsp</title>
-    <link href="./resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="./resources/css/full-slider.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick-theme.css">
-    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
-    <script src="./resources/js/agency.min.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script src="./resources/slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
-    <link href="./resources/css/agency.min.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="./resources/css/magnific-popup.css">
+    <script src="./resources/js/VideoPopUp.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="./resources/js/jquery.magnific-popup.js"></script>
+	<script src="./resources/slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>    
   <style type="text/css">
     html, body {margin: 0;padding: 0;}
     * {margin: 0;padding: 0;box-sizing: border-box;font-family: '나눔고딕','NanumGothic','맑은 고딕','Malgun Gothic','돋움',dotum,'Apple SD Gothic Neo',sans-serif;}
@@ -122,52 +116,18 @@
       $(".btn_close_3").click(function(){
          $(".layer_popup_3").css({'display' : 'none'});
          $("#video_3").get(0).pause();
-      });  
-      $(".li_4").click(function(){
-         $(".layer_popup_4").css({'display' : 'block'});
-         $("#video_4").get(0).play();
-      });
-      $(".btn_close_4").click(function(){
-         $(".layer_popup_4").css({'display' : 'none'});
-         $("#video_4").get(0).pause();
-      });  
-      $(".li_5").click(function(){
-         $(".layer_popup_5").css({'display' : 'block'});
-         $("#video_5").get(0).play();
-      });
-      $(".btn_close_5").click(function(){
-         $(".layer_popup_5").css({'display' : 'none'});
-         $("#video_5").get(0).pause();
-      });  
-      $(".li_6").click(function(){
-         $(".layer_popup_6").css({'display' : 'block'});
-         $("#video_6").get(0).play();
-      });
-      $(".btn_close_6").click(function(){
-         $(".layer_popup_6").css({'display' : 'none'});
-         $("#video_6").get(0).pause();
-      });  
-      $(".li_7").click(function(){
-         $(".layer_popup_7").css({'display' : 'block'});
-         $("#video_7").get(0).play();
-      });
-      $(".btn_close_7").click(function(){
-         $(".layer_popup_7").css({'display' : 'none'});
-         $("#video_7").get(0).pause();
-      });  
-      $(".li_8").click(function(){
-         $(".layer_popup_8").css({'display' : 'block'});
-         $("#video_8").get(0).play();
-      });
-      $(".btn_close_8").click(function(){
-         $(".layer_popup_8").css({'display' : 'none'});
-         $("#video_8").get(0).pause();
-      });  
+      }); 
+      $(document).keyup(function(e) {
+    	if (e.keyCode == 27) {
+    	  $("#videostop").get(0).pause();       
+    	}
+      });      
+      $("body").click(function(){
+          $("#videostop").get(0).pause();
+      });      
       
-      
-      
-      
-      
+	     $(".carousel-inner .carousel-item:first-child").addClass("active");
+	     $(".carousel-indicators li:first-child").addClass("active");
   });
   </script>
 <body>
@@ -176,15 +136,12 @@
     
     <header>
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <c:choose> 
+       <c:when test="${mvs eq '' || empty mvs}"> 
         <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="8"></li>                 
+          <li data-target="#carouselExampleIndicators" class="active"></li>
+          <li data-target="#carouselExampleIndicators"></li>
+          <li data-target="#carouselExampleIndicators"></li>    
         </ol>
         <div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
@@ -201,33 +158,26 @@
           <div class="carousel-item li_3" style="background-image: url('./resources/images/movie_slideList_3.jpg');height:420px;">
             <div class="carousel-caption d-none d-md-block">
             </div>
-          </div>
-          <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item li_4" style="background-image: url('./resources/images/movie_slideList_4.jpg');height:420px;">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-          </div>
-          <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item li_5" style="background-image: url('./resources/images/movie_slideList_5.jpg');height:420px;">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-          </div>
-          <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item li_6" style="background-image: url('./resources/images/movie_slideList_6.jpg');height:420px;">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-          </div>
-          <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item li_7" style="background-image: url('./resources/images/movie_slideList_7.jpg');height:420px;">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-          </div>          
-          <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item li_8" style="background-image: url('./resources/images/movie_slideList_8.jpg');height:420px;">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-          </div>                                                
+          </div>                                                     
         </div>
+       </c:when>
+       <c:otherwise>
+        <ol class="carousel-indicators">
+         <c:forEach var="item" items="${mvs}">        
+          <li data-target="#carouselExampleIndicators" name="${item.mvs_date}"></li>
+         </c:forEach>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+         <c:forEach var="item" items="${mvs}">          
+          <div class="carousel-item" style="
+          background-image: url('${pageContext.request.contextPath}/resources/storage/${item.mvs_file}');height:420px;" onclick="video(${item.mvs_no})">
+            <div class="carousel-caption d-none d-md-block">
+            </div>
+          </div>   
+         </c:forEach>                                                  
+        </div>       
+       </c:otherwise> 
+      </c:choose> 
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
@@ -349,6 +299,14 @@
      </div>
     </div>
     </section>    
+    <div class="layer_popup_open mfp-hide">   
+    <div class="jp-video jp-video-360p jp-video-270p" style="position: absolute;top: 50%;left:50%;height:548px;margin-left: -485px;margin-top: -274px;z-index: 9999;width: 970px;">
+      <video id="videostop" width="970px" height="548px" preload="auto" controls autoplay="autoplay" src="">
+      
+      </video>
+      <button type='button' class='mfp-close' style="bottom:0;">×</button>
+     </div>   
+    </div>    
     
     <div class="layer_popup_1" style="display: none;">
      <div class="jp-video jp-video-360p jp-video-270p" style="position: absolute;top: 50%;left: 50%;height: 548px;margin-left: -485px;margin-top: -274px;z-index: 9999;width: 970px;">
@@ -370,44 +328,6 @@
      <a class="btn_close_3" style="background: url() 0 0 no-repeat;text-indent: -999px;background-color:white;">닫기</a> 
      </div>   
     </div>
-    
-    <div class="layer_popup_4" style="display: none;">
-     <div class="jp-video jp-video-360p jp-video-270p" style="position: absolute;top: 50%;left: 50%;height: 548px;margin-left: -485px;margin-top: -274px;z-index: 9999;width: 970px;">
-      <video id="video_4" src="http://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/201812/12684_301_1.mp4" controls style="height: 548px;"></video>
-     <a class="btn_close_4" style="background: url() 0 0 no-repeat;text-indent: -999px;background-color:white;">닫기</a> 
-     </div>   
-    </div>
-    
-    <div class="layer_popup_5" style="display: none;">
-     <div class="jp-video jp-video-360p jp-video-270p" style="position: absolute;top: 50%;left: 50%;height: 548px;margin-left: -485px;margin-top: -274px;z-index: 9999;width: 970px;">
-      <video id="video_5" src="http://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/201901/13601_301_1.mp4" controls style="height: 548px;"></video>
-     <a class="btn_close_5" style="background: url() 0 0 no-repeat;text-indent: -999px;background-color:white;">닫기</a> 
-     </div>   
-    </div>
-    
-    <div class="layer_popup_6" style="display: none;">
-     <div class="jp-video jp-video-360p jp-video-270p" style="position: absolute;top: 50%;left: 50%;height: 548px;margin-left: -485px;margin-top: -274px;z-index: 9999;width: 970px;">
-      <video id="video_6" src="http://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/201901/13681_301_1.mp4" controls style="height: 548px;"></video>
-     <a class="btn_close_6" style="background: url() 0 0 no-repeat;text-indent: -999px;background-color:white;">닫기</a> 
-     </div>   
-    </div>
-    
-    <div class="layer_popup_7" style="display: none;">
-     <div class="jp-video jp-video-360p jp-video-270p" style="position: absolute;top: 50%;left: 50%;height: 548px;margin-left: -485px;margin-top: -274px;z-index: 9999;width: 970px;">
-      <video id="video_7" src="http://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/201812/13570_301_1.mp4" controls style="height: 548px;"></video>
-     <a class="btn_close_7" style="background: url() 0 0 no-repeat;text-indent: -999px;background-color:white;">닫기</a> 
-     </div>   
-    </div>
-     
-     <div class="layer_popup_8" style="display: none;">
-     <div class="jp-video jp-video-360p jp-video-270p" style="position: absolute;top: 50%;left: 50%;height: 548px;margin-left: -485px;margin-top: -274px;z-index: 9999;width: 970px;">
-      <video id="video_8" src="http://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/201901/13317_301_1.mp4" controls style="height: 548px;"></video>
-     <a class="btn_close_8" style="background: url() 0 0 no-repeat;text-indent: -999px;background-color:white;">닫기</a> 
-     </div>   
-    </div>
-    
-    
-
 
 </body>
 </html>

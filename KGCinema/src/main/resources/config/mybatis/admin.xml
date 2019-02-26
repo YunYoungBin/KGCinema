@@ -90,4 +90,14 @@
 	<update id="movieSlideEdit" parameterType="com.kg.cinema.movie.Moviebean">
 	 update movieslide set mvs_file=#{mvs_file},mvs_video=#{mvs_video} where mvs_no=#{mvs_no}
 	</update>	
+	
+	<!-- schedule -->
+   	<insert id="scheduleInsert">
+	  insert into schedule(schedule_id,theater,scrno,title,starthour,endhour)
+	  values(schedule_seq.nextval,#{theater},#{scrno},#{title},to_date(#{upload_starthour},'yyyy-mm-dd hh24:mi'),to_date(#{upload_endhour},'yyyy-mm-dd hh24:mi'))
+	</insert>
+	
+	<delete id="scheduleDelete" parameterType="int">
+	  delete from schedule where schedule_id = #{schedule_id} 
+	</delete>
 </mapper>

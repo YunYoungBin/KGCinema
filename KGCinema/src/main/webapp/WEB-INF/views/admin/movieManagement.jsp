@@ -27,16 +27,12 @@
 	  $("#remove_1").click(function(){
 	      $("#remove_2").removeClass("on");
 	      $("#remove_1").addClass("on");
-	      $("#remove_1").css({'color' : '#cdc197'});
-	      $("#remove_2").css({'color' : ''});
 	      $(".hidden_1").css({'display' : 'block'});
 	      $(".hidden_2").css({'display' : 'none'});
 	  });    
 	  $("#remove_2").click(function(){
 	      $("#remove_1").removeClass("on");
 	      $("#remove_2").addClass("on");
-	      $("#remove_2").css({'color' : '#cdc197'});
-	      $("#remove_1").css({'color' : ''});
 	      $(".hidden_2").css({'display' : 'block'});
 	      $(".hidden_1").css({'display' : 'none'});           
 	  });
@@ -44,13 +40,25 @@
   </script>
  </head>
 <body>
+<c:if test="${page eq 'mvs' }">
+	<c:set var="check">none</c:set>
+    <c:set var="check2">block</c:set>
+    <c:set var="one"></c:set>
+    <c:set var="two">on</c:set>
+</c:if>
+<c:if test="${page == null }">
+	<c:set var="check">block</c:set>
+	<c:set var="check2">none</c:set>
+	<c:set var="one">on</c:set>
+    <c:set var="two"></c:set>
+</c:if>
  <div class="movie_menu" style="width: 900px;margin: 0 auto;padding-top: 40px;">
   <ul style="margin-bottom: 17px;list-style:none;text-align: center;">
-   <li><a id="remove_1" class="on">영화</a></li>
-   <li><a id="remove_2" class="">영화슬라이드</a></li>
+   <li><a id="remove_1" class="${one}">영화</a></li>
+   <li><a id="remove_2" class="${two}">영화슬라이드</a></li>
   </ul>
    
-<div class="hidden_1" style="display: block;padding-bottom:10px;">
+<div class="hidden_1" style="display: ${check};padding-bottom:10px;">
  <p style="text-align:center;margin-bottom:10px;">영화정보 관리</p>
 
  <table width=900 border=1 cellspacing=0 style="margin:0 auto;">
@@ -131,7 +139,7 @@
  </table> 
  </div>
   
-<div class="hidden_2" style="display: none;padding-bottom:10px;">
+<div class="hidden_2" style="display:${check2};padding-bottom:10px;">
  <p style="text-align:center;margin-bottom:10px;">영화슬라이드 관리</p>
 
  <table width=900 border=1 cellspacing=0 style="margin:0 auto;">

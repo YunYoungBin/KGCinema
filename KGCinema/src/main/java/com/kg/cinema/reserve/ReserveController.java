@@ -1,5 +1,7 @@
 package com.kg.cinema.reserve;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -9,6 +11,7 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -157,25 +160,32 @@ public class ReserveController {
 		Screenbean scrbean = scrdao.screenSelect(sbean.getTheater(), sbean.getScrno());
 		List<Seatbean> seatList = seatdao.seatSelect(scrbean.getS_seatstyle());
 		
-		List<Reservebean> reserveList = rdao.reserveSelect(sbean.getTheater(), sbean.getScrno(), sbean.getStarthour());
-		
-		ArrayList<String> booked = new ArrayList<String>();
-		for(Reservebean bean : reserveList) {
-			String[] book = bean.getR_seat().split(",");
-			for(int i = 0; i < book.length; i++) {
-				booked.add(book[i]);
-			}
-		}
-		
-		System.out.println(booked.toString());
-		
 		mav.addObject("seatbean", seatList);
 		mav.addObject("sbean", sbean);
 		mav.addObject("scrno", idx);
 		mav.addObject("mbean", mbean);
-		mav.addObject("booked", booked);
 		mav.setViewName("reserve/movieSeat");
 		return mav;
+	}
+	
+	@RequestMapping(value = "/seatReserveCheck.do", method = RequestMethod.GET)
+	public void reserve_check(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();
+		String theater = request.getParameter("theater");
+		String scrno = request.getParameter("scrno");
+		String start = request.getParameter("start");
+		
+		List<Reservebean> reserveList = rdao.reserveSelect(theater, scrno, start);
+		
+		StringBuilder sb = new StringBuilder();
+		for(Reservebean bean : reserveList) {
+			String[] book = bean.getR_seat().split(",");
+			for(int i = 0; i < book.length; i++) {
+				sb.append(book[i]+",");
+			}
+		}
+		String json = "{\"reserveSeat\":\""+sb.toString()+"\"}";
+		out.print(json);
 	}
 	
 }

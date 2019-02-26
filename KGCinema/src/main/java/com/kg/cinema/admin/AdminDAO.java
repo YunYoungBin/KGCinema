@@ -1,7 +1,5 @@
 package com.kg.cinema.admin;
 
-import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,6 +9,7 @@ import com.kg.cinema.Mainbean;
 import com.kg.cinema.event.Eventbean;
 import com.kg.cinema.movie.Moviebean;
 import com.kg.cinema.notice.Noticebean;
+import com.kg.cinema.schedule.Schedulebean;
 @Repository
 @Component
 public class AdminDAO {
@@ -95,7 +94,7 @@ public class AdminDAO {
 		temp.update("admin.mainEventEdit", medto);
 	}//end	
 	
-	//mainslide
+	//movieslide
 	public void MovieSlideInsert(Moviebean mvsdto) {
 		temp.insert("admin.movieSlideInsert", mvsdto);
 	}//end
@@ -105,5 +104,13 @@ public class AdminDAO {
 	public void MovieSlideEdit(Moviebean mvsdto) {
 		temp.update("admin.movieSlideEdit", mvsdto);
 	}//end	
+	
+	//scheduleslide
+	public void ScheduleInsert(Schedulebean sdto) {
+		temp.insert("admin.scheduleInsert", sdto);
+	}//end
+	public void ScheduleDelete(int data) {
+		 temp.delete("admin.scheduleDelete", data);
+	}//end
 	
 }

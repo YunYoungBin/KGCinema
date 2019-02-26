@@ -17,7 +17,7 @@
       <li><a class='menuLink' href='msmglist.do'>메인 관리</a></li>
       <li><a class='menuLink' href='noticemglist.do'>공지사항 관리</a></li>
       <li><a class='menuLink' href='moviemglist.do'>영화정보 관리</a></li>
-      <li><a class='menuLink' href=''>스케쥴 관리</a></li>
+      <li><a class='menuLink' href='schedulemglist.do'>스케쥴 관리</a></li>
       <li><a class='menuLink' href='eventmglist.do'>이벤트 관리</a></li>
     </ul>
   </nav> 

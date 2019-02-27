@@ -8,21 +8,43 @@
 <meta charset="UTF-8">
 <title>EventList</title>
 
-    <script src="./resources/js/Event4.js"></script>
-	<link rel="stylesheet" href="./resources/css/magnific-popup.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="./resources/js/jquery.magnific-popup.js"></script>
     <link href="./resources/css/event1.css" rel="stylesheet">
     <link href="./resources/css/event2.css" rel="stylesheet">
 </head>
-<script type="text/javascript">
- 	function changeclear( ){
- 		nform.keyword.value="";
- 		nform.keyword.focus();
- 	}//end
+   <script type="text/javascript">
+    $(document).on('ready', function() {
+        $(".menu_1").click(function(){
+            $(".menu_2").removeClass("active");
+            $(".menu_3").removeClass("active");
+            $(".menu_1").addClass("active");
+            $("#kgCinemaList_1").css({'display' : 'block'});
+            $("#kgCinemaList_2").css({'display' : 'none'});   
+            $("#kgCinemaList_3").css({'display' : 'none'}); 
+        });  
+        $(".menu_2").click(function(){
+            $(".menu_1").removeClass("active");
+            $(".menu_3").removeClass("active");
+            $(".menu_2").addClass("active");
+            $("#kgCinemaList_2").css({'display' : 'block'});
+            $("#kgCinemaList_1").css({'display' : 'none'});   
+            $("#kgCinemaList_3").css({'display' : 'none'}); 
+        });
+        $(".menu_3").click(function(){
+            $(".menu_1").removeClass("active");
+            $(".menu_2").removeClass("active");
+            $(".menu_3").addClass("active");
+            $("#kgCinemaList_3").css({'display' : 'block'});
+            $("#kgCinemaList_1").css({'display' : 'none'});   
+            $("#kgCinemaList_2").css({'display' : 'none'}); 
+        });
+    });
   </script>
   <style>
    ol{list-style:none;}
+   .nav nav-tabs li{margin-bottom: -2px;padding: 0 25px;display: block;border: 1px solid #e1e1e1;border-bottom-color: #e1e1e1;border-left: none;font-size: 13px;line-height: 35px;
+    text-align: center;min-width: 114px;height: 35px;background-color: #f9f9f9;color: #666;font-weight: 700;}
+   .nav-tabs li:first-child a{border-left: 1px solid #e1e1e1;}
    .kgCinema_list {margin-bottom:20px;}
    .kgCinema_list .thum {float:left; width:115px; height:145px; text-align:center;}
    .kgCinema_list .thum img {width:115px; height:145px}
@@ -61,14 +83,21 @@
     <!-- Event start-->
     <div id="centerEventList" class="tab_wrap customer_tab_wrap">
      <ul class="nav nav-tabs">
-      <li class="active">
+      <li class="menu_1 active">
        <a>예매내역</a>
+      </li>
+      <li class="menu_2">
+       <a>지난내역</a>
+      </li>
+      <li class="menu_3">
+       <a>취소내역</a>
       </li>
      </ul>
      
      <div class="tab-content">
       <h3 class="blind">예매내역</h3>
-	    <ol class="kgCinema_list" id="kgCinemaList">
+      
+	    <ol class="kgCinema_list" id="kgCinemaList_1">
 		<li>
 		 <div class="kgCinema_box">
 		  <span class="thum"><img src="./resources/images/gg.jpg" alt="극한직업"></span>
@@ -82,21 +111,6 @@
 		  <a href="#" class="btn_s_view"><span>취소</span></a>
 		</div>
 		</li>		
-		
-		<li>
-		 <div class="kgCinema_box">
-		  <span class="thum"><img src="./resources/images/gg.jpg" alt="극한직업"></span>
-		   <dl class="kgCimema_cont">
-		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영호관</dt> <dd><span>강남 1관</span></dd>
-			<dt>예매내역</dt> <dd>극한직업(디지털)</dd>
-			<dt>관람인원/좌석</dt> <dd>성인2명 / A10 A11</dd>
-			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
-		   </dl>
-		  <a href="#" class="btn_s_view"><span>취소</span></a>
-		</div>
-		</li>	
-		
 		<li>
 		 <div class="kgCinema_box">
 		  <span class="thum"><img src="./resources/images/gg.jpg" alt="극한직업"></span>
@@ -111,6 +125,62 @@
 		</div>
 		</li>						
 	   </ol>
+	   
+	    <ol class="kgCinema_list" id="kgCinemaList_2" style="display:none;">
+		<li>
+		 <div class="kgCinema_box">
+		  <span class="thum"><img src="./resources/images/movie_list_2.jpg" alt="극한직업"></span>
+		   <dl class="kgCimema_cont">
+		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
+			<dt>관람영호관</dt> <dd><span>강남 2관</span></dd>
+			<dt>예매내역</dt> <dd>아쿠아맨(디지털)</dd>
+			<dt>관람인원/좌석</dt> <dd>성인2명 / B13 A14</dd>
+			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
+		   </dl>
+		</div>
+		</li>		
+		<li>
+		 <div class="kgCinema_box">
+		  <span class="thum"><img src="./resources/images/movie_list_2.jpg" alt="극한직업"></span>
+		   <dl class="kgCimema_cont">
+		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
+			<dt>관람영호관</dt> <dd><span>강남 2관</span></dd>
+			<dt>예매내역</dt> <dd>아쿠아맨(디지털)</dd>
+			<dt>관람인원/좌석</dt> <dd>성인2명 / B13 A14</dd>
+			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
+		   </dl>
+		</div>
+		</li>						
+	   </ol>
+	   
+	    <ol class="kgCinema_list" id="kgCinemaList_3" style="display:none;">
+		<li>
+		 <div class="kgCinema_box">
+		  <span class="thum"><img src="./resources/images/movie_list_3.jpg" alt="극한직업"></span>
+		   <dl class="kgCimema_cont">
+		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
+			<dt>관람영호관</dt> <dd><span>강남 3관</span></dd>
+			<dt>예매내역</dt> <dd>범블비(디지털)</dd>
+			<dt>관람인원/좌석</dt> <dd>성인2명 / G02 G03</dd>
+			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
+		   </dl>
+		</div>
+		</li>		
+		<li>
+		 <div class="kgCinema_box">
+		  <span class="thum"><img src="./resources/images/movie_list_3.jpg" alt="극한직업"></span>
+		   <dl class="kgCimema_cont">
+		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
+			<dt>관람영호관</dt> <dd><span>강남 3관</span></dd>
+			<dt>예매내역</dt> <dd>범블비(디지털)</dd>
+			<dt>관람인원/좌석</dt> <dd>성인2명 / G02 G03</dd>
+			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
+		   </dl>
+		</div>
+		</li>							
+	   </ol>	   	   
+	   
+	   
      </div>
     </div>
     <!-- Event end -->

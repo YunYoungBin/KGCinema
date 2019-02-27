@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
     
@@ -27,10 +30,20 @@
  <table>
   
   <tr>
-   <td>지점</td><td><input type="text" name="theater" value="강남"></td>
+   <td>지점</td><td>   
+    <select name="theater">
+    <c:forEach var="t" items="${tselect}"> 
+     <option>${t.t_theater}</option>
+    </c:forEach> 
+    </select>
+   </td>
   </tr>
   <tr>
-   <td>상영관</td><td><input type="text" name="scrno"></td>
+   <td>상영관</td><td>
+    <select name="scrno">
+     <option>1관</option>
+    </select>
+   </td>
   </tr>
   <tr>
    <td>제 목</td><td><input type="text" name="title"></td>

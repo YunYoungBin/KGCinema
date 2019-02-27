@@ -100,4 +100,18 @@
 	<delete id="scheduleDelete" parameterType="int">
 	  delete from schedule where schedule_id = #{schedule_id} 
 	</delete>
+	
+	<!-- theater -->
+   	<insert id="theaterInsert">
+	  insert into theater(t_no,t_theater,t_juso1,t_juso2)
+	  values(theater_seq.nextval,#{t_theater},#{t_juso1},#{t_juso2})
+	</insert>
+	
+	<delete id="theaterDelete" parameterType="int">
+	  delete from theater where t_no = #{t_no} 
+	</delete>
+	
+	<update id="theaterEdit" parameterType="com.kg.cinema.theater.Theaterbean">
+	 update theater set t_theater=#{t_theater},t_juso1=#{t_juso1},t_juso2=#{t_juso2} where t_no=#{t_no}
+	</update>		
 </mapper>

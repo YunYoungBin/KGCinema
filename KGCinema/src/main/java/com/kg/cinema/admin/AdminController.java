@@ -36,6 +36,10 @@ import com.kg.cinema.notice.NoticeDAO;
 import com.kg.cinema.notice.Noticebean;
 import com.kg.cinema.schedule.ScheduleDAO;
 import com.kg.cinema.schedule.Schedulebean;
+import com.kg.cinema.screen.ScreenDAO;
+import com.kg.cinema.screen.Screenbean;
+import com.kg.cinema.theater.TheaterDAO;
+import com.kg.cinema.theater.Theaterbean;
 
 @Controller
 public class AdminController {
@@ -55,6 +59,10 @@ public class AdminController {
 	MainDAO maindao;	
 	@Autowired
 	ScheduleDAO sdao;
+	@Autowired
+	TheaterDAO tdao;	
+	@Autowired
+	ScreenDAO srdao;
 	
 	@Autowired
 	private ServletContext  application;
@@ -936,7 +944,6 @@ public class AdminController {
 	}//end	
 	
 	//schedule
-	//schedule
 	@RequestMapping(value = "/schedulemglist.do", method = RequestMethod.GET)
 	public ModelAndView scheduleMgList(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView( );
@@ -1011,8 +1018,12 @@ public class AdminController {
 	}		
 	
 	@RequestMapping(value = "/schedulewrite.do", method = RequestMethod.GET)
-	public String scheduleWrite(Locale locale, Model model) {
-		return "admin/scheduleInsert";
+	public ModelAndView scheduleWrite(HttpServletRequest request) {	
+		ModelAndView mav = new ModelAndView( );
+		List<Theaterbean> tselect=tdao.theaterSelect();
+		mav.addObject("tselect", tselect);
+		mav.setViewName("admin/scheduleInsert");
+		return mav;
 	}//end
 	
 	@RequestMapping(value = "/scheduleinsert.do", method = RequestMethod.GET)
@@ -1029,5 +1040,174 @@ public class AdminController {
 		mav.setViewName("redirect:/schedulemglist.do");
 		return mav;
 	}//end	
+	
+	//schedule
+	@RequestMapping(value = "/theatermglist.do", method = RequestMethod.GET)
+	public ModelAndView theaterMgList(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView( );
+		/*
+		 HttpSession session = request.getSession();
+			
+		 if(session.getAttribute("temp") == null) {
+				
+		 } else {
+				
+		 }
+		*/
+		int startpage=1, endpage=10;
+		String pnum="";
+		int pageNUM=1, start=1,end=10;
+		int pagecount=1,temp=0;
+		String AA = "";
+		String BB = "";
+		// 검색
+		
+		String skey="", sval="", returnpage="";  
+		skey=request.getParameter("keyfield");
+		sval=request.getParameter("keyword"); 
+		if(skey == "" || skey == null || sval == "" || sval ==null ) {
+			skey="t_theater"; sval="";
+		}
+		  
+		//if(skey.equals("t_theater")) {AA = skey;}
+		  
+		if(skey.equals("t_theater") && sval!="") {
+			BB = skey; 
+		}
+		  
+		returnpage = "&keyfield=" + skey + "&keyword=" + sval;
+		  
+		int SearchTotal = tdao.TheaterMgCountSearch(skey, sval); //조회갯수
+		    
+		pnum=request.getParameter("pageNum");
+		if(pnum=="" || pnum==null) {pnum="1";}
+		else {pageNUM=Integer.parseInt(pnum);}
+		  
+		//[7클릭] 숫자7을 pageNUM변수가 기억
+		start=(pageNUM-1)*10+1;
+		end=(pageNUM)*10;
+		  
+		int Gtotal=tdao.TheaterMgCount(); //레코드전체갯수
+		  
+		if(SearchTotal%10==0){ pagecount=SearchTotal/10; } 
+		else {pagecount=(SearchTotal/10)+1;}
+
+		temp=(pageNUM-1)%10;
+		startpage=pageNUM-temp;
+		endpage=startpage+9; //[31]~~~[40]
+		if(endpage > pagecount) {endpage = pagecount;}
+		
+		//screen 
+		
+		int startpage2=1, endpage2=10;
+		String pnum2="";
+		int pageNUM2=1, start2=1,end2=10;
+		int pagecount2=1,temp2=0;
+		String AA2 = "";
+		String BB2 = "";
+		// 검색
+		
+		String skey2="", sval2="", returnpage2="";  
+		skey=request.getParameter("keyfield2");
+		sval=request.getParameter("keyword2"); 
+		if(skey2 == "" || skey2 == null || sval2 == "" || sval2 ==null ) {
+			skey2="s_theater"; sval2="";
+		}
+		  
+		//if(skey.equals("s_theater")) {AA = skey;}
+		  
+		if(skey2.equals("s_theater") && sval2!="") {
+			BB2 = skey2; 
+		}
+		  
+		returnpage2 = "&keyfield2=" + skey2 + "&keyword2=" + sval2;
+		  
+		int SearchTotal2 = srdao.ScreenMgCountSearch(skey2, sval2); //조회갯수
+		    
+		pnum=request.getParameter("pageNum2");
+		if(pnum2=="" || pnum2==null) {pnum2="1";}
+		else {pageNUM2=Integer.parseInt(pnum2);}
+		  
+		//[7클릭] 숫자7을 pageNUM변수가 기억
+		start2=(pageNUM2-1)*10+1;
+		end2=(pageNUM2)*10;
+		  
+		int Gtotal2=srdao.ScreenMgCount(); //레코드전체갯수
+		  
+		if(SearchTotal2%10==0){ pagecount2=SearchTotal2/10; } 
+		else {pagecount2=(SearchTotal2/10)+1;}
+
+		temp2=(pageNUM2-1)%10;
+		startpage2=pageNUM2-temp2;
+		endpage2=startpage2+9; //[31]~~~[40]
+		if(endpage2 > pagecount2) {endpage2 = pagecount2;}
+		
+		List<Theaterbean> LG=tdao.TheaterMgSelect(start,end,skey,sval);
+		List<Screenbean> sr=srdao.ScreenMgSelect(start2,end2,skey2,sval2);
+		
+		mav.addObject("theater", LG);
+		mav.addObject("screen", sr);
+		mav.addObject("Gtotal", Gtotal);
+		mav.addObject("Gtotal2", Gtotal2);
+		mav.addObject("SearchTotal", SearchTotal);
+		mav.addObject("SearchTotal2", SearchTotal2);
+		mav.addObject("startpage", startpage);
+		mav.addObject("startpage2", startpage2);
+		mav.addObject("endpage", endpage);
+		mav.addObject("endpage2", endpage2);
+		mav.addObject("pagecount", pagecount);
+		mav.addObject("pagecount2", pagecount2);
+		mav.addObject("pageNUM", pageNUM);
+		mav.addObject("pageNUM2", pageNUM2);		
+		mav.addObject("returnpage", returnpage);
+		mav.addObject("returnpage2", returnpage2);
+		mav.addObject("skey", skey);
+		mav.addObject("skey2", skey2);
+		mav.addObject("sval", sval);
+		mav.addObject("sval2", sval2);
+		mav.addObject("AA", AA);
+		mav.addObject("AA2", AA2);
+		mav.addObject("BB", BB);
+		mav.addObject("BB2", BB2);
+		mav.setViewName("admin/theaterManagement");
+		return mav;
+	}		
+	
+	@RequestMapping(value = "/theaterewrite.do", method = RequestMethod.GET)
+	public String theaterWrite(Locale locale, Model model) {
+		return "admin/theaterInsert";
+	}//end
+	
+	@RequestMapping(value = "/theaterinsert.do", method = RequestMethod.GET)
+	public String theaterInsert(Theaterbean tdto) {  
+		adao.TheaterInsert(tdto);
+		return "redirect:/theatermglist.do" ;
+	}//end
+	
+	@RequestMapping(value = "/theaterdelete.do", method = RequestMethod.GET)
+	public ModelAndView theaterDelete(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView( );
+		int data=Integer.parseInt(request.getParameter("idx"));
+		adao.TheaterDelete(data);
+		mav.setViewName("redirect:/theatermglist.do");
+		return mav;
+	}//end		
+	
+	@RequestMapping(value = "/theateredit.do", method = RequestMethod.GET)
+	public ModelAndView theaterEdit(HttpServletRequest request) {
+	  ModelAndView mav = new ModelAndView( );
+	  int data=Integer.parseInt(request.getParameter("idx"));
+	  Theaterbean tdto=tdao.TheaterDetail(data);
+	  mav.addObject("theater", tdto);
+	  mav.setViewName("admin/theaterEdit");
+	  return mav;
+	}//end
+	
+	@RequestMapping("/theatereditsave.do")
+	public String theaterEditSave(Theaterbean tdto) {   		  
+	  adao.TheaterEdit(tdto); 
+	  return "redirect:/theatermglist.do";
+	}//end	
+	
 	
 }

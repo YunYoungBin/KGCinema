@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="./resources/css/style2.css">
+<link rel="stylesheet" type="text/css" href="./resources/css/style3.css">
 <style>
 </style>
 </head>
@@ -15,6 +15,7 @@
     <ul>
       <li><a class='menuLink' href='main.do'>홈페이지</a></li>
       <li><a class='menuLink' href='msmglist.do'>메인 관리</a></li>
+      <li><a class='menuLink' href='theatermglist.do'>극장 관리</a></li>
       <li><a class='menuLink' href='noticemglist.do'>공지사항 관리</a></li>
       <li><a class='menuLink' href='moviemglist.do'>영화정보 관리</a></li>
       <li><a class='menuLink' href='schedulemglist.do'>스케쥴 관리</a></li>

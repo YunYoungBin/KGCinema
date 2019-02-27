@@ -10,6 +10,7 @@ import com.kg.cinema.event.Eventbean;
 import com.kg.cinema.movie.Moviebean;
 import com.kg.cinema.notice.Noticebean;
 import com.kg.cinema.schedule.Schedulebean;
+import com.kg.cinema.theater.Theaterbean;
 @Repository
 @Component
 public class AdminDAO {
@@ -112,5 +113,16 @@ public class AdminDAO {
 	public void ScheduleDelete(int data) {
 		 temp.delete("admin.scheduleDelete", data);
 	}//end
+	
+	//theater
+	public void TheaterInsert(Theaterbean tdto) {
+		temp.insert("admin.theaterInsert", tdto);
+	}//end
+	public void TheaterDelete(int data) {
+		 temp.delete("admin.theaterDelete", data);
+	}//end
+	public void TheaterEdit(Theaterbean tdto) {
+		temp.update("admin.theaterEdit",tdto);
+	}//end	
 	
 }

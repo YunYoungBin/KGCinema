@@ -95,7 +95,7 @@ var BookingSeatDatas = {
 				var preclass = $("#"+pre).attr("class");
 				var nextno = $("#"+next).attr("seatno");
 				var nextclass = $("#"+next).attr("class");
-				alert(preclass);
+				
 				// seat_done, seat_selected
 				if(nextno != undefined && nextclass != "seat_done") {
 					var nextcheck = $("#"+next).attr("style").split(" ")[5].split("px")[0];

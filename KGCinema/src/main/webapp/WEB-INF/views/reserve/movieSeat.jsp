@@ -10,14 +10,14 @@
 <title>movieReserve.jsp</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script src="./slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick-theme.css">
-    <link href="css/agency.min.css" rel="stylesheet">
+    <script src="./resources/slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick-theme.css">
+    <link href="./resources/css/agency.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="./resources/demos/style.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="./resources/js/Reserve.js"></script>
+    <script src="./resources/js/Reserve2.js"></script>
     
     
   <style type="text/css">
@@ -98,7 +98,7 @@
     #select_seat .seat_body .right_wrap .row2 ul.info li, #select_pay .seat_body .right_wrap .row2 ul.info li{padding-left: 8px;margin-bottom: 5px;font-size: 11px;color: #fff;
     background: url(http://image2.megabox.co.kr/mop/home/movie/bg_seat.png) -150px 2px no-repeat;}
     #select_seat .seat_body .right_wrap .row2 ul.seat, #select_pay .seat_body .right_wrap .row2 ul.seat{margin: 8px 0 0 -7px;overflow: hidden;}
-    #select_seat .seat_body .right_wrap .row2 ul.seat, #select_pay .seat_body .right_wrap .row2 ul.seat li{
+    #select_seat .seat_body .right_wrap .row2 ul.seat li{
     	margin-left: 7px;
     	margin-bottom: 3px;
     	float: left;

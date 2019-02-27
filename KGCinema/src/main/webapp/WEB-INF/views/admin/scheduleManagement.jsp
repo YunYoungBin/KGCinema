@@ -77,7 +77,7 @@
    <td colspan="7">
    
     <c:if test="${startpage>10}">
-     <a href="noticemglist.do?pageNum=${startpage-10}${returnpage}">[이전]</a>
+     <a href="schedulemglist.do?pageNum=${startpage-10}${returnpage}">[이전]</a>
     </c:if>
     
     
@@ -87,7 +87,7 @@
     	    <font style='font-size:15pt; color:red;'>[${i}]</font>
     	  </c:when>
     	  <c:otherwise>
-    	    <a href="noticemglist.do?pageNum=${i}${returnpage}">[${i}]</a> 
+    	    <a href="schedulemglist.do?pageNum=${i}${returnpage}">[${i}]</a> 
     	  </c:otherwise>
     	</c:choose>
     </c:forEach>
@@ -95,7 +95,7 @@
      <!-- 다음  10 20 30 40 endpage, pagecount -->
        
   <c:if test="${endpage<pagecount}">
-   <a href="noticemglist.do?pageNum=${startpage+10}">[다음]</a>
+   <a href="schedulemglist.do?pageNum=${startpage+10}">[다음]</a>
   </c:if>
   
    </td>

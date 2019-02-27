@@ -138,8 +138,8 @@
          <div class="login_info_middle">
           <ul class="login_info_middle_center">
            <li><a class="item1" href="mypage.do"></a></li>
-           <li><a class="item2" href="noticemglist.do"></a></li>
-           <li><a class="item3" href="#"></a></li>
+           <li><a class="item2" href="reservdetails.do"></a></li>
+           <li><a class="item3" href="msmglist.do"></a></li>
           </ul>
          </div>
          <div class="login_info_bottom">

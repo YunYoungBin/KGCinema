@@ -1209,5 +1209,4 @@ public class AdminController {
 	  return "redirect:/theatermglist.do";
 	}//end	
 	
-	
 }

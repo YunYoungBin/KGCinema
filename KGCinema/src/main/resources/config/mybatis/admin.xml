@@ -114,4 +114,19 @@
 	<update id="theaterEdit" parameterType="com.kg.cinema.theater.Theaterbean">
 	 update theater set t_theater=#{t_theater},t_juso1=#{t_juso1},t_juso2=#{t_juso2} where t_no=#{t_no}
 	</update>		
+	
+	<!-- theater -->
+   	<insert id="screenInsert">
+	  insert into screen(s_no,s_theater,s_scrno,s_type,s_seatcnt,s_seatstyle,s_price)
+	  values(screen_seq.nextval,#{s_theater},#{s_scrno},#{s_type},#{s_seatcnt},#{s_seatstyle},#{s_price})
+	</insert>
+	
+	<delete id="screenDelete" parameterType="int">
+	  delete from screen where s_no = #{s_no} 
+	</delete>
+	
+	<update id="screenEdit" parameterType="com.kg.cinema.screen.Screenbean">
+	 update screen set s_theater=#{s_theater},s_scrno=#{s_scrno},s_type=#{s_type},s_seatcnt=#{s_setcnt},
+	 s_setstyle=#{s_setstyle},s_price=#{s_price} where s_no=#{s_no}
+	</update>			
 </mapper>

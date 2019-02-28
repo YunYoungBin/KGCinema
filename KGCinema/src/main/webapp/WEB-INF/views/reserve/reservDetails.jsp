@@ -103,7 +103,7 @@
 		  <span class="thum"><img src="./resources/images/gg.jpg" alt="극한직업"></span>
 		   <dl class="kgCimema_cont">
 		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영호관</dt> <dd><span>강남 1관</span></dd>
+			<dt>관람영화관/관</dt> <dd><span>강남 1관</span></dd>
 			<dt>예매내역</dt> <dd>극한직업(디지털)</dd>
 			<dt>관람인원/좌석</dt> <dd>성인2명 / A10 A11</dd>
 			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
@@ -116,7 +116,7 @@
 		  <span class="thum"><img src="./resources/images/gg.jpg" alt="극한직업"></span>
 		   <dl class="kgCimema_cont">
 		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영호관</dt> <dd><span>강남 1관</span></dd>
+			<dt>관람영화관/관</dt> <dd><span>강남 1관</span></dd>
 			<dt>예매내역</dt> <dd>극한직업(디지털)</dd>
 			<dt>관람인원/좌석</dt> <dd>성인2명 / A10 A11</dd>
 			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
@@ -132,7 +132,7 @@
 		  <span class="thum"><img src="./resources/images/movie_list_2.jpg" alt="극한직업"></span>
 		   <dl class="kgCimema_cont">
 		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영호관</dt> <dd><span>강남 2관</span></dd>
+			<dt>관람영화관/관</dt> <dd><span>강남 2관</span></dd>
 			<dt>예매내역</dt> <dd>아쿠아맨(디지털)</dd>
 			<dt>관람인원/좌석</dt> <dd>성인2명 / B13 A14</dd>
 			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
@@ -144,7 +144,7 @@
 		  <span class="thum"><img src="./resources/images/movie_list_2.jpg" alt="극한직업"></span>
 		   <dl class="kgCimema_cont">
 		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영호관</dt> <dd><span>강남 2관</span></dd>
+			<dt>관람영화관/관</dt> <dd><span>강남 2관</span></dd>
 			<dt>예매내역</dt> <dd>아쿠아맨(디지털)</dd>
 			<dt>관람인원/좌석</dt> <dd>성인2명 / B13 A14</dd>
 			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
@@ -159,7 +159,7 @@
 		  <span class="thum"><img src="./resources/images/movie_list_3.jpg" alt="극한직업"></span>
 		   <dl class="kgCimema_cont">
 		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영호관</dt> <dd><span>강남 3관</span></dd>
+			<dt>관람영화관/관</dt> <dd><span>강남 3관</span></dd>
 			<dt>예매내역</dt> <dd>범블비(디지털)</dd>
 			<dt>관람인원/좌석</dt> <dd>성인2명 / G02 G03</dd>
 			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
@@ -171,7 +171,7 @@
 		  <span class="thum"><img src="./resources/images/movie_list_3.jpg" alt="극한직업"></span>
 		   <dl class="kgCimema_cont">
 		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영호관</dt> <dd><span>강남 3관</span></dd>
+			<dt>관람영화관/관</dt> <dd><span>강남 3관</span></dd>
 			<dt>예매내역</dt> <dd>범블비(디지털)</dd>
 			<dt>관람인원/좌석</dt> <dd>성인2명 / G02 G03</dd>
 			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>

@@ -10,6 +10,7 @@ import com.kg.cinema.event.Eventbean;
 import com.kg.cinema.movie.Moviebean;
 import com.kg.cinema.notice.Noticebean;
 import com.kg.cinema.schedule.Schedulebean;
+import com.kg.cinema.screen.Screenbean;
 import com.kg.cinema.theater.Theaterbean;
 @Repository
 @Component
@@ -124,5 +125,16 @@ public class AdminDAO {
 	public void TheaterEdit(Theaterbean tdto) {
 		temp.update("admin.theaterEdit",tdto);
 	}//end	
+	
+	//screen
+	public void ScreenInsert(Screenbean srdto) {
+		temp.insert("admin.screenInsert", srdto);
+	}//end
+	public void ScreenDelete(int data) {
+		 temp.delete("admin.screenDelete", data);
+	}//end
+	public void ScreenEdit(Screenbean srdto) {
+		temp.update("admin.screenEdit",srdto);
+	}//end		
 	
 }

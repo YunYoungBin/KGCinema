@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-<title> [movieManagement.jsp]</title>
+<title> [theaterManagement.jsp]</title>
   <style type="text/css">
     html, body {margin: 0;padding: 0;border:0;vertical-align: baseline;}
     * {box-sizing: border-box;font-family: '나눔고딕','NanumGothic','맑은 고딕','Malgun Gothic','돋움',dotum,'Apple SD Gothic Neo',sans-serif;}
@@ -174,8 +174,8 @@
      <td style="border-left-width:0px; border-right-width: 0px;"> ${screen.s_seatstyle} </td>
      <td style="border-left-width:0px; border-right-width: 0px;"> ${screen.s_price} </td>     
      <td style="border-left-width:0px;">
-      <a href="theateredit.do?idx=${screen.s_no}">[수정]</a>
-      <a href="theaterdelete.do?idx=${screen.s_no}">[삭제]</a> 
+      <a href="screenedit.do?idx=${screen.s_no}">[수정]</a>
+      <a href="screendelete.do?idx=${screen.s_no}">[삭제]</a> 
      </td>
    </tr>  
    </c:forEach>

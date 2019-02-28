@@ -38,6 +38,8 @@ import com.kg.cinema.schedule.ScheduleDAO;
 import com.kg.cinema.schedule.Schedulebean;
 import com.kg.cinema.screen.ScreenDAO;
 import com.kg.cinema.screen.Screenbean;
+import com.kg.cinema.seat.SeatDAO;
+import com.kg.cinema.seat.Seatbean;
 import com.kg.cinema.theater.TheaterDAO;
 import com.kg.cinema.theater.Theaterbean;
 
@@ -63,6 +65,8 @@ public class AdminController {
 	TheaterDAO tdao;	
 	@Autowired
 	ScreenDAO srdao;
+	@Autowired
+	SeatDAO stdao;
 	
 	@Autowired
 	private ServletContext  application;
@@ -1162,6 +1166,49 @@ public class AdminController {
 	public String theaterEditSave(Theaterbean tdto) {   		  
 	  adao.TheaterEdit(tdto); 
 	  return "redirect:/theatermglist.do";
-	}//end	
+	}//end
+	
+	//screen
+	@RequestMapping(value = "/screenwrite.do", method = RequestMethod.GET)
+	public ModelAndView screenWrite(HttpServletRequest request) {	
+		ModelAndView mav = new ModelAndView( );
+		List<Theaterbean> tselect=tdao.theaterSelect();
+        List<Seatbean> seatstyle = stdao.seatStyle();
+		mav.addObject("tselect", tselect);
+		mav.addObject("style", seatstyle);
+		mav.setViewName("admin/screenInsert");
+		return mav;
+	}//end
+	
+	@RequestMapping(value = "/screeninsert.do", method = RequestMethod.GET)
+	public String screenInsert(Screenbean srdto) {  
+		adao.ScreenInsert(srdto);
+		return "redirect:/theatermglist.do" ;
+	}//end
+	
+	@RequestMapping(value = "/screendelete.do", method = RequestMethod.GET)
+	public ModelAndView screenDelete(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView( );
+		int data=Integer.parseInt(request.getParameter("idx"));
+		adao.ScreenDelete(data);
+		mav.setViewName("redirect:/theatermglist.do");
+		return mav;
+	}//end		
+	
+	@RequestMapping(value = "/screenedit.do", method = RequestMethod.GET)
+	public ModelAndView screenEdit(HttpServletRequest request) {
+	  ModelAndView mav = new ModelAndView( );
+	  int data=Integer.parseInt(request.getParameter("idx"));
+	  Screenbean srdto=srdao.ScreenDetail(data);
+	  mav.addObject("screen", srdto);
+	  mav.setViewName("admin/theaterEdit");
+	  return mav;
+	}//end
+	
+	@RequestMapping("/screeneditsave.do")
+	public String screenEditSave(Screenbean srdto) {   		  
+	  adao.ScreenEdit(srdto); 
+	  return "redirect:/theatermglist.do";
+	}//end		
 	
 }

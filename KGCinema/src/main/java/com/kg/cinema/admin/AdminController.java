@@ -1097,78 +1097,33 @@ public class AdminController {
 		endpage=startpage+9; //[31]~~~[40]
 		if(endpage > pagecount) {endpage = pagecount;}
 		
-		//screen 
-		
-		int startpage2=1, endpage2=10;
-		String pnum2="";
-		int pageNUM2=1, start2=1,end2=10;
-		int pagecount2=1,temp2=0;
-		String AA2 = "";
-		String BB2 = "";
-		// 검색
-		
-		String skey2="", sval2="", returnpage2="";  
-		skey=request.getParameter("keyfield2");
-		sval=request.getParameter("keyword2"); 
-		if(skey2 == "" || skey2 == null || sval2 == "" || sval2 ==null ) {
-			skey2="s_theater"; sval2="";
-		}
-		  
-		//if(skey.equals("s_theater")) {AA = skey;}
-		  
-		if(skey2.equals("s_theater") && sval2!="") {
-			BB2 = skey2; 
-		}
-		  
-		returnpage2 = "&keyfield2=" + skey2 + "&keyword2=" + sval2;
-		  
-		int SearchTotal2 = srdao.ScreenMgCountSearch(skey2, sval2); //조회갯수
-		    
-		pnum=request.getParameter("pageNum2");
-		if(pnum2=="" || pnum2==null) {pnum2="1";}
-		else {pageNUM2=Integer.parseInt(pnum2);}
-		  
-		//[7클릭] 숫자7을 pageNUM변수가 기억
-		start2=(pageNUM2-1)*10+1;
-		end2=(pageNUM2)*10;
-		  
-		int Gtotal2=srdao.ScreenMgCount(); //레코드전체갯수
-		  
-		if(SearchTotal2%10==0){ pagecount2=SearchTotal2/10; } 
-		else {pagecount2=(SearchTotal2/10)+1;}
-
-		temp2=(pageNUM2-1)%10;
-		startpage2=pageNUM2-temp2;
-		endpage2=startpage2+9; //[31]~~~[40]
-		if(endpage2 > pagecount2) {endpage2 = pagecount2;}
-		
 		List<Theaterbean> LG=tdao.TheaterMgSelect(start,end,skey,sval);
-		List<Screenbean> sr=srdao.ScreenMgSelect(start2,end2,skey2,sval2);
+		List<Screenbean> sr=srdao.ScreenMgSelect();
 		
 		mav.addObject("theater", LG);
 		mav.addObject("screen", sr);
 		mav.addObject("Gtotal", Gtotal);
-		mav.addObject("Gtotal2", Gtotal2);
+
 		mav.addObject("SearchTotal", SearchTotal);
-		mav.addObject("SearchTotal2", SearchTotal2);
+
 		mav.addObject("startpage", startpage);
-		mav.addObject("startpage2", startpage2);
+
 		mav.addObject("endpage", endpage);
-		mav.addObject("endpage2", endpage2);
+
 		mav.addObject("pagecount", pagecount);
-		mav.addObject("pagecount2", pagecount2);
+
 		mav.addObject("pageNUM", pageNUM);
-		mav.addObject("pageNUM2", pageNUM2);		
+	
 		mav.addObject("returnpage", returnpage);
-		mav.addObject("returnpage2", returnpage2);
+
 		mav.addObject("skey", skey);
-		mav.addObject("skey2", skey2);
+
 		mav.addObject("sval", sval);
-		mav.addObject("sval2", sval2);
+
 		mav.addObject("AA", AA);
-		mav.addObject("AA2", AA2);
+
 		mav.addObject("BB", BB);
-		mav.addObject("BB2", BB2);
+
 		mav.setViewName("admin/theaterManagement");
 		return mav;
 	}		
@@ -1208,6 +1163,5 @@ public class AdminController {
 	  adao.TheaterEdit(tdto); 
 	  return "redirect:/theatermglist.do";
 	}//end	
-	
 	
 }

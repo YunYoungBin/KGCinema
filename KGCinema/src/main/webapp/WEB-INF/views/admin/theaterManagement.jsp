@@ -79,19 +79,19 @@
      <th width=200 style="border-left-width:0px; border-right-width: 0px;">상세주소</th>
      <th width=150 style="border-left-width:0px;">수정/삭제</th>
   </tr>
-   <c:forEach var="theater" items="${theater}">
+   <c:forEach var="t" items="${theater}">
    <tr align="center">
     
 
-   <td style="border-left-width:0px; border-right-width: 0px;">${theater.t_no}</td>
+    <td style="border-left-width:0px; border-right-width: 0px;">${t.rn}</td>
      
     
-     <td style="border-left-width:0px; border-right-width: 0px;"> ${theater.t_theater}  </td>
-     <td style="border-left-width:0px; border-right-width: 0px;"> ${theater.t_juso1} </td>
-     <td style="border-left-width:0px; border-right-width: 0px;"> ${theater.t_juso2} </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${t.t_theater}  </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${t.t_juso1} </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${t.t_juso2} </td>
      <td style="border-left-width:0px;">
-      <a href="theateredit.do?idx=${theater.t_no}">[수정]</a>
-      <a href="theaterdelete.do?idx=${theater.t_no}">[삭제]</a> 
+      <a href="theateredit.do?idx=${t.t_no}">[수정]</a>
+      <a href="theaterdelete.do?idx=${t.t_no}">[삭제]</a> 
      </td>
    </tr>  
    </c:forEach>
@@ -100,7 +100,7 @@
    <td colspan="5">
    
     <c:if test="${startpage>10}">
-     <a href="moviemglist.do?pageNum=${startpage-10}${returnpage}">[이전]</a>
+     <a href="theatermglist.do?pageNum=${startpage-10}${returnpage}">[이전]</a>
     </c:if>
     
     
@@ -110,7 +110,7 @@
            <font style='font-size:15pt; color:red;'>[${i}]</font>
          </c:when>
          <c:otherwise>
-           <a href="moviemglist.do?pageNum=${i}${returnpage}">[${i}]</a> 
+           <a href="theatermglist.do?pageNum=${i}${returnpage}">[${i}]</a> 
          </c:otherwise>
        </c:choose>
     </c:forEach>
@@ -118,7 +118,7 @@
      <!-- 다음  10 20 30 40 endpage, pagecount -->
        
   <c:if test="${endpage<pagecount}">
-   <a href="moviemglist.do?pageNum=${startpage+10}">[다음]</a>
+   <a href="theatermglist.do?pageNum=${startpage+10}">[다음]</a>
   </c:if>
   
    </td>
@@ -141,13 +141,13 @@
   <tr align="right">
      <td colspan="8">
       <form name="myform">
-         <input type="hidden" name="keyfield2" value="${skey2}" >
+         <input type="hidden" name="keyfield" value="${skey}" >
          검색 :
-         <input type="text" name="keyword2"  size=10 value="${sval2}">
+         <input type="text" name="keyword"  size=10 value="${sval}">
          <input type="submit" value="검 색 "> 
          
       </form>
-      
+     </td>  
   </tr>
    
    
@@ -164,7 +164,7 @@
    <c:forEach var="screen" items="${screen}">
    <tr align="center">
     
-   <td style="border-left-width:0px; border-right-width: 0px;">${screen.s_no}</td>
+   <td style="border-left-width:0px; border-right-width: 0px;">${screen.s_rn}</td>
      
     
      <td style="border-left-width:0px; border-right-width: 0px;"> ${screen.s_theater}  </td>
@@ -180,33 +180,6 @@
    </tr>  
    </c:forEach>
    
-  <tr align="center">
-   <td colspan="8">
-   
-    <c:if test="${startpage2>10}">
-     <a href="moviemglist.do?pageNum=${startpage2-10}${returnpage2}">[이전]</a>
-    </c:if>
-    
-    
-    <c:forEach var="i" begin="${startpage2}" end="${endpage2}">
-       <c:choose>
-         <c:when test="${i==pageNUM2}"> 
-           <font style='font-size:15pt; color:red;'>[${i}]</font>
-         </c:when>
-         <c:otherwise>
-           <a href="moviemglist.do?pageNum=${i}${returnpage2}">[${i}]</a> 
-         </c:otherwise>
-       </c:choose>
-    </c:forEach>
- 
-     <!-- 다음  10 20 30 40 endpage, pagecount -->
-       
-  <c:if test="${endpage2<pagecount2}">
-   <a href="moviemglist.do?pageNum=${startpage2+10}">[다음]</a>
-  </c:if>
-  
-   </td>
-  </tr>
  </table> 
 
 </div>

@@ -12,19 +12,10 @@
 	</select>
 	
 	<select id="screenMgSelectAll"  resultType="com.kg.cinema.screen.Screenbean">	   
-	   select * from (
-	   select rownum s_rn, s.* from
-	   (select * from screen where ${skey2} like '%' || #{sval2,jdbcType=VARCHAR} || '%' order by s_no desc) s
-	   ) where s_rn between #{start2} and #{end2}
+		select * from (
+		select rownum s_rn, s.* from
+	    (select * from screen order by s_no desc) s )
 	</select>
-	
-	<select id="screenMgcountAll" resultType="int">
-	     select count(*)  from screen
-	</select>
-	
-	<select id="screenMgcountAllSearch" parameterType="com.kg.cinema.screen.Screenbean"  resultType="int">
- 	   select  count(*) from screen where ${skey2} like '%' || #{sval2,jdbcType=VARCHAR} || '%'  
- 	</select>	
  	
 	<select id="screenDetail" parameterType="int" resultType="com.kg.cinema.screen.Screenbean">
 	   select * from screen where s_no=#{s_no}

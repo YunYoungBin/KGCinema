@@ -188,6 +188,11 @@ public class ReserveController {
 		out.print(json);
 	}
 	
+	@RequestMapping(value = "/reserve.do", method = RequestMethod.GET)
+	public void reserve_save() {
+		
+	}
+	
 	@RequestMapping(value = "/reservdetails.do", method = RequestMethod.GET)
 	public String reservDetails(Locale locale, Model model) {
 		return "reserve/reservDetails";

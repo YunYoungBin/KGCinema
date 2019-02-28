@@ -31,7 +31,7 @@ $("#btnlogin").click(function() {
 inwon = 0;
 selInwon = 0;
 seat_html = "";
-
+selSeat = "";
 
 // 8명 초과할경우 0으로 초기화
 $(document).ready(function() {
@@ -65,7 +65,7 @@ var BookingSeatDatas = {
 			inwon = Number(adult) + Number(youth);
 			
 			if(inwon < 1) {
-				alert("인원을 먼저 선택해주세요.");
+				alert("인원을 먼저 선택해주세요!.");
 				return;
 			} else if(inwon - selInwon <= 0) {
 				alert("모두 선택하였습니다");
@@ -81,7 +81,8 @@ var BookingSeatDatas = {
 			    $(data).attr("onkeypress","");
 			    selInwon += 1;
 			    // <li data-seat-num="A1">A1</li>
-			    
+			    selSeat += $(data).attr("seatgroup")+$(data).attr("seatno")+',';
+			    $("#r_seat").attr("value",selSeat);
 			    seat_html += '<li data-seat-num=\"'+$(data).attr("seatgroup")+$(data).attr("seatno")+'">'+$(data).attr("seatgroup")+$(data).attr("seatno")+'</li>';
 			    $("#selectedSeatNumbers1").html(seat_html);
 				return;
@@ -121,6 +122,9 @@ var BookingSeatDatas = {
 					    $(data).attr("onblur","");
 					    $(data).attr("onkeypress","");
 					    selInwon += 2;
+					    selSeat += $(data).attr("seatgroup")+$(data).attr("seatno")+',';
+					    selSeat += $("#"+next).attr("seatgroup")+$("#"+next).attr("seatno")+',';
+					    $("#r_seat").attr("value",selSeat);
 						seat_html += '<li data-seat-num=\"'+$(data).attr("seatgroup")+$(data).attr("seatno")+'">'+$(data).attr("seatgroup")+$(data).attr("seatno")+'</li>';
 						seat_html += '<li data-seat-num=\"'+$("#"+next).attr("seatgroup")+$("#"+next).attr("seatno")+'">'+$("#"+next).attr("seatgroup")+$("#"+next).attr("seatno")+'</li>';
 					    $("#selectedSeatNumbers1").html(seat_html);
@@ -142,6 +146,9 @@ var BookingSeatDatas = {
 					    $(data).attr("onblur","");
 					    $(data).attr("onkeypress","");
 					    selInwon += 2;
+					    selSeat += $(data).attr("seatgroup")+$(data).attr("seatno")+',';
+					    selSeat += $("#"+pre).attr("seatgroup")+$("#"+pre).attr("seatno")+',';
+					    $("#r_seat").attr("value",selSeat);
 					    seat_html += '<li data-seat-num=\"'+$(data).attr("seatgroup")+$(data).attr("seatno")+'">'+$(data).attr("seatgroup")+$(data).attr("seatno")+'</li>';
 						seat_html += '<li data-seat-num=\"'+$("#"+pre).attr("seatgroup")+$("#"+pre).attr("seatno")+'">'+$("#"+pre).attr("seatgroup")+$("#"+pre).attr("seatno")+'</li>';
 					    $("#selectedSeatNumbers1").html(seat_html);
@@ -166,6 +173,9 @@ var BookingSeatDatas = {
 					    $(data).attr("onblur","");
 					    $(data).attr("onkeypress","");
 					    selInwon += 2;
+					    selSeat += $(data).attr("seatgroup")+$(data).attr("seatno")+',';
+					    selSeat += $("#"+pre).attr("seatgroup")+$("#"+pre).attr("seatno")+',';
+					    $("#r_seat").attr("value",selSeat);
 					    seat_html += '<li data-seat-num=\"'+$(data).attr("seatgroup")+$(data).attr("seatno")+'">'+$(data).attr("seatgroup")+$(data).attr("seatno")+'</li>';
 						seat_html += '<li data-seat-num=\"'+$("#"+pre).attr("seatgroup")+$("#"+pre).attr("seatno")+'">'+$("#"+pre).attr("seatgroup")+$("#"+pre).attr("seatno")+'</li>';
 					    $("#selectedSeatNumbers1").html(seat_html);
@@ -179,6 +189,8 @@ var BookingSeatDatas = {
 					    $(data).attr("onblur","");
 					    $(data).attr("onkeypress","");
 					    selInwon += 1;
+					    selSeat += $(data).attr("seatgroup")+$(data).attr("seatno")+',';
+					    $("#r_seat").attr("value",selSeat);
 					    seat_html += '<li data-seat-num=\"'+$(data).attr("seatgroup")+$(data).attr("seatno")+'">'+$(data).attr("seatgroup")+$(data).attr("seatno")+'</li>';
 					    $("#selectedSeatNumbers1").html(seat_html);
 					}
@@ -192,6 +204,8 @@ var BookingSeatDatas = {
 				    $(data).attr("onblur","");
 				    $(data).attr("onkeypress","");
 				    selInwon += 1;
+				    selSeat += $(data).attr("seatgroup")+$(data).attr("seatno")+',';
+				    $("#r_seat").attr("value",selSeat);
 				    seat_html += '<li data-seat-num=\"'+$(data).attr("seatgroup")+$(data).attr("seatno")+'">'+$(data).attr("seatgroup")+$(data).attr("seatno")+'</li>';
 				    $("#selectedSeatNumbers1").html(seat_html);
 				}
@@ -327,6 +341,9 @@ var BookingSeatDatas = {
 					    $("#seat_"+group+"_"+no+"_10").attr("onclick","BookingSeatDatas.checkSeat(this)");
 					    $("#seat_"+group+"_"+no+"_10").attr("onkeypress","BookingSeatDatas.seatMouseOver(\"seat_"+$("#seat_"+group+"_"+no+"_10").attr("seatgroup")+"_"+$("#seat_"+group+"_"+no+"_10").attr("seatno")+"_10\")");
 					    selInwon -= 2;
+					    var delSeat = $("#seat_"+group+"_"+no+"_10").attr("seatgroup")+$("#seat_"+group+"_"+no+"_10").attr("seatno")+',';
+					    selSeat += $(data).attr("seatgroup")+$(data).attr("seatno")+',';
+					    $("#r_seat").attr("value",selSeat);
 					    var del1 = '<li data-seat-num=\"'+$("#seat_"+group+"_"+no+"_10").attr("seatgroup")+$("#seat_"+group+"_"+no+"_10").attr("seatno")+'">'+$("#seat_"+group+"_"+no+"_10").attr("seatgroup")+$("#seat_"+group+"_"+no+"_10").attr("seatno")+'</li>';
 					    var del2 = '<li data-seat-num=\"'+$("#"+next).attr("seatgroup")+$("#"+next).attr("seatno")+'">'+$("#"+next).attr("seatgroup")+$("#"+next).attr("seatno")+'</li>';
 					    seat_html = seat_html.replace(del1,'');

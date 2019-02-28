@@ -188,4 +188,9 @@ public class ReserveController {
 		out.print(json);
 	}
 	
+	@RequestMapping(value = "/reservdetails.do", method = RequestMethod.GET)
+	public String reservDetails(Locale locale, Model model) {
+		return "reserve/reservDetails";
+	}//end
+	
 }

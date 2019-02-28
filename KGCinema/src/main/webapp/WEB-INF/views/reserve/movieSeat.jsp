@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="./resources/demos/style.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="./resources/js/Reserve2.js"></script>
+    <script src="./resources/js/Reserve.js"></script>
     
     
   <style type="text/css">
@@ -126,10 +126,23 @@
   </style>
 </head>
 <body onload="reserveCheck()">
+	<c:set var="timefmt"><fmt:formatDate value="${sbean.starthour }" pattern="yyyy-MM-dd HH:mm" /></c:set>
+	<form name="reserveForm" action="reserve.do" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="r_theater" value="${sbean.theater }">
+		<input type="hidden" name="r_scrno" value="${sbean.scrno }">
+		<input type="hidden" name="r_id" value="${bean.j_id }">
+		<input type="hidden" name="r_title" value="${mbean.m_title }">
+		<input type="hidden" name="r_type" value="${mbean.m_type }">
+		<input type="hidden" name="r_start" value="${timefmt }">
+		<input type="hidden" name="r_grade" value="${mbean.m_grade }">
+		<input type="hidden" name="r_inwon" value="">
+		<input type="hidden" name="r_seat" class="r_seat" id="r_seat" value="">
+		<input type="hidden" name="r_price" value="">
+	</form>
    <div class="bin"></div>
    <input type="hidden" name="theaterTemp" class="theaterTemp" id="theaterTemp" value="${sbean.theater }">
    <input type="hidden" name="scrnoTemp" class="scrnoTemp" id="scrnoTemp" value="${sbean.scrno }">
-   <c:set var="timefmt"><fmt:formatDate value="${sbean.starthour }" pattern="yyyy-MM-dd HH:mm" /></c:set>
+   
    <input type="hidden" name="timeTemp" class="timeTemp" id ="timeTemp" value="${timefmt}">
    <div class="modal booking_lp booking_lp2 in" id="select_seat" style="display:block;">
     <div class="wrapper">
@@ -233,12 +246,12 @@
          </li>
         </ul>
         <ul class="seat" id="selectedSeatNumbers1">
-        	<li data-seat-num="A1">A1</li>
+        	
         </ul>
         </div>
         <p class="price"><strong id="ticketTotalPrice">0</strong> 원</p>
         <div class="pay_final_wrp">
-         <button type="button" class="img_btn booking prev">이전</button>
+         <button type="button" onclick="history.back();" class="img_btn booking prev">이전</button>
         <button type="button" class="img_btn booking next">다음</button>
            </div>
         </div>

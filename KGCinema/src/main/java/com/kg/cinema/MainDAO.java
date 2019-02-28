@@ -32,4 +32,19 @@ public class MainDAO {
 		Mainbean msdto=temp.selectOne("main.mainSlideDetail",data);
 		return msdto;
 	}//end	
+
+	public List<Mainbean> MainEventSelect() {
+		List<Mainbean> list = temp.selectList("main.mainEventSelectAll");
+		return list;
+	}	
+	public Mainbean MainEventDetail(int data) {
+		Mainbean medto=temp.selectOne("main.mainEventDetail",data);
+		return medto;
+	}//end		
+	public Mainbean MainEventDetail2(String me_no){
+		Mainbean medto = new Mainbean();
+		medto.setMe_no(Integer.parseInt(me_no));
+		medto = temp.selectOne("main.mainEventDetail",medto);
+		return medto;
+	}		
 }

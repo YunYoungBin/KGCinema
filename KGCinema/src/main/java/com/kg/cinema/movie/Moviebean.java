@@ -1,6 +1,7 @@
 package com.kg.cinema.movie;
 import org.springframework.web.multipart.MultipartFile;
 public class Moviebean {
+   //무비
    private int m_no;
    private String m_title;
    private String m_subtitle;
@@ -35,6 +36,16 @@ public class Moviebean {
    
    private int start, end;
    private String skey,sval;
+   
+   //무비슬라이드
+   private int mvs_rn;
+   private int mvs_no;
+   private java.util.Date mvs_date;
+   private String mvs_file;
+   private String mvs_video;
+   
+   private MultipartFile upload_file;
+   private MultipartFile upload_video;
    
    
    public String getUpload_premiere() {
@@ -217,6 +228,50 @@ public class Moviebean {
 	public void setM_audience(String m_audience) {
 		this.m_audience = m_audience;
 	}
+	public int getMvs_no() {
+		return mvs_no;
+	}
+	public void setMvs_no(int mvs_no) {
+		this.mvs_no = mvs_no;
+	}
+	public java.util.Date getMvs_date() {
+		return mvs_date;
+	}
+	public void setMvs_date(java.util.Date mvs_date) {
+		this.mvs_date = mvs_date;
+	}
+	public String getMvs_file() {
+		return mvs_file;
+	}
+	public void setMvs_file(String mvs_file) {
+		this.mvs_file = mvs_file;
+	}
+	public String getMvs_video() {
+		return mvs_video;
+	}
+	public void setMvs_video(String mvs_video) {
+		this.mvs_video = mvs_video;
+	}
+	public MultipartFile getUpload_file() {
+		return upload_file;
+	}
+	public void setUpload_file(MultipartFile upload_file) {
+		this.upload_file = upload_file;
+	}
+	public MultipartFile getUpload_video() {
+		return upload_video;
+	}
+	public void setUpload_video(MultipartFile upload_video) {
+		this.upload_video = upload_video;
+	}
+	public int getMvs_rn() {
+		return mvs_rn;
+	}
+	public void setMvs_rn(int mvs_rn) {
+		this.mvs_rn = mvs_rn;
+	}
+	
+	
    
    
    

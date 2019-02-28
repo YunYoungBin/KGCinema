@@ -10,10 +10,10 @@
 <title>movieReserve.jsp</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script src="./slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick-theme.css">
-    <link href="css/agency.min.css" rel="stylesheet">
+    <script src="./resources/slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick-theme.css">
+    <link href="./resources/css/agency.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="./resources/demos/style.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -63,6 +63,9 @@
     #select_seat .seat_body .left_wrap .row3 .place .seat_wrap .seat_position span, #select_pay .seat_body .left_wrap .row3 .place .seat_wrap .seat_position span{position: absolute;display: block;
     float: none;width: 16px;height: 16px;margin: 0;padding: 0;border: 0;color: #fff;overflow: hidden;font-size: 11px;font-family: tahoma,dotum,sans-serif;cursor: default !important;
     text-align: center;}
+    #select_seat .seat_body .left_wrap .row3 .place .seat_wrap .seat_position .seat_done, #select_pay .seat_body .left_wrap .row3 .place .seat_wrap .seat_position .seat_done{text-indent: -9999px;
+    background-position: 50% -27px;
+    background-color: #ccc;}
     #select_seat .seat_body .left_wrap .row3 .place .seat_wrap .seat_position .line, #select_pay .seat_body .left_wrap .row3 .place .seat_wrap .seat_position .line{border: 1px solid #c2c2c2;background: #f9f9f9;
     font-weight: 700;text-align: center;color: #333;}
     #select_seat .seat_body .left_wrap .row3 .place .seat_wrap .seat_position button, #select_pay .seat_body .left_wrap .row3 .place .seat_wrap .seat_position button{position: absolute;display: block;
@@ -95,7 +98,7 @@
     #select_seat .seat_body .right_wrap .row2 ul.info li, #select_pay .seat_body .right_wrap .row2 ul.info li{padding-left: 8px;margin-bottom: 5px;font-size: 11px;color: #fff;
     background: url(http://image2.megabox.co.kr/mop/home/movie/bg_seat.png) -150px 2px no-repeat;}
     #select_seat .seat_body .right_wrap .row2 ul.seat, #select_pay .seat_body .right_wrap .row2 ul.seat{margin: 8px 0 0 -7px;overflow: hidden;}
-    #select_seat .seat_body .right_wrap .row2 ul.seat, #select_pay .seat_body .right_wrap .row2 ul.seat li{
+    #select_seat .seat_body .right_wrap .row2 ul.seat li{
     	margin-left: 7px;
     	margin-bottom: 3px;
     	float: left;
@@ -122,9 +125,25 @@
     #select_seat .seat_cant{background: url(http://image2.megabox.co.kr/mop/home/seatselect_160912.png) 0 0 no-repeat;background-position: 50% -54px;background-color: #ccc;}
   </style>
 </head>
-<body>
+<body onload="reserveCheck()">
+	<c:set var="timefmt"><fmt:formatDate value="${sbean.starthour }" pattern="yyyy-MM-dd HH:mm" /></c:set>
+	<form name="reserveForm" action="reserve.do" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="r_theater" value="${sbean.theater }">
+		<input type="hidden" name="r_scrno" value="${sbean.scrno }">
+		<input type="hidden" name="r_id" value="${bean.j_id }">
+		<input type="hidden" name="r_title" value="${mbean.m_title }">
+		<input type="hidden" name="r_type" value="${mbean.m_type }">
+		<input type="hidden" name="r_start" value="${timefmt }">
+		<input type="hidden" name="r_grade" value="${mbean.m_grade }">
+		<input type="hidden" name="r_inwon" value="">
+		<input type="hidden" name="r_seat" class="r_seat" id="r_seat" value="">
+		<input type="hidden" name="r_price" value="">
+	</form>
    <div class="bin"></div>
+   <input type="hidden" name="theaterTemp" class="theaterTemp" id="theaterTemp" value="${sbean.theater }">
+   <input type="hidden" name="scrnoTemp" class="scrnoTemp" id="scrnoTemp" value="${sbean.scrno }">
    
+   <input type="hidden" name="timeTemp" class="timeTemp" id ="timeTemp" value="${timefmt}">
    <div class="modal booking_lp booking_lp2 in" id="select_seat" style="display:block;">
     <div class="wrapper">
      <div class="contents">
@@ -159,18 +178,26 @@
            <div id="seatPositionList" class="seat_position" style="width: 453px;height: 250px;">
             <span class="exit top" style="width: 28px;height: 17px;top: 252px;left: 61px;"></span>
             <span class="exit left" style="width: 17px;height: 28px;top:-18px; left:-33px;background-position: 0 -50px;"></span>
+            <c:set var="flag">true</c:set>
+            <c:set var="spanFlag">Z</c:set>
             <c:forEach var="bean" items="${seatbean}">
+            	<c:choose>
+            		<c:when test="${spanFlag ne bean.seatgroup}">
+            			<span class="line line_a" style="left:0px; top: ${bean.top}px;">${bean.seatgroup }</span>
+            			<c:set var="spanFlag">bean.seatgroup</c:set>
+            		</c:when>
+            	</c:choose>
             	
-            		<span class="line line_a" style="left:0px; top: ${bean.top}px;">${bean.seatgroup }</span>
-            	
+
             	<button type="button" title="${bean.seatgroup}${bean.seatno}(일반석)" id="seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}" class="seat_normal" 
-seatgroup="${bean.seatgroup}" seatno="${bean.seatno}" seattype="${bean.seattype}" 
-popupyn="N" seatlinecnt="" 
-style="width: 16px; height: 16px; left: ${bean.left}px ; top: ${bean.top}px;"  
-onmouseover="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
-onmouseout="BookingSeatDatas.seatMouseOut(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
-onclick="BookingSeatDatas.checkSeat(this)" onkeyup="" onblur="" 
-onkeypress="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)">${bean.seatno}</button>
+				seatgroup="${bean.seatgroup}" seatno="${bean.seatno}" seattype="${bean.seattype}" 
+				popupyn="N" seatlinecnt="" 
+				style="width: 16px; height: 16px; left: ${bean.left}px ; top: ${bean.top}px;"  
+				onmouseover="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
+				onmouseout="BookingSeatDatas.seatMouseOut(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
+				onclick="BookingSeatDatas.checkSeat(this)" onkeyup="" onblur="" 
+				onkeypress="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)">${bean.seatno}</button>
+            		
             </c:forEach>
             
             
@@ -219,12 +246,12 @@ onkeypress="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.s
          </li>
         </ul>
         <ul class="seat" id="selectedSeatNumbers1">
-        	<li data-seat-num="A1">A1</li>
+        	
         </ul>
         </div>
         <p class="price"><strong id="ticketTotalPrice">0</strong> 원</p>
         <div class="pay_final_wrp">
-         <button type="button" class="img_btn booking prev">이전</button>
+         <button type="button" onclick="history.back();" class="img_btn booking prev">이전</button>
         <button type="button" class="img_btn booking next">다음</button>
            </div>
         </div>

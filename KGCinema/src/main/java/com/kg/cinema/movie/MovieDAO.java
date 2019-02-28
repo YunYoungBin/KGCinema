@@ -2,10 +2,19 @@ package com.kg.cinema.movie;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.kg.cinema.Mainbean;
+import com.kg.cinema.event.Eventbean;
+import com.kg.cinema.notice.Noticebean;
 
 @Repository
 @Component
@@ -62,5 +71,21 @@ public class MovieDAO {
 		int cnt=(Integer)temp.selectOne("movie.movieMgcountAllSearch" , dto);
 		return cnt;
 	}//end	
-
+	
+	public Moviebean movieSlideDetail(int data) {
+		Moviebean mvsdto=temp.selectOne("movie.movieSlideDetail",data);
+		return mvsdto;
+	}//end	
+	
+	public List<Moviebean> MovieSlideSelect() {
+		List<Moviebean> list = temp.selectList("movie.movieSlideSelectAll");
+		return list;
+	}
+	
+	public Moviebean VideoPopUp(String mvs_no) {
+		Moviebean mvsdto = new Moviebean();
+		mvsdto.setMvs_no(Integer.parseInt(mvs_no));
+		mvsdto=temp.selectOne("movie.movieSlideDetail",mvsdto);
+		return mvsdto;
+	}//end	
 }

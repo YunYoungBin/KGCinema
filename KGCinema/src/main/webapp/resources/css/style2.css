@@ -41,7 +41,7 @@
     text-decoration: none;  /* 밑줄 제거 */
     color: white;   
     display: block;   /* A 관련 영역 전부 링크 설정 */
-    width: 120px;
+    width: 100px;
     font-weight: bold;
     font-family:  Segoe UI Symbol , comic Sans MS ; 
     font-size: 10pt;

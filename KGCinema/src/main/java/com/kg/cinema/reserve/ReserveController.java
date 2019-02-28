@@ -1,6 +1,9 @@
 package com.kg.cinema.reserve;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -8,6 +11,7 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -62,6 +66,10 @@ public class ReserveController {
 	@Inject
 	@Autowired
 	SeatDAO seatdao;
+	
+	@Inject
+	@Autowired
+	ReserveDAO rdao;
 	
 	@RequestMapping(value = "/reserveMain.do", method = RequestMethod.GET)
 	public ModelAndView reserve_main(HttpServletRequest request) {
@@ -159,5 +167,35 @@ public class ReserveController {
 		mav.setViewName("reserve/movieSeat");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/seatReserveCheck.do", method = RequestMethod.GET)
+	public void reserve_check(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();
+		String theater = request.getParameter("theater");
+		String scrno = request.getParameter("scrno");
+		String start = request.getParameter("start");
+		
+		List<Reservebean> reserveList = rdao.reserveSelect(theater, scrno, start);
+		
+		StringBuilder sb = new StringBuilder();
+		for(Reservebean bean : reserveList) {
+			String[] book = bean.getR_seat().split(",");
+			for(int i = 0; i < book.length; i++) {
+				sb.append(book[i]+",");
+			}
+		}
+		String json = "{\"reserveSeat\":\""+sb.toString()+"\"}";
+		out.print(json);
+	}
+	
+	@RequestMapping(value = "/reserve.do", method = RequestMethod.GET)
+	public void reserve_save() {
+		
+	}
+	
+	@RequestMapping(value = "/reservdetails.do", method = RequestMethod.GET)
+	public String reservDetails(Locale locale, Model model) {
+		return "reserve/reservDetails";
+	}//end
 	
 }

@@ -6,6 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+    div{margin:0;padding:0;}
+</style>
 <title>eventManagement</title>
     <script src="./resources/js/Event4.js"></script>
 	<link rel="stylesheet" href="./resources/css/magnific-popup.css">

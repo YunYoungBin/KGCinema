@@ -133,7 +133,7 @@
 		<input type="hidden" name="r_id" value="${bean.j_id }">
 		<input type="hidden" name="r_title" value="${mbean.m_title }">
 		<input type="hidden" name="r_type" value="${mbean.m_type }">
-		<input type="hidden" name="r_start" value="${timefmt }">
+		<input type="hidden" name="date" value="${timefmt }">
 		<input type="hidden" name="r_grade" value="${mbean.m_grade }">
 		<input type="hidden" name="r_inwon" class="r_inwon" id="r_inwon" value="">
 		<input type="hidden" name="r_seat" class="r_seat" id="r_seat" value="">
@@ -178,13 +178,13 @@
            <div id="seatPositionList" class="seat_position" style="width: 453px;height: 250px;">
             <span class="exit top" style="width: 28px;height: 17px;top: 252px;left: 61px;"></span>
             <span class="exit left" style="width: 17px;height: 28px;top:-18px; left:-33px;background-position: 0 -50px;"></span>
-            <c:set var="flag">true</c:set>
+            
             <c:set var="spanFlag">Z</c:set>
             <c:forEach var="bean" items="${seatbean}">
             	<c:choose>
             		<c:when test="${spanFlag ne bean.seatgroup}">
             			<span class="line line_a" style="left:0px; top: ${bean.top}px;">${bean.seatgroup }</span>
-            			<c:set var="spanFlag">bean.seatgroup</c:set>
+            			<c:set var="spanFlag">${bean.seatgroup}</c:set>
             		</c:when>
             	</c:choose>
             	
@@ -242,7 +242,7 @@
          <li>${sbean.theater }<br>${sbean.scrno }</li>
          <li><fmt:formatDate value="${sbean.starthour }" pattern="yyyy. MM. dd (E)"/> <fmt:formatDate value="${sbean.starthour }" pattern="HH:mm"/></li>
          <li id="countSelectedByTicket">
-         	<span>일반 2명&nbsp;</span>
+         	<!-- <span>일반 2명&nbsp;</span> -->
          </li>
         </ul>
         <ul class="seat" id="selectedSeatNumbers1">
@@ -252,7 +252,7 @@
         <p class="price"><strong id="ticketTotalPrice">0</strong> 원</p>
         <div class="pay_final_wrp">
          <button type="button" onclick="history.back();" class="img_btn booking prev">이전</button>
-        <button type="button" class="img_btn booking next">다음</button>
+        <button type="button" onclick="test();" class="img_btn booking next">다음</button>
            </div>
         </div>
        </div>

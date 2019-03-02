@@ -188,9 +188,10 @@ public class ReserveController {
 		out.print(json);
 	}
 	
-	@RequestMapping(value = "/reserve.do", method = RequestMethod.GET)
-	public void reserve_save() {
-		
+	@RequestMapping(value = "/reserve.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String reserve_save(Reservebean bean) {
+		rdao.reserveInsert(bean);
+		return "redirect:/reservdetails.do";
 	}
 	
 	@RequestMapping(value = "/reservdetails.do", method = RequestMethod.GET)

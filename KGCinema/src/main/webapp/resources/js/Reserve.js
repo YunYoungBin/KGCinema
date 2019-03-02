@@ -85,7 +85,6 @@ var BookingSeatDatas = {
 			    $("#r_seat").attr("value",selSeat);
 			    seat_html += '<li data-seat-num=\"'+$(data).attr("seatgroup")+$(data).attr("seatno")+'">'+$(data).attr("seatgroup")+$(data).attr("seatno")+'</li>';
 			    $("#selectedSeatNumbers1").html(seat_html);
-			    alert(selSeat);
 				return;
 			} else if(inwon - selInwon != 1) {
 				var px = $(data).attr("style").split(" ")[5].split("px")[0];

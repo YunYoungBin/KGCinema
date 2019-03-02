@@ -135,9 +135,9 @@
 		<input type="hidden" name="r_type" value="${mbean.m_type }">
 		<input type="hidden" name="r_start" value="${timefmt }">
 		<input type="hidden" name="r_grade" value="${mbean.m_grade }">
-		<input type="hidden" name="r_inwon" value="">
+		<input type="hidden" name="r_inwon" class="r_inwon" id="r_inwon" value="">
 		<input type="hidden" name="r_seat" class="r_seat" id="r_seat" value="">
-		<input type="hidden" name="r_price" value="">
+		<input type="hidden" name="r_price" class="r_price" id="r_price" value="">
 	</form>
    <div class="bin"></div>
    <input type="hidden" name="theaterTemp" class="theaterTemp" id="theaterTemp" value="${sbean.theater }">

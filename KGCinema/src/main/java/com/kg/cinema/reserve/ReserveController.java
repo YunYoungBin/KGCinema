@@ -86,13 +86,14 @@ public class ReserveController {
 		String year = String.valueOf(cal.get(Calendar.YEAR));
 		String month = String.valueOf(cal.get(Calendar.MONTH)+1);
 		String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
-		
+		System.out.println(day);
 		if(Integer.parseInt(month) < 10) {
 			month = "0" + month;
-		} else if(Integer.parseInt(day) < 10) {
+		}
+		if(Integer.parseInt(day) < 10) {
 			day = "0" + day;
 		}
-		
+		System.out.println(day);
 		String today = year + "-" + month + "-" + day;
 		
 		

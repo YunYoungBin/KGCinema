@@ -41,7 +41,9 @@ public class SeatController {
 		
 		PrintWriter out = response.getWriter();
 		String seatstyle = request.getParameter("style");
+		System.out.println("seatstyle: " + seatstyle);
 		Seatbean sdto = sdao.SeatCount(seatstyle);
+		System.out.println(sdto.getCount());
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
 		sb.append("\"count\": \"" + sdto.getCount() + "\" " );

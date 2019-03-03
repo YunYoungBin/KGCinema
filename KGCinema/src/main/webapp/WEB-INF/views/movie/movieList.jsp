@@ -22,7 +22,7 @@
     a{text-decoration: none;color: #555;}
     .movie_menu ul li{display: inline-block;}
     .movie_menu ul li >a{display: block;width: 175px;height: 50px;margin-left: 1px;background: #efebdb;color: #6f6247;font-size: 16px;line-height: 50px;text-align: center;}
-    .movie_menu ul li a.on{background: #231f20 url('images/btn_st02_on.gif') no-repeat 0 0;color: #cdc197;font-weight: bold;}
+    .movie_menu ul li a.on{background: #231f20 url('./resources/images/btn_st02_on.gif') no-repeat 0 0;color: #cdc197;font-weight: bold;}
     .movie_list li{width: 230px;height: 411px;margin: 0 0 40px 20px;position: relative;float: left;border: 1px solid #dedede;}
     .img{width: 228px;height: 334px;}
     .img img{width: 228px;height: 334px;}

@@ -118,7 +118,7 @@
       <span> 회원님의 정보를 정확히 입력해주세요. </span>
      </div>
      <div class="personal_info_last">
-      <span class="">마지막 비밀번호 변경 : 2일 전에 함 (2018.12.31)</span>
+      <span class="">마지막 비밀번호 변경 : 2일 전에 함 (2019.02.20)</span>
       <button type="button" class="img_btn mypage personal_change_pw mr6"></button>
       <button type="button" class="img_btn mypage personal_quit"></button>
      </div>

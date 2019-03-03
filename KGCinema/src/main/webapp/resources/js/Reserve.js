@@ -331,9 +331,6 @@ var BookingSeatDatas = {
 				$("#"+data).attr("class","seat_selected");
 			}
 			
-			
-			
-			
 		},
 		
 		seatMouseOut: function(data) {

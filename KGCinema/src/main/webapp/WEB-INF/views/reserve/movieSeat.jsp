@@ -181,22 +181,24 @@
             
             <c:set var="spanFlag">Z</c:set>
             <c:forEach var="bean" items="${seatbean}">
-            	<c:choose>
-            		<c:when test="${spanFlag ne bean.seatgroup}">
-            			<span class="line line_a" style="left:0px; top: ${bean.top}px;">${bean.seatgroup }</span>
-            			<c:set var="spanFlag">${bean.seatgroup}</c:set>
-            		</c:when>
-            	</c:choose>
-            	
 
-            	<button type="button" title="${bean.seatgroup}${bean.seatno}(일반석)" id="seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}" class="seat_normal" 
-				seatgroup="${bean.seatgroup}" seatno="${bean.seatno}" seattype="${bean.seattype}" 
-				popupyn="N" seatlinecnt="" 
-				style="width: 16px; height: 16px; left: ${bean.left}px ; top: ${bean.top}px;"  
-				onmouseover="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
-				onmouseout="BookingSeatDatas.seatMouseOut(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
-				onclick="BookingSeatDatas.checkSeat(this)" onkeyup="" onblur="" 
-				onkeypress="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)">${bean.seatno}</button>
+            	<c:if test="${spanFlag ne bean.seatgroup}">
+            		<span class="line line_a" style="left:0px; top: ${bean.top}px;">${bean.seatgroup }</span>
+           			<c:set var="spanFlag">${bean.seatgroup}</c:set>
+           		</c:if>
+            	
+            	<button type="button" title="${bean.seatgroup}${bean.seatno}(일반석)" 
+	            	id="seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}" 
+	            	class="seat_normal" 
+					seatgroup="${bean.seatgroup}" seatno="${bean.seatno}" seattype="${bean.seattype}" 
+					popupyn="N" seatlinecnt="" 
+					style="width: 16px; height: 16px; left: ${bean.left}px ; top: ${bean.top}px;"  
+					onmouseover="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
+					onmouseout="BookingSeatDatas.seatMouseOut(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
+					onclick="BookingSeatDatas.checkSeat(this)" onkeyup="" onblur="" 
+					onkeypress="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)">
+					${bean.seatno}
+				</button>
             		
             </c:forEach>
             
@@ -229,7 +231,7 @@
        </div>  
        <div id="bookingSelectSeatStatusBoard" class="right_wrap">
         <div class="row1">
-        <img src="http://image2.megabox.co.kr/mop/poster/2018/77/3225A3-9B7F-44F0-9B7F-8657FADF418B.medium.jpg" alt="말모이">
+        <img src="${pageContext.request.contextPath}/resources/storage/${mbean.m_poster}" alt="${mbean.m_title }">
         </div>
         <div class="row2">
         <div class="title">

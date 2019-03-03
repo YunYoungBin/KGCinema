@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>screen.jsp</title>
-<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <style>
  *{margin:0;padding:0;}
@@ -19,20 +19,20 @@
 <script type="text/javascript">
 $(document).on('ready', function() {
 	$("#seatstyle").change(function() {
-		var cnt = this.value;
-		alert(cnt);
+		var style = this.value;
+		alert(style);
 		
 		$.ajax({
 			url:"seatCount.do",
-			data: "cnt="+cnt,
+			data: "style="+style,
 			dataType: "json",
 			type: "GET",
 			success: function(data){
-				$("#seatstyle #p").eq(0).attr("value", + seatstyle);
+				$("#s_seatcnt").eq(0).attr("value", + data.count);
 
 			},//sucess end
 			error: function(data){
-				alert("실패"+data.e_no);
+				alert("실패"+data.seatstyle);
 				console.log(data);
 			}
 		
@@ -83,7 +83,7 @@ $(document).on('ready', function() {
    </td>
   </tr>
   <tr>
-   <td>좌석수</td><td><input type="text" name="s_seatcnt"></td>
+   <td>좌석수</td><td><input id="s_seatcnt" type="text" name="s_seatcnt" value=""></td>
   </tr>
   
  </table>

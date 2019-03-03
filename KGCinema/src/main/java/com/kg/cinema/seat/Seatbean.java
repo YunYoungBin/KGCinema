@@ -9,7 +9,15 @@ public class Seatbean {
 	private int left;
 	private int top;
 	
+	private String count;
 	
+	
+	public String getCount() {
+		return count;
+	}
+	public void setCount(String count) {
+		this.count = count;
+	}
 	public int getSeat_id() {
 		return seat_id;
 	}

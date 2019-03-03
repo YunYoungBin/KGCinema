@@ -11,7 +11,7 @@
 		select distinct seatstyle from seat
 	</select>
 	
-	<select id="seatCount" resultType="com.kg.cinema.seat.Seatbean">
+	<select id="seatCount" resultType="com.kg.cinema.seat.Seatbean" parameterType="int">
 		select  count(*) from seat where seatstyle = #{seatstyle};
 	</select>	
 

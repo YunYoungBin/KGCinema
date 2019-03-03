@@ -16,6 +16,10 @@
     <link href="./resources/css/agency.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="./resources/demos/style.css">
+    <link rel="stylesheet" href="./resources/css/magnific-popup.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="./resources/js/jquery.magnific-popup.js"></script>
+    <script src="./resources/js/LoginPopUp.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./resources/js/Reserve.js"></script>
     
@@ -262,5 +266,51 @@
      </div>
     </div>  
    </div>
+   
+   <div class="login_popup" style="width:380px;margin: 0 auto;">
+    <div class="login_form" style="height: auto;width: 380px;box-shadow: 0 5px 6px rgba(0,0,0,0.5);background-color: #fff;border-radius: 5px;z-index: 1000;position:relative;">
+     <sapn style="display: block;height: 50px;"></sapn>
+     <div class="login_middle" style="padding: 0 33px 0 36px;">
+     <form name="loginForm" method="post" action="login.do">
+      <div>
+       <h4 style="background: url(http://image2.megabox.co.kr/mop/home/btns/socialLogin_bg.png) 0 -8px no-repeat;height: 17px;padding-left: 75px;font-size: 16px;font-weight: 500;margin: 0 0 10px 0;">
+        <sapn style="display: block;overflow: hidden;position: absolute;top: -1000em;left: -1000em;font-size: 16px;font-weight: 500;">KGCINEMA</sapn>로그인
+       </h4>
+       <div style="position: relative;padding-right: 76px;">
+        <input class="id" type="text" id="userid" name="userid" placeholder="아이디" title="아이디입력" maxlength="20">
+        <input class="pw" type="password" id="userpw" name="userpw" placeholder="비밀번호" title="비밀번호입력" maxlength="20">
+        <p style="font-size: 11px;margin: 13px 0;position: relative;color: #503396;">
+         <span style="position:relative;float:left;">
+          <label style="position: relative;z-index:9;font-size: 12px;font-weight: normal;color: #666;margin-bottom: 0;margin-right:5px;">아이디저장</label>
+          <span style="vertical-align: middle;display: inline-block;width: 18px;height: 18px;position: relative;">
+           <input class="chek" type="checkbox" name="keepLogin" title="아이디저장">
+          </span>
+         </span>
+        </p>
+         <input type="submit" id="btnlogin" value="로그인" title="로그인" class="img_login" style="background-image: url(http://image2.megabox.co.kr/mop/home/btns/btn_member.png);">
+       </div>
+      </div>
+      </form>
+          
+      <div class="orline" style="border-top: 1px solid #f2f2f2;margin: 50px 0 20px;">
+       <span style="width: 28px;height: 28px;display: block;margin: -15px 142px 0;text-indent: 9999px;background: url(http://image2.megabox.co.kr/mop/home/btns/socialLogin_bg.png) 0 -80px no-repeat;">or</span>
+      </div>         
+     </div>
+         
+     <div class="join_btn" >
+      <ul>
+       <li><a>ID/PW찾기</a></li>
+       <li><a href="write.do">회원가입</a></li>
+      </ul>
+     </div>
+         
+     <div class="login_bottom">
+      <div>
+       <a><img src="http://mlink-cdn.netinsight.co.kr/2018/03/29/eedd0949a87336fff8bc0d345e2c6bff.jpg" height="80" border="0"></a>
+      </div>
+     </div>       
+    </div>      
+   </div>
+   
 </body>
 </html>

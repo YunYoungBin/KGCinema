@@ -25,7 +25,21 @@
 
 <form name="theaterform" action="theaterinsert.do">
  <table>
-  
+  <tr>
+   <td>지 역</td>
+   <td>
+   <select name="t_location">
+    <option>서울</option>
+    <option>경기</option>
+    <option>인천</option>
+    <option>대전/충청/세종</option>
+    <option>부산/대구/경상</option>
+    <option>광주/전라</option>
+    <option>강원</option>
+    <option>제주</option>
+   </select>
+   </td>
+  </tr>  
   <tr>
    <td>극 장</td><td><input type="text" name="t_theater"></td>
   </tr>

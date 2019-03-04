@@ -40,19 +40,30 @@
   </script>
  </head>
 <body>
-
+<c:if test="${page eq 'screen' }">
+	<c:set var="check">none</c:set>
+    <c:set var="check2">block</c:set>
+    <c:set var="one"></c:set>
+    <c:set var="two">on</c:set>
+</c:if>
+<c:if test="${page == null }">
+	<c:set var="check">block</c:set>
+	<c:set var="check2">none</c:set>
+	<c:set var="one">on</c:set>
+    <c:set var="two"></c:set>
+</c:if>
  <div class="movie_menu" style="width: 900px;margin: 0 auto;padding-top: 40px;">
   <ul style="margin-bottom: 17px;list-style:none;text-align: center;">
-   <li><a id="remove_1" class="on">극장</a></li>
-   <li><a id="remove_2" class="">상영관</a></li>
+   <li><a id="remove_1" class="${one}">극장</a></li>
+   <li><a id="remove_2" class="${two}">상영관</a></li>
   </ul>
    
-<div class="hidden_1" style="display:block;padding-bottom:10px;">
+<div class="hidden_1" style="display:${check};padding-bottom:10px;">
  <p style="text-align:center;margin-bottom:10px;">극장 관리</p>
 
  <table width=900 border=1 cellspacing=0 style="margin:0 auto;">
  <tr align="right">
-  <td colspan="5">
+  <td colspan="6">
   <form action="theaterewrite.do">
        <input type="submit" value="극장 추가">
   </form>
@@ -60,7 +71,7 @@
   </tr>
      </td>
   <tr align="right">
-     <td colspan="5">
+     <td colspan="6">
       <form name="myform">
          <input type="hidden" name="keyfield" value="${skey}" >
          검색 :
@@ -73,8 +84,9 @@
    
    
   <tr align="center">
-     <th width=150 style="border-left-width:0px; border-right-width: 0px;">NO</th> 
-     <th width=150 style="border-left-width:0px; border-right-width: 0px;">극 장</th> 
+     <th width=110 style="border-left-width:0px; border-right-width: 0px;">NO</th> 
+     <th width=120 style="border-left-width:0px; border-right-width: 0px;">지 역</th> 
+     <th width=120 style="border-left-width:0px; border-right-width: 0px;">극 장</th> 
      <th width=300 style="border-left-width:0px; border-right-width: 0px;">주 소</th> 
      <th width=200 style="border-left-width:0px; border-right-width: 0px;">상세주소</th>
      <th width=150 style="border-left-width:0px;">수정/삭제</th>
@@ -85,7 +97,7 @@
 
     <td style="border-left-width:0px; border-right-width: 0px;">${t.rn}</td>
      
-    
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${t.t_location}  </td>
      <td style="border-left-width:0px; border-right-width: 0px;"> ${t.t_theater}  </td>
      <td style="border-left-width:0px; border-right-width: 0px;"> ${t.t_juso1} </td>
      <td style="border-left-width:0px; border-right-width: 0px;"> ${t.t_juso2} </td>
@@ -97,7 +109,7 @@
    </c:forEach>
    
   <tr align="center">
-   <td colspan="5">
+   <td colspan="6">
    
     <c:if test="${startpage>10}">
      <a href="theatermglist.do?pageNum=${startpage-10}${returnpage}">[이전]</a>
@@ -126,7 +138,7 @@
  </table> 
  </div>
   
-<div class="hidden_2" style="display:none;padding-bottom:10px;">
+<div class="hidden_2" style="display:${check2};padding-bottom:10px;">
  <p style="text-align:center;margin-bottom:10px;">상영관 관리</p>
 
  <table width=900 border=1 cellspacing=0 style="margin:0 auto;">

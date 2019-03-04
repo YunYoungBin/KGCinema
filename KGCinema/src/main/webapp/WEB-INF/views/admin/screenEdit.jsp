@@ -43,31 +43,31 @@ $(document).on('ready', function() {
 
 <body>
 
-<form name="screenform" action="screeninsert.do">
+<form name="screenform" action="screeneditsave.do">
  <table>
-  
   <tr>
    <td>지점</td>
+   <input type="hidden" name="s_no" value="${screen.s_no}">
    <td>   
     <select name="s_theater">
     <c:forEach var="t" items="${tselect}"> 
-     <option>${t.t_theater}</option>
+     <option <c:if test="${screen.s_theater eq t.t_theater}">selected</c:if> >${t.t_theater}</option>
     </c:forEach> 
     </select>
    </td>
   </tr>
   <tr>
-   <td>상영관</td><td><input type="text" name="s_scrno"></td>
+   <td>상영관</td><td><input type="text" name="s_scrno" value="${screen.s_scrno}"></td>
   </tr>
   <tr>
    <td>타 입</td>
    <td>
     <select name="s_type">
-     <option>일반관</option>
-     <option>COMFORT</option>
-     <option>TableZone</option>
-     <option>MX</option>
-     <option>THE BOUTIQUE</option>
+     <option <c:if test="${screen.s_type eq '일반관'}">selected</c:if> >일반관</option>
+     <option <c:if test="${screen.s_type eq 'COMFORT'}">selected</c:if> >COMFORT</option>
+     <option <c:if test="${screen.s_type eq 'TableZone'}">selected</c:if> >TableZone</option>
+     <option <c:if test="${screen.s_type eq 'MX'}">selected</c:if> >MX</option>
+     <option <c:if test="${screen.s_type eq 'THE BOUTIQUE'}">selected</c:if> >THE BOUTIQUE</option>
    </select>
    </td>
   </tr>
@@ -77,16 +77,16 @@ $(document).on('ready', function() {
     <select id="seatstyle" name="s_seatstyle">
     <option></option>
     <c:forEach var="s" items="${style}">     
-     <option value="${s.seatstyle}">${s.seatstyle}</option>
+     <option <c:if test="${s.seatstyle eq screen.s_seatstyle}">selected</c:if> >${s.seatstyle}</option>
     </c:forEach> 
    </select>
    </td>
   </tr>
   <tr>
-   <td>좌석수</td><td><input id="s_seatcnt" type="text" name="s_seatcnt" value="" readonly></td>
+   <td>좌석수</td><td><input id="s_seatcnt" type="text" name="s_seatcnt" value="${screen.s_seatcnt}" readonly></td>
   </tr>
   <tr>
-   <td>가격</td><td><input type="text" name="s_price"></td>
+   <td>가격</td><td><input type="text" name="s_price" value="${screen.s_price}"></td>
   </tr>  
   
  </table>

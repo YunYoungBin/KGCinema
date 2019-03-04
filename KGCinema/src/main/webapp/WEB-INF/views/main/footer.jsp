@@ -19,7 +19,7 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark" style="width:100%;margin-bottom: 0px;">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+        <p class="m-0 text-center text-white">Copyright &copy; KGCINEMA Corp. All Rights Reserved.</p>
       </div>
     </footer>
 </body>

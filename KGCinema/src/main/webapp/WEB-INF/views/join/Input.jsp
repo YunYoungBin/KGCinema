@@ -24,7 +24,7 @@
 
 	$(document).ready(function(){
 		$('#checkBtn').click(function(){
-			var id_reg = /^[a-z]+[a-z0-9]{5,14}/;//첫번째영문자 부터 영문자와 숫자 6-20자
+			var id_reg = /^[a-z]+[a-z0-9]{5,14}/;
 			if(id_reg.test($('#checkId').val())==false){
 				alert("영문과 숫자 6-15자를 입력하세요");
 				$('#checkId').val("");

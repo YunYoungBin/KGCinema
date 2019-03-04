@@ -28,11 +28,10 @@ public class SeatDAO {
 		return list;
 	}	
 	
-	public Seatbean SeatCount(String seatcnt) {
-		Seatbean sdto = new Seatbean();
-		sdto.setSeatstyle(Integer.parseInt(seatcnt));
-		sdto=temp.selectOne("seat.seatCount", sdto);
-		return sdto;
+	public int SeatCount(String seatstyle) {
+		System.out.println("seatstyleDAO: " + seatstyle);
+		int count =temp.selectOne("seat.seatCount", seatstyle);
+		return count;
 	}//end
 
 

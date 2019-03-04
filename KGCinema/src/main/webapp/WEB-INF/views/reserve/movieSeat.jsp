@@ -21,7 +21,7 @@
     <script src="./resources/js/jquery.magnific-popup.js"></script>
     <script src="./resources/js/LoginPopUp.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="./resources/js/Reserve.js"></script>
+    <script src="./resources/js/Reserve0.js"></script>
     
     
   <style type="text/css">
@@ -146,8 +146,8 @@
    <div class="bin"></div>
    <input type="hidden" name="theaterTemp" class="theaterTemp" id="theaterTemp" value="${sbean.theater }">
    <input type="hidden" name="scrnoTemp" class="scrnoTemp" id="scrnoTemp" value="${sbean.scrno }">
-   
    <input type="hidden" name="timeTemp" class="timeTemp" id ="timeTemp" value="${timefmt}">
+   <input type="hidden" name="priceTemp" class="priceTemp" id="priceTemp" value="${price }">
    <div class="modal booking_lp booking_lp2 in" id="select_seat" style="display:block;">
     <div class="wrapper">
      <div class="contents">

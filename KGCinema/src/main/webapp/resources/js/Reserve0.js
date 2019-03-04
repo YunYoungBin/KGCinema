@@ -42,6 +42,7 @@ $(document).ready(function() {
 	$("#ticketTypeCode_01").change(function() {
 		var adult = this.value;
 		var youth = $("#ticketTypeCode_02").val();
+		var scrPrice = document.getElementById("priceTemp").value;
 		if((Number(adult)+Number(youth)) > 8) {
 			alert("인원선택은 총 8명까지 가능합니다.");
 			this.value = 0;
@@ -52,18 +53,18 @@ $(document).ready(function() {
 				inwon_html = '<span>일반 '+adult+'명&nbsp;</span>';
 				inwon_html += '<span>청소년 '+youth+'명&nbsp;</span>';
 				$("#countSelectedByTicket").html(inwon_html);
-				price = adult * 10000;
-				price += youth * 8000;
+				price = adult * scrPrice;
+				price += youth * (scrPrice - 2000);
 				inwonStr = '일반 '+adult+'명, 청소년 '+youth+'명';
 			} else if(adult == 0 && youth != 0) {
 				inwon_html = '<span>청소년 '+youth+'명&nbsp;</span>';
 				$("#countSelectedByTicket").html(inwon_html);
-				price = youth * 8000;
+				price = youth * (scrPrice - 2000);
 				inwonStr = '청소년 '+youth+'명';
 			} else if(youth == 0 && adult !=0) {
 				inwon_html = '<span>일반 '+adult+'명&nbsp;</span>';
 				$("#countSelectedByTicket").html(inwon_html);
-				price = adult * 10000;
+				price = adult * scrPrice;
 				inwonStr = '일반 '+adult+'명';
 			} else {
 				inwon_html = '';
@@ -87,6 +88,7 @@ $(document).ready(function() {
 	$("#ticketTypeCode_02").change(function() {
 		var youth = this.value;
 		var adult = $("#ticketTypeCode_01").val();
+		var scrPrice = document.getElementById("priceTemp").value;
 		if((Number(youth)+Number(adult)) > 8) {
 			alert("인원선택은 총 8명까지 가능합니다.");
 			this.value = 0;
@@ -97,18 +99,18 @@ $(document).ready(function() {
 				inwon_html = '<span>일반 '+adult+'명&nbsp;</span>';
 				inwon_html += '<span>청소년 '+youth+'명&nbsp;</span>';
 				$("#countSelectedByTicket").html(inwon_html);
-				price = adult * 10000;
-				price += youth * 8000;
+				price = adult * scrPrice;
+				price += youth * (scrPrice - 2000);
 				inwonStr = '일반 '+adult+'명, 청소년 '+youth+'명';
 			} else if(adult == 0 && youth != 0) {
 				inwon_html = '<span>청소년 '+youth+'명&nbsp;</span>';
 				$("#countSelectedByTicket").html(inwon_html);
-				price = youth * 8000;
+				price = youth * (scrPrice - 2000);
 				inwonStr = '청소년 '+youth+'명';
 			} else if(youth == 0 && adult != 0) {
 				inwon_html = '<span>일반 '+adult+'명&nbsp;</span>';
 				$("#countSelectedByTicket").html(inwon_html);
-				price = adult * 10000;
+				price = adult * scrPrice;
 				inwonStr = '일반 '+adult+'명';
 			} else {
 				inwon_html = '';

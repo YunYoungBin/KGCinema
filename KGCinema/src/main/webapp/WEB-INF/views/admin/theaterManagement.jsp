@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-<title> [movieManagement.jsp]</title>
+<title> [theaterManagement.jsp]</title>
   <style type="text/css">
     html, body {margin: 0;padding: 0;border:0;vertical-align: baseline;}
     * {box-sizing: border-box;font-family: '나눔고딕','NanumGothic','맑은 고딕','Malgun Gothic','돋움',dotum,'Apple SD Gothic Neo',sans-serif;}
@@ -40,7 +40,7 @@
   </script>
  </head>
 <body>
-<c:if test="${page eq 'mvs' }">
+<c:if test="${page eq 'screen' }">
 	<c:set var="check">none</c:set>
     <c:set var="check2">block</c:set>
     <c:set var="one"></c:set>
@@ -54,18 +54,18 @@
 </c:if>
  <div class="movie_menu" style="width: 900px;margin: 0 auto;padding-top: 40px;">
   <ul style="margin-bottom: 17px;list-style:none;text-align: center;">
-   <li><a id="remove_1" class="${one}">영화</a></li>
-   <li><a id="remove_2" class="${two}">영화슬라이드</a></li>
+   <li><a id="remove_1" class="${one}">극장</a></li>
+   <li><a id="remove_2" class="${two}">상영관</a></li>
   </ul>
    
-<div class="hidden_1" style="display: ${check};padding-bottom:10px;">
- <p style="text-align:center;margin-bottom:10px;">영화정보 관리</p>
+<div class="hidden_1" style="display:${check};padding-bottom:10px;">
+ <p style="text-align:center;margin-bottom:10px;">극장 관리</p>
 
  <table width=900 border=1 cellspacing=0 style="margin:0 auto;">
  <tr align="right">
   <td colspan="6">
-  <form action="moviewrite.do">
-       <input type="submit" value="영화 추가">
+  <form action="theaterewrite.do">
+       <input type="submit" value="극장 추가">
   </form>
   </td>
   </tr>
@@ -84,27 +84,26 @@
    
    
   <tr align="center">
-     <th width=150 style="border-left-width:0px; border-right-width: 0px;">NO</th> 
-     <th width=150 style="border-left-width:0px; border-right-width: 0px;">제 목</th> 
-     <th width=450 style="border-left-width:0px; border-right-width: 0px;">타 입</th> 
-     <th width=150 style="border-left-width:0px; border-right-width: 0px;">장 르</th>
-     <th width=150 style="border-left-width:0px; border-right-width: 0px;">개봉일</th>
+     <th width=110 style="border-left-width:0px; border-right-width: 0px;">NO</th> 
+     <th width=120 style="border-left-width:0px; border-right-width: 0px;">지 역</th> 
+     <th width=120 style="border-left-width:0px; border-right-width: 0px;">극 장</th> 
+     <th width=300 style="border-left-width:0px; border-right-width: 0px;">주 소</th> 
+     <th width=200 style="border-left-width:0px; border-right-width: 0px;">상세주소</th>
      <th width=150 style="border-left-width:0px;">수정/삭제</th>
   </tr>
-   <c:forEach var="movie" items="${naver}">
+   <c:forEach var="t" items="${theater}">
    <tr align="center">
     
 
-   <td style="border-left-width:0px; border-right-width: 0px;">${movie.m_rn}</td>
+    <td style="border-left-width:0px; border-right-width: 0px;">${t.rn}</td>
      
-    
-     <td style="border-left-width:0px; border-right-width: 0px;"> ${movie.m_title}  </td>
-     <td style="border-left-width:0px; border-right-width: 0px;"> ${movie.m_type} </td>
-     <td style="border-left-width:0px; border-right-width: 0px;"> ${movie.m_genre} </td>
-     <td style="border-left-width:0px; border-right-width: 0px;"> <fmt:formatDate value="${movie.m_premiere}" pattern="yyyy/MM/dd" /> </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${t.t_location}  </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${t.t_theater}  </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${t.t_juso1} </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${t.t_juso2} </td>
      <td style="border-left-width:0px;">
-      <a href="movieedit.do?idx=${movie.m_no}">[수정]</a>
-      <a href="moviedelete.do?idx=${movie.m_no}">[삭제]</a> 
+      <a href="theateredit.do?idx=${t.t_no}">[수정]</a>
+      <a href="theaterdelete.do?idx=${t.t_no}">[삭제]</a> 
      </td>
    </tr>  
    </c:forEach>
@@ -113,7 +112,7 @@
    <td colspan="6">
    
     <c:if test="${startpage>10}">
-     <a href="moviemglist.do?pageNum=${startpage-10}${returnpage}">[이전]</a>
+     <a href="theatermglist.do?pageNum=${startpage-10}${returnpage}">[이전]</a>
     </c:if>
     
     
@@ -123,7 +122,7 @@
            <font style='font-size:15pt; color:red;'>[${i}]</font>
          </c:when>
          <c:otherwise>
-           <a href="moviemglist.do?pageNum=${i}${returnpage}">[${i}]</a> 
+           <a href="theatermglist.do?pageNum=${i}${returnpage}">[${i}]</a> 
          </c:otherwise>
        </c:choose>
     </c:forEach>
@@ -131,7 +130,7 @@
      <!-- 다음  10 20 30 40 endpage, pagecount -->
        
   <c:if test="${endpage<pagecount}">
-   <a href="moviemglist.do?pageNum=${startpage+10}">[다음]</a>
+   <a href="theatermglist.do?pageNum=${startpage+10}">[다음]</a>
   </c:if>
   
    </td>
@@ -140,41 +139,61 @@
  </div>
   
 <div class="hidden_2" style="display:${check2};padding-bottom:10px;">
- <p style="text-align:center;margin-bottom:10px;">영화슬라이드 관리</p>
+ <p style="text-align:center;margin-bottom:10px;">상영관 관리</p>
 
  <table width=900 border=1 cellspacing=0 style="margin:0 auto;">
  <tr align="right">
-  <td colspan="5">
-  <form action="mvswrite.do">
-  	  <input type="submit" value="영화슬라이드 추가">
-  	 </form>
+  <td colspan="8">
+  <form action="screenwrite.do">
+       <input type="submit" value="상영관 추가">
+  </form>
   </td>
   </tr>
-  	</td>
-      
-  <tr align="center">
-  	<th width=150 style="border-left-width:0px; border-right-width: 0px;">NO</th> 
-  	<th width=225 style="border-left-width:0px; border-right-width: 0px;">이미지</th> 
-  	<th width=225 style="border-left-width:0px; border-right-width: 0px;">동영상</th> 
-  	<th width=150 style="border-left-width:0px; border-right-width: 0px;">등록일</th>
-  	<th width=150 style="border-left-width:0px;">수정/삭제</th>
+     </td>
+  <tr align="right">
+     <td colspan="8">
+      <form name="myform">
+         <input type="hidden" name="keyfield" value="${skey}" >
+         검색 :
+         <input type="text" name="keyword"  size=10 value="${sval}">
+         <input type="submit" value="검 색 "> 
+         
+      </form>
+     </td>  
   </tr>
-   <c:forEach var="mvs" items="${mvs}">
+   
+   
+  <tr align="center">
+     <th width=150 style="border-left-width:0px; border-right-width: 0px;">NO</th> 
+     <th width=150 style="border-left-width:0px; border-right-width: 0px;">극 장</th> 
+     <th width=150 style="border-left-width:0px; border-right-width: 0px;">상영관</th> 
+     <th width=150 style="border-left-width:0px; border-right-width: 0px;">타 입</th>
+     <th width=150 style="border-left-width:0px; border-right-width: 0px;">좌석수</th>
+     <th width=150 style="border-left-width:0px; border-right-width: 0px;">스타일</th>
+     <th width=150 style="border-left-width:0px; border-right-width: 0px;">가격</th>
+     <th width=150 style="border-left-width:0px;">수정/삭제</th>
+  </tr>
+   <c:forEach var="screen" items="${screen}">
    <tr align="center">
     
-
-	<td style="border-left-width:0px; border-right-width: 0px;">${mvs.mvs_rn}</td>
-     <td style="border-left-width:0px; border-right-width: 0px;"> ${mvs.mvs_file}</td>
-     <td style="border-left-width:0px; border-right-width: 0px;"> ${mvs.mvs_video}</td>
-     <td style="border-left-width:0px; border-right-width: 0px;"> <fmt:formatDate value="${mvs.mvs_date}" pattern="yyyy/MM/dd" /> </td>
+   <td style="border-left-width:0px; border-right-width: 0px;">${screen.s_rn}</td>
+     
+    
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${screen.s_theater}  </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${screen.s_scrno} </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${screen.s_type} </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${screen.s_seatcnt}  </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${screen.s_seatstyle} </td>
+     <td style="border-left-width:0px; border-right-width: 0px;"> ${screen.s_price} </td>     
      <td style="border-left-width:0px;">
-      <a href="mvsedit.do?idx=${mvs.mvs_no}">[수정]</a>
-      <a href="mvsdelete.do?idx=${mvs.mvs_no}">[삭제]</a> 
+      <a href="screenedit.do?idx=${screen.s_no}">[수정]</a>
+      <a href="screendelete.do?idx=${screen.s_no}">[삭제]</a> 
      </td>
    </tr>  
    </c:forEach>
    
  </table> 
+
 </div>
   
  </div>

@@ -34,6 +34,14 @@ import com.kg.cinema.movie.MovieDAO;
 import com.kg.cinema.movie.Moviebean;
 import com.kg.cinema.notice.NoticeDAO;
 import com.kg.cinema.notice.Noticebean;
+import com.kg.cinema.schedule.ScheduleDAO;
+import com.kg.cinema.schedule.Schedulebean;
+import com.kg.cinema.screen.ScreenDAO;
+import com.kg.cinema.screen.Screenbean;
+import com.kg.cinema.seat.SeatDAO;
+import com.kg.cinema.seat.Seatbean;
+import com.kg.cinema.theater.TheaterDAO;
+import com.kg.cinema.theater.Theaterbean;
 
 @Controller
 public class AdminController {
@@ -51,6 +59,14 @@ public class AdminController {
 	AdminDAO adao;
 	@Autowired
 	MainDAO maindao;	
+	@Autowired
+	ScheduleDAO sdao;
+	@Autowired
+	TheaterDAO tdao;	
+	@Autowired
+	ScreenDAO srdao;
+	@Autowired
+	SeatDAO stdao;
 	
 	@Autowired
 	private ServletContext  application;
@@ -59,15 +75,14 @@ public class AdminController {
 	@RequestMapping(value = "/noticemglist.do", method = RequestMethod.GET)
 	public ModelAndView noticeMgList(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView( );
-		/*
+		
 		 HttpSession session = request.getSession();
-			
-		 if(session.getAttribute("temp") == null) {
-				
-		 } else {
-				
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
 		 }
-		*/
+		
 		int startpage=1, endpage=10;
 		String pnum="";
 		int pageNUM=1, start=1,end=10;
@@ -130,12 +145,24 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/noticewrite.do", method = RequestMethod.GET)
-	public String noticeWrite(Locale locale, Model model) {
+	public String noticeWrite(Locale locale, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+		 
 		return "admin/noticeInsert";
 	}//end
 	
 	@RequestMapping(value = "/noticeinsert.do", method = RequestMethod.GET)
-	public String noticeInsert(Noticebean ndto) {  
+	public String noticeInsert(Noticebean ndto, HttpServletRequest request) {  
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+		 
 		adao.NoticeInsert(ndto);
 		return "redirect:/noticemglist.do" ;
 	}//end
@@ -143,6 +170,13 @@ public class AdminController {
 	@RequestMapping(value = "/noticedelete.do", method = RequestMethod.GET)
 	public ModelAndView noticeDelete(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView( );
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+		 
 		int data=Integer.parseInt(request.getParameter("idx"));
 		adao.NoticeDelete(data);
 		mav.setViewName("redirect:/noticemglist.do");
@@ -152,6 +186,13 @@ public class AdminController {
 	@RequestMapping(value = "/noticeedit.do", method = RequestMethod.GET)
 	public ModelAndView noticeEdit(HttpServletRequest request) {
 	  ModelAndView mav = new ModelAndView( );
+	  HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+		 
 	  int data=Integer.parseInt(request.getParameter("idx"));
 	  Noticebean ndto=ndao.NoticeDetail(data);
 	  mav.addObject("notice", ndto);
@@ -160,7 +201,13 @@ public class AdminController {
 	}//end
 	
 	@RequestMapping("/noticeeditsave.do")
-	public String noticeEditSave(Noticebean ndto) {   		  
+	public String noticeEditSave(Noticebean ndto, HttpServletRequest request) {   		
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+		 
 	  adao.NoticeEdit(ndto); 
 	  return "redirect:/noticemglist.do";
 	}//end
@@ -169,15 +216,15 @@ public class AdminController {
 	@RequestMapping(value = "/moviemglist.do", method = RequestMethod.GET)
 	public ModelAndView movieMgList(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView( );
-		/*
-		 HttpSession session = request.getSession();
-			
-		 if(session.getAttribute("temp") == null) {
-				
-		 } else {
-				
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
 		 }
-		*/
+		 
+		String page = request.getParameter("page");
+
 		int startpage=1, endpage=10;
 		String pnum="";
 		int pageNUM=1, start=1,end=10;
@@ -237,17 +284,30 @@ public class AdminController {
 		mav.addObject("AA", AA);
 		mav.addObject("BB", BB);
 		mav.addObject("mvs", mvs);
+		mav.addObject("page",page);
 		mav.setViewName("admin/movieManagement");
 		return mav;
 	}
 	//////////////
 	@RequestMapping(value = "/moviewrite.do", method = RequestMethod.GET)
-	public String movieWrite(Locale locale, Model model) {
+	public String movieWrite(Locale locale, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+		 
 		return "admin/movieInsert";
 	}//end
 	
 	@RequestMapping(value = "/movieinsert.do", method = RequestMethod.POST)
-	public String movieInsert(Moviebean mdto) throws ParseException {  
+	public String movieInsert(Moviebean mdto, HttpServletRequest request) throws ParseException {  
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+		 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date ee = null;
 	    try {
@@ -309,6 +369,13 @@ public class AdminController {
 	@RequestMapping(value = "/moviedelete.do", method = RequestMethod.GET)
 	public ModelAndView movieDelete(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView( );
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+		 
 		int data=Integer.parseInt(request.getParameter("idx"));
 		adao.MovieDelete(data);
 		mav.setViewName("redirect:/moviemglist.do");
@@ -318,6 +385,13 @@ public class AdminController {
 	@RequestMapping(value = "/movieedit.do", method = RequestMethod.GET)
 	public ModelAndView movieEdit(HttpServletRequest request) {
 	  ModelAndView mav = new ModelAndView( );
+	  HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+		 
 	  int data=Integer.parseInt(request.getParameter("idx"));
 	  Moviebean mdto=mdao.movieDetail(data);
 	  mav.addObject("movie", mdto);
@@ -326,7 +400,13 @@ public class AdminController {
 	}//end
 	
 	@RequestMapping(value = "/movieeditsave.do", method = RequestMethod.POST)
-	public String movieEditSave(Moviebean mdto) throws ParseException, IOException {   
+	public String movieEditSave(Moviebean mdto, HttpServletRequest request) throws ParseException, IOException {   
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+		 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date ee = null;
 		
@@ -420,15 +500,13 @@ public class AdminController {
 	@RequestMapping(value = "/eventmglist.do", method = RequestMethod.GET)
 	public ModelAndView eventMgList(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView( );
-		/*
-		 HttpSession session = request.getSession();
-			
-		 if(session.getAttribute("temp") == null) {
-				
-		 } else {
-				
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
 		 }
-		*/
+
 		int startpage=1, endpage=10;
 		String pnum="";
 		int pageNUM=1, start=1,end=10;
@@ -491,13 +569,26 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/eventwrite.do", method = RequestMethod.GET)
-	public String eventWrite(Locale locale, Model model) {
+	public String eventWrite(Locale locale, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+		 
 		return "admin/eventInsert";
 	}//end
 	
 	@RequestMapping(value = "/eventinsert.do", method = RequestMethod.POST)
-	public String eventInsert(Eventbean edto) {  
-
+	public String eventInsert(Eventbean edto, HttpServletRequest request) {  
+		
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+		 
+		 
 		  String path=application.getRealPath("/resources/storage");
 		  String img=edto.getUpload_file().getOriginalFilename();
 		  String content=edto.getUpload_content().getOriginalFilename();
@@ -520,6 +611,13 @@ public class AdminController {
 	@RequestMapping(value = "/eventdelete.do", method = RequestMethod.GET)
 	public ModelAndView eventDelete(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView( );
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+
 		int data=Integer.parseInt(request.getParameter("idx"));
 		adao.EventDelete(data);
 		mav.setViewName("redirect:/eventmglist.do");
@@ -529,6 +627,13 @@ public class AdminController {
 	@RequestMapping(value = "/eventedit.do", method = RequestMethod.GET)
 	public ModelAndView eventEdit(HttpServletRequest request) {
 	  ModelAndView mav = new ModelAndView( );
+	  HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+
 	  int data=Integer.parseInt(request.getParameter("idx"));
 	  Eventbean edto=edao.EventDetail(data);
 	  mav.addObject("event", edto);
@@ -537,7 +642,13 @@ public class AdminController {
 	}//end
 	
 	@RequestMapping(value = "/eventeditsave.do", method = RequestMethod.POST)
-	public String eventEditSave(Eventbean edto) throws IOException {   
+	public String eventEditSave(Eventbean edto, HttpServletRequest request) throws IOException {   
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+		 
 	 String path=application.getRealPath("/resources/storage");
 	 
 	 if(!edto.getUpload_file().getOriginalFilename().equals("")) {
@@ -568,13 +679,13 @@ public class AdminController {
 	public ModelAndView msMgList(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView( );
 
-		 HttpSession session = request.getSession();
-			
-		 if(session.getAttribute("temp") == null) {
-				
-		 } else {
-				
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
 		 }
+
 		 
 		List<Mainbean> msMgList = maindao.MainSlideSelect();
 		List<Mainbean> meMgList = maindao.MainEventSelect();
@@ -588,12 +699,24 @@ public class AdminController {
 	}	
 	
 	@RequestMapping(value = "/mswrite.do", method = RequestMethod.GET)
-	public String msMgWrite(Locale locale, Model model) {
+	public String msMgWrite(Locale locale, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+		 
 		return "admin/mainSlideInsert";
 	}//end
 	
 	@RequestMapping(value = "/msinsert.do", method = RequestMethod.POST)
-	public String mainSlideInsert(Mainbean msdto) {  
+	public String mainSlideInsert(Mainbean msdto, HttpServletRequest request) {  
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+		 
 
 		  String path=application.getRealPath("/resources/storage");
 		  String img=msdto.getUpload_file().getOriginalFilename();
@@ -619,6 +742,13 @@ public class AdminController {
 	@RequestMapping(value = "/msdelete.do", method = RequestMethod.GET)
 	public ModelAndView mainSlideDelete(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView( );
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+
 		int data=Integer.parseInt(request.getParameter("idx"));
 		adao.MainSlideDelete(data);
 		mav.setViewName("redirect:/msmglist.do");
@@ -628,6 +758,13 @@ public class AdminController {
 	@RequestMapping(value = "/msedit.do", method = RequestMethod.GET)
 	public ModelAndView mainSlideEdit(HttpServletRequest request) {
 	  ModelAndView mav = new ModelAndView( );
+	  HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+
 	  int data=Integer.parseInt(request.getParameter("idx"));
 	  Mainbean msdto=maindao.MainSlideDetail(data);
 	  mav.addObject("ms", msdto);
@@ -636,7 +773,13 @@ public class AdminController {
 	}//end
 	
 	@RequestMapping(value = "/mseditsave.do", method = RequestMethod.POST)
-	public String mainSlideEditSave(Mainbean msdto) throws IOException {   
+	public String mainSlideEditSave(Mainbean msdto, HttpServletRequest request) throws IOException {   
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+		 
 	 String path=application.getRealPath("/resources/storage");
 	 
 	 if(!msdto.getUpload_file().getOriginalFilename().equals("")) {
@@ -680,8 +823,13 @@ public class AdminController {
 	}	
 	
 	@RequestMapping(value = "/maineventinsert.do", method = RequestMethod.POST)
-	public String mainEventInsert(Mainbean medto) { 
-		
+	public String mainEventInsert(Mainbean medto, HttpServletRequest request) { 
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+		 
 
 		String path=application.getRealPath("/resources/storage");
 		System.out.println(path);
@@ -756,8 +904,13 @@ public class AdminController {
 	}//end	
 	
 	@RequestMapping(value = "/maineventeditsave.do", method = RequestMethod.POST)
-	public String mainEventEditSave(Mainbean medto) throws ParseException, IOException {   
-
+	public String mainEventEditSave(Mainbean medto, HttpServletRequest request) throws ParseException, IOException {   
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+		 
 		  
 			if(medto.getUpload_file1().getOriginalFilename().equals("")) {
 				
@@ -853,12 +1006,23 @@ public class AdminController {
 	
 	//movieslide
 	@RequestMapping(value = "/mvswrite.do", method = RequestMethod.GET)
-	public String mvsMgWrite(Locale locale, Model model) {
+	public String mvsMgWrite(Locale locale, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+		 
 		return "admin/movieSlideInsert";
 	}//end
 	
 	@RequestMapping(value = "/mvsinsert.do", method = RequestMethod.POST)
-	public String movieSlideInsert(Moviebean mvsdto) {  
+	public String movieSlideInsert(Moviebean mvsdto, HttpServletRequest request) {  
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
 
 		  String path=application.getRealPath("/resources/storage");
 		  String img=mvsdto.getUpload_file().getOriginalFilename();
@@ -880,21 +1044,35 @@ public class AdminController {
 		System.out.println("video : " + mvsdto.getMvs_video());
 
 		adao.MovieSlideInsert(mvsdto);
-		return "redirect:/moviemglist.do" ;
+		return "redirect:/moviemglist.do?page=mvs" ;
 	}//end
 	
 	@RequestMapping(value = "/mvsdelete.do", method = RequestMethod.GET)
 	public ModelAndView movieSlideDelete(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView( );
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+
 		int data=Integer.parseInt(request.getParameter("idx"));
 		adao.MovieSlideDelete(data);
-		mav.setViewName("redirect:/moviemglist.do");
+		mav.setViewName("redirect:/moviemglist.do?page=mvs");
 		return mav;
 	}//end
 	
 	@RequestMapping(value = "/mvsedit.do", method = RequestMethod.GET)
 	public ModelAndView movieSlideEdit(HttpServletRequest request) {
 	  ModelAndView mav = new ModelAndView( );
+	  HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+
 	  int data=Integer.parseInt(request.getParameter("idx"));
 	  Moviebean mvsdto=mdao.movieSlideDetail(data);
 	  mav.addObject("mvs", mvsdto);
@@ -903,7 +1081,13 @@ public class AdminController {
 	}//end
 	
 	@RequestMapping(value = "/mvseditsave.do", method = RequestMethod.POST)
-	public String movieSlideEditSave(Moviebean mvsdto) throws IOException {   
+	public String movieSlideEditSave(Moviebean mvsdto, HttpServletRequest request) throws IOException {   
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+
 	 
 		if(mvsdto.getUpload_file().getOriginalFilename().equals("")) {
 			
@@ -928,5 +1112,358 @@ public class AdminController {
 	 adao.MovieSlideEdit(mvsdto); 
 	 return "redirect:/moviemglist.do";
 	}//end	
+	
+	//schedule
+	@RequestMapping(value = "/schedulemglist.do", method = RequestMethod.GET)
+	public ModelAndView scheduleMgList(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView( );
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+
+		int startpage=1, endpage=10;
+		String pnum="";
+		int pageNUM=1, start=1,end=10;
+		int pagecount=1,temp=0;
+		String AA = "";
+		String BB = "";
+		// 검색
+		
+		String skey="", sval="", returnpage="";  
+		skey=request.getParameter("keyfield");
+		sval=request.getParameter("keyword"); 
+		if(skey == "" || skey == null || sval == "" || sval ==null ) {
+			skey="title"; sval="";
+		}
+		  
+		//if(skey.equals("name")) {AA = skey;}
+		  
+		if(skey.equals("title") && sval!="") {
+			BB = skey; 
+		}
+		  
+		returnpage = "&keyfield=" + skey + "&keyword=" + sval;
+		  
+		int SearchTotal = sdao.ScheduleMgCountSearch(skey, sval); //조회갯수
+		    
+		pnum=request.getParameter("pageNum");
+		if(pnum=="" || pnum==null) {pnum="1";}
+		else {pageNUM=Integer.parseInt(pnum);}
+		  
+		//[7클릭] 숫자7을 pageNUM변수가 기억
+		start=(pageNUM-1)*10+1;
+		end=(pageNUM)*10;
+		  
+		int Gtotal=sdao.ScheduleMgCount(); //레코드전체갯수
+		  
+		if(SearchTotal%10==0){ pagecount=SearchTotal/10; } 
+		else {pagecount=(SearchTotal/10)+1;}
+
+		temp=(pageNUM-1)%10;
+		startpage=pageNUM-temp;
+		endpage=startpage+9; //[31]~~~[40]
+		if(endpage > pagecount) {endpage = pagecount;}
+		
+		List<Schedulebean> LG=sdao.ScheduleMgSelect(start,end,skey,sval);
+		
+		mav.addObject("naver", LG);
+		mav.addObject("Gtotal", Gtotal);
+		mav.addObject("SearchTotal", SearchTotal);
+		mav.addObject("startpage", startpage);
+		mav.addObject("endpage", endpage);
+		mav.addObject("pagecount", pagecount);
+		mav.addObject("pageNUM", pageNUM);
+		mav.addObject("returnpage", returnpage);
+		mav.addObject("skey", skey);
+		mav.addObject("sval", sval);
+		mav.addObject("AA", AA);
+		mav.addObject("BB", BB);
+		mav.setViewName("admin/scheduleManagement");
+		return mav;
+	}		
+	
+	@RequestMapping(value = "/schedulewrite.do", method = RequestMethod.GET)
+	public ModelAndView scheduleWrite(HttpServletRequest request) {	
+		ModelAndView mav = new ModelAndView( );
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+
+		List<Theaterbean> tselect=tdao.theaterSelect();
+		List<Screenbean> srselect=srdao.ScreenMgSelect();
+		mav.addObject("tselect", tselect);
+		mav.addObject("srselect",srselect);
+		mav.setViewName("admin/scheduleInsert");
+		return mav;
+	}//end
+	
+	@RequestMapping(value = "/scheduleinsert.do", method = RequestMethod.GET)
+	public String scheduleInsert(Schedulebean sdto, HttpServletRequest request) {  
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+
+		adao.ScheduleInsert(sdto);
+		return "redirect:/schedulemglist.do" ;
+	}//end
+	
+	@RequestMapping(value = "/scheduledelete.do", method = RequestMethod.GET)
+	public ModelAndView scheduleDelete(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView( );
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+
+		int data=Integer.parseInt(request.getParameter("idx"));
+		adao.ScheduleDelete(data);
+		mav.setViewName("redirect:/schedulemglist.do");
+		return mav;
+	}//end	
+	
+	//schedule
+	@RequestMapping(value = "/theatermglist.do", method = RequestMethod.GET)
+	public ModelAndView theaterMgList(HttpServletRequest request) {
+		String page = request.getParameter("page");
+		ModelAndView mav = new ModelAndView( );
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+		
+		int startpage=1, endpage=10;
+		String pnum="";
+		int pageNUM=1, start=1,end=10;
+		int pagecount=1,temp=0;
+		String AA = "";
+		String BB = "";
+		// 검색
+		
+		String skey="", sval="", returnpage="";  
+		skey=request.getParameter("keyfield");
+		sval=request.getParameter("keyword"); 
+		if(skey == "" || skey == null || sval == "" || sval ==null ) {
+			skey="t_theater"; sval="";
+		}
+		  
+		//if(skey.equals("t_theater")) {AA = skey;}
+		  
+		if(skey.equals("t_theater") && sval!="") {
+			BB = skey; 
+		}
+		  
+		returnpage = "&keyfield=" + skey + "&keyword=" + sval;
+		  
+		int SearchTotal = tdao.TheaterMgCountSearch(skey, sval); //조회갯수
+		    
+		pnum=request.getParameter("pageNum");
+		if(pnum=="" || pnum==null) {pnum="1";}
+		else {pageNUM=Integer.parseInt(pnum);}
+		  
+		//[7클릭] 숫자7을 pageNUM변수가 기억
+		start=(pageNUM-1)*10+1;
+		end=(pageNUM)*10;
+		  
+		int Gtotal=tdao.TheaterMgCount(); //레코드전체갯수
+		  
+		if(SearchTotal%10==0){ pagecount=SearchTotal/10; } 
+		else {pagecount=(SearchTotal/10)+1;}
+
+		temp=(pageNUM-1)%10;
+		startpage=pageNUM-temp;
+		endpage=startpage+9; //[31]~~~[40]
+		if(endpage > pagecount) {endpage = pagecount;}
+		
+		List<Theaterbean> LG=tdao.TheaterMgSelect(start,end,skey,sval);
+		List<Screenbean> sr=srdao.ScreenMgSelect();
+		
+		mav.addObject("theater", LG);
+		mav.addObject("screen", sr);
+		mav.addObject("Gtotal", Gtotal);
+
+		mav.addObject("SearchTotal", SearchTotal);
+
+		mav.addObject("startpage", startpage);
+
+		mav.addObject("endpage", endpage);
+
+		mav.addObject("pagecount", pagecount);
+
+		mav.addObject("pageNUM", pageNUM);
+	
+		mav.addObject("returnpage", returnpage);
+
+		mav.addObject("skey", skey);
+
+		mav.addObject("sval", sval);
+
+		mav.addObject("AA", AA);
+
+		mav.addObject("BB", BB);
+		mav.addObject("page",page);
+		mav.setViewName("admin/theaterManagement");
+		return mav;
+	}		
+	
+	@RequestMapping(value = "/theaterewrite.do", method = RequestMethod.GET)
+	public String theaterWrite(Locale locale, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+
+		return "admin/theaterInsert";
+	}//end
+	
+	@RequestMapping(value = "/theaterinsert.do", method = RequestMethod.GET)
+	public String theaterInsert(Theaterbean tdto, HttpServletRequest request) {  
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+
+		adao.TheaterInsert(tdto);
+		return "redirect:/theatermglist.do" ;
+	}//end
+	
+	@RequestMapping(value = "/theaterdelete.do", method = RequestMethod.GET)
+	public ModelAndView theaterDelete(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView( );
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+		
+		int data=Integer.parseInt(request.getParameter("idx"));
+		adao.TheaterDelete(data);
+		mav.setViewName("redirect:/theatermglist.do");
+		return mav;
+	}//end		
+	
+	@RequestMapping(value = "/theateredit.do", method = RequestMethod.GET)
+	public ModelAndView theaterEdit(HttpServletRequest request) {
+	  ModelAndView mav = new ModelAndView( );
+	  HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+		
+	  int data=Integer.parseInt(request.getParameter("idx"));
+	  Theaterbean tdto=tdao.TheaterDetail(data);
+	  mav.addObject("theater", tdto);
+	  mav.setViewName("admin/theaterEdit");
+	  return mav;
+	}//end
+	
+	@RequestMapping("/theatereditsave.do")
+	public String theaterEditSave(Theaterbean tdto, HttpServletRequest request) {   
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+
+	  adao.TheaterEdit(tdto); 
+	  return "redirect:/theatermglist.do";
+	}//end
+	
+	//screen
+	@RequestMapping(value = "/screenwrite.do", method = RequestMethod.GET)
+	public ModelAndView screenWrite(HttpServletRequest request) {	
+		ModelAndView mav = new ModelAndView( );
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+		
+		List<Theaterbean> tselect=tdao.theaterSelect();
+        List<Seatbean> seatstyle = stdao.seatStyle();
+		mav.addObject("tselect", tselect);
+		mav.addObject("style", seatstyle);
+		mav.setViewName("admin/screenInsert");
+		return mav;
+	}//end
+	
+	@RequestMapping(value = "/screeninsert.do", method = RequestMethod.GET)
+	public String screenInsert(Screenbean srdto, HttpServletRequest request) {  
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+
+		adao.ScreenInsert(srdto);
+		return "redirect:/theatermglist.do?page=screen" ;
+	}//end
+	
+	@RequestMapping(value = "/screendelete.do", method = RequestMethod.GET)
+	public ModelAndView screenDelete(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView( );
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+		
+		int data=Integer.parseInt(request.getParameter("idx"));
+		adao.ScreenDelete(data);
+		mav.setViewName("redirect:/theatermglist.do?page=screen");
+		return mav;
+	}//end		
+	
+	@RequestMapping(value = "/screenedit.do", method = RequestMethod.GET)
+	public ModelAndView screenEdit(HttpServletRequest request) {
+	  ModelAndView mav = new ModelAndView( );
+	  HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		 }
+		
+	  int data=Integer.parseInt(request.getParameter("idx"));
+	  String AA="",BB="";
+	  Screenbean srdto=srdao.ScreenDetail(data);
+	  List<Theaterbean> tselect=tdao.theaterSelect();
+      List<Seatbean> seatstyle = stdao.seatStyle();
+	  mav.addObject("screen", srdto);
+	  mav.addObject("tselect", tselect);
+	  mav.addObject("style", seatstyle);
+	  mav.setViewName("admin/screenEdit");
+	  return mav;
+	}//end
+	
+	@RequestMapping("/screeneditsave.do")
+	public String screenEditSave(Screenbean srdto, HttpServletRequest request) {   		  
+		HttpSession session = request.getSession();
+		 
+		 if(!session.getAttribute("temp").equals("admin")) {
+			return "redirect:/main.do";
+		 }
+
+	  adao.ScreenEdit(srdto); 
+	  return "redirect:/theatermglist.do?page=screen";
+	}//end		
 	
 }

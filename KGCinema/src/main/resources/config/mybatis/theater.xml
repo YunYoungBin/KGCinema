@@ -7,5 +7,24 @@
 		select * from theater order by t_theater
 	</select>
 	
+	<select id="theaterMgSelectAll"  resultType="com.kg.cinema.theater.Theaterbean">	   
+	   select * from (
+	   select rownum rn, t.* from
+	   (select * from theater where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%' order by t_no desc) t
+	   ) where rn between #{start} and #{end}
+	</select>
+	
+	<select id="theaterMgcountAll" resultType="int">
+	     select count(*)  from theater
+	</select>
+	
+	<select id="theaterMgcountAllSearch" parameterType="com.kg.cinema.theater.Theaterbean"  resultType="int">
+ 	   select  count(*) from theater where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%'  
+ 	</select>	
+ 	
+	<select id="theaterDetail" parameterType="int" resultType="com.kg.cinema.theater.Theaterbean">
+	   select * from theater where t_no=#{t_no}
+	</select> 	
+	
 
 </mapper>

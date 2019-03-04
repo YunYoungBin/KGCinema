@@ -1,5 +1,7 @@
 package com.kg.cinema.reserve;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -9,6 +11,7 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -86,12 +89,12 @@ public class ReserveController {
 		
 		if(Integer.parseInt(month) < 10) {
 			month = "0" + month;
-		} else if(Integer.parseInt(day) < 10) {
+		}
+		if(Integer.parseInt(day) < 10) {
 			day = "0" + day;
 		}
 		
 		String today = year + "-" + month + "-" + day;
-		
 		
 		mav.addObject("date", today);
 		mav.addObject("movie", movieList);
@@ -156,26 +159,46 @@ public class ReserveController {
 		
 		Screenbean scrbean = scrdao.screenSelect(sbean.getTheater(), sbean.getScrno());
 		List<Seatbean> seatList = seatdao.seatSelect(scrbean.getS_seatstyle());
-		
-		List<Reservebean> reserveList = rdao.reserveSelect(sbean.getTheater(), sbean.getScrno(), sbean.getStarthour());
-		
-		ArrayList<String> booked = new ArrayList<String>();
-		for(Reservebean bean : reserveList) {
-			String[] book = bean.getR_seat().split(",");
-			for(int i = 0; i < book.length; i++) {
-				booked.add(book[i]);
-			}
-		}
-		
-		System.out.println(booked.toString());
-		
+		int price = scrbean.getS_price();
+		System.out.println(price);
 		mav.addObject("seatbean", seatList);
 		mav.addObject("sbean", sbean);
 		mav.addObject("scrno", idx);
 		mav.addObject("mbean", mbean);
-		mav.addObject("booked", booked);
+		mav.addObject("price", price);
 		mav.setViewName("reserve/movieSeat");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/seatReserveCheck.do", method = RequestMethod.GET)
+	public void reserve_check(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();
+		String theater = request.getParameter("theater");
+		String scrno = request.getParameter("scrno");
+		String start = request.getParameter("start");
+		
+		List<Reservebean> reserveList = rdao.reserveSelect(theater, scrno, start);
+		
+		StringBuilder sb = new StringBuilder();
+		for(Reservebean bean : reserveList) {
+			String[] book = bean.getR_seat().split(",");
+			for(int i = 0; i < book.length; i++) {
+				sb.append(book[i]+",");
+			}
+		}
+		String json = "{\"reserveSeat\":\""+sb.toString()+"\"}";
+		out.print(json);
+	}
+	
+	@RequestMapping(value = "/reserve.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String reserve_save(Reservebean bean) {
+		rdao.reserveInsert(bean);
+		return "redirect:/reservdetails.do";
+	}
+	
+	@RequestMapping(value = "/reservdetails.do", method = RequestMethod.GET)
+	public String reservDetails(Locale locale, Model model) {
+		return "reserve/reservDetails";
+	}//end
 	
 }

@@ -9,7 +9,6 @@ public class Seatbean {
 	private int left;
 	private int top;
 	
-	
 	public int getSeat_id() {
 		return seat_id;
 	}

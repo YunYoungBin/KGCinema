@@ -23,7 +23,7 @@
     <link href="./resources/css/agency.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./resources/css/InputCSS1.css">
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-    <script src="./resources/js/EditJS2.js"></script>
+    <script src="./resources/js/EditJS.js"></script>
     
   <style type="text/css">
     html, body {margin: 0;padding: 0;border:0;vertical-align: baseline;}
@@ -118,7 +118,7 @@
       <span> 회원님의 정보를 정확히 입력해주세요. </span>
      </div>
      <div class="personal_info_last">
-      <span class="">마지막 비밀번호 변경 : 2일 전에 함 (2018.12.31)</span>
+      <span class="">마지막 비밀번호 변경 : 2일 전에 함 (2019.02.20)</span>
       <button type="button" class="img_btn mypage personal_change_pw mr6"></button>
       <button type="button" class="img_btn mypage personal_quit"></button>
      </div>

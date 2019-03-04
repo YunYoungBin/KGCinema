@@ -16,20 +16,21 @@ public class ReserveDAO {
 	@Autowired
 	SqlSessionTemplate temp;
 	
-	public List<Reservebean> reserveSelect(String r_theater, String r_scrno, java.util.Date r_start) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	public List<Reservebean> reserveSelect(String r_theater, String r_scrno, String r_start) {
+		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		Reservebean bean = new Reservebean();
 		bean.setR_theater(r_theater);
 		bean.setR_scrno(r_scrno);
-		bean.setDate(sdf.format(r_start));
+		bean.setDate(r_start);
 		List<Reservebean> list = temp.selectList("reserve.select", bean);
 		return list;
 	}
 	
-	/*
-	public Schedulebean scheduleDetail(int idx) {
-		return temp.selectOne("schedule.detail", idx);
+	
+	public void reserveInsert(Reservebean bean) {
+
+		temp.insert("reserve.insert", bean);
 	}
-	*/
+	
 
 }

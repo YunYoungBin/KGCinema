@@ -10,12 +10,15 @@
 <title>movieReserve.jsp</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script src="./slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="./slick-master/slick/slick-theme.css">
-    <link href="css/agency.min.css" rel="stylesheet">
+    <script src="./resources/slick-master/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick-theme.css">
+    <link href="./resources/css/agency.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="./resources/demos/style.css">
+    <link rel="stylesheet" href="./resources/css/magnific-popup3.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="./resources/js/jquery.magnific-popup.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./resources/js/Reserve.js"></script>
     
@@ -98,7 +101,7 @@
     #select_seat .seat_body .right_wrap .row2 ul.info li, #select_pay .seat_body .right_wrap .row2 ul.info li{padding-left: 8px;margin-bottom: 5px;font-size: 11px;color: #fff;
     background: url(http://image2.megabox.co.kr/mop/home/movie/bg_seat.png) -150px 2px no-repeat;}
     #select_seat .seat_body .right_wrap .row2 ul.seat, #select_pay .seat_body .right_wrap .row2 ul.seat{margin: 8px 0 0 -7px;overflow: hidden;}
-    #select_seat .seat_body .right_wrap .row2 ul.seat, #select_pay .seat_body .right_wrap .row2 ul.seat li{
+    #select_seat .seat_body .right_wrap .row2 ul.seat li{
     	margin-left: 7px;
     	margin-bottom: 3px;
     	float: left;
@@ -108,7 +111,8 @@
     	line-height: 16px;
     	text-align: center;
     	background-color: #b19bc3;
-    	color: #000;}
+    	color: #000;
+    	}
     #select_seat .seat_body .right_wrap .row2 p.price, #select_pay .seat_body .right_wrap .row2 p.price{position: absolute;bottom: 47px;left: 12px;right: 12px;padding: 5px 0;font-size: 12px;text-align: right;
     color: #fff;}
     #select_seat .seat_body .right_wrap .row2 p.price strong, #select_pay .seat_body .right_wrap .row2 p.price strong{font-size:18px;}
@@ -123,11 +127,49 @@
     #select_seat .seat_selected_hover{background: url(http://image2.megabox.co.kr/mop/home/seatselect_160912.png) 0 0 no-repeat;}
     #select_seat .seat_done{background: url(http://image2.megabox.co.kr/mop/home/seatselect_160912.png) 0 0 no-repeat;background-position: 50% -27px;background-color: #ccc;}
     #select_seat .seat_cant{background: url(http://image2.megabox.co.kr/mop/home/seatselect_160912.png) 0 0 no-repeat;background-position: 50% -54px;background-color: #ccc;}
+    .ca_header {
+    	position: relative;
+	    padding-top: 12px;
+	    height: 42px;
+	    text-align: center;
+	    border-bottom: 1px solid #e5e5e5;
+	    margin: 0;
+    	font-size: 18px;
+    	line-height: 1.1;
+    }
+    h6{font-size: 18px; font-weight: 700;
+    font-family: '돋움',dotum,'Apple SD Gothic Neo',sans-serif;}
+    .common_close_btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    background: url(http://image2.megabox.co.kr/mop/home/btns/btn_close.png) 0 0 no-repeat;
+    overflow: hidden;
+    text-indent: -999px;
+}
   </style>
 </head>
-<body>
+<body onload="reserveCheck()">
+	<c:set var="timefmt"><fmt:formatDate value="${sbean.starthour }" pattern="yyyy-MM-dd HH:mm" /></c:set>
+	<form name="reserveForm" action="reserve.do" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="r_theater" value="${sbean.theater }">
+		<input type="hidden" name="r_scrno" value="${sbean.scrno }">
+		<input type="hidden" name="r_id" class="r_id" id="r_id" value="${bean.j_id }">
+		<input type="hidden" name="r_title" value="${mbean.m_title }">
+		<input type="hidden" name="r_type" value="${mbean.m_type }">
+		<input type="hidden" name="date" value="${timefmt }">
+		<input type="hidden" name="r_grade" value="${mbean.m_grade }">
+		<input type="hidden" name="r_inwon" class="r_inwon" id="r_inwon" value="">
+		<input type="hidden" name="r_seat" class="r_seat" id="r_seat" value="">
+		<input type="hidden" name="r_price" class="r_price" id="r_price" value="">
+	</form>
    <div class="bin"></div>
-   
+   <input type="hidden" name="theaterTemp" class="theaterTemp" id="theaterTemp" value="${sbean.theater }">
+   <input type="hidden" name="scrnoTemp" class="scrnoTemp" id="scrnoTemp" value="${sbean.scrno }">
+   <input type="hidden" name="timeTemp" class="timeTemp" id ="timeTemp" value="${timefmt}">
+   <input type="hidden" name="priceTemp" class="priceTemp" id="priceTemp" value="${price }">
    <div class="modal booking_lp booking_lp2 in" id="select_seat" style="display:block;">
     <div class="wrapper">
      <div class="contents">
@@ -162,38 +204,27 @@
            <div id="seatPositionList" class="seat_position" style="width: 453px;height: 250px;">
             <span class="exit top" style="width: 28px;height: 17px;top: 252px;left: 61px;"></span>
             <span class="exit left" style="width: 17px;height: 28px;top:-18px; left:-33px;background-position: 0 -50px;"></span>
-            <c:set var="flag">true</c:set>
+            
             <c:set var="spanFlag">Z</c:set>
             <c:forEach var="bean" items="${seatbean}">
-            	<c:choose>
-            		<c:when test="${spanFlag ne bean.seatgroup}">
-            			<span class="line line_a" style="left:0px; top: ${bean.top}px;">${bean.seatgroup }</span>
-            			<c:set var="spanFlag">bean.seatgroup</c:set>
-            		</c:when>
-            	</c:choose>
+
+            	<c:if test="${spanFlag ne bean.seatgroup}">
+            		<span class="line line_a" style="left:0px; top: ${bean.top}px;">${bean.seatgroup }</span>
+           			<c:set var="spanFlag">${bean.seatgroup}</c:set>
+           		</c:if>
             	
-            	<c:forEach var="book" items="${booked}">
-            		<c:choose>
-            			<c:when test="${bean.seatgroup eq book.substring(0,1) && bean.seatno eq book.substring(1)}">
-            				<button type="button" title="${bean.seatgroup}${bean.seatno}(선택불가)" id="seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}" class="seat_done" seatgroup="${bean.seatgroup }" seatno="${bean.seatno }" seattype="${bean.seattype }" popupyn="N" seatlinecnt="" style="width: 16px; height: 16px; left: ${bean.left}px; top: ${bean.top}px;" onmouseover="" onmouseout="" onclick="" onkeyup="" onblur="" onkeypress="">${bean.seatno}</button>
-            				<c:set var="flag">false</c:set>
-            			</c:when>
-            			<c:otherwise>
-            				<c:set var="flag">true</c:set>
-            			</c:otherwise>
-            		</c:choose>            	
-            	</c:forEach>
-            	
-            	<c:if test="${flag = true }">
-            	<button type="button" title="${bean.seatgroup}${bean.seatno}(일반석)" id="seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}" class="seat_normal" 
-				seatgroup="${bean.seatgroup}" seatno="${bean.seatno}" seattype="${bean.seattype}" 
-				popupyn="N" seatlinecnt="" 
-				style="width: 16px; height: 16px; left: ${bean.left}px ; top: ${bean.top}px;"  
-				onmouseover="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
-				onmouseout="BookingSeatDatas.seatMouseOut(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
-				onclick="BookingSeatDatas.checkSeat(this)" onkeyup="" onblur="" 
-				onkeypress="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)">${bean.seatno}</button>
-            	</c:if>
+            	<button type="button" title="${bean.seatgroup}${bean.seatno}(일반석)" 
+	            	id="seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}" 
+	            	class="seat_normal" 
+					seatgroup="${bean.seatgroup}" seatno="${bean.seatno}" seattype="${bean.seattype}" 
+					popupyn="N" seatlinecnt="" 
+					style="width: 16px; height: 16px; left: ${bean.left}px ; top: ${bean.top}px;"  
+					onmouseover="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
+					onmouseout="BookingSeatDatas.seatMouseOut(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)" 
+					onclick="BookingSeatDatas.checkSeat(this)" onkeyup="" onblur="" 
+					onkeypress="BookingSeatDatas.seatMouseOver(&quot;seat_${bean.seatgroup}_${bean.seatno}_${bean.seattype}&quot;)">
+					${bean.seatno}
+				</button>
             		
             </c:forEach>
             
@@ -226,7 +257,7 @@
        </div>  
        <div id="bookingSelectSeatStatusBoard" class="right_wrap">
         <div class="row1">
-        <img src="http://image2.megabox.co.kr/mop/poster/2018/77/3225A3-9B7F-44F0-9B7F-8657FADF418B.medium.jpg" alt="말모이">
+        <img src="${pageContext.request.contextPath}/resources/storage/${mbean.m_poster}" alt="${mbean.m_title }">
         </div>
         <div class="row2">
         <div class="title">
@@ -239,17 +270,17 @@
          <li>${sbean.theater }<br>${sbean.scrno }</li>
          <li><fmt:formatDate value="${sbean.starthour }" pattern="yyyy. MM. dd (E)"/> <fmt:formatDate value="${sbean.starthour }" pattern="HH:mm"/></li>
          <li id="countSelectedByTicket">
-         	<span>일반 2명&nbsp;</span>
+         	<!-- <span>일반 2명&nbsp;</span> -->
          </li>
         </ul>
         <ul class="seat" id="selectedSeatNumbers1">
-        	<li data-seat-num="A1">A1</li>
+        	
         </ul>
         </div>
         <p class="price"><strong id="ticketTotalPrice">0</strong> 원</p>
         <div class="pay_final_wrp">
-         <button type="button" class="img_btn booking prev">이전</button>
-        <button type="button" class="img_btn booking next">다음</button>
+         <button type="button" onclick="history.back();" class="img_btn booking prev">이전</button>
+        <button type="button" onclick="test();" class="img_btn booking next">다음</button>
            </div>
         </div>
        </div>
@@ -257,5 +288,53 @@
      </div>
     </div>  
    </div>
+   
+   <div class="login_popup" id="modal_login" style="width:380px;margin: 0 auto;">
+    <div class="login_form" style="display:none; height: auto;width: 380px;box-shadow: 0 5px 6px rgba(0,0,0,0.5);background-color: #fff;border-radius: 5px;z-index: 1000;position:relative;">
+     <div class="ca_header">
+     	<h6>로그인</h6>
+     </div>
+     <div class="login_middle" style="padding: 0 33px 0 36px; padding-top: 30px;">
+     <form name="reserveLogin" method="post" action="login.do">
+      <div>
+       <h4 style="background: url(http://image2.megabox.co.kr/mop/home/btns/socialLogin_bg.png) 0 -8px no-repeat;height: 17px;padding-left: 75px;font-size: 16px;font-weight: 500;margin: 0 0 10px 0;">
+        <sapn style="display: block;overflow: hidden;position: absolute;top: -1000em;left: -1000em;font-size: 16px;font-weight: 500;">KGCINEMA</sapn>로그인
+       </h4>
+       <div style="position: relative;padding-right: 76px;">
+        <input class="id" type="text" id="userid" name="userid" placeholder="아이디" title="아이디입력" maxlength="20">
+        <input class="pw" type="password" id="userpw" name="userpw" placeholder="비밀번호" title="비밀번호입력" maxlength="20">
+        <p style="font-size: 11px;margin: 13px 0;position: relative;color: #503396;">
+         <span style="position:relative;float:left;">
+          <label style="position: relative;z-index:9;font-size: 12px;font-weight: normal;color: #666;margin-bottom: 0;margin-right:5px;">아이디저장</label>
+          <span style="vertical-align: middle;display: inline-block;width: 18px;height: 18px;position: relative;">
+           <input class="chek" type="checkbox" name="keepLogin" title="아이디저장">
+          </span>
+         </span>
+        </p>
+         <input type="submit" id="btnlogin" value="로그인" title="로그인" class="img_login" style="background-image: url(http://image2.megabox.co.kr/mop/home/btns/btn_member.png);">
+       </div>
+      </div>
+      </form>
+          
+      <div class="orline" style="border-top: 1px solid #f2f2f2;margin: 50px 0 20px;">
+       <span style="width: 28px;height: 28px;display: block;margin: -15px 142px 0;text-indent: 9999px;background: url(http://image2.megabox.co.kr/mop/home/btns/socialLogin_bg.png) 0 -80px no-repeat;">or</span>
+      </div>         
+     </div>
+         
+     <div class="join_btn" >
+      <ul>
+       <li><a>ID/PW찾기</a></li>
+       <li><a href="write.do">회원가입</a></li>
+      </ul>
+     </div>
+         
+     <div class="login_bottom">
+      <div>
+       <a><img src="http://mlink-cdn.netinsight.co.kr/2018/03/29/eedd0949a87336fff8bc0d345e2c6bff.jpg" height="80" border="0"></a>
+      </div>
+     </div>       
+    </div>      
+   </div>
+   
 </body>
 </html>

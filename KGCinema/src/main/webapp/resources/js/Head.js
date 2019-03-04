@@ -29,7 +29,7 @@ $("#btnlogin").click(function() {
 });
 */
 
-// 로그인 엔터키 먹히게
+// 로그인 엔터키
 $(document).ready(function() {
 	$('form[name=loginForm]').on('submit', function(e) {
 		// stop form submit event

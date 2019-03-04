@@ -5,6 +5,49 @@ public class Theaterbean {
 	private String t_theater;
 	private String t_juso1;
 	private String t_juso2;
+	private String t_location;
+	
+	private int rn;
+	private int start, end;
+	private String skey,sval;
+	
+	
+	public String getT_location() {
+		return t_location;
+	}
+	public void setT_location(String t_location) {
+		this.t_location = t_location;
+	}
+	public int getRn() {
+		return rn;
+	}
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getEnd() {
+		return end;
+	}
+	public void setEnd(int end) {
+		this.end = end;
+	}
+	public String getSkey() {
+		return skey;
+	}
+	public void setSkey(String skey) {
+		this.skey = skey;
+	}
+	public String getSval() {
+		return sval;
+	}
+	public void setSval(String sval) {
+		this.sval = sval;
+	}
 	public int getT_no() {
 		return t_no;
 	}

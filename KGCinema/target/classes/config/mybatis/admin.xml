@@ -90,4 +90,43 @@
 	<update id="movieSlideEdit" parameterType="com.kg.cinema.movie.Moviebean">
 	 update movieslide set mvs_file=#{mvs_file},mvs_video=#{mvs_video} where mvs_no=#{mvs_no}
 	</update>	
+	
+	<!-- schedule -->
+   	<insert id="scheduleInsert">
+	  insert into schedule(schedule_id,theater,scrno,title,starthour,endhour)
+	  values(schedule_seq.nextval,#{theater},#{scrno},#{title},to_date(#{upload_starthour},'yyyy-mm-dd hh24:mi'),to_date(#{upload_endhour},'yyyy-mm-dd hh24:mi'))
+	</insert>
+	
+	<delete id="scheduleDelete" parameterType="int">
+	  delete from schedule where schedule_id = #{schedule_id} 
+	</delete>
+	
+	<!-- theater -->
+   	<insert id="theaterInsert">
+	  insert into theater(t_no,t_theater,t_juso1,t_juso2,t_location)
+	  values(theater_seq.nextval,#{t_theater},#{t_juso1},#{t_juso2},#{t_location})
+	</insert>
+	
+	<delete id="theaterDelete" parameterType="int">
+	  delete from theater where t_no = #{t_no} 
+	</delete>
+	
+	<update id="theaterEdit" parameterType="com.kg.cinema.theater.Theaterbean">
+	 update theater set t_theater=#{t_theater},t_juso1=#{t_juso1},t_juso2=#{t_juso2},t_location=#{t_location} where t_no=#{t_no}
+	</update>		
+	
+	<!-- theater -->
+   	<insert id="screenInsert">
+	  insert into screen(s_no,s_theater,s_scrno,s_type,s_seatcnt,s_seatstyle,s_price)
+	  values(screen_seq.nextval,#{s_theater},#{s_scrno},#{s_type},#{s_seatcnt},#{s_seatstyle},#{s_price})
+	</insert>
+	
+	<delete id="screenDelete" parameterType="int">
+	  delete from screen where s_no = #{s_no} 
+	</delete>
+	
+	<update id="screenEdit" parameterType="com.kg.cinema.screen.Screenbean">
+	 update screen set s_theater=#{s_theater},s_scrno=#{s_scrno},s_type=#{s_type},s_seatcnt=#{s_seatcnt},
+	 s_seatstyle=#{s_seatstyle},s_price=#{s_price} where s_no=#{s_no}
+	</update>			
 </mapper>

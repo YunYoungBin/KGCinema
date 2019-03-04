@@ -1059,7 +1059,7 @@ public class AdminController {
 
 		int data=Integer.parseInt(request.getParameter("idx"));
 		adao.MovieSlideDelete(data);
-		mav.setViewName("redirect:/moviemglist.do");
+		mav.setViewName("redirect:/moviemglist.do?page=mvs");
 		return mav;
 	}//end
 	
@@ -1232,6 +1232,7 @@ public class AdminController {
 	//schedule
 	@RequestMapping(value = "/theatermglist.do", method = RequestMethod.GET)
 	public ModelAndView theaterMgList(HttpServletRequest request) {
+		String page = request.getParameter("page");
 		ModelAndView mav = new ModelAndView( );
 		HttpSession session = request.getSession();
 		 
@@ -1309,7 +1310,7 @@ public class AdminController {
 		mav.addObject("AA", AA);
 
 		mav.addObject("BB", BB);
-
+		mav.addObject("page",page);
 		mav.setViewName("admin/theaterManagement");
 		return mav;
 	}		
@@ -1410,7 +1411,7 @@ public class AdminController {
 		 }
 
 		adao.ScreenInsert(srdto);
-		return "redirect:/theatermglist.do" ;
+		return "redirect:/theatermglist.do?page=screen" ;
 	}//end
 	
 	@RequestMapping(value = "/screendelete.do", method = RequestMethod.GET)
@@ -1425,7 +1426,7 @@ public class AdminController {
 		
 		int data=Integer.parseInt(request.getParameter("idx"));
 		adao.ScreenDelete(data);
-		mav.setViewName("redirect:/theatermglist.do");
+		mav.setViewName("redirect:/theatermglist.do?page=screen");
 		return mav;
 	}//end		
 	
@@ -1440,9 +1441,14 @@ public class AdminController {
 		 }
 		
 	  int data=Integer.parseInt(request.getParameter("idx"));
+	  String AA="",BB="";
 	  Screenbean srdto=srdao.ScreenDetail(data);
+	  List<Theaterbean> tselect=tdao.theaterSelect();
+      List<Seatbean> seatstyle = stdao.seatStyle();
 	  mav.addObject("screen", srdto);
-	  mav.setViewName("admin/theaterEdit");
+	  mav.addObject("tselect", tselect);
+	  mav.addObject("style", seatstyle);
+	  mav.setViewName("admin/screenEdit");
 	  return mav;
 	}//end
 	
@@ -1455,7 +1461,7 @@ public class AdminController {
 		 }
 
 	  adao.ScreenEdit(srdto); 
-	  return "redirect:/theatermglist.do";
+	  return "redirect:/theatermglist.do?page=screen";
 	}//end		
 	
 }

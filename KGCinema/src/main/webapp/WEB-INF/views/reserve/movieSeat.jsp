@@ -16,7 +16,7 @@
     <link href="./resources/css/agency.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="./resources/demos/style.css">
-    <link rel="stylesheet" href="./resources/css/magnific-popup2.css">
+    <link rel="stylesheet" href="./resources/css/magnific-popup3.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="./resources/js/jquery.magnific-popup.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -290,11 +290,10 @@
    </div>
    
    <div class="login_popup" id="modal_login" style="width:380px;margin: 0 auto;">
-    <div class="login_form" style="display:none; height: auto;width: 380px;box-shadow: 0 5px 6px rgba(0,0,0,0.5);background-color: #fff;border-radius: 5px;z-index: 1000;position:absolute;top:-300px;">
+    <div class="login_form" style="display:none; height: auto;width: 380px;box-shadow: 0 5px 6px rgba(0,0,0,0.5);background-color: #fff;border-radius: 5px;z-index: 1000;position:relative;">
      <div class="ca_header">
      	<h6>로그인</h6>
      </div>
-     <a href="javascript:void(0);" class="common_close_btn" onclick="customHideModal('#modal_login');" title="로그인 창닫기">닫기</a>
      <div class="login_middle" style="padding: 0 33px 0 36px; padding-top: 30px;">
      <form name="loginForm" method="post" action="login.do">
       <div>

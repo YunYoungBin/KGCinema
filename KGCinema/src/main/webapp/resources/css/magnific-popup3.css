@@ -41,10 +41,11 @@
 
 .mfp-content {
   width:380px;
-  position: relative;
+  position: absolute;
   display: inline-block;
   vertical-align: middle;
-  margin: 0 auto;
+  top:100px;
+  left:38%;
   text-align: left;
   z-index: 1045; }
 

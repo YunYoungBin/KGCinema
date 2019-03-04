@@ -1196,7 +1196,9 @@ public class AdminController {
 		 }
 
 		List<Theaterbean> tselect=tdao.theaterSelect();
+		List<Screenbean> srselect=srdao.ScreenMgSelect();
 		mav.addObject("tselect", tselect);
+		mav.addObject("srselect",srselect);
 		mav.setViewName("admin/scheduleInsert");
 		return mav;
 	}//end

@@ -41,7 +41,10 @@
   <tr>
    <td>상영관</td><td>
     <select name="scrno">
-     <option>1관</option>
+     <option></option>
+     <c:forEach var="sr" items="${srselect}">     
+      <option value="${sr.s_scrno}">${sr.s_scrno}</option>
+     </c:forEach> 
     </select>
    </td>
   </tr>

@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="./resources/css/magnific-popup.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="./resources/js/jquery.magnific-popup.js"></script>
-    <script src="./resources/js/LoginPopUp.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./resources/js/Reserve0.js"></script>
     
@@ -112,7 +111,8 @@
     	line-height: 16px;
     	text-align: center;
     	background-color: #b19bc3;
-    	color: #000;}
+    	color: #000;
+    	}
     #select_seat .seat_body .right_wrap .row2 p.price, #select_pay .seat_body .right_wrap .row2 p.price{position: absolute;bottom: 47px;left: 12px;right: 12px;padding: 5px 0;font-size: 12px;text-align: right;
     color: #fff;}
     #select_seat .seat_body .right_wrap .row2 p.price strong, #select_pay .seat_body .right_wrap .row2 p.price strong{font-size:18px;}
@@ -127,6 +127,28 @@
     #select_seat .seat_selected_hover{background: url(http://image2.megabox.co.kr/mop/home/seatselect_160912.png) 0 0 no-repeat;}
     #select_seat .seat_done{background: url(http://image2.megabox.co.kr/mop/home/seatselect_160912.png) 0 0 no-repeat;background-position: 50% -27px;background-color: #ccc;}
     #select_seat .seat_cant{background: url(http://image2.megabox.co.kr/mop/home/seatselect_160912.png) 0 0 no-repeat;background-position: 50% -54px;background-color: #ccc;}
+    .ca_header {
+    	position: relative;
+	    padding-top: 12px;
+	    height: 42px;
+	    text-align: center;
+	    border-bottom: 1px solid #e5e5e5;
+	    margin: 0;
+    	font-size: 18px;
+    	line-height: 1.1;
+    }
+    h6{font-size: 18px; font-weight: 700;
+    font-family: '돋움',dotum,'Apple SD Gothic Neo',sans-serif;}
+    .common_close_btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    background: url(http://image2.megabox.co.kr/mop/home/btns/btn_close.png) 0 0 no-repeat;
+    overflow: hidden;
+    text-indent: -999px;
+}
   </style>
 </head>
 <body onload="reserveCheck()">
@@ -267,10 +289,13 @@
     </div>  
    </div>
    
-   <div class="login_popup" style="width:380px;margin: 0 auto;">
-    <div class="login_form" style="height: auto;width: 380px;box-shadow: 0 5px 6px rgba(0,0,0,0.5);background-color: #fff;border-radius: 5px;z-index: 1000;position:relative;">
-     <sapn style="display: block;height: 50px;"></sapn>
-     <div class="login_middle" style="padding: 0 33px 0 36px;">
+   <div class="login_popup" id="modal_login" style="width:380px;margin: 0 auto;">
+    <div class="login_form" style="display:none; height: auto;width: 380px;box-shadow: 0 5px 6px rgba(0,0,0,0.5);background-color: #fff;border-radius: 5px;z-index: 1000;position:absolute;top:-300px;">
+     <div class="ca_header">
+     	<h6>로그인</h6>
+     </div>
+     <a href="javascript:void(0);" class="common_close_btn" onclick="customHideModal('#modal_login');" title="로그인 창닫기">닫기</a>
+     <div class="login_middle" style="padding: 0 33px 0 36px; padding-top: 30px;">
      <form name="loginForm" method="post" action="login.do">
       <div>
        <h4 style="background: url(http://image2.megabox.co.kr/mop/home/btns/socialLogin_bg.png) 0 -8px no-repeat;height: 17px;padding-left: 75px;font-size: 16px;font-weight: 500;margin: 0 0 10px 0;">

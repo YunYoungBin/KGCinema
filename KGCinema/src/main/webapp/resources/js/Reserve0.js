@@ -560,7 +560,17 @@ function test() {
 	var selcnt = cnt - 1;
 	
 	if(loginCheck == "") {
-		alert("로그인 후 이용가능합니다.");
+		
+		$(document).ready(function() {
+				$.magnificPopup.open({
+					  items: {
+					    src: '.login_popup'
+					  },
+					  type: 'inline'
+				});
+				$(".login_form").css({"display":"block"});
+			});
+		 alert("하이");
 	} else if(seatCheck == "") {
 		alert("좌석을 선택해주세요.");
 	} else if(inwon > selcnt) {
@@ -570,3 +580,6 @@ function test() {
 	}
 }
 
+function customHideModal(data) {
+	
+}

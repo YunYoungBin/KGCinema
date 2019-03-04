@@ -38,6 +38,14 @@ public class ScreenDAO {
 	public Screenbean ScreenDetail(int data) {
 		Screenbean tdto=temp.selectOne("screen.screenDetail",data);
 		return tdto;
+	}//end
+	
+	public Screenbean ScrNo(String s_theater) {
+		System.out.println("s_theaterDAO: " + s_theater);
+		Screenbean srdto = new Screenbean();
+		srdto.setS_theater(s_theater);
+		srdto =temp.selectOne("screen.scrNo", srdto);
+		return srdto;
 	}//end	
 	
 }

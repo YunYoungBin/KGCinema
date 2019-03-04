@@ -20,7 +20,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="./resources/js/jquery.magnific-popup.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="./resources/js/Reserve0.js"></script>
+    <script src="./resources/js/Reserve.js"></script>
     
     
   <style type="text/css">
@@ -156,7 +156,7 @@
 	<form name="reserveForm" action="reserve.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="r_theater" value="${sbean.theater }">
 		<input type="hidden" name="r_scrno" value="${sbean.scrno }">
-		<input type="hidden" name="r_id" value="${bean.j_id }">
+		<input type="hidden" name="r_id" class="r_id" id="r_id" value="${bean.j_id }">
 		<input type="hidden" name="r_title" value="${mbean.m_title }">
 		<input type="hidden" name="r_type" value="${mbean.m_type }">
 		<input type="hidden" name="date" value="${timefmt }">
@@ -295,7 +295,7 @@
      	<h6>로그인</h6>
      </div>
      <div class="login_middle" style="padding: 0 33px 0 36px; padding-top: 30px;">
-     <form name="loginForm" method="post" action="login.do">
+     <form name="reserveLogin" method="post" action="login.do">
       <div>
        <h4 style="background: url(http://image2.megabox.co.kr/mop/home/btns/socialLogin_bg.png) 0 -8px no-repeat;height: 17px;padding-left: 75px;font-size: 16px;font-weight: 500;margin: 0 0 10px 0;">
         <sapn style="display: block;overflow: hidden;position: absolute;top: -1000em;left: -1000em;font-size: 16px;font-weight: 500;">KGCINEMA</sapn>로그인

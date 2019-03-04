@@ -227,6 +227,20 @@ var BookingSeatDatas = {
 					    seat_html += '<li data-seat-num=\"'+$(data).attr("seatgroup")+$(data).attr("seatno")+'">'+$(data).attr("seatgroup")+$(data).attr("seatno")+'</li>';
 						seat_html += '<li data-seat-num=\"'+$("#"+pre).attr("seatgroup")+$("#"+pre).attr("seatno")+'">'+$("#"+pre).attr("seatgroup")+$("#"+pre).attr("seatno")+'</li>';
 					    $("#selectedSeatNumbers1").html(seat_html);
+					} else {
+						$(data).attr("class","seat_selected");
+					    $(data).attr("title",$(data).attr("seatgroup")+$(data).attr("seatno")+"(선택됨)");
+					    $(data).attr("onmouseover","");
+					    $(data).attr("onmouseout","");
+					    $(data).attr("onclick","BookingSeatDatas.deselectSeat(\""+$(data).attr("seatgroup")+"\","+"\""+$(data).attr("seatno")+"\")");
+					    $(data).attr("onkeyup","");
+					    $(data).attr("onblur","");
+					    $(data).attr("onkeypress","");
+					    selInwon += 1;
+					    selSeat += $(data).attr("seatgroup")+$(data).attr("seatno")+',';
+					    $("#r_seat").attr("value",selSeat);
+					    seat_html += '<li data-seat-num=\"'+$(data).attr("seatgroup")+$(data).attr("seatno")+'">'+$(data).attr("seatgroup")+$(data).attr("seatno")+'</li>';
+					    $("#selectedSeatNumbers1").html(seat_html);
 					}
 				} else if(preno != undefined && preclass != "seat_done" && premouseover != "") {
 					var precheck = $("#"+pre).attr("style").split(" ")[5].split("px")[0];
@@ -559,27 +573,58 @@ function test() {
 	var cnt = seatCheck.split(",").length;
 	var selcnt = cnt - 1;
 	
-	if(loginCheck == "") {
-		
-		$(document).ready(function() {
-				$.magnificPopup.open({
-					  items: {
-					    src: '.login_popup'
-					  },
-					  type: 'inline'
-				});
-				$(".login_form").css({"display":"block"});
-			});
-		 alert("하이");
-	} else if(seatCheck == "") {
+	if(seatCheck == "") {
 		alert("좌석을 선택해주세요.");
 	} else if(inwon > selcnt) {
 		alert("인원만큼 좌석을 선택해주세요.");
+	} else if(loginCheck == "") {
+		$(document).ready(function() {
+			$.magnificPopup.open({
+				  items: {
+				    src: '.login_popup'
+				  },
+				  type: 'inline'
+			});
+			$(".login_form").css({"display":"block"});
+		});
+
 	} else {
 		document.reserveForm.submit();
 	}
 }
 
-function customHideModal(data) {
-	
-}
+//로그인 엔터키
+$(document).ready(function() {
+	$('form[name=reserveLogin]').on('submit', function(e) {
+		// stop form submit event
+		e.preventDefault();
+		
+		if($("#userid").val() == "") {
+			alert("아이디를 입력해주세요.");
+			return;
+		} else if($("#userpw").val() == "") {
+			alert("비밀번호를 입력해주세요.");
+			return;
+		} else {
+			$.ajax({
+				url: "login.do",
+				data: "userid=" + $("#userid").val() + "&userpw=" + $("#userpw").val(),
+				dataType: "json",
+				type: "GET",
+				success: function(data) {
+					if(data.check==1) {
+						$("#r_id").attr("value",$("#userid").val());
+						document.reserveForm.submit();
+					} else {
+						alert("로그인 정보가 잘못되었습니다.");
+						$("#userpw").focus();
+					}
+				},
+				error: function(data) {
+					console.log(data);
+				}
+			});
+		}
+		
+	});
+});

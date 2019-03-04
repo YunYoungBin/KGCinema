@@ -23,7 +23,7 @@
     <link href="./resources/css/agency.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./resources/css/InputCSS1.css">
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-    <script src="./resources/js/EditJS2.js"></script>
+    <script src="./resources/js/EditJS.js"></script>
     
   <style type="text/css">
     html, body {margin: 0;padding: 0;border:0;vertical-align: baseline;}

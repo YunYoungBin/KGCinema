@@ -86,16 +86,15 @@ public class ReserveController {
 		String year = String.valueOf(cal.get(Calendar.YEAR));
 		String month = String.valueOf(cal.get(Calendar.MONTH)+1);
 		String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
-		System.out.println(day);
+		
 		if(Integer.parseInt(month) < 10) {
 			month = "0" + month;
 		}
 		if(Integer.parseInt(day) < 10) {
 			day = "0" + day;
 		}
-		System.out.println(day);
-		String today = year + "-" + month + "-" + day;
 		
+		String today = year + "-" + month + "-" + day;
 		
 		mav.addObject("date", today);
 		mav.addObject("movie", movieList);
@@ -160,11 +159,13 @@ public class ReserveController {
 		
 		Screenbean scrbean = scrdao.screenSelect(sbean.getTheater(), sbean.getScrno());
 		List<Seatbean> seatList = seatdao.seatSelect(scrbean.getS_seatstyle());
-		
+		int price = scrbean.getS_price();
+		System.out.println(price);
 		mav.addObject("seatbean", seatList);
 		mav.addObject("sbean", sbean);
 		mav.addObject("scrno", idx);
 		mav.addObject("mbean", mbean);
+		mav.addObject("price", price);
 		mav.setViewName("reserve/movieSeat");
 		return mav;
 	}

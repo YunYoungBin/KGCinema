@@ -40,11 +40,13 @@ public class SeatController {
 		response.setContentType("text/html;charset=utf-8");
 		
 		PrintWriter out = response.getWriter();
-		String seatstyle = request.getParameter("seatstyle");
+		String seatstyle = request.getParameter("style");
+		System.out.println("seatstyle: " + seatstyle);
 		Seatbean sdto = sdao.SeatCount(seatstyle);
+		System.out.println(sdto.getCount());
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
-		sb.append("\"seatstyle\": \"" + sdto.getSeatstyle() + "\" " );
+		sb.append("\"count\": \"" + sdto.getCount() + "\" " );
 		sb.append("}");
 		out.print(sb.toString());
 	}//end	

@@ -26,10 +26,11 @@ public class ReserveDAO {
 		return list;
 	}
 	
-	/*
-	public Schedulebean scheduleDetail(int idx) {
-		return temp.selectOne("schedule.detail", idx);
+	
+	public void reserveInsert(Reservebean bean) {
+
+		temp.insert("reserve.insert", bean);
 	}
-	*/
+	
 
 }

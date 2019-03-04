@@ -22,7 +22,7 @@
     a{text-decoration: none;color: #555;}
     .movie_menu ul li{display: inline-block;}
     .movie_menu ul li >a{display: block;width: 175px;height: 50px;margin-left: 1px;background: #efebdb;color: #6f6247;font-size: 16px;line-height: 50px;text-align: center;}
-    .movie_menu ul li a.on{background: #231f20 url('images/btn_st02_on.gif') no-repeat 0 0;color: #cdc197;font-weight: bold;}
+    .movie_menu ul li a.on{background: #231f20 url('./resources/images/btn_st02_on.gif') no-repeat 0 0;color: #cdc197;font-weight: bold;}
     .movie_list li{width: 230px;height: 411px;margin: 0 0 40px 20px;position: relative;float: left;border: 1px solid #dedede;}
     .img{width: 228px;height: 334px;}
     .img img{width: 228px;height: 334px;}
@@ -211,7 +211,7 @@
         </div>
         
         <div class="hover_1" style="display: block;width: 228px;height: 335px;padding: 114px 20px 0;opacity:0;position: absolute;left: 0;top: 0;color: #fff;text-align: center;font-size: 14px;line-height: 27px;z-index:999;">
-           <a href="resev.do" style="display:none;text-decoration:none;display:block;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">예매하기</a>
+           <a href="reserveMain.do" style="display:none;text-decoration:none;display:block;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">예매하기</a>
            <div style="display:none;margin-top:10px;">
            <a href="moviedetail.do?idx=${item.m_no}" style="text-decoration:none;display:block;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">상세보기</a>
            </div>  

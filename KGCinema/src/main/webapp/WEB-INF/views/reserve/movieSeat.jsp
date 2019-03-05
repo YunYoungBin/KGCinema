@@ -336,10 +336,6 @@
     </div>      
    </div>
    
-   <select>
-   	<option  value="0">전체관람가</option>
-   	<option value="15">15세관람가</option>
-   </select>
    
 </body>
 </html>

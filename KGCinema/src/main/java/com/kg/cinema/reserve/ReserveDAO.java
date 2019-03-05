@@ -26,11 +26,19 @@ public class ReserveDAO {
 		return list;
 	}
 	
-	
 	public void reserveInsert(Reservebean bean) {
 
 		temp.insert("reserve.insert", bean);
 	}
 	
+	public List<Reservebean> reserveDetail(String id) {
+		List<Reservebean> list = temp.selectList("reserve.detail", id);
+		return list;
+	}
+	
+	public List<Reservebean> oldReserveDetail(String id) {
+		List<Reservebean> list = temp.selectList("reserve.oldDetail", id);
+		return list;
+	}
 
 }

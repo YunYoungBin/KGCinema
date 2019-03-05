@@ -202,9 +202,22 @@ public class ReserveController {
 		if(request.getSession().getAttribute("temp") != null) {
 			Joinbean bean = jdao.myInfo((String)request.getSession().getAttribute("temp"));
 			mav.addObject("bean", bean);
+		} else {
+			mav.setViewName("redirect:/main.do");
+			return mav;
 		}
+		String id = (String) request.getSession().getAttribute("temp");
+		List<Reservebean> myReserveList = rdao.reserveDetail(id);
+		List<Reservebean> myOldReserveList = rdao.oldReserveDetail(id);
+		List<Moviebean> movieList = mdao.movieSelect();
+		
+		mav.addObject("movie",movieList);
+		mav.addObject("reserve",myReserveList);
+		mav.addObject("oldReserve",myOldReserveList);
 		mav.setViewName("reserve/reservDetails");
 		return mav;
+		
+		
 	}//end
 	
 }

@@ -8,7 +8,7 @@
 		where theater like #{theater} 
 		and title like '%' || #{movie} || '%' 
 		and starthour like to_date(#{date},'yyyy-mm-dd') 
-		and starthour <![CDATA[>]]> sysdate
+		and starthour <![CDATA[>]]> sysdate + 20/(24*60)
 	</select>
 	
 	<select id="scheduleMgSelectAll"  resultType="com.kg.cinema.schedule.Schedulebean">	   

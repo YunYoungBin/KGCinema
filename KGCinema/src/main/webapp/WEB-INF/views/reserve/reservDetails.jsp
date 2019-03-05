@@ -98,59 +98,53 @@
       <h3 class="blind">예매내역</h3>
       
 	    <ol class="kgCinema_list" id="kgCinemaList_1">
-		<li>
-		 <div class="kgCinema_box">
-		  <span class="thum"><img src="./resources/images/gg.jpg" alt="극한직업"></span>
-		   <dl class="kgCimema_cont">
-		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영화관/관</dt> <dd><span>강남 1관</span></dd>
-			<dt>예매내역</dt> <dd>극한직업(디지털)</dd>
-			<dt>관람인원/좌석</dt> <dd>성인2명 / A10 A11</dd>
-			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
-		   </dl>
-		  <a href="#" class="btn_s_view"><span>취소</span></a>
-		</div>
-		</li>		
-		<li>
-		 <div class="kgCinema_box">
-		  <span class="thum"><img src="./resources/images/gg.jpg" alt="극한직업"></span>
-		   <dl class="kgCimema_cont">
-		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영화관/관</dt> <dd><span>강남 1관</span></dd>
-			<dt>예매내역</dt> <dd>극한직업(디지털)</dd>
-			<dt>관람인원/좌석</dt> <dd>성인2명 / A10 A11</dd>
-			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
-		   </dl>
-		  <a href="#" class="btn_s_view"><span>취소</span></a>
-		</div>
-		</li>						
+	    <c:forEach var="todayReserve" items="${reserve }">
+			<li>
+			 <div class="kgCinema_box">
+			  <span class="thum">
+			  	<c:forEach var="mbean" items="${movie}">
+			  		<c:if test="${mbean.m_title eq todayReserve.r_title }">
+			  			<img src="${pageContext.request.contextPath}/resources/storage/${mbean.m_poster}" alt="${mbean.m_title }">
+			  		</c:if>
+			  	</c:forEach>
+			  </span>
+			   <dl class="kgCimema_cont">
+			    <dt>예매번호</dt> <dd>${todayReserve.r_no }</dd>
+				<dt>예매 영화명</dt> <dd>${todayReserve.r_title }(${todayReserve.r_type })</dd>
+				<dt>관람영화관/관</dt> <dd><span>${todayReserve.r_theater }/${todayReserve.r_scrno }</span></dd>
+				<dt>관람일시</dt> <dd><fmt:formatDate value="${todayReserve.r_start }" pattern="yyyy-MM-dd (E), HH시 mm분"/></dd>
+				<dt>관람인원/좌석</dt> <dd>${todayReserve.r_inwon }/${todayReserve.r_seat.substring(0,todayReserve.r_seat.lastIndexOf(",")) }</dd>
+				<dt>총 결제 금액</dt> <dd><fmt:formatNumber value="${todayReserve.r_price }" pattern="#,###"/> <span>\</span></dd>
+			   </dl>
+			  <a href="#" class="btn_s_view"><span>취소</span></a>
+			</div>
+			</li>		
+		</c:forEach>
 	   </ol>
 	   
 	    <ol class="kgCinema_list" id="kgCinemaList_2" style="display:none;">
-		<li>
-		 <div class="kgCinema_box">
-		  <span class="thum"><img src="./resources/images/movie_list_2.jpg" alt="극한직업"></span>
-		   <dl class="kgCimema_cont">
-		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영화관/관</dt> <dd><span>강남 2관</span></dd>
-			<dt>예매내역</dt> <dd>아쿠아맨(디지털)</dd>
-			<dt>관람인원/좌석</dt> <dd>성인2명 / B13 A14</dd>
-			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
-		   </dl>
-		</div>
-		</li>		
-		<li>
-		 <div class="kgCinema_box">
-		  <span class="thum"><img src="./resources/images/movie_list_2.jpg" alt="극한직업"></span>
-		   <dl class="kgCimema_cont">
-		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영화관/관</dt> <dd><span>강남 2관</span></dd>
-			<dt>예매내역</dt> <dd>아쿠아맨(디지털)</dd>
-			<dt>관람인원/좌석</dt> <dd>성인2명 / B13 A14</dd>
-			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
-		   </dl>
-		</div>
-		</li>						
+		<c:forEach var="oldReserve" items="${oldReserve }">
+			<li>
+			 <div class="kgCinema_box">
+			  <span class="thum">
+			  	<c:forEach var="mbean" items="${movie}">
+			  		<c:if test="${mbean.m_title eq oldReserve.r_title }">
+			  			<img src="${pageContext.request.contextPath}/resources/storage/${mbean.m_poster}" alt="${mbean.m_title }">
+			  		</c:if>
+			  	</c:forEach>
+			  </span>
+			   <dl class="kgCimema_cont">
+			    <dt>예매번호</dt> <dd>${oldReserve.r_no }</dd>
+				<dt>예매 영화명</dt> <dd>${oldReserve.r_title }(${oldReserve.r_type })</dd>
+				<dt>관람영화관/관</dt> <dd><span>${oldReserve.r_theater }/${oldReserve.r_scrno }</span></dd>
+				<dt>관람일시</dt> <dd><fmt:formatDate value="${oldReserve.r_start }" pattern="yyyy-MM-dd (E), HH시 mm분"/></dd>
+				<dt>관람인원/좌석</dt> <dd>${oldReserve.r_inwon }/${oldReserve.r_seat.substring(0,oldReserve.r_seat.lastIndexOf(",")) }</dd>
+				<dt>총 결제 금액</dt> <dd><fmt:formatNumber value="${oldReserve.r_price }" pattern="#,###"/> <span>\</span></dd>
+			   </dl>
+			  <a href="#" class="btn_s_view"><span>취소</span></a>
+			</div>
+			</li>		
+		</c:forEach>					
 	   </ol>
 	   
 	    <ol class="kgCinema_list" id="kgCinemaList_3" style="display:none;">

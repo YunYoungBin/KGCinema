@@ -11,4 +11,11 @@
 		insert into reserve values(reserve_seq.nextval,#{r_theater},#{r_scrno},#{r_id},#{r_title},#{r_type},to_date(#{date},'yyyy-mm-dd hh24:mi'),#{r_grade},#{r_inwon},#{r_seat},#{r_price})
 	</insert>
 
+	<select id="detail" parameterType="String" resultType="com.kg.cinema.reserve.Reservebean">
+		select * from reserve where r_id = #{id} and r_start <![CDATA[>]]> sysdate - 2/24 order by r_no desc
+	</select>
+	
+	<select id="oldDetail" parameterType="String" resultType="com.kg.cinema.reserve.Reservebean">
+		select * from reserve where r_id = #{id} and r_start <![CDATA[<]]> sysdate - 2/24 order by r_no desc
+	</select>
 </mapper>

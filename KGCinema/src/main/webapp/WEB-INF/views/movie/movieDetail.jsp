@@ -262,12 +262,11 @@
      ${movie.m_story}
     </div>
    </div>
-   
+   <c:import url="/replywrite.do" />
   </div>
   
  </div> <!-- 마지막 DIV -->
     
-   <jsp:include page="../main/footer.jsp"></jsp:include>
 
 
 

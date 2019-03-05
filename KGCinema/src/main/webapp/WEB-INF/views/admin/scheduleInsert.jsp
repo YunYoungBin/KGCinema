@@ -32,8 +32,10 @@ $(document).on('ready', function() {
 				for(var i=0; i<scrno.length-1; i++) {
 					scr += '<option> '+scrno[i]+'</option>';
 				}
-				$("#scrno").html("<option> </option>");
-	            $("#scrno").html(scr);
+	            $("#scrno").html(
+	            		"<option> </option>" +
+	            		scr
+	            );
 				
 
 			},//sucess end
@@ -55,7 +57,7 @@ $(document).on('ready', function() {
   <tr>
    <td>지점</td><td>   
     <select id="theater" name="theater">
-     <option></option>
+     <option>선택</option>
     <c:forEach var="t" items="${tselect}"> 
      <option>${t.t_theater}</option>
     </c:forEach> 
@@ -70,7 +72,15 @@ $(document).on('ready', function() {
    </td>
   </tr>
   <tr>
-   <td>제 목</td><td><input type="text" name="title"></td>
+   <td>제 목</td>
+   <td>
+    <select name="title">
+     <option>선택</option>
+    <c:forEach var="m" items="${mselect}">     
+     <option>${m.m_title}</option>
+    </c:forEach> 
+    </select>
+   </td>
   </tr>
   <tr>
    <td>영화시작시간</td><td><input type="text" name="upload_starthour" placeholder="yyyy-mm-dd hh:mi"></td>

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kg.cinema.movie.MovieDAO;
-import com.kg.cinema.movie.Moviebean;
+import com.kg.cinema.join.JoinDAO;
+import com.kg.cinema.join.Joinbean;
 
 @Controller
 public class NoticeController {
@@ -25,18 +25,17 @@ public class NoticeController {
 	@Autowired
 	NoticeDAO ndao;
 	
+	@Inject
+	@Autowired
+	JoinDAO jdao;
+	
 	@RequestMapping(value = "/noticelist.do", method = RequestMethod.GET)
 	public ModelAndView noticeList(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView( );
-		/*
-		 HttpSession session = request.getSession();
-			
-		 if(session.getAttribute("temp") == null) {
-				
-		 } else {
-				
-		 }
-		*/
+		if(request.getSession().getAttribute("temp") != null) {
+			Joinbean bean = jdao.myInfo((String)request.getSession().getAttribute("temp"));
+			mav.addObject("bean", bean);
+		}
 		int startpage=1, endpage=10;
 		String pnum="";
 		int pageNUM=1, start=1,end=10;

@@ -28,7 +28,16 @@
    <td>부제</td><td><input type="text" name=m_subtitle></td>
   </tr>
   <tr>
-   <td>등급</td><td><input type="text" name=m_grade></td>
+   <td>등급</td>
+   <td>
+   <select name="m_grade">
+    <option>선택</option>
+    <option value="0">전체관람가</option>
+    <option value="12">12세관람가</option>
+    <option value="15">15세관람가</option>
+    <option value="19">청소년관람불가</option>
+   </select>
+   </td>
   </tr>
   <tr>
    <td>타입</td><td><input type="text" name=m_type></td>

@@ -11,17 +11,34 @@
 <head>
 <meta charset="UTF-8">
 <title>scheduleInsert.jsp</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <style>
  *{margin:0;padding:0;}
 </style>
 <script type="text/javascript">
-	function check() {
-	    var str = document.getElementById("ncontent").value;
-	    alert(str);
-	    str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-	    document.noticeform.submit();
- }
+$(document).on('ready', function() {
+	$("#theater").change(function() {
+		var s_theater = this.value;
+		alert(s_theater);
+		
+		$.ajax({
+			url:"scrNo.do",
+			data: "s_theater="+s_theater,
+			dataType: "json",
+			type: "GET",
+			success: function(data){
+				$("#scrno #scrno_option").eq(0).text(data.scrno);
+
+			},//sucess end
+			error: function(data){
+				alert("실패"+data.theater);
+				console.log(data);
+			}
+		
+		});//eventdetail end
+	});
+});
 </script>
 
 <body>
@@ -31,7 +48,8 @@
   
   <tr>
    <td>지점</td><td>   
-    <select name="theater">
+    <select id="theater" name="theater">
+     <option></option>
     <c:forEach var="t" items="${tselect}"> 
      <option>${t.t_theater}</option>
     </c:forEach> 
@@ -40,10 +58,10 @@
   </tr>
   <tr>
    <td>상영관</td><td>
-    <select name="scrno">
+    <select id="scrno" name="scrno">
      <option></option>
      <c:forEach var="sr" items="${srselect}">     
-      <option value="${sr.s_scrno}">${sr.s_scrno}</option>
+      <option id="scrno_option" value="${sr.s_scrno}">${sr.s_scrno}</option>
      </c:forEach> 
     </select>
    </td>

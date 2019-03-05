@@ -197,8 +197,14 @@ public class ReserveController {
 	}
 	
 	@RequestMapping(value = "/reservdetails.do", method = RequestMethod.GET)
-	public String reservDetails(Locale locale, Model model) {
-		return "reserve/reservDetails";
+	public ModelAndView reservDetails(Locale locale, Model model,HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		if(request.getSession().getAttribute("temp") != null) {
+			Joinbean bean = jdao.myInfo((String)request.getSession().getAttribute("temp"));
+			mav.addObject("bean", bean);
+		}
+		mav.setViewName("reserve/reservDetails");
+		return mav;
 	}//end
 	
 }

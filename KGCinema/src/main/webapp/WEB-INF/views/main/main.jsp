@@ -208,7 +208,7 @@
      <c:forEach var="item" items="${movie}">
        <div class="movie_1 rel">
          <div class="hover_1" style="width:100%;height:100%;padding-top:50px;z-index:999;position: absolute;display:block;">
-             <a href="reserveMain.do?no=${item.m_no}" style="display:none;text-decoration:none;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">예매하기</a>
+             <a href="reserveMovie.do?no=${item.m_no}" style="display:none;text-decoration:none;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">예매하기</a>
              <div style="margin-top:10px;display:none;">
              <a href="moviedetail.do?idx=${item.m_no}" style="text-decoration:none;display:block;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">상세보기</a>
              </div>  

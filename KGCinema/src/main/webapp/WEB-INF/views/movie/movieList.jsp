@@ -211,7 +211,7 @@
         </div>
         
         <div class="hover_1" style="display: block;width: 228px;height: 335px;padding: 114px 20px 0;opacity:0;position: absolute;left: 0;top: 0;color: #fff;text-align: center;font-size: 14px;line-height: 27px;z-index:999;">
-           <a href="reserveMain.do" style="display:none;text-decoration:none;display:block;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">예매하기</a>
+           <a href="reserveMain.do?no=${item.m_no}" style="display:none;text-decoration:none;display:block;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">예매하기</a>
            <div style="display:none;margin-top:10px;">
            <a href="moviedetail.do?idx=${item.m_no}" style="text-decoration:none;display:block;margin:0 15px;border:1px solid #c1b687;height:48px;font-size:15px;font-weight:bold;color:#c1b687;text-align: center;padding-top:10px;">상세보기</a>
            </div>  

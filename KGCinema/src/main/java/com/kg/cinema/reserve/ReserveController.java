@@ -176,11 +176,12 @@ public class ReserveController {
 		
 		Moviebean mbean = new Moviebean();
 		mbean = mdao.movieDetail(sbean.getTitle());
+
 		
 		Screenbean scrbean = scrdao.screenSelect(sbean.getTheater(), sbean.getScrno());
 		List<Seatbean> seatList = seatdao.seatSelect(scrbean.getS_seatstyle());
 		int price = scrbean.getS_price();
-		System.out.println(price);
+		
 		mav.addObject("seatbean", seatList);
 		mav.addObject("sbean", sbean);
 		mav.addObject("scrno", idx);
@@ -214,8 +215,14 @@ public class ReserveController {
 	public ModelAndView reserve_save(Reservebean bean, HttpServletResponse response, HttpServletRequest request) throws IOException {
 		ModelAndView mav = new ModelAndView();
 		rdao.reserveInsert(bean);
-
-		mav.addObject("test","ok");
+		
+		// 스태틱 테스트
+		AlertCount acount = new AlertCount();
+		acount.nowReserveCheck = 0;
+		acount.nowReserveCheck += 1;
+		System.out.println(acount.nowReserveCheck);
+		
+		mav.addObject("test",acount.nowReserveCheck);
 		mav.setViewName("redirect:/reservdetails.do");
 		return mav;
 		
@@ -226,6 +233,7 @@ public class ReserveController {
 		ModelAndView mav = new ModelAndView();
 		if(request.getSession().getAttribute("temp") != null) {
 			Joinbean bean = jdao.myInfo((String)request.getSession().getAttribute("temp"));
+			
 			mav.addObject("bean", bean);
 		} else {
 			mav.setViewName("redirect:/main.do");
@@ -238,7 +246,12 @@ public class ReserveController {
 		List<Reservebean> myOldReserveList = rdao.oldReserveDetail(id);
 		List<Moviebean> movieList = mdao.movieSelect();
 		
-		mav.addObject("test",request.getParameter("test"));
+		// 스태틱 테스트
+		AlertCount acount = new AlertCount();
+		acount.nowReserveCheck += 1;
+		System.out.println(acount.nowReserveCheck);
+		
+		mav.addObject("test",acount.nowReserveCheck);
 		mav.addObject("movie",movieList);
 		mav.addObject("reserve",myReserveList);
 		mav.addObject("oldReserve",myOldReserveList);

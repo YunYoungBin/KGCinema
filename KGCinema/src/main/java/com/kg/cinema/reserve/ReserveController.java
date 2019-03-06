@@ -3,6 +3,8 @@ package com.kg.cinema.reserve;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -112,10 +114,28 @@ public class ReserveController {
 			mav.addObject("bean", bean);
 		}
 		
-		String date = request.getParameter("date");
-		String theater = request.getParameter("theater");
-		String movieNo = request.getParameter("no");
+		Calendar cal = Calendar.getInstance();
+		String year = String.valueOf(cal.get(Calendar.YEAR));
+		String month = String.valueOf(cal.get(Calendar.MONTH)+1);
+		String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
 		
+		if(Integer.parseInt(month) < 10) {
+			month = "0" + month;
+		}
+		if(Integer.parseInt(day) < 10) {
+			day = "0" + day;
+		}
+		String date = year + "-" + month + "-" + day;
+		
+		if(request.getParameter("date") != null) {
+			date = request.getParameter("date");
+		}
+		
+		String theater = request.getParameter("theater");
+		if(theater == null) {
+			theater = "";
+		}
+		String movieNo = request.getParameter("no");
 		
 		Moviebean mbean = new Moviebean();
 		if(!movieNo.equals("")) {
@@ -191,9 +211,20 @@ public class ReserveController {
 	}
 	
 	@RequestMapping(value = "/reserve.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String reserve_save(Reservebean bean) {
+	public void reserve_save(Reservebean bean, HttpServletResponse response, HttpServletRequest request) throws IOException {
+		
 		rdao.reserveInsert(bean);
-		return "redirect:/reservdetails.do";
+		
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		StringBuilder sb = new StringBuilder();
+		sb.append("<script type=\"text/javascript\">"
+						+ "alert('예매가 완료되었습니다\\n상영시간 20분전까지 취소가 가능합니다.\\n지연입장에 의한 관란불편을 최소화 하고자 본 영화는 약 10분 후 시작됩니다.');"
+						+ "location.href='reservdetails.do';"
+						  + "</script>");
+		out.print(sb);
+		
 	}
 	
 	@RequestMapping(value = "/reservdetails.do", method = RequestMethod.GET)
@@ -206,6 +237,7 @@ public class ReserveController {
 			mav.setViewName("redirect:/main.do");
 			return mav;
 		}
+
 		String id = (String) request.getSession().getAttribute("temp");
 		List<Reservebean> myReserveList = rdao.reserveDetail(id);
 		List<Reservebean> myOldReserveList = rdao.oldReserveDetail(id);
@@ -219,5 +251,29 @@ public class ReserveController {
 		
 		
 	}//end
+	
+	@RequestMapping(value = "/cancel.do", method = RequestMethod.GET)
+	public void reserve_cancel(HttpServletRequest request) throws ParseException {
+		
+		String start = "2019-03-06 21:40";
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		Date now = new Date();
+		Date start_t = sdf.parse(start);
+		String nowstr = sdf.format(now);
+		System.out.println(now.getTime());
+		if(now.getTime() < start_t.getTime()) {
+			System.out.println("9시 40분은 현재시간보다 크다");
+			System.out.println("현재시각:"+nowstr);
+		} else {
+			System.out.println("아니다");
+			System.out.println("현재시각:"+nowstr);
+		}
+		
+		
+		
+		String rno = request.getParameter("rno");
+		
+	}
 	
 }

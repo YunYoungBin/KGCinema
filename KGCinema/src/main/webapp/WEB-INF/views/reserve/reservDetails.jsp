@@ -11,6 +11,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link href="./resources/css/event1.css" rel="stylesheet">
     <link href="./resources/css/event2.css" rel="stylesheet">
+    <script type="text/javascript" src="./resources/js/ReserveCancel.js"></script>
 </head>
    <script type="text/javascript">
     $(document).on('ready', function() {
@@ -55,6 +56,35 @@
    .kgCinema_list .kgCinema_box {position:relative; overflow:hidden; width:100%; padding:20px 30px; border-bottom:1px solid #c0c0c0; background:#fff; box-sizing:border-box;
    -webkit-box-sizing:border-box; -moz-box-sizing:border-box}
    .btn_s_view:hover {color:#cd190b;text-decoration: none;}
+     #small-dialog {
+        background: white;
+        padding: 10px 0px 30px;
+        text-align: center;
+        max-width: 400px;
+        margin: 40px auto;
+        position: relative;
+        font-size: 20px;
+        border-radius : 15px;
+      }
+  #small-dialog #dialogTop{
+	  	border-bottom: 1px;
+	    border-bottom-style: solid;
+	    border-bottom-color: #aaa;
+	    padding-bottom: 8px;
+	    font-size: 23px;
+	    font-weight: bold;
+  }
+  
+  #small-dialog .dialogbtn{
+  	margin-top: 23px;
+    padding: 5px 36px;
+    background-color: #017467;
+    border-style: solid;
+    border-color: #017467;
+    color: #fff;
+    font-size: 19px;
+    font-weight: bold;
+  }
   </style>
 <body>
 
@@ -98,6 +128,10 @@
       <h3 class="blind">예매내역</h3>
       
 	    <ol class="kgCinema_list" id="kgCinemaList_1">
+	    <c:if test="${reserve == '[]' }">
+	    	<br><br>
+	    	&nbsp;&nbsp;&nbsp;현재 상영중인 예매내역이 존재하지 않습니다.
+	    </c:if>
 	    <c:forEach var="todayReserve" items="${reserve }">
 			<li>
 			 <div class="kgCinema_box">
@@ -110,13 +144,13 @@
 			  </span>
 			   <dl class="kgCimema_cont">
 			    <dt>예매번호</dt> <dd>${todayReserve.r_no }</dd>
-				<dt>예매 영화명</dt> <dd>${todayReserve.r_title }(${todayReserve.r_type })</dd>
+				<dt>예매 영화명</dt> <dd>${todayReserve.r_title }-${todayReserve.r_type }</dd>
 				<dt>관람영화관/관</dt> <dd><span>${todayReserve.r_theater }/${todayReserve.r_scrno }</span></dd>
 				<dt>관람일시</dt> <dd><fmt:formatDate value="${todayReserve.r_start }" pattern="yyyy-MM-dd (E), HH시 mm분"/></dd>
 				<dt>관람인원/좌석</dt> <dd>${todayReserve.r_inwon }/${todayReserve.r_seat.substring(0,todayReserve.r_seat.lastIndexOf(",")) }</dd>
 				<dt>총 결제 금액</dt> <dd><fmt:formatNumber value="${todayReserve.r_price }" pattern="#,###"/> <span>\</span></dd>
 			   </dl>
-			  <a href="#" class="btn_s_view"><span>취소</span></a>
+			  <a href="#" r_no="${todayReserve.r_no }" class="btn_s_view" onclick="cancel(this)"><span>취소</span></a>
 			</div>
 			</li>		
 		</c:forEach>
@@ -135,13 +169,12 @@
 			  </span>
 			   <dl class="kgCimema_cont">
 			    <dt>예매번호</dt> <dd>${oldReserve.r_no }</dd>
-				<dt>예매 영화명</dt> <dd>${oldReserve.r_title }(${oldReserve.r_type })</dd>
+				<dt>예매 영화명</dt> <dd>${oldReserve.r_title }-${oldReserve.r_type }</dd>
 				<dt>관람영화관/관</dt> <dd><span>${oldReserve.r_theater }/${oldReserve.r_scrno }</span></dd>
 				<dt>관람일시</dt> <dd><fmt:formatDate value="${oldReserve.r_start }" pattern="yyyy-MM-dd (E), HH시 mm분"/></dd>
 				<dt>관람인원/좌석</dt> <dd>${oldReserve.r_inwon }/${oldReserve.r_seat.substring(0,oldReserve.r_seat.lastIndexOf(",")) }</dd>
 				<dt>총 결제 금액</dt> <dd><fmt:formatNumber value="${oldReserve.r_price }" pattern="#,###"/> <span>\</span></dd>
 			   </dl>
-			  <a href="#" class="btn_s_view"><span>취소</span></a>
 			</div>
 			</li>		
 		</c:forEach>					
@@ -186,5 +219,18 @@
   <!-- main end -->
   <div class="bin"></div>
   
+  
+  <div id="small-dialog">
+  	<div id="dialogTop"> 알림 </div>
+  	<br>
+  	예매가 완료되었습니다
+  	상영시간 20분전까지 취소가 가능합니다.
+  	지연입장에 의한 관란불편을 최소화 하고자 본 영화는 약 10분 후 시작됩니다.
+  	<button type="button" class="dialogbtn" onclick="dialogclose()">
+  	<br>
+  </div>
+  
 </body>
 </html>
+  
+  

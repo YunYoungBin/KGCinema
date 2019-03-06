@@ -20,7 +20,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="./resources/js/jquery.magnific-popup.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="./resources/js/Reserve.js"></script>
+    <script src="./resources/js/Reserve0.js"></script>
     
     
   <style type="text/css">

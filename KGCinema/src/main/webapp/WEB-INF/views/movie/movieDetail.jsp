@@ -513,7 +513,7 @@
        <p class="right_p">
               예매율<strong> 2 </strong>위<span> 18.7% </span>
        </p>    
-       <a class="img_btn movie btn_reservation" href="reserveMain.do?no=${movie.m_no}">예매하기</a>       
+       <a class="img_btn movie btn_reservation" href="reserveMovie.do?no=${movie.m_no}">예매하기</a>       
       </div>     
       <ul class="info">
        <li><strong>타입</strong> : ${movie.m_type}</li>

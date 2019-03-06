@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import com.kg.cinema.theater.Theaterbean;
-
 @Repository
 @Component
 public class ScreenDAO {
@@ -38,6 +36,12 @@ public class ScreenDAO {
 	public Screenbean ScreenDetail(int data) {
 		Screenbean tdto=temp.selectOne("screen.screenDetail",data);
 		return tdto;
+	}//end
+	
+	public List<Screenbean> ScrNo(String s_theater) {
+		System.out.println("s_theaterDAO: " + s_theater);
+		List<Screenbean> list =temp.selectList("screen.scrNo", s_theater);
+		return list;
 	}//end	
 	
 }

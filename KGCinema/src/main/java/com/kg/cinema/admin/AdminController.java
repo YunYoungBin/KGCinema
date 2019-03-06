@@ -1110,7 +1110,7 @@ public class AdminController {
 		}
 
 	 adao.MovieSlideEdit(mvsdto); 
-	 return "redirect:/moviemglist.do";
+	 return "redirect:/moviemglist.do?page=mvs";
 	}//end	
 	
 	//schedule
@@ -1197,8 +1197,10 @@ public class AdminController {
 
 		List<Theaterbean> tselect=tdao.theaterSelect();
 		List<Screenbean> srselect=srdao.ScreenMgSelect();
+		List<Moviebean> mselect=mdao.movieSelectName();
 		mav.addObject("tselect", tselect);
 		mav.addObject("srselect",srselect);
+		mav.addObject("mselect", mselect);
 		mav.setViewName("admin/scheduleInsert");
 		return mav;
 	}//end

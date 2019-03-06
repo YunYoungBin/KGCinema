@@ -386,7 +386,7 @@
        
        <div class="btn_wrap" style="border-top: 1px solid #e1e1e1;border-bottom: 1px solid #e1e1e1;height: 90px;background: #fff;">
         <button type="button" class="img_btn select_movie" id="showMovieListBtn" style="height:90px;width: 100%;height: 100%;margin: 0;
-        background: url(images/movie_text.png) 50% 50% no-repeat;text-indent:0;color:#503396;font-weight: bold;"></button>
+        background: url(./resources/images/movie_text.png) 50% 50% no-repeat;text-indent:0;color:#503396;font-weight: bold;"></button>
        </div>
        
       </div>

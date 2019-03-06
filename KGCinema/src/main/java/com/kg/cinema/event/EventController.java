@@ -2,7 +2,6 @@ package com.kg.cinema.event;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -17,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kg.cinema.join.JoinDAO;
+import com.kg.cinema.join.Joinbean;
+
 @Controller
 public class EventController {
 	
@@ -26,18 +28,17 @@ public class EventController {
 	@Autowired
 	EventDAO edao;
 	
+	@Inject
+	@Autowired
+	JoinDAO jdao;
+	
 	@RequestMapping(value = "/eventlist.do", method = RequestMethod.GET)
 	public ModelAndView noticeList(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView( );
-		/*
-		 HttpSession session = request.getSession();
-			
-		 if(session.getAttribute("temp") == null) {
-				
-		 } else {
-				
-		 }
-		*/
+		if(request.getSession().getAttribute("temp") != null) {
+			Joinbean bean = jdao.myInfo((String)request.getSession().getAttribute("temp"));
+			mav.addObject("bean", bean);
+		}
 		int startpage=1, endpage=10;
 		String pnum="";
 		int pageNUM=1, start=1,end=10;

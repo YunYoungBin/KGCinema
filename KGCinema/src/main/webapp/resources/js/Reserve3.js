@@ -395,7 +395,7 @@ var BookingSeatDatas = {
 			var adult = $("#ticketTypeCode_01").val();
 			var youth = $("#ticketTypeCode_02").val();
 			inwon = Number(adult) + Number(youth);
-		
+			
 				var px = $("#seat_"+group+"_"+no+"_10").attr("style").split(" ")[5].split("px")[0];
 				var prepx = Number(px) - 18;
 				var nextpx = Number(px) + 18;
@@ -460,6 +460,20 @@ var BookingSeatDatas = {
 					    var del2 = '<li data-seat-num=\"'+$("#"+pre).attr("seatgroup")+$("#"+pre).attr("seatno")+'">'+$("#"+pre).attr("seatgroup")+$("#"+pre).attr("seatno")+'</li>';
 					    seat_html = seat_html.replace(del1,'');
 					    seat_html = seat_html.replace(del2,'');
+					    $("#selectedSeatNumbers1").html(seat_html);
+					} else {
+						$("#seat_"+group+"_"+no+"_10").attr("class","seat_normal");
+					    $("#seat_"+group+"_"+no+"_10").attr("title",$("#seat_"+group+"_"+no+"_10").attr("seatgroup")+$("#seat_"+group+"_"+no+"_10").attr("seatno")+"(일반석)");
+					    $("#seat_"+group+"_"+no+"_10").attr("onmouseover","BookingSeatDatas.seatMouseOver(\"seat_"+$("#seat_"+group+"_"+no+"_10").attr("seatgroup")+"_"+$("#seat_"+group+"_"+no+"_10").attr("seatno")+"_10\")");
+					    $("#seat_"+group+"_"+no+"_10").attr("onmouseout","BookingSeatDatas.seatMouseOut(\"seat_"+$("#seat_"+group+"_"+no+"_10").attr("seatgroup")+"_"+$("#seat_"+group+"_"+no+"_10").attr("seatno")+"_10\")");
+					    $("#seat_"+group+"_"+no+"_10").attr("onclick","BookingSeatDatas.checkSeat(this)");
+					    $("#seat_"+group+"_"+no+"_10").attr("onkeypress","BookingSeatDatas.seatMouseOver(\"seat_"+$("#seat_"+group+"_"+no+"_10").attr("seatgroup")+"_"+$("#seat_"+group+"_"+no+"_10").attr("seatno")+"_10\")");
+					    selInwon -= 1;
+					    var delSeat1 = $("#seat_"+group+"_"+no+"_10").attr("seatgroup")+$("#seat_"+group+"_"+no+"_10").attr("seatno")+',';
+					    selSeat = selSeat.replace(delSeat1,'');
+					    $("#r_seat").attr("value",selSeat);
+					    var del1 = '<li data-seat-num=\"'+$("#seat_"+group+"_"+no+"_10").attr("seatgroup")+$("#seat_"+group+"_"+no+"_10").attr("seatno")+'">'+$("#seat_"+group+"_"+no+"_10").attr("seatgroup")+$("#seat_"+group+"_"+no+"_10").attr("seatno")+'</li>';
+					    seat_html = seat_html.replace(del1,'');
 					    $("#selectedSeatNumbers1").html(seat_html);
 					}
 				} else if(preno != undefined && preclass != "seat_done" && premouseover == "") {
@@ -628,3 +642,8 @@ $(document).ready(function() {
 		
 	});
 });
+
+
+function dialogclose(){
+	$.magnificPopup.close();
+}

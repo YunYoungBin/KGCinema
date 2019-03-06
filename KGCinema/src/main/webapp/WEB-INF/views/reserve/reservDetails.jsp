@@ -9,8 +9,22 @@
 <title>EventList</title>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="./resources/css/magnific-popup.css">
+	<script src="./resources/js/jquery.magnific-popup.js"></script>
     <link href="./resources/css/event1.css" rel="stylesheet">
     <link href="./resources/css/event2.css" rel="stylesheet">
+    <script type="text/javascript" src="./resources/js/ReserveCancel.js"></script>
+    <script src="./resources/js/Reserve3.js"></script>
+    <!-- 
+    <script type="text/javascript">
+    	$(document).ready(function () {
+    		$(function() {
+    		alert("하이");
+    			
+    		});
+    	});
+    </script>
+     -->
 </head>
    <script type="text/javascript">
     $(document).on('ready', function() {
@@ -55,6 +69,35 @@
    .kgCinema_list .kgCinema_box {position:relative; overflow:hidden; width:100%; padding:20px 30px; border-bottom:1px solid #c0c0c0; background:#fff; box-sizing:border-box;
    -webkit-box-sizing:border-box; -moz-box-sizing:border-box}
    .btn_s_view:hover {color:#cd190b;text-decoration: none;}
+     #small-dialog {
+        background: white;
+        padding: 10px 0px 30px;
+        text-align: center;
+        max-width: 400px;
+        margin: 40px auto;
+        position: relative;
+        font-size: 20px;
+        border-radius : 15px;
+      }
+  #small-dialog #dialogTop{
+	  	border-bottom: 1px;
+	    border-bottom-style: solid;
+	    border-bottom-color: #aaa;
+	    padding-bottom: 8px;
+	    font-size: 23px;
+	    font-weight: bold;
+  }
+  
+  #small-dialog .dialogbtn{
+  	margin-top: 23px;
+    padding: 5px 36px;
+    background-color: #017467;
+    border-style: solid;
+    border-color: #017467;
+    color: #fff;
+    font-size: 19px;
+    font-weight: bold;
+  }
   </style>
 <body>
 
@@ -77,7 +120,7 @@
    <!-- container start -->
    <div id="container" class="width-fixed">
     <h2 class="mb30">
-     <span class="sub_title customer st03">예매내역 확인/취소</span>
+     <span class="sub_title customer st03">예매내역 확인/취소${test }</span>
     </h2>
     
     <!-- Event start-->
@@ -98,59 +141,56 @@
       <h3 class="blind">예매내역</h3>
       
 	    <ol class="kgCinema_list" id="kgCinemaList_1">
-		<li>
-		 <div class="kgCinema_box">
-		  <span class="thum"><img src="./resources/images/gg.jpg" alt="극한직업"></span>
-		   <dl class="kgCimema_cont">
-		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영화관/관</dt> <dd><span>강남 1관</span></dd>
-			<dt>예매내역</dt> <dd>극한직업(디지털)</dd>
-			<dt>관람인원/좌석</dt> <dd>성인2명 / A10 A11</dd>
-			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
-		   </dl>
-		  <a href="#" class="btn_s_view"><span>취소</span></a>
-		</div>
-		</li>		
-		<li>
-		 <div class="kgCinema_box">
-		  <span class="thum"><img src="./resources/images/gg.jpg" alt="극한직업"></span>
-		   <dl class="kgCimema_cont">
-		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영화관/관</dt> <dd><span>강남 1관</span></dd>
-			<dt>예매내역</dt> <dd>극한직업(디지털)</dd>
-			<dt>관람인원/좌석</dt> <dd>성인2명 / A10 A11</dd>
-			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
-		   </dl>
-		  <a href="#" class="btn_s_view"><span>취소</span></a>
-		</div>
-		</li>						
+	    <c:if test="${reserve == '[]' }">
+	    	<br><br>
+	    	&nbsp;&nbsp;&nbsp;현재 상영중인 예매내역이 존재하지 않습니다.
+	    </c:if>
+	    <c:forEach var="todayReserve" items="${reserve }">
+			<li>
+			 <div class="kgCinema_box">
+			  <span class="thum">
+			  	<c:forEach var="mbean" items="${movie}">
+			  		<c:if test="${mbean.m_title eq todayReserve.r_title }">
+			  			<img src="${pageContext.request.contextPath}/resources/storage/${mbean.m_poster}" alt="${mbean.m_title }">
+			  		</c:if>
+			  	</c:forEach>
+			  </span>
+			   <dl class="kgCimema_cont">
+			    <dt>예매번호</dt> <dd>${todayReserve.r_no }</dd>
+				<dt>예매 영화명</dt> <dd>${todayReserve.r_title }-${todayReserve.r_type }</dd>
+				<dt>관람영화관/관</dt> <dd><span>${todayReserve.r_theater }/${todayReserve.r_scrno }</span></dd>
+				<dt>관람일시</dt> <dd><fmt:formatDate value="${todayReserve.r_start }" pattern="yyyy-MM-dd (E), HH시 mm분"/></dd>
+				<dt>관람인원/좌석</dt> <dd>${todayReserve.r_inwon }/${todayReserve.r_seat.substring(0,todayReserve.r_seat.lastIndexOf(",")) }</dd>
+				<dt>총 결제 금액</dt> <dd><fmt:formatNumber value="${todayReserve.r_price }" pattern="#,###"/> <span>\</span></dd>
+			   </dl>
+			  <a href="#" r_no="${todayReserve.r_no }" class="btn_s_view" onclick="cancel(this)"><span>취소</span></a>
+			</div>
+			</li>		
+		</c:forEach>
 	   </ol>
 	   
 	    <ol class="kgCinema_list" id="kgCinemaList_2" style="display:none;">
-		<li>
-		 <div class="kgCinema_box">
-		  <span class="thum"><img src="./resources/images/movie_list_2.jpg" alt="극한직업"></span>
-		   <dl class="kgCimema_cont">
-		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영화관/관</dt> <dd><span>강남 2관</span></dd>
-			<dt>예매내역</dt> <dd>아쿠아맨(디지털)</dd>
-			<dt>관람인원/좌석</dt> <dd>성인2명 / B13 A14</dd>
-			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
-		   </dl>
-		</div>
-		</li>		
-		<li>
-		 <div class="kgCinema_box">
-		  <span class="thum"><img src="./resources/images/movie_list_2.jpg" alt="극한직업"></span>
-		   <dl class="kgCimema_cont">
-		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영화관/관</dt> <dd><span>강남 2관</span></dd>
-			<dt>예매내역</dt> <dd>아쿠아맨(디지털)</dd>
-			<dt>관람인원/좌석</dt> <dd>성인2명 / B13 A14</dd>
-			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
-		   </dl>
-		</div>
-		</li>						
+		<c:forEach var="oldReserve" items="${oldReserve }">
+			<li>
+			 <div class="kgCinema_box">
+			  <span class="thum">
+			  	<c:forEach var="mbean" items="${movie}">
+			  		<c:if test="${mbean.m_title eq oldReserve.r_title }">
+			  			<img src="${pageContext.request.contextPath}/resources/storage/${mbean.m_poster}" alt="${mbean.m_title }">
+			  		</c:if>
+			  	</c:forEach>
+			  </span>
+			   <dl class="kgCimema_cont">
+			    <dt>예매번호</dt> <dd>${oldReserve.r_no }</dd>
+				<dt>예매 영화명</dt> <dd>${oldReserve.r_title }-${oldReserve.r_type }</dd>
+				<dt>관람영화관/관</dt> <dd><span>${oldReserve.r_theater }/${oldReserve.r_scrno }</span></dd>
+				<dt>관람일시</dt> <dd><fmt:formatDate value="${oldReserve.r_start }" pattern="yyyy-MM-dd (E), HH시 mm분"/></dd>
+				<dt>관람인원/좌석</dt> <dd>${oldReserve.r_inwon }/${oldReserve.r_seat.substring(0,oldReserve.r_seat.lastIndexOf(",")) }</dd>
+				<dt>총 결제 금액</dt> <dd><fmt:formatNumber value="${oldReserve.r_price }" pattern="#,###"/> <span>\</span></dd>
+			   </dl>
+			</div>
+			</li>		
+		</c:forEach>					
 	   </ol>
 	   
 	    <ol class="kgCinema_list" id="kgCinemaList_3" style="display:none;">
@@ -191,6 +231,34 @@
   </div>
   <!-- main end -->
   <div class="bin"></div>
+  <c:set var="temp">${test }</c:set>
+  <c:if test="${temp eq 'ok' }">
+<script>
+$(document).ready(function() {
+	$.magnificPopup.open({
+		  items: {
+		    src: '.popup'
+		  },
+		  type: 'inline'
+	});
+});
+
+</script>
+  
+  <div id="small-dialog" class="popup">
+  	<div id="dialogTop"> 알림 </div>
+  	<br>
+  	예매가 완료되었습니다<br>
+  	상영시간 20분전까지 취소가 가능합니다.
+  	<br>
+  	<button type="button" class="dialogbtn" onclick="dialogclose()">확인</button>
+  	<br>
+  </div>
+  <c:set var="temp">no</c:set>
+  </c:if>
+  
   
 </body>
 </html>
+  
+  

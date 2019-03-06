@@ -43,6 +43,10 @@ public class MovieDAO {
 		return mdto;
 	}//end
 	
+	public List<Moviebean> movieSelectName() {
+		List<Moviebean> list = temp.selectList("movie.movieSelectName");
+		return list;
+	}
 	public List<Moviebean> MovieMgSelect(int start, int end, String skey, String sval){
 		Moviebean dto = new Moviebean();
 		dto.setStart(start);

@@ -642,3 +642,8 @@ $(document).ready(function() {
 		
 	});
 });
+
+
+function dialogclose(){
+	$.magnificPopup.close();
+}

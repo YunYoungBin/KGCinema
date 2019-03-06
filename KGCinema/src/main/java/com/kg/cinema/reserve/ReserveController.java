@@ -211,19 +211,13 @@ public class ReserveController {
 	}
 	
 	@RequestMapping(value = "/reserve.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public void reserve_save(Reservebean bean, HttpServletResponse response, HttpServletRequest request) throws IOException {
-		
+	public ModelAndView reserve_save(Reservebean bean, HttpServletResponse response, HttpServletRequest request) throws IOException {
+		ModelAndView mav = new ModelAndView();
 		rdao.reserveInsert(bean);
-		
-		response.setContentType("text/html; charset=utf-8");
-		response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
-		StringBuilder sb = new StringBuilder();
-		sb.append("<script type=\"text/javascript\">"
-						+ "alert('예매가 완료되었습니다\\n상영시간 20분전까지 취소가 가능합니다.\\n지연입장에 의한 관란불편을 최소화 하고자 본 영화는 약 10분 후 시작됩니다.');"
-						+ "location.href='reservdetails.do';"
-						  + "</script>");
-		out.print(sb);
+
+		mav.addObject("test","ok");
+		mav.setViewName("redirect:/reservdetails.do");
+		return mav;
 		
 	}
 	
@@ -237,12 +231,14 @@ public class ReserveController {
 			mav.setViewName("redirect:/main.do");
 			return mav;
 		}
+		
 
 		String id = (String) request.getSession().getAttribute("temp");
 		List<Reservebean> myReserveList = rdao.reserveDetail(id);
 		List<Reservebean> myOldReserveList = rdao.oldReserveDetail(id);
 		List<Moviebean> movieList = mdao.movieSelect();
 		
+		mav.addObject("test",request.getParameter("test"));
 		mav.addObject("movie",movieList);
 		mav.addObject("reserve",myReserveList);
 		mav.addObject("oldReserve",myOldReserveList);

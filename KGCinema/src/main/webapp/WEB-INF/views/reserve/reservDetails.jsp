@@ -9,9 +9,22 @@
 <title>EventList</title>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="./resources/css/magnific-popup.css">
+	<script src="./resources/js/jquery.magnific-popup.js"></script>
     <link href="./resources/css/event1.css" rel="stylesheet">
     <link href="./resources/css/event2.css" rel="stylesheet">
     <script type="text/javascript" src="./resources/js/ReserveCancel.js"></script>
+    <script src="./resources/js/Reserve3.js"></script>
+    <!-- 
+    <script type="text/javascript">
+    	$(document).ready(function () {
+    		$(function() {
+    		alert("하이");
+    			
+    		});
+    	});
+    </script>
+     -->
 </head>
    <script type="text/javascript">
     $(document).on('ready', function() {
@@ -107,7 +120,7 @@
    <!-- container start -->
    <div id="container" class="width-fixed">
     <h2 class="mb30">
-     <span class="sub_title customer st03">예매내역 확인/취소</span>
+     <span class="sub_title customer st03">예매내역 확인/취소${test }</span>
     </h2>
     
     <!-- Event start-->
@@ -218,17 +231,32 @@
   </div>
   <!-- main end -->
   <div class="bin"></div>
+  <c:set var="temp">${test }</c:set>
+  <c:if test="${temp eq 'ok' }">
+<script>
+$(document).ready(function() {
+	$.magnificPopup.open({
+		  items: {
+		    src: '.popup'
+		  },
+		  type: 'inline'
+	});
+});
+
+</script>
   
-  
-  <div id="small-dialog">
+  <div id="small-dialog" class="popup">
   	<div id="dialogTop"> 알림 </div>
   	<br>
-  	예매가 완료되었습니다
+  	예매가 완료되었습니다<br>
   	상영시간 20분전까지 취소가 가능합니다.
-  	지연입장에 의한 관란불편을 최소화 하고자 본 영화는 약 10분 후 시작됩니다.
-  	<button type="button" class="dialogbtn" onclick="dialogclose()">
+  	<br>
+  	<button type="button" class="dialogbtn" onclick="dialogclose()">확인</button>
   	<br>
   </div>
+  <c:set var="temp">no</c:set>
+  </c:if>
+  
   
 </body>
 </html>

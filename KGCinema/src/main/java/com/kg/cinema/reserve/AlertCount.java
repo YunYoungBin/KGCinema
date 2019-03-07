@@ -1,6 +1,5 @@
 package com.kg.cinema.reserve;
 
 public class AlertCount {
-	static int nowReserveCheck = 0;
-	
+	int normalCount = 0;
 }

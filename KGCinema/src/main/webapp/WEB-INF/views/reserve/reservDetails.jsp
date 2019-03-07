@@ -91,9 +91,9 @@
   #small-dialog .dialogbtn{
   	margin-top: 23px;
     padding: 5px 36px;
-    background-color: #017467;
+    background-color: #503396;
     border-style: solid;
-    border-color: #017467;
+    border-color: #503396;
     color: #fff;
     font-size: 19px;
     font-weight: bold;
@@ -163,7 +163,7 @@
 				<dt>관람인원/좌석</dt> <dd>${todayReserve.r_inwon }/${todayReserve.r_seat.substring(0,todayReserve.r_seat.lastIndexOf(",")) }</dd>
 				<dt>총 결제 금액</dt> <dd><fmt:formatNumber value="${todayReserve.r_price }" pattern="#,###"/> <span>\</span></dd>
 			   </dl>
-			  <a href="#" r_no="${todayReserve.r_no }" class="btn_s_view" onclick="cancel(this)"><span>취소</span></a>
+			  <a href="#" r_no="${todayReserve.r_no }" r_start="${todayReserve.r_start }" class="btn_s_view" onclick="cancel(this)"><span>취소</span></a>
 			</div>
 			</li>		
 		</c:forEach>
@@ -232,15 +232,19 @@
   <!-- main end -->
   <div class="bin"></div>
   
-  <c:if test="${test eq 2 }">
+  <c:if test="${test1 eq 'ok' }">
 <script>
 $(document).ready(function() {
-	$.magnificPopup.open({
-		  items: {
-		    src: '.popup'
-		  },
-		  type: 'inline'
-	});
+	
+		$.magnificPopup.open({
+			  items: {
+			    src: '.popup'
+			  },
+			  type: 'inline'
+		});		
+		
+	
+	
 });
 
 </script>

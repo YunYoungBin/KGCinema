@@ -131,6 +131,7 @@
   });
   </script>
 <body>
+<input type="hidden" value="${url }" id="url">
     <div class="bin">
     </div>
     

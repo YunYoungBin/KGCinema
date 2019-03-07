@@ -43,6 +43,11 @@ public class MovieController {
 		List<Moviebean> next = mdao.movieSelectNext();
 		List<Moviebean> mvs = mdao.MovieSlideSelect();
 		
+		String uri = request.getRequestURI();
+		int idx = uri.lastIndexOf("/");
+		uri = uri.substring(idx+1);
+		
+		mav.addObject("url",uri);
 		mav.addObject("movie", movieList);
 		mav.addObject("next", next);
 		mav.addObject("mvs", mvs);

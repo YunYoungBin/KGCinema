@@ -3,7 +3,7 @@ function cancel(data) {
 	
 	$.ajax({
 		url: "cancel.do",
-		data: "rno=" + $(data).attr("r_no"),
+		data: "rno=" + $(data).attr("r_no") + "&rstart=" + $(data).attr("r_start"),
 		dataType: "json",
 		type: "GET",
 		success: function(data) {

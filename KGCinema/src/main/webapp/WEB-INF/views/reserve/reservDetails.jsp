@@ -120,7 +120,7 @@
    <!-- container start -->
    <div id="container" class="width-fixed">
     <h2 class="mb30">
-     <span class="sub_title customer st03">예매내역 확인/취소${test }</span>
+     <span class="sub_title customer st03">예매내역 확인/취소${temp1 }</span>
     </h2>
     
     <!-- Event start-->
@@ -231,8 +231,8 @@
   </div>
   <!-- main end -->
   <div class="bin"></div>
-  <c:set var="temp">${test }</c:set>
-  <c:if test="${temp eq 'ok' }">
+  
+  <c:if test="${test eq 2 }">
 <script>
 $(document).ready(function() {
 	$.magnificPopup.open({
@@ -254,7 +254,7 @@ $(document).ready(function() {
   	<button type="button" class="dialogbtn" onclick="dialogclose()">확인</button>
   	<br>
   </div>
-  <c:set var="temp">no</c:set>
+  
   </c:if>
   
   

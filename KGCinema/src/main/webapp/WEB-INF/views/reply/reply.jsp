@@ -19,15 +19,19 @@
 	<!-- 한줄평 쓰기// -->
 	<div class="write_wrap">
 		<div class="photo_profile">
-
-				<img src="http://imageu.megabox.co.kr/profile/2019/01/04/2F/4A8D2A-751D-4ABB-AB12-05BEA12030D8.thumb.jpg" alt="윤영빈 프로필사진">
-
-
+		    <c:choose>
+            <c:when test="${bean.j_file1 eq '' || empty bean.j_file1}">
+             <img src="http://image2.megabox.co.kr/mop/home/user/profile_m.png" alt="">
+            </c:when>
+            <c:otherwise>
+             <img src="${pageContext.request.contextPath}/resources/storage/${bean.j_file1}" alt="">
+            </c:otherwise>
+           </c:choose>
 		</div>
 		<div class="write">
 			<div class="name">
 
-				<span>윤영빈</span>
+				<span>${bean.j_name}</span>
 				<span id="wordCheckCount">4/100</span>
 			</div>
 			<form id="movieCommentFrm" onsubmit="return false;">
@@ -35,7 +39,14 @@
 				<div class="input">
 					<div class="rate">
 
-						<div class="star-wrap-critic" id="myStarScore" style="cursor: pointer; width: 125px;"><input type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" title="별점1 괜히봤어요">&nbsp;<input type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" title="별점2 기대하진 말아요">&nbsp;<input type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점3 무난했어요" title="별점3 무난했어요">&nbsp;<input type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" title="별점4 기대해도 좋아요!">&nbsp;<input type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" title="별점5 너무 멋진 영화였어요!"><input type="hidden" name="starScore" value="3"></div>
+						<div class="star-wrap-critic" id="myStarScore" style="cursor: pointer; width: 125px;">
+					        <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점1 괜히봤어요" title="별점1 괜히봤어요">
+					        <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" title="별점2 기대하진 말아요">
+					        <input id="cc" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" title="별점3 무난했어요">
+					        <input id="dd" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" title="별점4 기대해도 좋아요!">
+					        <input id="ee" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" title="별점5 너무 멋진 영화였어요!">
+					        <input type="hidden" name="score">
+						</div>
 						<p class="text-center">무난했어요</p>
 
 					</div>
@@ -713,6 +724,6 @@
        </ul>
 
 </div>
-
+</div>
 </body>
 </html>

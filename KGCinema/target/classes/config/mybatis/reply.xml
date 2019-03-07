@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reply">
+
+
+	<select id="replySelectAll"  resultType="com.kg.cinema.reply.Replybean">	   
+	   select * from (
+	   select rownum rn, r.* from movie_reply r where dr_mno = #{dr_mno}
+	   (select * from movie_reply where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%' order by dr_mno desc) r
+	   ) where rn between #{start} and #{end}
+	</select>
+	
+	<select id="countAll" resultType="int">
+	   select count(*)  from movie_reply
+	</select>
+	
+	<select id="countAllSearch" parameterType="com.kg.cinema.reply.Replybean"  resultType="int">
+ 	   select  count(*) from movie_reply where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%'  
+ 	</select>	
+ 	
+    <insert id="replyInsert" parameterType="com.kg.cinema.reply.Replybean">
+	   insert into movie_reply(dr_no,dr_id,dr_date,dr_point,dr_content,dr_mno)
+	   values(movie_reply_seq.nextval,#{dr_id},sysdate,#{dr_point},#{dr_content},#{dr_mno})
+	</insert>
+
+	<update id="replyEdit" parameterType="com.kg.cinema.reply.Replybean">
+	   update movie_reply set dr_point=#{dr_point},dr_content=#{dr_content}
+	   where br_num=#{br_num}
+	</update>	 
+	 
+	<delete id="replyDel" parameterType="int">
+	   delete from movie_reply where dr_no= #{dr_no}
+	</delete>
+ 	
+	
+</mapper>

@@ -105,7 +105,34 @@
 			    $("#c").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
 			    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
 			    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+	       		$("#aa").attr('src', 'http://image2.megabox.co.kr/mop/home/star_mid_on.png');
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
 	       		$("#movieDetailStarScoreTxt").text("괜히봤어요");
+	       		$(".text-center").text("괜히봤어요");
+			}
+	    });
+		$("#aa").click(function(){
+			check1 = false;
+			check2 = true;
+			check3 = true;
+			check4 = true;
+			check5 = true;
+			if(check1 == false) {
+	       		$("#a").attr('src', 'http://image2.megabox.co.kr/mop/home/star_mid_on.png');
+			    $("#b").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#c").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+	       		$("#aa").attr('src', 'http://image2.megabox.co.kr/mop/home/star_mid_on.png');
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+	       		$("#movieDetailStarScoreTxt").text("괜히봤어요");
+	       		$(".text-center").text("괜히봤어요");
 			}
 	    });
 		$("#a").mouseover(function(){
@@ -115,6 +142,14 @@
 		    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
 		    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
 		    $("#movieDetailStarScoreTxt").text("괜히봤어요");
+		});
+		$("#aa").mouseover(function(){
+		    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+		    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+		    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+		    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+		    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+		    $(".text-center").text("괜히봤어요");
 		});
 		
 		$("#a").mouseout(function(){
@@ -162,6 +197,52 @@
 			    $("#movieDetailStarScoreTxt").text("너무 멋진 영화였어요!");
 			}
 		});	
+		$("#aa").mouseout(function(){
+			if(check1 == true && check2 == true && check3 == true && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("평점을 입력해주세요");
+			}else if(check1 == false && check2 == true && check3 == true && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("괜히봤어요");
+			}else if(check1 == true && check2 == false && check3 == true && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("기대하진 말아요");
+			}else if(check1 == true && check2 == true && check3 == false && check4 == true && check5 == true) {
+			    $("#a").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#b").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#c").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $("#movieDetailStarScoreTxt").text("무난했어요");
+			}else if(check1 == true && check2 == true && check3 == true && check4 == false && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("기대해도 좋아요!");
+			}else if(check1 == true && check2 == true && check3 == true && check4 == true && check5 == false) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");	    
+			    $(".text-center").text("너무 멋진 영화였어요!");
+			}
+		});
+		
 		
 		$("#b").click(function(){
 			check2 = false;
@@ -175,6 +256,33 @@
 			    $("#c").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
 			    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
 			    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+	       		$("#aa").attr('src', 'http://image2.megabox.co.kr/mop/home/star_mid_on.png');
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+	       		$(".text-center").text("기대하진 말아요");
+			    $("#movieDetailStarScoreTxt").text("기대하진 말아요");
+			}
+	    });
+		$("#bb").click(function(){
+			check2 = false;
+			check1 = true;
+			check3 = true;
+			check4 = true;
+			check5 = true;
+			if(check2 == false) {
+				$("#a").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#b").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#c").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+	       		$("#aa").attr('src', 'http://image2.megabox.co.kr/mop/home/star_mid_on.png');
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+	       		$(".text-center").text("기대하진 말아요");
 			    $("#movieDetailStarScoreTxt").text("기대하진 말아요");
 			}
 	    });
@@ -185,6 +293,14 @@
 		    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
 		    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
 		    $("#movieDetailStarScoreTxt").text("기대하진 말아요");
+		});
+		$("#bb").mouseover(function(){
+			$("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+		    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+		    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+		    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+		    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+		    $(".text-center").text("기대하진 말아요");
 		});
 		$("#b").mouseout(function(){
 			if(check1 == true && check2 == true && check3 == true && check4 == true && check5 == true) {
@@ -231,7 +347,51 @@
 			    $("#movieDetailStarScoreTxt").text("너무 멋진 영화였어요!");
 			}    
 		});	
-		
+		$("#bb").mouseout(function(){
+			if(check1 == true && check2 == true && check3 == true && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $(".text-center").text("평점을 입력해주세요");
+			}else if(check1 == false && check2 == true && check3 == true && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $("#movieDetailStarScoreTxt").text("괜히봤어요");
+			}else if(check1 == true && check2 == false && check3 == true && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("기대하진 말아요");
+			}else if(check1 == true && check2 == true && check3 == false && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("무난했어요");
+			}else if(check1 == true && check2 == true && check3 == true && check4 == false && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("기대해도 좋아요!");
+			}else if(check1 == true && check2 == true && check3 == true && check4 == true && check5 == false) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");	    
+			    $(".text-center").text("너무 멋진 영화였어요!");
+			}    
+		});	
 		$("#c").click(function(){
 			check3 = false;
 			check1 = true;
@@ -244,9 +404,36 @@
 			    $("#c").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
 			    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
 			    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+	       		$("#aa").attr('src', 'http://image2.megabox.co.kr/mop/home/star_mid_on.png');
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+	       		$(".text-center").text("무난했어요");
 			    $("#movieDetailStarScoreTxt").text("무난했어요");
 			}
 	    });
+		$("#cc").click(function(){
+			check3 = false;
+			check1 = true;
+			check2 = true;
+			check4 = true;
+			check5 = true;
+			if(check3 == false) {
+				$("#a").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#b").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#c").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+	       		$("#aa").attr('src', 'http://image2.megabox.co.kr/mop/home/star_mid_on.png');
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+	       		$(".text-center").text("무난했어요");
+			    $("#movieDetailStarScoreTxt").text("무난했어요");
+			}
+	    });		
 		$("#c").mouseover(function(){
 			$("#a").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
 		    $("#b").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
@@ -254,6 +441,14 @@
 		    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
 		    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
 		    $("#movieDetailStarScoreTxt").text("무난했어요");
+		});
+		$("#cc").mouseover(function(){
+			$("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+		    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+		    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+		    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+		    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+		    $(".text-center").text("무난했어요");
 		});
 		$("#c").mouseout(function(){
 			if(check1 == true && check2 == true && check3 == true && check4 == true && check5 == true) {
@@ -300,6 +495,51 @@
 			    $("#movieDetailStarScoreTxt").text("너무 멋진 영화였어요!");
 			}    
 		});
+		$("#cc").mouseout(function(){
+			if(check1 == true && check2 == true && check3 == true && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $(".text-center").text("평점을 입력해주세요");
+			}else if(check1 == false && check2 == true && check3 == true && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("괜히봤어요");
+			}else if(check1 == true && check2 == false && check3 == true && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("기대하진 말아요");
+			}else if(check1 == true && check2 == true && check3 == false && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $("#movieDetailStarScoreTxt").text("무난했어요");
+			}else if(check1 == true && check2 == true && check3 == true && check4 == false && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("기대해도 좋아요!");
+			}else if(check1 == true && check2 == true && check3 == true && check4 == true && check5 == false) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");	    
+			    $(".text-center").text("너무 멋진 영화였어요!");
+			}    
+		});
 		
 		$("#d").click(function(){
 			check4 = false;
@@ -313,9 +553,36 @@
 			    $("#c").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
 			    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
 			    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+	       		$("#aa").attr('src', 'http://image2.megabox.co.kr/mop/home/star_mid_on.png');
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+	       		$(".text-center").text("기대해도 좋아요!");
 			    $("#movieDetailStarScoreTxt").text("기대해도 좋아요!");
 			}
-	    });			
+	    });		
+		$("#dd").click(function(){
+			check4 = false;
+			check1 = true;
+			check2 = true;
+			check3 = true;
+			check5 = true;
+			if(check4 == false) {
+				$("#a").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#b").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#c").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+	       		$("#aa").attr('src', 'http://image2.megabox.co.kr/mop/home/star_mid_on.png');
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+	       		$(".text-center").text("기대해도 좋아요!");
+			    $("#movieDetailStarScoreTxt").text("기대해도 좋아요!");
+			}
+	    });	
 		$("#d").mouseover(function(){
 			$("#a").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
 		    $("#b").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
@@ -323,6 +590,14 @@
 		    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
 		    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
 		    $("#movieDetailStarScoreTxt").text("기대해도 좋아요!");
+		});
+		$("#dd").mouseover(function(){
+			$("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+		    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+		    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+		    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+		    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+		    $(".text-center").text("기대해도 좋아요!");
 		});
 		$("#d").mouseout(function(){
 			if(check1 == true && check2 == true && check3 == true && check4 == true && check5 == true) {
@@ -367,7 +642,52 @@
 			    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
 			    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");	    
 			    $("#movieDetailStarScoreTxt").text("너무 멋진 영화였어요!");
-			}
+			}	
+		});	
+		$("#dd").mouseout(function(){
+			if(check1 == true && check2 == true && check3 == true && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $(".text-center").text("평점을 입력해주세요");
+			}else if(check1 == false && check2 == true && check3 == true && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("괜히봤어요");
+			}else if(check1 == true && check2 == false && check3 == true && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("기대하진 말아요");
+			}else if(check1 == true && check2 == true && check3 == false && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("무난했어요");
+			}else if(check1 == true && check2 == true && check3 == true && check4 == false && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("기대해도 좋아요!");
+			}else if(check1 == true && check2 == true && check3 == true && check4 == true && check5 == false) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");	    
+			    $(".text-center").text("너무 멋진 영화였어요!");
+			}	
 		});	
 		
 		$("#e").click(function(){
@@ -382,6 +702,33 @@
 			    $("#c").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
 			    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
 			    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+	       		$("#aa").attr('src', 'http://image2.megabox.co.kr/mop/home/star_mid_on.png');
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+	       		$(".text-center").text("너무 멋진 영화였어요!");
+			    $("#movieDetailStarScoreTxt").text("너무 멋진 영화였어요!");
+			}
+	    });
+		$("#ee").click(function(){
+			check5 = false;
+			check1 = true;
+			check2 = true;
+			check3 = true;
+			check4 = true;
+			if(check5 == false) {
+				$("#a").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#b").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#c").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+	       		$("#aa").attr('src', 'http://image2.megabox.co.kr/mop/home/star_mid_on.png');
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+	       		$(".text-center").text("너무 멋진 영화였어요!");
 			    $("#movieDetailStarScoreTxt").text("너무 멋진 영화였어요!");
 			}
 	    });
@@ -392,6 +739,14 @@
 		    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
 		    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
 		    $("#movieDetailStarScoreTxt").text("너무 멋진 영화였어요!");
+		});
+		$("#ee").mouseover(function(){
+			$("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+		    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+		    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+		    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+		    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+		    $(".text-center").text("너무 멋진 영화였어요!");
 		});
 		$("#e").mouseout(function(){
 			if(check1 == true && check2 == true && check3 == true && check4 == true && check5 == true) {
@@ -436,6 +791,51 @@
 			    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
 			    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");	    
 			    $("#movieDetailStarScoreTxt").text("너무 멋진 영화였어요!");
+			}
+		});	
+		$("#ee").mouseout(function(){
+			if(check1 == true && check2 == true && check3 == true && check4 == true && check5 == true) {
+				$("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $(".text-center").text("평점을 입력해주세요");
+			}else if(check1 == false && check2 == true && check3 == true && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("괜히봤어요");
+			}else if(check1 == true && check2 == false && check3 == true && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("기대하진 말아요");
+			}else if(check1 == true && check2 == true && check3 == false && check4 == true && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("무난했어요");
+			}else if(check1 == true && check2 == true && check3 == true && check4 == false && check5 == true) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("기대해도 좋아요!");
+			}else if(check1 == true && check2 == true && check3 == true && check4 == true && check5 == false) {
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");	    
+			    $(".text-center").text("너무 멋진 영화였어요!");
 			}
 		});	
   });

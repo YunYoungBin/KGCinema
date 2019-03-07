@@ -53,6 +53,10 @@ public class MovieController {
 	@RequestMapping(value = "/moviedetail.do", method = RequestMethod.GET)
 		public ModelAndView bbs_detail(HttpServletRequest request) {
 		  ModelAndView mav = new ModelAndView( );
+		  if(request.getSession().getAttribute("temp") != null) {
+			Joinbean bean = jdao.myInfo((String)request.getSession().getAttribute("temp"));
+			mav.addObject("bean", bean);
+		  }	
 		  int data=Integer.parseInt(request.getParameter("idx")); 
 		  Moviebean mdto=mdao.movieDetail(data);
 		  mav.addObject("movie", mdto);

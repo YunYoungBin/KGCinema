@@ -131,6 +131,7 @@
   });
   </script>
 <body>
+<input type="hidden" value="${url }#team" id="url">
     <div class="bin">
     </div>
     

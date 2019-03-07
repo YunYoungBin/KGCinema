@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -211,18 +212,15 @@ public class ReserveController {
 		out.print(json);
 	}
 	
+	
 	@RequestMapping(value = "/reserve.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView reserve_save(Reservebean bean, HttpServletResponse response, HttpServletRequest request) throws IOException {
+	public ModelAndView reserve_save(Reservebean bean, HttpServletResponse response, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		rdao.reserveInsert(bean);
+		request.getSession().setAttribute("alram", "o");
+		String alram = (String) request.getSession().getAttribute("alram");
 		
-		// 스태틱 테스트
-		AlertCount acount = new AlertCount();
-		acount.nowReserveCheck = 0;
-		acount.nowReserveCheck += 1;
-		System.out.println(acount.nowReserveCheck);
-		
-		mav.addObject("test",acount.nowReserveCheck);
+		mav.addObject("test",alram);
 		mav.setViewName("redirect:/reservdetails.do");
 		return mav;
 		
@@ -239,31 +237,36 @@ public class ReserveController {
 			mav.setViewName("redirect:/main.do");
 			return mav;
 		}
-		
 
 		String id = (String) request.getSession().getAttribute("temp");
 		List<Reservebean> myReserveList = rdao.reserveDetail(id);
 		List<Reservebean> myOldReserveList = rdao.oldReserveDetail(id);
 		List<Moviebean> movieList = mdao.movieSelect();
 		
-		// 스태틱 테스트
-		AlertCount acount = new AlertCount();
-		acount.nowReserveCheck += 1;
-		System.out.println(acount.nowReserveCheck);
+		String test = request.getParameter("test");
 		
-		mav.addObject("test",acount.nowReserveCheck);
+		if(test != null) {
+			String str = (String)request.getSession().getAttribute("alram");
+			str += "k";
+			request.getSession().setAttribute("alram", str);
+			
+		} else {
+		}
+		String alram = (String) request.getSession().getAttribute("alram");
+		
+		mav.addObject("test1",alram);
 		mav.addObject("movie",movieList);
 		mav.addObject("reserve",myReserveList);
 		mav.addObject("oldReserve",myOldReserveList);
 		mav.setViewName("reserve/reservDetails");
 		return mav;
 		
-		
 	}//end
 	
 	@RequestMapping(value = "/cancel.do", method = RequestMethod.GET)
 	public void reserve_cancel(HttpServletRequest request) throws ParseException {
 		
+		String rstart = request.getParameter("rstart");
 		String start = "2019-03-06 21:40";
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -271,6 +274,10 @@ public class ReserveController {
 		Date start_t = sdf.parse(start);
 		String nowstr = sdf.format(now);
 		System.out.println(now.getTime());
+		
+		Date stmovie = sdf.parse(rstart);
+		
+		
 		if(now.getTime() < start_t.getTime()) {
 			System.out.println("9시 40분은 현재시간보다 크다");
 			System.out.println("현재시각:"+nowstr);

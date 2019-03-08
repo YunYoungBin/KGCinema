@@ -1,11 +1,13 @@
 package com.kg.cinema.reply;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.kg.cinema.join.JoinDAO;
-import com.kg.cinema.join.Joinbean;
 
 @Controller
 public class ReplyController {
@@ -99,16 +98,28 @@ public class ReplyController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/replyinsert.do", method=RequestMethod.GET)
-	public String replyInsert(Replybean rdto) {
-	    System.out.println();
-	    System.out.println("댓글컨트롤 넘어온idx="  + rdto.getDr_mno());
-	    System.out.println("댓글컨트롤 넘어온id="  + rdto.getDr_id());
-	    System.out.println("댓글컨트롤 넘어온point="  + rdto.getDr_point());
-		System.out.println("댓글컨트롤 넘어온content="  + rdto.getDr_content());
-		rdao.ReplyInsert(rdto);
-		return "redirect:/moviedetail.do?idx="+rdto.getDr_mno();
-	}	
+
+	@RequestMapping(value = "/replyinsert.do", method = RequestMethod.GET)
+	public void replyInsert(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		Replybean rdto = new Replybean();
+		String score  = request.getParameter("score");
+		String id  = request.getParameter("id");
+		String mno  = request.getParameter("mno");
+		System.out.println("score= " + score);
+		System.out.println("id= " + id);	
+		System.out.println("mno= " + mno);
+		rdao.ReplyInsert(Integer.parseInt(score),id,Integer.parseInt(mno));
+		Replybean bean = rdao.ReplySelect(Integer.parseInt(mno), id);
+		PrintWriter out = response.getWriter();
+		StringBuilder sb = new StringBuilder();
+		sb.append("{");
+		sb.append("\"score\": \"" + bean.getDr_point() + "\", " );
+		sb.append("\"id\": \"" + bean.getDr_id() + "\", " );
+		sb.append("\"mno\": \"" + bean.getDr_mno() + "\", " );
+		sb.append("\"no\": \"" + bean.getDr_no() + "\" " );
+		sb.append("}");
+		out.print(sb.toString());
+	}//end	
 	
 	@RequestMapping(value="/replyedit.do", method=RequestMethod.GET)
 	public ModelAndView replyEdit(HttpServletRequest request) {

@@ -49,7 +49,8 @@ $(document).ready(function() {
 				type: "GET",
 				success: function(data) {
 					if(data.check==1) {
-						//location.href='main.do';
+						location.reload();
+						
 					} else {
 						alert("로그인 정보가 잘못되었습니다.");
 						$("#userpw").focus();

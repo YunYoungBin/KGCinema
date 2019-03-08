@@ -32,6 +32,14 @@ public class ReplyDAO {
 		return list;
 	}//end
 	
+	public Replybean ReplySelect(int data , String id){
+		Replybean rdto = new Replybean();
+		rdto.setDr_mno(data);
+		rdto.setDr_id(id);
+		Replybean bean =temp.selectOne("reply.replySelect", rdto);
+		return bean;
+	}//end	
+	
 	public int ReplyCount() {
 		int cnt=(Integer)temp.selectOne("reply.countAll");
 		return cnt;
@@ -45,9 +53,16 @@ public class ReplyDAO {
 		System.out.println(sval);
 		int cnt=(Integer)temp.selectOne("reply.countAllSearch" , dto);
 		return cnt;
-	}//end
+	}//end	
 	
-	public void ReplyInsert(Replybean rdto) {
+	public void ReplyInsert(int score, String id, int mno) {
+		Replybean rdto = new Replybean();
+		rdto.setDr_point(score);
+		rdto.setDr_id(id);
+		rdto.setDr_mno(mno);		
+		System.out.println("daoscore: " + score);
+		System.out.println("daoid: " + id);
+		System.out.println("daomno: " + mno);
 		temp.insert("reply.replyInsert", rdto);
 	}//end
 	public void ReplyDelete(int data) {

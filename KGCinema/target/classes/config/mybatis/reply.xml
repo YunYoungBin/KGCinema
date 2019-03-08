@@ -12,6 +12,10 @@
 	   ) where rn between #{start} and #{end}
 	</select>
 	
+	<select id="replySelect"  resultType="com.kg.cinema.reply.Replybean" parameterType="com.kg.cinema.reply.Replybean">	   
+	   select * from movie_reply where dr_mno = #{dr_mno} and dr_id = #{dr_id}
+	</select>	
+	
 	<select id="countAll" resultType="int">
 	   select count(*)  from movie_reply
 	</select>
@@ -20,9 +24,9 @@
  	   select  count(*) from movie_reply where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%'  
  	</select>	
  	
-    <insert id="replyInsert" parameterType="com.kg.cinema.reply.Replybean">
+    <insert id="replyInsert">
 	   insert into movie_reply(dr_no,dr_id,dr_date,dr_point,dr_content,dr_mno)
-	   values(movie_reply_seq.nextval,#{dr_id},sysdate,#{dr_point},#{dr_content},#{dr_mno})
+	   values(movie_reply_seq.nextval,#{dr_id},sysdate,#{dr_point},null,#{dr_mno})
 	</insert>
 
 	<update id="replyEdit" parameterType="com.kg.cinema.reply.Replybean">

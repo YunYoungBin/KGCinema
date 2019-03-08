@@ -838,6 +838,28 @@
 			    $(".text-center").text("너무 멋진 영화였어요!");
 			}
 		});	
+		
+		$(".rate_insert input").click(function() {
+			var id = $(".j_id").attr("value");
+			var score = this.value;
+			var mno = $(".m_no").attr("value");
+			
+			$.ajax({
+				url:"replyinsert.do",
+				data: "score="+score + "&id="+id + "&mno="+mno, 
+				dataType: "json",
+				type: "GET",
+				success: function(data){
+					
+
+				},//sucess end
+				error: function(data){
+					alert("실패"+data.score+data.score);
+					console.log(data);
+				}
+			
+			});
+		});		
   });
   </script>
 <body>
@@ -925,15 +947,34 @@
      </div>
      
      <div class="rating">
-      <div class="my_rate">
-       <span style="font-size: 12px;margin-right:5px;">내 평점</span>
-       <span style="min-width: 119px; cursor: pointer; width: 119px;">
-        <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점1 괜히봤어요" title="별점1 괜히봤어요">
-        <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" title="별점2 기대하진 말아요">
-        <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" title="별점3 무난했어요">
-        <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" title="별점4 기대해도 좋아요!">
-        <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" title="별점5 너무 멋진 영화였어요!">
-        <input type="hidden" name="score">
+      <c:choose>
+ 	   <c:when test="${myreply.dr_id eq '' || empty myreply.dr_id}"> 
+ 	    <div class="my_rate rate_insert">
+         <span style="font-size: 12px;margin-right:5px;">내 평점</span>
+         <span style="min-width: 119px; cursor: pointer; width: 119px;">
+          <input class="j_id" type="hidden" value="${bean.j_id}">
+          <input class="m_no" type="hidden" value="${movie.m_no}">
+          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점1 괜히봤어요" value="1">
+          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" value="2">
+          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
+          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+          <input type="hidden" name="score">
+       </c:when>
+       <c:otherwise>
+        <div class="my_rate rate_edit">
+         <span style="font-size: 12px;margin-right:5px;">내 평점</span>
+         <span style="min-width: 119px; cursor: pointer; width: 119px;">
+          <input class="j_id" type="hidden" value="${bean.j_id}">
+          <input class="m_no" type="hidden" value="${movie.m_no}">
+          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점1 괜히봤어요" value="1">
+          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" value="2">
+          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
+          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+          <input type="hidden" name="score">
+       </c:otherwise> 
+      </c:choose>
        </span>
        <span id="movieDetailStarScoreTxt" style="display: inline-block;vertical-align: text-bottom;font-size: 12px;line-height:-10px;">평점을 입력해주세요</span>
       </div>  

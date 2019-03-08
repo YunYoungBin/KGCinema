@@ -142,10 +142,11 @@
       
 	    <ol class="kgCinema_list" id="kgCinemaList_1">
 	    <c:if test="${reserve == '[]' }">
-	    	<br><br>
-	    	&nbsp;&nbsp;&nbsp;현재 상영중인 예매내역이 존재하지 않습니다.
+	    	<br><br><br>
+	    	&nbsp;&nbsp;&nbsp;최근 예매 내역이 없습니다.
 	    </c:if>
 	    <c:forEach var="todayReserve" items="${reserve }">
+	    
 			<li>
 			 <div class="kgCinema_box">
 			  <span class="thum">
@@ -156,6 +157,7 @@
 			  	</c:forEach>
 			  </span>
 			   <dl class="kgCimema_cont">
+			   <fmt:formatDate var="rst" value="${todayReserve.r_start }" pattern="yyyy-MM-dd HH:mm"/>
 			    <dt>예매번호</dt> <dd>${todayReserve.r_no }</dd>
 				<dt>예매 영화명</dt> <dd>${todayReserve.r_title }-${todayReserve.r_type }</dd>
 				<dt>관람영화관/관</dt> <dd><span>${todayReserve.r_theater }/${todayReserve.r_scrno }</span></dd>
@@ -163,13 +165,18 @@
 				<dt>관람인원/좌석</dt> <dd>${todayReserve.r_inwon }/${todayReserve.r_seat.substring(0,todayReserve.r_seat.lastIndexOf(",")) }</dd>
 				<dt>총 결제 금액</dt> <dd><fmt:formatNumber value="${todayReserve.r_price }" pattern="#,###"/> <span>\</span></dd>
 			   </dl>
-			  <a href="#" r_no="${todayReserve.r_no }" r_start="${todayReserve.r_start }" class="btn_s_view" onclick="cancel(this)"><span>취소</span></a>
+			  <a href="#" r_no="${todayReserve.r_no }" r_start="${rst }" class="btn_s_view" onclick="cancel(this)"><span>취소</span></a>
 			</div>
 			</li>		
+			
 		</c:forEach>
 	   </ol>
 	   
 	    <ol class="kgCinema_list" id="kgCinemaList_2" style="display:none;">
+	    <c:if test="${oldReserve == '[]' }">
+	    	<br><br><br>
+	    	&nbsp;&nbsp;&nbsp;최근 예매 내역이 없습니다.
+	    </c:if>
 		<c:forEach var="oldReserve" items="${oldReserve }">
 			<li>
 			 <div class="kgCinema_box">
@@ -235,18 +242,13 @@
   <c:if test="${test1 eq 'ok' }">
 <script>
 $(document).ready(function() {
-	
 		$.magnificPopup.open({
 			  items: {
 			    src: '.popup'
 			  },
 			  type: 'inline'
 		});		
-		
-	
-	
 });
-
 </script>
   
   <div id="small-dialog" class="popup">
@@ -258,9 +260,7 @@ $(document).ready(function() {
   	<button type="button" class="dialogbtn" onclick="dialogclose()">확인</button>
   	<br>
   </div>
-  
   </c:if>
-  
   
 </body>
 </html>

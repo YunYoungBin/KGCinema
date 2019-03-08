@@ -17,9 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.joda.time.Interval;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.datetime.joda.JodaDateTimeFormatAnnotationFormatterFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -267,23 +269,30 @@ public class ReserveController {
 	public void reserve_cancel(HttpServletRequest request) throws ParseException {
 		
 		String rstart = request.getParameter("rstart");
-		String start = "2019-03-06 21:40";
+		
+		System.out.println(rstart);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		Date now = new Date();
-		Date start_t = sdf.parse(start);
-		String nowstr = sdf.format(now);
-		System.out.println(now.getTime());
+		// 현재시각 스트링으로 변환
+		String nowTime = sdf.format(now);
 		
+		// 넘어온 영화시작시간을 문자열로 변환 2019-01-01 22:00
+		rstart = sdf.format(rstart);
 		Date stmovie = sdf.parse(rstart);
+		Calendar cal = Calendar.getInstance();
+		
+		Interval interval = new Interval(stmovie.getTime(), now.getTime());
+		System.out.println(interval.toInterval());
 		
 		
-		if(now.getTime() < start_t.getTime()) {
-			System.out.println("9시 40분은 현재시간보다 크다");
-			System.out.println("현재시각:"+nowstr);
+		
+		if(now.getTime() < stmovie.getTime()) {
+//			System.out.println("9시 40분은 현재시간보다 크다");
+//			System.out.println("현재시각:"+nowstr);
 		} else {
-			System.out.println("아니다");
-			System.out.println("현재시각:"+nowstr);
+//			System.out.println("아니다");
+//			System.out.println("현재시각:"+nowstr);
 		}
 		
 		

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>noticeListCopy</title>
+<title>공지사항상세, KG시네마</title>
     <link href="./resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <script src="./resources/vendor/bootstrap/js/bootstrap.bundle2.min.js"></script>
     <script src="./resources/js/agency.min.js"></script>

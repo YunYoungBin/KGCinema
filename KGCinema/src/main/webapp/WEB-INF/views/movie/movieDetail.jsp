@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-<title>movieDetail.jsp</title>
+<title>영화상세(${movie.m_title})</title>
     <link href="./resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="./resources/css/full-slider.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./resources/slick-master/slick/slick.css">

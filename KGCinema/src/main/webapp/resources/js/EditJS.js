@@ -8,89 +8,94 @@
    
 //====다 체크하고 submit
    function check(){
-      var pwd = iform.j_pwd.value;
-      var pass = iform.pass.value;
-      var code = iform.code.value;
-      var juso1 = iform.j_juso1.value;
-      var juso2 = iform.j_juso2.value;
-      var year = iform.year.value;
-      var month = iform.month.value;
-      var day = iform.day.value;
-      var num1 = iform.num1.value;
-      var num2 = iform.num2.value;
-      var num3 = iform.num3.value;
-      var email = iform.j_email.value;
-      
-      if (pwd==null||pwd==""){
-         alert('비밀번호를 입력하세요.');
-         iform.j_pwd.focus();
-         return;
-      }
-      if (code==null||code==""||juso1==null||juso1==""||juso2==null||juso2==""){
-         alert('주소를 입력하세요.');
-         iform.code.focus();
-         return;
-      }
-      if (year==null||year==""||month==null||month==""||day==null||day==""){
-         alert('생년월일을 입력하세요.');
-         iform.year.focus();
-         return;
-      }
-      if (num1==null||num1==""||num2==null||num2==""||num3==null||num3==""){
-         alert('휴대폰번호를 입력하세요.');
-         iform.num1.focus();
-         return;
-      }
-      if (email==null||email==""){
-         alert('이메일을 입력하세요.');
-         iform.j_email.focus();
-         return;
-      }
+	   if(confirm("수정하시겠습니까?") == true) {
+		   	  var pwd = iform.j_pwd.value;
+		      var pass = iform.pass.value;
+		      var code = iform.code.value;
+		      var juso1 = iform.j_juso1.value;
+		      var juso2 = iform.j_juso2.value;
+		      var year = iform.year.value;
+		      var month = iform.month.value;
+		      var day = iform.day.value;
+		      var num1 = iform.num1.value;
+		      var num2 = iform.num2.value;
+		      var num3 = iform.num3.value;
+		      var email = iform.j_email.value;
+		      
+		      if (pwd==null||pwd==""){
+		         alert('비밀번호를 입력하세요.');
+		         iform.j_pwd.focus();
+		         return;
+		      }
+		      if (code==null||code==""||juso1==null||juso1==""||juso2==null||juso2==""){
+		         alert('주소를 입력하세요.');
+		         iform.code.focus();
+		         return;
+		      }
+		      if (year==null||year==""||month==null||month==""||day==null||day==""){
+		         alert('생년월일을 입력하세요.');
+		         iform.year.focus();
+		         return;
+		      }
+		      if (num1==null||num1==""||num2==null||num2==""||num3==null||num3==""){
+		         alert('휴대폰번호를 입력하세요.');
+		         iform.num1.focus();
+		         return;
+		      }
+		      if (email==null||email==""){
+		         alert('이메일을 입력하세요.');
+		         iform.j_email.focus();
+		         return;
+		      }
 
-      //위에 해당 되는 거 없으면 널 체크 true
-      flag=true;
+		      //위에 해당 되는 거 없으면 널 체크 true
+		      flag=true;
+		      
+		      //비번체크
+		      if(iform.j_pwd.value == iform.pass.value) {
+		         flagP = true;
+		      } else {
+		         flagP = false;
+		      }
+		      
+		      
+		      if(flagP == false){   //비번 확인 틀렸을때
+		         alert('비밀번호가 잘못되었습니다.');
+		         iform.j_pwd.focus();
+		         return;
+		      }
+		      
+		      emailcheck();
+		      
+		      if(flagE == false){   //이메일 확인 틀렸을때
+		         alert('이메일이 잘못되었습니다.');
+		         iform.j_email.focus();
+		         return;
+		      }
+		      
+		      num();
+		      
+		      if(flagN==false){   //전화번호 올바르지 않을때
+		         alert('전화번호를 올바르게 입력하세요.');
+		         iform.num1.focus();
+		         return;
+		      }
+		      
+		      birth();
+		      
+		      if(flagB == false){   //생년월일 확인 틀렸을때
+		         alert('생년월일이 잘못되었습니다.');
+		         iform.year.focus();
+		         return;
+		      }
+		      //위에 다 통과&체크 완료 후 submit
+		      if(flag==true&&flagP==true&&flagE==true&&flagN==true&&flagB==true){
+		         document.iform.submit();
+		      } else { return; }
+	   } else {
+		   
+	   }
       
-      //비번체크
-      if(iform.j_pwd.value == iform.pass.value) {
-         flagP = true;
-      } else {
-         flagP = false;
-      }
-      
-      
-      if(flagP == false){   //비번 확인 틀렸을때
-         alert('비밀번호가 잘못되었습니다.');
-         iform.j_pwd.focus();
-         return;
-      }
-      
-      emailcheck();
-      
-      if(flagE == false){   //이메일 확인 틀렸을때
-         alert('이메일이 잘못되었습니다.');
-         iform.j_email.focus();
-         return;
-      }
-      
-      num();
-      
-      if(flagN==false){   //전화번호 올바르지 않을때
-         alert('전화번호를 올바르게 입력하세요.');
-         iform.num1.focus();
-         return;
-      }
-      
-      birth();
-      
-      if(flagB == false){   //생년월일 확인 틀렸을때
-         alert('생년월일이 잘못되었습니다.');
-         iform.year.focus();
-         return;
-      }
-      //위에 다 통과&체크 완료 후 submit
-      if(flag==true&&flagP==true&&flagE==true&&flagN==true&&flagB==true){
-         document.iform.submit();
-      } else { return; }
    }//check end
    
    function birth() { // 생년월일 입력확인

@@ -19,6 +19,10 @@
 	   select * from movie where m_title=#{title}
 	</select>
 	
+	<select id="movieSelectName" resultType="dto">
+		select m_title from movie order by m_title
+	</select>
+	
 	<select id="movieMgSelectAll"  resultType="com.kg.cinema.movie.Moviebean">	   
 	   select * from (
 	   select rownum m_rn, m.* from

@@ -24,6 +24,21 @@
  <table>
     <input type="hidden" name="t_no" value="${theater.t_no}">
   <tr>
+   <td>지 역</td>
+   <td>
+   <select name="t_location">
+    <option <c:if test="${theater.t_location eq '서울'}">selected</c:if> >서울</option>
+    <option <c:if test="${theater.t_location eq '경기'}">selected</c:if> >경기</option>
+    <option <c:if test="${theater.t_location eq '인천'}">selected</c:if> >인천</option>
+    <option <c:if test="${theater.t_location eq '대전/충청/세종'}">selected</c:if> >대전/충청/세종</option>
+    <option <c:if test="${theater.t_location eq '부산/대구/경상'}">selected</c:if> >부산/대구/경상</option>
+    <option <c:if test="${theater.t_location eq '광주/전라'}">selected</c:if> >광주/전라</option>
+    <option <c:if test="${theater.t_location eq '강원'}">selected</c:if> >강원</option>
+    <option <c:if test="${theater.t_location eq '제주'}">selected</c:if> >제주</option>
+   </select>
+   </td>
+  </tr>   
+  <tr>
   	<td>극 장</td><td><input type="text" name="t_theater" value="${theater.t_theater}"></td>
   </tr>
   <tr>

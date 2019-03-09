@@ -3,6 +3,8 @@ package com.kg.cinema.reserve;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -10,13 +12,16 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.joda.time.Interval;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.datetime.joda.JodaDateTimeFormatAnnotationFormatterFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -86,16 +91,15 @@ public class ReserveController {
 		String year = String.valueOf(cal.get(Calendar.YEAR));
 		String month = String.valueOf(cal.get(Calendar.MONTH)+1);
 		String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
-		System.out.println(day);
+		
 		if(Integer.parseInt(month) < 10) {
 			month = "0" + month;
 		}
 		if(Integer.parseInt(day) < 10) {
 			day = "0" + day;
 		}
-		System.out.println(day);
-		String today = year + "-" + month + "-" + day;
 		
+		String today = year + "-" + month + "-" + day;
 		
 		mav.addObject("date", today);
 		mav.addObject("movie", movieList);
@@ -113,10 +117,28 @@ public class ReserveController {
 			mav.addObject("bean", bean);
 		}
 		
-		String date = request.getParameter("date");
-		String theater = request.getParameter("theater");
-		String movieNo = request.getParameter("no");
+		Calendar cal = Calendar.getInstance();
+		String year = String.valueOf(cal.get(Calendar.YEAR));
+		String month = String.valueOf(cal.get(Calendar.MONTH)+1);
+		String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
 		
+		if(Integer.parseInt(month) < 10) {
+			month = "0" + month;
+		}
+		if(Integer.parseInt(day) < 10) {
+			day = "0" + day;
+		}
+		String date = year + "-" + month + "-" + day;
+		
+		if(request.getParameter("date") != null) {
+			date = request.getParameter("date");
+		}
+		
+		String theater = request.getParameter("theater");
+		if(theater == null) {
+			theater = "";
+		}
+		String movieNo = request.getParameter("no");
 		
 		Moviebean mbean = new Moviebean();
 		if(!movieNo.equals("")) {
@@ -157,14 +179,17 @@ public class ReserveController {
 		
 		Moviebean mbean = new Moviebean();
 		mbean = mdao.movieDetail(sbean.getTitle());
+
 		
 		Screenbean scrbean = scrdao.screenSelect(sbean.getTheater(), sbean.getScrno());
 		List<Seatbean> seatList = seatdao.seatSelect(scrbean.getS_seatstyle());
+		int price = scrbean.getS_price();
 		
 		mav.addObject("seatbean", seatList);
 		mav.addObject("sbean", sbean);
 		mav.addObject("scrno", idx);
 		mav.addObject("mbean", mbean);
+		mav.addObject("price", price);
 		mav.setViewName("reserve/movieSeat");
 		return mav;
 	}
@@ -189,15 +214,91 @@ public class ReserveController {
 		out.print(json);
 	}
 	
+	
 	@RequestMapping(value = "/reserve.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String reserve_save(Reservebean bean) {
+	public ModelAndView reserve_save(Reservebean bean, HttpServletResponse response, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
 		rdao.reserveInsert(bean);
-		return "redirect:/reservdetails.do";
+		request.getSession().setAttribute("alram", "o");
+		String alram = (String) request.getSession().getAttribute("alram");
+		
+		mav.addObject("test",alram);
+		mav.setViewName("redirect:/reservdetails.do");
+		return mav;
+		
 	}
 	
 	@RequestMapping(value = "/reservdetails.do", method = RequestMethod.GET)
-	public String reservDetails(Locale locale, Model model) {
-		return "reserve/reservDetails";
+	public ModelAndView reservDetails(Locale locale, Model model,HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		if(request.getSession().getAttribute("temp") != null) {
+			Joinbean bean = jdao.myInfo((String)request.getSession().getAttribute("temp"));
+			
+			mav.addObject("bean", bean);
+		} else {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		}
+
+		String id = (String) request.getSession().getAttribute("temp");
+		List<Reservebean> myReserveList = rdao.reserveDetail(id);
+		List<Reservebean> myOldReserveList = rdao.oldReserveDetail(id);
+		List<Moviebean> movieList = mdao.movieSelect();
+		
+		String test = request.getParameter("test");
+		
+		if(test != null) {
+			String str = (String)request.getSession().getAttribute("alram");
+			str += "k";
+			request.getSession().setAttribute("alram", str);
+			
+		} else {
+		}
+		String alram = (String) request.getSession().getAttribute("alram");
+		
+		mav.addObject("test1",alram);
+		mav.addObject("movie",movieList);
+		mav.addObject("reserve",myReserveList);
+		mav.addObject("oldReserve",myOldReserveList);
+		mav.setViewName("reserve/reservDetails");
+		return mav;
+		
 	}//end
+	
+	@RequestMapping(value = "/cancel.do", method = RequestMethod.GET)
+	public void reserve_cancel(HttpServletRequest request) throws ParseException {
+		
+		String rstart = request.getParameter("rstart");
+		
+		System.out.println(rstart);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		Date now = new Date();
+		// 현재시각 스트링으로 변환
+		String nowTime = sdf.format(now);
+		
+		// 넘어온 영화시작시간을 문자열로 변환 2019-01-01 22:00
+		rstart = sdf.format(rstart);
+		Date stmovie = sdf.parse(rstart);
+		Calendar cal = Calendar.getInstance();
+		
+		Interval interval = new Interval(stmovie.getTime(), now.getTime());
+		System.out.println(interval.toInterval());
+		
+		
+		
+		if(now.getTime() < stmovie.getTime()) {
+//			System.out.println("9시 40분은 현재시간보다 크다");
+//			System.out.println("현재시각:"+nowstr);
+		} else {
+//			System.out.println("아니다");
+//			System.out.println("현재시각:"+nowstr);
+		}
+		
+		
+		
+		String rno = request.getParameter("rno");
+		
+	}
 	
 }

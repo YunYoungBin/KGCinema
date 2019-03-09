@@ -42,6 +42,7 @@ $(document).ready(function() {
 	$("#ticketTypeCode_01").change(function() {
 		var adult = this.value;
 		var youth = $("#ticketTypeCode_02").val();
+		var scrPrice = document.getElementById("priceTemp").value;
 		if((Number(adult)+Number(youth)) > 8) {
 			alert("인원선택은 총 8명까지 가능합니다.");
 			this.value = 0;
@@ -52,18 +53,18 @@ $(document).ready(function() {
 				inwon_html = '<span>일반 '+adult+'명&nbsp;</span>';
 				inwon_html += '<span>청소년 '+youth+'명&nbsp;</span>';
 				$("#countSelectedByTicket").html(inwon_html);
-				price = adult * 10000;
-				price += youth * 8000;
+				price = adult * scrPrice;
+				price += youth * (scrPrice - 2000);
 				inwonStr = '일반 '+adult+'명, 청소년 '+youth+'명';
 			} else if(adult == 0 && youth != 0) {
 				inwon_html = '<span>청소년 '+youth+'명&nbsp;</span>';
 				$("#countSelectedByTicket").html(inwon_html);
-				price = youth * 8000;
+				price = youth * (scrPrice - 2000);
 				inwonStr = '청소년 '+youth+'명';
 			} else if(youth == 0 && adult !=0) {
 				inwon_html = '<span>일반 '+adult+'명&nbsp;</span>';
 				$("#countSelectedByTicket").html(inwon_html);
-				price = adult * 10000;
+				price = adult * scrPrice;
 				inwonStr = '일반 '+adult+'명';
 			} else {
 				inwon_html = '';
@@ -87,6 +88,7 @@ $(document).ready(function() {
 	$("#ticketTypeCode_02").change(function() {
 		var youth = this.value;
 		var adult = $("#ticketTypeCode_01").val();
+		var scrPrice = document.getElementById("priceTemp").value;
 		if((Number(youth)+Number(adult)) > 8) {
 			alert("인원선택은 총 8명까지 가능합니다.");
 			this.value = 0;
@@ -97,18 +99,18 @@ $(document).ready(function() {
 				inwon_html = '<span>일반 '+adult+'명&nbsp;</span>';
 				inwon_html += '<span>청소년 '+youth+'명&nbsp;</span>';
 				$("#countSelectedByTicket").html(inwon_html);
-				price = adult * 10000;
-				price += youth * 8000;
+				price = adult * scrPrice;
+				price += youth * (scrPrice - 2000);
 				inwonStr = '일반 '+adult+'명, 청소년 '+youth+'명';
 			} else if(adult == 0 && youth != 0) {
 				inwon_html = '<span>청소년 '+youth+'명&nbsp;</span>';
 				$("#countSelectedByTicket").html(inwon_html);
-				price = youth * 8000;
+				price = youth * (scrPrice - 2000);
 				inwonStr = '청소년 '+youth+'명';
 			} else if(youth == 0 && adult != 0) {
 				inwon_html = '<span>일반 '+adult+'명&nbsp;</span>';
 				$("#countSelectedByTicket").html(inwon_html);
-				price = adult * 10000;
+				price = adult * scrPrice;
 				inwonStr = '일반 '+adult+'명';
 			} else {
 				inwon_html = '';
@@ -224,6 +226,20 @@ var BookingSeatDatas = {
 					    $("#r_seat").attr("value",selSeat);
 					    seat_html += '<li data-seat-num=\"'+$(data).attr("seatgroup")+$(data).attr("seatno")+'">'+$(data).attr("seatgroup")+$(data).attr("seatno")+'</li>';
 						seat_html += '<li data-seat-num=\"'+$("#"+pre).attr("seatgroup")+$("#"+pre).attr("seatno")+'">'+$("#"+pre).attr("seatgroup")+$("#"+pre).attr("seatno")+'</li>';
+					    $("#selectedSeatNumbers1").html(seat_html);
+					} else {
+						$(data).attr("class","seat_selected");
+					    $(data).attr("title",$(data).attr("seatgroup")+$(data).attr("seatno")+"(선택됨)");
+					    $(data).attr("onmouseover","");
+					    $(data).attr("onmouseout","");
+					    $(data).attr("onclick","BookingSeatDatas.deselectSeat(\""+$(data).attr("seatgroup")+"\","+"\""+$(data).attr("seatno")+"\")");
+					    $(data).attr("onkeyup","");
+					    $(data).attr("onblur","");
+					    $(data).attr("onkeypress","");
+					    selInwon += 1;
+					    selSeat += $(data).attr("seatgroup")+$(data).attr("seatno")+',';
+					    $("#r_seat").attr("value",selSeat);
+					    seat_html += '<li data-seat-num=\"'+$(data).attr("seatgroup")+$(data).attr("seatno")+'">'+$(data).attr("seatgroup")+$(data).attr("seatno")+'</li>';
 					    $("#selectedSeatNumbers1").html(seat_html);
 					}
 				} else if(preno != undefined && preclass != "seat_done" && premouseover != "") {
@@ -379,7 +395,7 @@ var BookingSeatDatas = {
 			var adult = $("#ticketTypeCode_01").val();
 			var youth = $("#ticketTypeCode_02").val();
 			inwon = Number(adult) + Number(youth);
-		
+			
 				var px = $("#seat_"+group+"_"+no+"_10").attr("style").split(" ")[5].split("px")[0];
 				var prepx = Number(px) - 18;
 				var nextpx = Number(px) + 18;
@@ -444,6 +460,20 @@ var BookingSeatDatas = {
 					    var del2 = '<li data-seat-num=\"'+$("#"+pre).attr("seatgroup")+$("#"+pre).attr("seatno")+'">'+$("#"+pre).attr("seatgroup")+$("#"+pre).attr("seatno")+'</li>';
 					    seat_html = seat_html.replace(del1,'');
 					    seat_html = seat_html.replace(del2,'');
+					    $("#selectedSeatNumbers1").html(seat_html);
+					} else {
+						$("#seat_"+group+"_"+no+"_10").attr("class","seat_normal");
+					    $("#seat_"+group+"_"+no+"_10").attr("title",$("#seat_"+group+"_"+no+"_10").attr("seatgroup")+$("#seat_"+group+"_"+no+"_10").attr("seatno")+"(일반석)");
+					    $("#seat_"+group+"_"+no+"_10").attr("onmouseover","BookingSeatDatas.seatMouseOver(\"seat_"+$("#seat_"+group+"_"+no+"_10").attr("seatgroup")+"_"+$("#seat_"+group+"_"+no+"_10").attr("seatno")+"_10\")");
+					    $("#seat_"+group+"_"+no+"_10").attr("onmouseout","BookingSeatDatas.seatMouseOut(\"seat_"+$("#seat_"+group+"_"+no+"_10").attr("seatgroup")+"_"+$("#seat_"+group+"_"+no+"_10").attr("seatno")+"_10\")");
+					    $("#seat_"+group+"_"+no+"_10").attr("onclick","BookingSeatDatas.checkSeat(this)");
+					    $("#seat_"+group+"_"+no+"_10").attr("onkeypress","BookingSeatDatas.seatMouseOver(\"seat_"+$("#seat_"+group+"_"+no+"_10").attr("seatgroup")+"_"+$("#seat_"+group+"_"+no+"_10").attr("seatno")+"_10\")");
+					    selInwon -= 1;
+					    var delSeat1 = $("#seat_"+group+"_"+no+"_10").attr("seatgroup")+$("#seat_"+group+"_"+no+"_10").attr("seatno")+',';
+					    selSeat = selSeat.replace(delSeat1,'');
+					    $("#r_seat").attr("value",selSeat);
+					    var del1 = '<li data-seat-num=\"'+$("#seat_"+group+"_"+no+"_10").attr("seatgroup")+$("#seat_"+group+"_"+no+"_10").attr("seatno")+'">'+$("#seat_"+group+"_"+no+"_10").attr("seatgroup")+$("#seat_"+group+"_"+no+"_10").attr("seatno")+'</li>';
+					    seat_html = seat_html.replace(del1,'');
 					    $("#selectedSeatNumbers1").html(seat_html);
 					}
 				} else if(preno != undefined && preclass != "seat_done" && premouseover == "") {
@@ -557,14 +587,63 @@ function test() {
 	var cnt = seatCheck.split(",").length;
 	var selcnt = cnt - 1;
 	
-	if(loginCheck == "") {
-		alert("로그인 후 이용가능합니다.");
-	} else if(seatCheck == "") {
+	if(seatCheck == "") {
 		alert("좌석을 선택해주세요.");
 	} else if(inwon > selcnt) {
 		alert("인원만큼 좌석을 선택해주세요.");
+	} else if(loginCheck == "") {
+		$(document).ready(function() {
+			$.magnificPopup.open({
+				  items: {
+				    src: '.login_popup'
+				  },
+				  type: 'inline'
+			});
+			$(".login_form").css({"display":"block"});
+		});
+
 	} else {
 		document.reserveForm.submit();
 	}
 }
 
+//로그인 엔터키
+$(document).ready(function() {
+	$('form[name=reserveLogin]').on('submit', function(e) {
+		// stop form submit event
+		e.preventDefault();
+		
+		if($("#userid").val() == "") {
+			alert("아이디를 입력해주세요.");
+			return;
+		} else if($("#userpw").val() == "") {
+			alert("비밀번호를 입력해주세요.");
+			return;
+		} else {
+			$.ajax({
+				url: "login.do",
+				data: "userid=" + $("#userid").val() + "&userpw=" + $("#userpw").val(),
+				dataType: "json",
+				type: "GET",
+				success: function(data) {
+					if(data.check==1) {
+						$("#r_id").attr("value",$("#userid").val());
+						document.reserveForm.submit();
+					} else {
+						alert("로그인 정보가 잘못되었습니다.");
+						$("#userpw").focus();
+					}
+				},
+				error: function(data) {
+					console.log(data);
+				}
+			});
+		}
+		
+	});
+});
+
+
+function dialogclose(){
+	$.magnificPopup.close();
+}

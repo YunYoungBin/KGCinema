@@ -20,6 +20,7 @@
 		<mapper resource="config/mybatis/screen.xml"/>
 		<mapper resource="config/mybatis/seat.xml"/>
 		<mapper resource="config/mybatis/reserve.xml"/>
+		<mapper resource="config/mybatis/reply.xml"/>
 	</mappers>
 
 

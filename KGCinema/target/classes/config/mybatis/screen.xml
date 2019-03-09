@@ -20,5 +20,9 @@
 	<select id="screenDetail" parameterType="int" resultType="com.kg.cinema.screen.Screenbean">
 	   select * from screen where s_no=#{s_no}
 	</select> 		
+	
+	<select id="scrNo" parameterType="String" resultType="com.kg.cinema.screen.Screenbean">
+		select s_scrno from screen where s_theater= #{s_theater}
+	</select>		
 
 </mapper>

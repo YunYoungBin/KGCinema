@@ -34,7 +34,11 @@
 
   <tr>
    <td>
-    <video id="preview2" class="img-circle" name="upload_video" width="450px" height="200px"></video>
+    <div id="preview2" class="img-circle" name="upload_video" style="width:450px;height:200px;position: relative;">
+     <p style="width:200px;position: absolute;left:122px;top:70px;text-align: center;color:blue;">
+     
+     </p>
+    </div>
    </td>
    
    <td>
@@ -79,8 +83,7 @@ $(document).ready(function() {
 	       if (input.files && input.files[0]) {
 	           var reader = new FileReader();
 	           reader.onload = function (e) {
-	               $('#preview2').attr('src', e.target.result);
-	               $('#preview2').attr('name', escape(e.name));
+	               $('#preview2 p').text("upload ok!!");
 	               $('#preview2').css({'width' : '450px'});
 	               $('#preview2').css({'height' : '200px'});
 	           }

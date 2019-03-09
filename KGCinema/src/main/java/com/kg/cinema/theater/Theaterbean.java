@@ -5,12 +5,19 @@ public class Theaterbean {
 	private String t_theater;
 	private String t_juso1;
 	private String t_juso2;
+	private String t_location;
 	
 	private int rn;
 	private int start, end;
 	private String skey,sval;
 	
 	
+	public String getT_location() {
+		return t_location;
+	}
+	public void setT_location(String t_location) {
+		this.t_location = t_location;
+	}
 	public int getRn() {
 		return rn;
 	}

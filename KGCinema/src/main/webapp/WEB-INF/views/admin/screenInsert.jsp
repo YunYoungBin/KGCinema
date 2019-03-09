@@ -83,8 +83,11 @@ $(document).on('ready', function() {
    </td>
   </tr>
   <tr>
-   <td>좌석수</td><td><input id="s_seatcnt" type="text" name="s_seatcnt" value=""></td>
+   <td>좌석수</td><td><input id="s_seatcnt" type="text" name="s_seatcnt" value="" readonly></td>
   </tr>
+  <tr>
+   <td>가격</td><td><input type="text" name="s_price"></td>
+  </tr>  
   
  </table>
  <table >

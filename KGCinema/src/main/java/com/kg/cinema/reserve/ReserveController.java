@@ -12,13 +12,16 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.joda.time.Interval;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.datetime.joda.JodaDateTimeFormatAnnotationFormatterFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -176,11 +179,12 @@ public class ReserveController {
 		
 		Moviebean mbean = new Moviebean();
 		mbean = mdao.movieDetail(sbean.getTitle());
+
 		
 		Screenbean scrbean = scrdao.screenSelect(sbean.getTheater(), sbean.getScrno());
 		List<Seatbean> seatList = seatdao.seatSelect(scrbean.getS_seatstyle());
 		int price = scrbean.getS_price();
-		System.out.println(price);
+		
 		mav.addObject("seatbean", seatList);
 		mav.addObject("sbean", sbean);
 		mav.addObject("scrno", idx);
@@ -210,12 +214,15 @@ public class ReserveController {
 		out.print(json);
 	}
 	
+	
 	@RequestMapping(value = "/reserve.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView reserve_save(Reservebean bean, HttpServletResponse response, HttpServletRequest request) throws IOException {
+	public ModelAndView reserve_save(Reservebean bean, HttpServletResponse response, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		rdao.reserveInsert(bean);
-
-		mav.addObject("test","ok");
+		request.getSession().setAttribute("alram", "o");
+		String alram = (String) request.getSession().getAttribute("alram");
+		
+		mav.addObject("test",alram);
 		mav.setViewName("redirect:/reservdetails.do");
 		return mav;
 		
@@ -226,49 +233,68 @@ public class ReserveController {
 		ModelAndView mav = new ModelAndView();
 		if(request.getSession().getAttribute("temp") != null) {
 			Joinbean bean = jdao.myInfo((String)request.getSession().getAttribute("temp"));
+			
 			mav.addObject("bean", bean);
 		} else {
 			mav.setViewName("redirect:/main.do");
 			return mav;
 		}
-		
 
 		String id = (String) request.getSession().getAttribute("temp");
 		List<Reservebean> myReserveList = rdao.reserveDetail(id);
 		List<Reservebean> myOldReserveList = rdao.oldReserveDetail(id);
 		List<Moviebean> movieList = mdao.movieSelect();
+		List<Reservebean> myCancelList = rdao.reserveCancelDetail(id);
 		
-		mav.addObject("test",request.getParameter("test"));
+		String test = request.getParameter("test");
+		
+		if(test != null) {
+			String str = (String)request.getSession().getAttribute("alram");
+			str += "k";
+			request.getSession().setAttribute("alram", str);
+			
+		} else {
+			request.getSession().setAttribute("alram", "no");
+		}
+		String alram = (String) request.getSession().getAttribute("alram");
+		
+		mav.addObject("test1",alram);
 		mav.addObject("movie",movieList);
 		mav.addObject("reserve",myReserveList);
 		mav.addObject("oldReserve",myOldReserveList);
+		mav.addObject("cancel",myCancelList);
 		mav.setViewName("reserve/reservDetails");
 		return mav;
-		
 		
 	}//end
 	
 	@RequestMapping(value = "/cancel.do", method = RequestMethod.GET)
-	public void reserve_cancel(HttpServletRequest request) throws ParseException {
-		
-		String start = "2019-03-06 21:40";
+	public void reserve_cancel(HttpServletRequest request, HttpServletResponse response) throws ParseException, IOException {
+		PrintWriter out = response.getWriter();
+		String rstart = request.getParameter("rstart");
+		Date now = new Date();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		Date now = new Date();
-		Date start_t = sdf.parse(start);
-		String nowstr = sdf.format(now);
-		System.out.println(now.getTime());
-		if(now.getTime() < start_t.getTime()) {
-			System.out.println("9시 40분은 현재시간보다 크다");
-			System.out.println("현재시각:"+nowstr);
+		
+		Date d1 = sdf.parse(rstart);
+		Date d2 = sdf.parse(sdf.format(now));
+		long diff = d1.getTime() - d2.getTime();
+		long diffMinites = diff / 1000 / 60;
+		
+		String rno = request.getParameter("rno");
+		if(diffMinites >= 20) {
+			System.out.println("취소가능시간");
+			Reservebean bean = rdao.reserveDetailOne(Integer.parseInt(rno));
+			rdao.reserveCancelInsert(bean);
+			rdao.reserveDelete(Integer.parseInt(rno));
+			out.print("{\"check\":\"1\"}");
 		} else {
-			System.out.println("아니다");
-			System.out.println("현재시각:"+nowstr);
+			System.out.println("취소불가");
+			out.print("{\"check\":\"0\"}");
 		}
 		
 		
 		
-		String rno = request.getParameter("rno");
 		
 	}
 	

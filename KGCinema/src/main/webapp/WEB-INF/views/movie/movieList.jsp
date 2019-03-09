@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-<title>movieList.jsp</title>
+<title>영화, KG시네마</title>
     <link href="./resources/css/full-slider.css" rel="stylesheet">
     <link rel="stylesheet" href="./resources/css/magnific-popup.css">
     <script src="./resources/js/VideoPopUp.js"></script>

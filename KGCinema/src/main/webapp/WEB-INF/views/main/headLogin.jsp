@@ -118,11 +118,11 @@
            <i class="icon member_icon normal">일반</i>
           </div>
           <div class="name">
-           <a href="#" class="name_btn">
+           <a href="#my" class="name_btn">
             <strong>${bean.j_name}<span>님</span></strong>
             <span class="name_arrow" style="width:12px;height:17px;"><i class="fa fa-chevron-down" style="width:12px;height:12px;">▼</i></span>
            </a>
-           <a class="name_membership" style="color:#198591;">예매확인/취소</a>
+           <a class="name_membership" href="reservdetails.do" style="color:#198591;">예매확인/취소</a>
           </div>
         </div>
       </div>
@@ -187,7 +187,7 @@
               <a class="nav-link js-scroll-trigger" href="eventlist.do">이벤트</a>
             </li>
             <li class="nav-item w">
-              <a class="nav-link js-scroll-trigger hidden" href="#team" style="border-right:1px solid #D5D5D5;">로그인</a>
+              <a class="nav-link js-scroll-trigger hidden" href="#login" style="border-right:1px solid #D5D5D5;">로그인</a>
             </li>
           </ul>
         </div>

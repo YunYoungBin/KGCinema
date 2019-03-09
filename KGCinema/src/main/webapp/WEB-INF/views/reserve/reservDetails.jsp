@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>EventList</title>
+<title>예매확인/취소, KG시네마</title>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="./resources/css/magnific-popup.css">
@@ -69,6 +69,12 @@
    .kgCinema_list .kgCinema_box {position:relative; overflow:hidden; width:100%; padding:20px 30px; border-bottom:1px solid #c0c0c0; background:#fff; box-sizing:border-box;
    -webkit-box-sizing:border-box; -moz-box-sizing:border-box}
    .btn_s_view:hover {color:#cd190b;text-decoration: none;}
+   .sub_navi ul li a.mypage{background: url(http://image2.megabox.co.kr/mop/home/btns/btn_sub_menu_mypage.png) 0 0 no-repeat;
+	}
+	.sub_navi ul li a.mypage.sm01 {
+    width: 85px;
+    background-position: 0 0;
+}
      #small-dialog {
         background: white;
         padding: 10px 0px 30px;
@@ -91,9 +97,9 @@
   #small-dialog .dialogbtn{
   	margin-top: 23px;
     padding: 5px 36px;
-    background-color: #017467;
+    background-color: #503396;
     border-style: solid;
-    border-color: #017467;
+    border-color: #503396;
     color: #fff;
     font-size: 19px;
     font-weight: bold;
@@ -110,7 +116,7 @@
     <div class="sub_navi_wrap">
      <ul class="clearfix">
       <li>
-       <a class="mypage sm01">고객센터</a>
+       <a class="mypage sm01">나의 KG시네마</a>
       </li>
      </ul>
     </div>
@@ -120,7 +126,7 @@
    <!-- container start -->
    <div id="container" class="width-fixed">
     <h2 class="mb30">
-     <span class="sub_title customer st03">예매내역 확인/취소${test }</span>
+     <span class="sub_title customer st03">예매내역 확인/취소${temp1 }</span>
     </h2>
     
     <!-- Event start-->
@@ -142,10 +148,11 @@
       
 	    <ol class="kgCinema_list" id="kgCinemaList_1">
 	    <c:if test="${reserve == '[]' }">
-	    	<br><br>
-	    	&nbsp;&nbsp;&nbsp;현재 상영중인 예매내역이 존재하지 않습니다.
+	    	<br><br><br>
+	    	&nbsp;&nbsp;&nbsp;최근 예매 내역이 없습니다.
 	    </c:if>
 	    <c:forEach var="todayReserve" items="${reserve }">
+	    
 			<li>
 			 <div class="kgCinema_box">
 			  <span class="thum">
@@ -156,6 +163,7 @@
 			  	</c:forEach>
 			  </span>
 			   <dl class="kgCimema_cont">
+			   <fmt:formatDate var="rst" value="${todayReserve.r_start }" pattern="yyyy-MM-dd HH:mm"/>
 			    <dt>예매번호</dt> <dd>${todayReserve.r_no }</dd>
 				<dt>예매 영화명</dt> <dd>${todayReserve.r_title }-${todayReserve.r_type }</dd>
 				<dt>관람영화관/관</dt> <dd><span>${todayReserve.r_theater }/${todayReserve.r_scrno }</span></dd>
@@ -163,13 +171,18 @@
 				<dt>관람인원/좌석</dt> <dd>${todayReserve.r_inwon }/${todayReserve.r_seat.substring(0,todayReserve.r_seat.lastIndexOf(",")) }</dd>
 				<dt>총 결제 금액</dt> <dd><fmt:formatNumber value="${todayReserve.r_price }" pattern="#,###"/> <span>\</span></dd>
 			   </dl>
-			  <a href="#" r_no="${todayReserve.r_no }" class="btn_s_view" onclick="cancel(this)"><span>취소</span></a>
+			  <a href="#" r_no="${todayReserve.r_no }" r_start="${rst }" class="btn_s_view" onclick="cancel(this)"><span>취소</span></a>
 			</div>
 			</li>		
+			
 		</c:forEach>
 	   </ol>
 	   
 	    <ol class="kgCinema_list" id="kgCinemaList_2" style="display:none;">
+	    <c:if test="${oldReserve == '[]' }">
+	    	<br><br><br>
+	    	&nbsp;&nbsp;&nbsp;최근 예매 내역이 없습니다.
+	    </c:if>
 		<c:forEach var="oldReserve" items="${oldReserve }">
 			<li>
 			 <div class="kgCinema_box">
@@ -194,30 +207,31 @@
 	   </ol>
 	   
 	    <ol class="kgCinema_list" id="kgCinemaList_3" style="display:none;">
-		<li>
-		 <div class="kgCinema_box">
-		  <span class="thum"><img src="./resources/images/movie_list_3.jpg" alt="극한직업"></span>
-		   <dl class="kgCimema_cont">
-		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영화관/관</dt> <dd><span>강남 3관</span></dd>
-			<dt>예매내역</dt> <dd>범블비(디지털)</dd>
-			<dt>관람인원/좌석</dt> <dd>성인2명 / G02 G03</dd>
-			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
-		   </dl>
-		</div>
-		</li>		
-		<li>
-		 <div class="kgCinema_box">
-		  <span class="thum"><img src="./resources/images/movie_list_3.jpg" alt="극한직업"></span>
-		   <dl class="kgCimema_cont">
-		    <dt>예매번호(예매일)</dt> <dd>2003557 (2019-02-29 02:22)</dd>
-			<dt>관람영화관/관</dt> <dd><span>강남 3관</span></dd>
-			<dt>예매내역</dt> <dd>범블비(디지털)</dd>
-			<dt>관람인원/좌석</dt> <dd>성인2명 / G02 G03</dd>
-			<dt>총 결제 금액</dt> <dd>14,000 <span>\</span></dd>
-		   </dl>
-		</div>
-		</li>							
+			<c:if test="${cancel == '[]' }">
+	    	<br><br><br>
+	    	&nbsp;&nbsp;&nbsp;최근 취소 내역이 없습니다.
+	    </c:if>
+		<c:forEach var="cancelReserve" items="${cancel }">
+			<li>
+			 <div class="kgCinema_box">
+			  <span class="thum">
+			  	<c:forEach var="mbean" items="${movie}">
+			  		<c:if test="${mbean.m_title eq cancelReserve.r_title }">
+			  			<img src="${pageContext.request.contextPath}/resources/storage/${mbean.m_poster}" alt="${mbean.m_title }">
+			  		</c:if>
+			  	</c:forEach>
+			  </span>
+			   <dl class="kgCimema_cont">
+			    <dt>예매번호</dt> <dd>${cancelReserve.r_no }</dd>
+				<dt>예매 영화명</dt> <dd>${cancelReserve.r_title }-${cancelReserve.r_type }</dd>
+				<dt>관람영화관/관</dt> <dd><span>${cancelReserve.r_theater }/${cancelReserve.r_scrno }</span></dd>
+				<dt>관람일시</dt> <dd><fmt:formatDate value="${cancelReserve.r_start }" pattern="yyyy-MM-dd (E), HH시 mm분"/></dd>
+				<dt>관람인원/좌석</dt> <dd>${cancelReserve.r_inwon }/${cancelReserve.r_seat.substring(0,cancelReserve.r_seat.lastIndexOf(",")) }</dd>
+				<dt>총 결제 금액</dt> <dd><fmt:formatNumber value="${cancelReserve.r_price }" pattern="#,###"/> <span>\</span></dd>
+			   </dl>
+			</div>
+			</li>		
+		</c:forEach>					
 	   </ol>	   	   
 	   
 	   
@@ -231,18 +245,17 @@
   </div>
   <!-- main end -->
   <div class="bin"></div>
-  <c:set var="temp">${test }</c:set>
-  <c:if test="${temp eq 'ok' }">
+  
+  <c:if test="${test1 eq 'ok' }">
 <script>
 $(document).ready(function() {
-	$.magnificPopup.open({
-		  items: {
-		    src: '.popup'
-		  },
-		  type: 'inline'
-	});
+		$.magnificPopup.open({
+			  items: {
+			    src: '.popup'
+			  },
+			  type: 'inline'
+		});		
 });
-
 </script>
   
   <div id="small-dialog" class="popup">
@@ -254,9 +267,7 @@ $(document).ready(function() {
   	<button type="button" class="dialogbtn" onclick="dialogclose()">확인</button>
   	<br>
   </div>
-  <c:set var="temp">no</c:set>
   </c:if>
-  
   
 </body>
 </html>

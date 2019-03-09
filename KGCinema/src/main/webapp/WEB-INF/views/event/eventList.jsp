@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>EventList</title>
+<title>이벤트, KG시네마</title>
 
     <script src="./resources/js/Event4.js"></script>
 	<link rel="stylesheet" href="./resources/css/magnific-popup.css">

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자페이지, KG시네마</title>
 <link rel="stylesheet" type="text/css" href="./resources/css/style3.css">
 <style>
 </style>

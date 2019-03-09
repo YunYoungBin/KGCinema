@@ -18,4 +18,12 @@
 	<select id="oldDetail" parameterType="String" resultType="com.kg.cinema.reserve.Reservebean">
 		select * from reserve where r_id = #{id} and r_start <![CDATA[<]]> sysdate - 2/24 order by r_no desc
 	</select>
+	
+	<select id="detailOne" parameterType="int" resultType="com.kg.cinema.reserve.Reservebean">
+		select * from reserve where r_no = #{no}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from reserve where r_no = #{no} 
+	</delete>
 </mapper>

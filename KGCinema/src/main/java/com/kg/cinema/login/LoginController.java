@@ -42,7 +42,7 @@ public class LoginController {
 	public void main(Loginbean bean, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		ModelAndView mav = new ModelAndView();
 		PrintWriter out = response.getWriter();
-		
+
 		int count = dao.login(bean);
 		if(count > 0) {
 			request.getSession().setAttribute("temp", bean.getUserid());

@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="./resources/demos/style.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="./resources/js/Reserve_step1.js"></script>
+    
     
    <script type="text/javascript">
   $(document).on('ready', function() {
@@ -508,11 +510,11 @@
        </div>
       </div>
       
-      <div class="tab-pane movie_body body_theater1 active" style="display: block;">
+      <div id="body_theater1" class="tab-pane movie_body body_theater1 active" style="display: block;">
        <div class="theater_list">
-        <ul class="depth1"> 
-         <li class="active">
-         <a>서울</a>
+        <ul class="depth1">
+        <li data-areacode="10" class="">
+         <a href="javascript:void(0);" title="서울 선택">서울<div class=""></div></a>
          <span></span>
          </li>
         </ul>

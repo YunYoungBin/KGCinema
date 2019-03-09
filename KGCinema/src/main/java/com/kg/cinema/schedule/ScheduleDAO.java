@@ -58,6 +58,5 @@ public class ScheduleDAO {
 	public Schedulebean scheduleDetail(int idx) {
 		return temp.selectOne("schedule.detail", idx);
 	}
-	
-
+	d
 }

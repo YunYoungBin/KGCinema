@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="./resources/demos/style.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="./resources/js/Reserve_step1.js"></script>
+    
     
    <script type="text/javascript">
   $(document).on('ready', function() {
@@ -508,11 +510,39 @@
        </div>
       </div>
       
-      <div class="tab-pane movie_body body_theater1 active" style="display: block;">
+      <div id="body_theater1" class="tab-pane movie_body body_theater1 active" style="display: block;">
        <div class="theater_list">
-        <ul class="depth1"> 
-         <li class="active">
-         <a>서울</a>
+        <ul class="depth1">
+        <li data-areacode="10" class="">
+         <a href="javascript:void(0);" title="서울 선택">서울<div class=""></div></a>
+         <span></span>
+         </li>
+         <li data-areacode="30" class="">
+         <a href="javascript:void(0);" title="경기 선택">경기<div class=""></div></a>
+         <span></span>
+         </li>
+         <li data-areacode="35" class="">
+         <a href="javascript:void(0);" title="인천 선택">인천<div class=""></div></a>
+         <span></span>
+         </li>
+         <li data-areacode="45" class="">
+         <a href="javascript:void(0);" title="대전/충청/세종 선택">대전/충청/세종<div class=""></div></a>
+         <span></span>
+         </li>
+         <li data-areacode="55" class="">
+         <a href="javascript:void(0);" title="부산/대구/경상 선택">부산/대구/경상<div class=""></div></a>
+         <span></span>
+         </li>
+         <li data-areacode="65" class="">
+         <a href="javascript:void(0);" title="광주/전라 선택">광주/전라<div class=""></div></a>
+         <span></span>
+         </li>
+         <li data-areacode="70" class="">
+         <a href="javascript:void(0);" title="강원 선택">강원<div class=""></div></a>
+         <span></span>
+         </li>
+         <li data-areacode="80" class="">
+         <a href="javascript:void(0);" title="제주 선택">제주<div class=""></div></a>
          <span></span>
          </li>
         </ul>

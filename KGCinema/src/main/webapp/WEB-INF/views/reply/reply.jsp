@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>EventList</title>
-<link rel="stylesheet" type="text/css" href="./resources/css/reply.css">
+<link rel="stylesheet" type="text/css" href="./resources/css/reply1.css">
 </head>
 <script type="text/javascript">
 
@@ -37,7 +37,7 @@
 		  <c:choose>
  		   <c:when test="${myreply.dr_id eq '' || empty myreply.dr_id}">
 				<div class="input">
-					<div class="rate_insert">
+					<div class="rate rate_insert">
 						<div class="star-wrap-critic" id="myStarScore" style="cursor: pointer; width: 125px;">
 					        <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점1 괜히봤어요" value="1">
 					        <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" value="2">
@@ -111,7 +111,7 @@
 		<div class="photo_profile">
 			<img src="http://image2.megabox.co.kr/mop/home/user/profile_m.png" alt="rkdekd** 프로필사진 없음">
 		</div>
-		<div class="text">
+		<div class="text" style="border-bottom:none;">
 			<div class="name">
 				<strong>rkdekd**</strong>
 			</div>
@@ -132,30 +132,13 @@
 
 			</div>
 			<p>
-<span class="comment">원체 이런 스토리를 좋아해서 전 정말 잘 봤어요!!
-그 놈의 욕심과 집착이..
-
-용이 뱀이 되었구나!!</span>
+				<span class="comment">
+				원체 이런 스토리를 좋아해서 전 정말 잘 봤어요!!
+				</span>
 			</p>
 			<!-- 한줄평 쓰기// -->
 		</div>
-		<div class="btn_wrap">
 
-			<div class="recommend" onclick="MovieComment.like('1360122D-7117-4343-8734-8DA509671A11', 'N')">
-				<i class="i_recommend" aria-hidden="true"></i>추천<strong>1</strong>
-			</div>
-			<div class="report" onclick="MovieComment.showReportSpoiler(this);">
-				<i class="i_report" aria-hidden="true"></i>신고하기
-			</div>
-			<div class="btn_edit_wrap" style="display: none;">
-				<ul>
-					<!-- //TODO 코멘트ID? -->
-					<li><a href="javascript:void(0);" onclick="MovieComment.checkReportSpoiler(this, '10', '015123', '1360122D-7117-4343-8734-8DA509671A11');" title="스포일러 신고">스포일러 신고</a></li>
-					<li><a href="javascript:void(0);" onclick="MovieComment.checkReportSpoiler(this, '20', '015123', '1360122D-7117-4343-8734-8DA509671A11');" title="욕설/비방/광고 신고">욕설/비방/광고 신고</a></li>
-				</ul>
-			</div>
-
-		</div>
 
 	</div>
 	<!-- 코멘트 편집 -->
@@ -182,7 +165,7 @@
 		<div class="photo_profile">
 			<img src="http://image2.megabox.co.kr/mop/home/user/profile_m.png" alt="rkdekd** 프로필사진 없음">
 		</div>
-		<div class="text">
+		<div class="text" style="border-bottom:none;">
 			<div class="name">
 				<strong>rkdekd**</strong>
 			</div>
@@ -203,29 +186,14 @@
 
 			</div>
 			<p>
-<span class="comment">원체 이런 스토리를 좋아해서 전 정말 잘 봤어요!!
-그 놈의 욕심과 집착이..
-
-용이 뱀이 되었구나!!</span>
+				<span class="comment">
+				원체 이런 스토리를 좋아해서 전 정말 잘 봤어요!!
+				그 놈의 욕심과 집착이..
+				
+				용이 뱀이 되었구나!!
+				</span>
 			</p>
 			<!-- 한줄평 쓰기// -->
-		</div>
-		<div class="btn_wrap">
-
-			<div class="recommend" onclick="MovieComment.like('1360122D-7117-4343-8734-8DA509671A11', 'N')">
-				<i class="i_recommend" aria-hidden="true"></i>추천<strong>1</strong>
-			</div>
-			<div class="report" onclick="MovieComment.showReportSpoiler(this);">
-				<i class="i_report" aria-hidden="true"></i>신고하기
-			</div>
-			<div class="btn_edit_wrap" style="display: none;">
-				<ul>
-					<!-- //TODO 코멘트ID? -->
-					<li><a href="javascript:void(0);" onclick="MovieComment.checkReportSpoiler(this, '10', '015123', '1360122D-7117-4343-8734-8DA509671A11');" title="스포일러 신고">스포일러 신고</a></li>
-					<li><a href="javascript:void(0);" onclick="MovieComment.checkReportSpoiler(this, '20', '015123', '1360122D-7117-4343-8734-8DA509671A11');" title="욕설/비방/광고 신고">욕설/비방/광고 신고</a></li>
-				</ul>
-			</div>
-
 		</div>
 
 	</div>
@@ -258,7 +226,7 @@
 
 <!-- //코멘트 편집 -->
 
-	   <ul class="custom-pagination mt25">
+       <ul class="custom-pagination" style="margin-top:25px;">
        <c:if test="${startpage>10}">
         <li> 
          <a href="eventlist.do?pageNum=${pagecount-pagecount+1}" class="img_btn customer first" title="처음 페이지 보기">

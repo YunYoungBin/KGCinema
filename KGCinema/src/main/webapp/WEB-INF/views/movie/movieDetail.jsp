@@ -839,27 +839,37 @@
 			}
 		});	
 		
-		$(".rate_insert input").click(function() {
-			var id = $(".j_id").attr("value");
-			var score = this.value;
-			var mno = $(".m_no").attr("value");
-			
-			$.ajax({
-				url:"replyinsert.do",
-				data: "score="+score + "&id="+id + "&mno="+mno, 
-				dataType: "json",
-				type: "GET",
-				success: function(data){
-					
+	
+			$(".rate_insert input").click(function() {
+				var id = $(".j_id").attr("value");
+				var score = this.value;
+				var mno = $(".m_no").attr("value");
+				
+				$.ajax({
+					url:"replyinsert.do",
+					data: "score="+score + "&id="+id + "&mno="+mno, 
+					dataType: "json",
+					type: "GET",
+					success: function(data){
+						$(".rate_insert .j_id").attr("value", data.no);
+						$(".my_rate").removeClass("rate_insert");
+						$(".my_rate .j_id").attr("class","j_no");
+						$(".my_rate").addClass("rate_edit");
+					},//sucess end
+					error: function(data){
+						alert("실패"+data.score+data.score);
+						console.log(data);
+					}
+				
+				});
+			});		
 
-				},//sucess end
-				error: function(data){
-					alert("실패"+data.score+data.score);
-					console.log(data);
-				}
-			
-			});
-		});		
+			$(".rate_edit input").click(function() {
+				var no = $(".j_no").attr("value");
+				var score = this.value;
+				alert(no);
+			});			
+		
   });
   </script>
 <body>

@@ -51,5 +51,9 @@ var MovieCinemaDatas = {
 			$('.depth2', '#body_theater1 .theater_list').empty().append($cloneCinema.find('li').attr('style', ''));
 			MovieCinemaDatas.selectedDepth = areaCode;
 		}
+	},
+	
+	showingCinemas : function(areaCode) {
+		
 	}
 }

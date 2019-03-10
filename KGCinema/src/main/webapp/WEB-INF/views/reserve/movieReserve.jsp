@@ -517,6 +517,34 @@
          <a href="javascript:void(0);" title="서울 선택">서울<div class=""></div></a>
          <span></span>
          </li>
+         <li data-areacode="30" class="">
+         <a href="javascript:void(0);" title="경기 선택">경기<div class=""></div></a>
+         <span></span>
+         </li>
+         <li data-areacode="35" class="">
+         <a href="javascript:void(0);" title="인천 선택">인천<div class=""></div></a>
+         <span></span>
+         </li>
+         <li data-areacode="45" class="">
+         <a href="javascript:void(0);" title="대전/충청/세종 선택">대전/충청/세종<div class=""></div></a>
+         <span></span>
+         </li>
+         <li data-areacode="55" class="">
+         <a href="javascript:void(0);" title="부산/대구/경상 선택">부산/대구/경상<div class=""></div></a>
+         <span></span>
+         </li>
+         <li data-areacode="65" class="">
+         <a href="javascript:void(0);" title="광주/전라 선택">광주/전라<div class=""></div></a>
+         <span></span>
+         </li>
+         <li data-areacode="70" class="">
+         <a href="javascript:void(0);" title="강원 선택">강원<div class=""></div></a>
+         <span></span>
+         </li>
+         <li data-areacode="80" class="">
+         <a href="javascript:void(0);" title="제주 선택">제주<div class=""></div></a>
+         <span></span>
+         </li>
         </ul>
         <ul class="depth2">
         <c:forEach var="item" items="${theater}">

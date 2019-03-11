@@ -60,5 +60,6 @@ public class ReserveDAO {
 	public void reserveDelete(int no) {
 		temp.delete("reserve.delete",no);
 	}
+	
 
 }

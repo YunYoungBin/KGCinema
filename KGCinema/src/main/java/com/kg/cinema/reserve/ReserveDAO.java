@@ -40,5 +40,25 @@ public class ReserveDAO {
 		List<Reservebean> list = temp.selectList("reserve.oldDetail", id);
 		return list;
 	}
+	
+	public Reservebean reserveDetailOne(int no) {
+		Reservebean bean = temp.selectOne("reserve.detailOne", no);
+		return bean;
+	}
+	
+	public void reserveCancelInsert(Reservebean bean) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		bean.setDate(sdf.format(bean.getR_start()));
+		temp.insert("reserve_cancel.insert", bean);
+	}
+	
+	public List<Reservebean> reserveCancelDetail(String id) {
+		List<Reservebean> list = temp.selectList("reserve_cancel.detail", id);
+		return list;
+	}
+	
+	public void reserveDelete(int no) {
+		temp.delete("reserve.delete",no);
+	}
 
 }

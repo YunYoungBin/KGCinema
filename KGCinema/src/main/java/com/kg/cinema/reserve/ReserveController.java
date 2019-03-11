@@ -244,6 +244,7 @@ public class ReserveController {
 		List<Reservebean> myReserveList = rdao.reserveDetail(id);
 		List<Reservebean> myOldReserveList = rdao.oldReserveDetail(id);
 		List<Moviebean> movieList = mdao.movieSelect();
+		List<Reservebean> myCancelList = rdao.reserveCancelDetail(id);
 		
 		String test = request.getParameter("test");
 		
@@ -253,6 +254,7 @@ public class ReserveController {
 			request.getSession().setAttribute("alram", str);
 			
 		} else {
+			request.getSession().setAttribute("alram", "no");
 		}
 		String alram = (String) request.getSession().getAttribute("alram");
 		
@@ -260,44 +262,39 @@ public class ReserveController {
 		mav.addObject("movie",movieList);
 		mav.addObject("reserve",myReserveList);
 		mav.addObject("oldReserve",myOldReserveList);
+		mav.addObject("cancel",myCancelList);
 		mav.setViewName("reserve/reservDetails");
 		return mav;
 		
 	}//end
 	
 	@RequestMapping(value = "/cancel.do", method = RequestMethod.GET)
-	public void reserve_cancel(HttpServletRequest request) throws ParseException {
-		
+	public void reserve_cancel(HttpServletRequest request, HttpServletResponse response) throws ParseException, IOException {
+		PrintWriter out = response.getWriter();
 		String rstart = request.getParameter("rstart");
-		
-		System.out.println(rstart);
+		Date now = new Date();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		Date now = new Date();
-		// 현재시각 스트링으로 변환
-		String nowTime = sdf.format(now);
 		
-		// 넘어온 영화시작시간을 문자열로 변환 2019-01-01 22:00
-		rstart = sdf.format(rstart);
-		Date stmovie = sdf.parse(rstart);
-		Calendar cal = Calendar.getInstance();
+		Date d1 = sdf.parse(rstart);
+		Date d2 = sdf.parse(sdf.format(now));
+		long diff = d1.getTime() - d2.getTime();
+		long diffMinites = diff / 1000 / 60;
 		
-		Interval interval = new Interval(stmovie.getTime(), now.getTime());
-		System.out.println(interval.toInterval());
-		
-		
-		
-		if(now.getTime() < stmovie.getTime()) {
-//			System.out.println("9시 40분은 현재시간보다 크다");
-//			System.out.println("현재시각:"+nowstr);
+		String rno = request.getParameter("rno");
+		if(diffMinites >= 20) {
+			System.out.println("취소가능시간");
+			Reservebean bean = rdao.reserveDetailOne(Integer.parseInt(rno));
+			rdao.reserveCancelInsert(bean);
+			rdao.reserveDelete(Integer.parseInt(rno));
+			out.print("{\"check\":\"1\"}");
 		} else {
-//			System.out.println("아니다");
-//			System.out.println("현재시각:"+nowstr);
+			System.out.println("취소불가");
+			out.print("{\"check\":\"0\"}");
 		}
 		
 		
 		
-		String rno = request.getParameter("rno");
 		
 	}
 	

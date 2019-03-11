@@ -122,7 +122,7 @@
             <strong>${bean.j_name}<span>님</span></strong>
             <span class="name_arrow" style="width:12px;height:17px;"><i class="fa fa-chevron-down" style="width:12px;height:12px;">▼</i></span>
            </a>
-           <a class="name_membership" style="color:#198591;">예매확인/취소</a>
+           <a class="name_membership" href="reservdetails.do" style="color:#198591;">예매확인/취소</a>
           </div>
         </div>
       </div>

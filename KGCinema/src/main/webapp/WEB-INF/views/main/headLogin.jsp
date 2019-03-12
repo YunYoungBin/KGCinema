@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<link rel="shortcut icon" href="./resources/images/favicon.ico">
+	<link rel="shortcut icon" href="./resources/images/favicon1.ico" />
 	
     <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
     <script src="./resources/js/jquery.magnific-popup.js"></script>

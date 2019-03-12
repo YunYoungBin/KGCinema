@@ -20,6 +20,7 @@ public class Moviebean {
    private String m_steal4;
    private String m_steal5;
    private String upload_premiere;
+   private int m_inwon;
    
    
    private MultipartFile upload_poster;
@@ -30,7 +31,7 @@ public class Moviebean {
    private MultipartFile upload_steal5;
    
    
-   private String m_point;
+   private double m_point;
    private String m_audience;
    private int m_rn;
    
@@ -48,12 +49,18 @@ public class Moviebean {
    private MultipartFile upload_video;
    
    
-   public String getUpload_premiere() {
+    public int getM_inwon() {
+	   return m_inwon;
+    }
+	public void setM_inwon(int m_inwon) {
+		this.m_inwon = m_inwon;
+	}
+	public String getUpload_premiere() {
 	   return upload_premiere;
-   }
-   public void setUpload_premiere(String upload_premiere) {
+    }
+    public void setUpload_premiere(String upload_premiere) {
 	   this.upload_premiere = upload_premiere;
-   }
+    }
 	public int getM_rn() {
 		return m_rn;
 	}
@@ -216,10 +223,10 @@ public class Moviebean {
 	public void setUpload_steal5(MultipartFile upload_steal5) {
 		this.upload_steal5 = upload_steal5;
 	}
-	public String getM_point() {
+	public double getM_point() {
 		return m_point;
 	}
-	public void setM_point(String m_point) {
+	public void setM_point(double m_point) {
 		this.m_point = m_point;
 	}
 	public String getM_audience() {

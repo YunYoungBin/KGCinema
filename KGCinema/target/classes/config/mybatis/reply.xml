@@ -24,14 +24,21 @@
  	   select  count(*) from movie_reply where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%'  
  	</select>	
  	
+	<select id="countReply" parameterType="com.kg.cinema.reply.Replybean" resultType="int">
+ 	   select  count(*) from movie_reply where dr_mno=#{dr_mno}  
+ 	</select>	 	
+ 	
+	<select id="scoreSum" parameterType="String" resultType="String">
+ 	   select sum(dr_point) from movie_reply where dr_mno=#{dr_mno}
+ 	</select>	 	
+ 	
     <insert id="replyInsert">
 	   insert into movie_reply(dr_no,dr_id,dr_date,dr_point,dr_content,dr_mno)
 	   values(movie_reply_seq.nextval,#{dr_id},sysdate,#{dr_point},null,#{dr_mno})
 	</insert>
 
 	<update id="replyEdit" parameterType="com.kg.cinema.reply.Replybean">
-	   update movie_reply set dr_point=#{dr_point},dr_content=#{dr_content}
-	   where br_num=#{br_num}
+	   update movie_reply set dr_point=#{dr_point},dr_content=#{dr_content} where dr_no=#{dr_no}
 	</update>	 
 	 
 	<delete id="replyDel" parameterType="int">

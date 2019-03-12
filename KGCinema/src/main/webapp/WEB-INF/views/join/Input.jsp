@@ -82,7 +82,7 @@
 				</tr>
 				<tr>
 					<th>* 비밀번호</th>
-					<td ><input type="password" name="j_pwd" onkeyup="checklen(this,10)" value="wmf892"></td>
+					<td ><input type="password" name="j_pwd" onkeyup="checklen(this,15)" value="wmf892"></td>
 				</tr>
 				<tr>
 					<th>* 비밀번호 확인</th>

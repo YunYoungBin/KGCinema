@@ -27,6 +27,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kg.cinema.join.JoinDAO;
@@ -292,10 +293,23 @@ public class ReserveController {
 			System.out.println("취소불가");
 			out.print("{\"check\":\"0\"}");
 		}
+	}
+	
+	@RequestMapping(value = "/findCinema.do", method = {RequestMethod.GET, RequestMethod.POST}, produces="application/json; charset=utf8")
+	public @ResponseBody void reserve_findCinema(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
 		
+		String location = request.getParameter("name");
+		List<Theaterbean> locTheater = tdao.findTheater(location);
 		
-		
-		
+		StringBuilder sb = new StringBuilder();
+		sb.append("{\"theater\":\"");
+		for(Theaterbean tbean : locTheater) {
+			sb.append(tbean.getT_theater()+",");
+		}
+		sb.append("\"}");
+		out.print(sb.toString());
 	}
 	
 }

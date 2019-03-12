@@ -56,5 +56,10 @@ public class TheaterDAO {
 		Theaterbean tdto=temp.selectOne("theater.theaterDetail",data);
 		return tdto;
 	}//end	
+	
+	public List<Theaterbean> findTheater(String name) {
+		List<Theaterbean> list = temp.selectList("theater.findTheater", name);
+		return list;
+	}
 
 }

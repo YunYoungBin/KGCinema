@@ -22,5 +22,9 @@
 	<update id="edit">
 		update join set j_juso1=#{j_juso1},j_juso2=#{j_juso2},j_birth=to_date(#{j_birth},'yyyy-mm-dd'),j_phone=#{j_phone},j_email=#{j_email},j_file1=#{j_file1} where j_id=#{j_id}
 	</update>
+	
+	<update id="chagePass">
+		update join set j_pwd=#{j_pwd} where j_id=#{j_id}
+	</update>
 
 </mapper>

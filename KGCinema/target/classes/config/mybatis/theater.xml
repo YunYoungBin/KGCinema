@@ -26,5 +26,9 @@
 	   select * from theater where t_no=#{t_no}
 	</select> 	
 	
+	<select id="findTheater" parameterType="String" resultType="com.kg.cinema.theater.Theaterbean">
+		select t_theater from theater where t_location = #{name}
+	</select>
+	
 
 </mapper>

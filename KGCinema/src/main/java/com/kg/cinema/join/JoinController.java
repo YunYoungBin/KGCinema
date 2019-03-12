@@ -112,4 +112,38 @@ public class JoinController {
 		return "redirect:/mypage.do";
 	}
 	
+	@RequestMapping("/changePw.do")
+	public ModelAndView join_changePw(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("temp") == null) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		} else {
+			Joinbean bean = dao.myInfo((String)session.getAttribute("temp"));
+			
+			mav.addObject("bean", bean);
+			mav.setViewName("join/changePw");
+		}
+		return mav;
+	}
+	
+	@RequestMapping("/changePwSave.do")
+	public ModelAndView join_changePwSave(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("temp") == null) {
+			mav.setViewName("redirect:/main.do");
+			return mav;
+		} else {
+			Joinbean bean = dao.myInfo((String)session.getAttribute("temp"));
+			
+			String newPass = request.getParameter("newPassword");
+			bean.setJ_pwd(newPass);
+			dao.chagePass(bean);
+			mav.setViewName("redirect:/logout.do");
+		}
+		return mav;
+	}
+	
 }

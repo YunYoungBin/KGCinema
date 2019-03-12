@@ -21,9 +21,9 @@
     <!-- movie -->
    	<insert id="movieInsert">
 	  insert into movie(m_no,m_title,m_subtitle,m_grade,m_type,m_premiere,m_director,m_actor,m_genre,m_story,
-	  m_poster,m_steal1,m_steal2,m_steal3,m_steal4,m_steal5)
+	  m_poster,m_steal1,m_steal2,m_steal3,m_steal4,m_steal5,m_inwon)
 	  values(movie_seq.nextval, #{m_title}, #{m_subtitle},#{m_grade},#{m_type},to_date(#{upload_premiere},'yyyy-mm-dd'),#{m_director},
-	  #{m_actor},#{m_genre},#{m_story},#{m_poster},#{m_steal1},#{m_steal2},#{m_steal3},#{m_steal4},#{m_steal5})
+	  #{m_actor},#{m_genre},#{m_story},#{m_poster},#{m_steal1},#{m_steal2},#{m_steal3},#{m_steal4},#{m_steal5},#{m_inwon})
 	</insert>
 	
 	<delete id="movieDelete" parameterType="int">

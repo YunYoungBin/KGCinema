@@ -48,5 +48,9 @@
 	    (select * from movieslide order by mvs_no desc) m )
 	</select>		
 	
+	<update id="moviePointEdit" parameterType="com.kg.cinema.movie.Moviebean">
+	 update movie set m_point=#{m_point},m_inwon=#{m_inwon} where m_no=#{m_no}
+	</update>	
+	
 
 </mapper>

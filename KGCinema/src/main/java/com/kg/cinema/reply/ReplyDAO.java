@@ -45,6 +45,12 @@ public class ReplyDAO {
 		return cnt;
 	}//end
 	
+	public int Count(int mno) {
+		System.out.println("CountDaomno= " + mno);
+		int cnt=(Integer)temp.selectOne("reply.countReply", mno);
+		return cnt;
+	}//end	
+
 	public int ReplyCountSearch(String skey, String sval) {
 		Replybean dto = new Replybean();
 		dto.setSkey(skey);
@@ -52,6 +58,12 @@ public class ReplyDAO {
 		System.out.println(skey);
 		System.out.println(sval);
 		int cnt=(Integer)temp.selectOne("reply.countAllSearch" , dto);
+		return cnt;
+	}//end	
+	
+	public String ScoreSum(String mno) {
+		System.out.println("ScoreSumDao= " + mno);
+		String cnt=temp.selectOne("reply.scoreSum", mno);
 		return cnt;
 	}//end	
 	
@@ -68,7 +80,17 @@ public class ReplyDAO {
 	public void ReplyDelete(int data) {
 		 temp.delete("reply.replyDel", data);
 	}//end
-	public void ReplyEdit(Replybean rdto) {
+	public void ReplyEdit(int score, int dr_no, String content) {
+		Replybean rdto = new Replybean();
+		rdto.setDr_point(score);
+		rdto.setDr_no(dr_no);
+		rdto.setDr_content(content);
+		System.out.println("daodr_no: " + dr_no);
+		System.out.println("daoscore: " + score);
+		System.out.println("daocontent: " + content);
+		temp.update("reply.replyEdit", rdto);
+	}//end
+	public void ReplyEdit2(Replybean rdto) {
 		temp.update("reply.replyEdit",rdto);
 	}//end	
 	

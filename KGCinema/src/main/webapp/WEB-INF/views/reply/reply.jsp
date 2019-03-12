@@ -36,41 +36,131 @@
 			</div>
 		  <c:choose>
  		   <c:when test="${myreply.dr_id eq '' || empty myreply.dr_id}">
-				<div class="input">
+				<div class="input rate_insert">
 					<div class="rate rate_insert">
 						<div class="star-wrap-critic" id="myStarScore" style="cursor: pointer; width: 125px;">
-					        <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점1 괜히봤어요" value="1">
-					        <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" value="2">
-					        <input id="cc" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
-					        <input id="dd" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
-					        <input id="ee" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+				          <c:choose>
+				 	       <c:when test="${myreply.dr_point eq '' || empty myreply.dr_point}">
+					          <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점1 괜히봤어요" value="1">
+					          <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" value="2">
+					          <input id="cc" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
+					          <input id="dd" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+					          <input id="ee" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+					          <input type="hidden" name="score">
+					       </c:when>          
+				 	       <c:when test="${myreply.dr_point eq 1}">
+					          <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+					          <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" value="2">
+					          <input id="cc" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
+					          <input id="dd" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+					          <input id="ee" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+					          <input type="hidden" name="score">
+					       </c:when>
+				 	       <c:when test="${myreply.dr_point eq 2}">
+					          <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+					          <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+					          <input id="cc" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
+					          <input id="dd" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+					          <input id="ee" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+					          <input type="hidden" name="score">
+					       </c:when>
+				 	       <c:when test="${myreply.dr_point eq 3}">
+					          <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+					          <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+					          <input id="cc" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점3 무난했어요" value="3">
+					          <input id="dd" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+					          <input id="ee" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+					          <input type="hidden" name="score">
+					       </c:when>
+				 	       <c:when test="${myreply.dr_point eq 4}">
+					          <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+					          <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+					          <input id="cc" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점3 무난했어요" value="3">
+					          <input id="dd" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점4 기대해도 좋아요!" value="4">
+					          <input id="ee" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+					          <input type="hidden" name="score">
+					       </c:when>	
+				 	       <c:otherwise>
+					          <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+					          <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+					          <input id="cc" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점3 무난했어요" value="3">
+					          <input id="dd" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점4 기대해도 좋아요!" value="4">
+					          <input id="ee" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+					          <input type="hidden" name="score" value="">
+					       </c:otherwise>              	       	       
+					       </c:choose> 
 						</div>
 						<p class="text-center">평점을 입력해주세요</p>
 
 					</div>
 					<div class="textarea">
-						<textarea title="댓글쓰기" name="comment" cols="30" rows="10" maxlength="100" onkeyup="checkWordLenth(this, 100, 'wordCheckCount');"></textarea>
+						<textarea id="txt" title="댓글쓰기" name="comment" cols="30" rows="10" maxlength="100"></textarea>
 					</div>
 					<div class="btn_wrap">
-						<button type="submit" class="img_btn movie nowfocus" onclick="MovieComment.regist()">등록</button>
+						<button type="submit" class="img_btn movie nowfocus">등록</button>
 					</div>
 				</div>
 			</c:when>
 			<c:otherwise>
-				<div class="input">
+				<div class="input rate_edit">
 					<div class="rate rate_edit">
 						<div class="star-wrap-critic" id="myStarScore" style="cursor: pointer; width: 125px;">
-					        <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점1 괜히봤어요" value="1">
-					        <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" value="2">
-					        <input id="cc" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
-					        <input id="dd" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
-					        <input id="ee" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+				          <c:choose>
+				 	       <c:when test="${myreply.dr_point eq '' || empty myreply.dr_point}">
+					          <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점1 괜히봤어요" value="1">
+					          <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" value="2">
+					          <input id="cc" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
+					          <input id="dd" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+					          <input id="ee" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+					          <input type="hidden" name="score">
+					       </c:when>          
+				 	       <c:when test="${myreply.dr_point eq 1}">
+					          <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+					          <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" value="2">
+					          <input id="cc" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
+					          <input id="dd" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+					          <input id="ee" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+					          <input type="hidden" name="score">
+					       </c:when>
+				 	       <c:when test="${myreply.dr_point eq 2}">
+					          <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+					          <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+					          <input id="cc" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
+					          <input id="dd" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+					          <input id="ee" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+					          <input type="hidden" name="score">
+					       </c:when>
+				 	       <c:when test="${myreply.dr_point eq 3}">
+					          <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+					          <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+					          <input id="cc" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점3 무난했어요" value="3">
+					          <input id="dd" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+					          <input id="ee" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+					          <input type="hidden" name="score">
+					       </c:when>
+				 	       <c:when test="${myreply.dr_point eq 4}">
+					          <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+					          <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+					          <input id="cc" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점3 무난했어요" value="3">
+					          <input id="dd" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점4 기대해도 좋아요!" value="4">
+					          <input id="ee" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+					          <input type="hidden" name="score">
+					       </c:when>	
+				 	       <c:otherwise>
+					          <input id="aa" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+					          <input id="bb" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+					          <input id="cc" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점3 무난했어요" value="3">
+					          <input id="dd" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점4 기대해도 좋아요!" value="4">
+					          <input id="ee" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+					          <input type="hidden" name="score">
+					       </c:otherwise>              	       	       
+					       </c:choose> 
 						</div>
 						<p class="text-center">평점을 입력해주세요</p>
 
 					</div>
 					<div class="textarea">
-						<textarea title="댓글쓰기" name="comment" cols="30" rows="10" maxlength="100" onkeyup="checkWordLenth(this, 100, 'wordCheckCount');"></textarea>
+						<textarea id="txt" title="댓글쓰기" name="comment" cols="30" rows="10" maxlength="100" onkeyup="checkWordLenth(this, 100, 'wordCheckCount');"></textarea>
 					</div>
 					<div class="btn_wrap">
 						<button type="submit" class="img_btn movie nowfocus" onclick="MovieComment.regist()">등록</button>

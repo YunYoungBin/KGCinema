@@ -13,6 +13,15 @@ public class Replybean {
   private int rn, start, end;
   private String skey,sval;
   
+  private double starscore;
+  
+  
+	public double getStarscore() {
+		return starscore;
+	}
+	public void setStarscore(double starscore) {
+		this.starscore = starscore;
+	}
 	public int getDr_no() {
 		return dr_no;
 	}

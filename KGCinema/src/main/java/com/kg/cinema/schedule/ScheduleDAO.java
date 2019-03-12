@@ -58,8 +58,5 @@ public class ScheduleDAO {
 	public Schedulebean scheduleDetail(int idx) {
 		return temp.selectOne("schedule.detail", idx);
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> branch 'master' of https://github.com/YunYoungBin/KGCinema.git
+
 }

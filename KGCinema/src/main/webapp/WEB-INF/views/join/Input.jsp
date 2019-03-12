@@ -6,11 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원가입</title>
+<title>회원가입, KG시네마</title>
 
 <link rel="stylesheet" type="text/css" href="./resources/css/InputCSS1.css">
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-<script src="./resources/js/InputJS.js"></script>
+<script src="./resources/js/InputJS1.js"></script>
 
 </head>
 

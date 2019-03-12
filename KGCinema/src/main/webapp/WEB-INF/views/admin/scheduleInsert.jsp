@@ -94,7 +94,7 @@ $(document).on('ready', function() {
  <tr>
  <td>
    <input type="submit" value="등록">
-   <input type="reset" value=취소></td>
+   <input type="button" onclick="history.back();" value=취소></td>
   </tr>
   </table>
 </form>

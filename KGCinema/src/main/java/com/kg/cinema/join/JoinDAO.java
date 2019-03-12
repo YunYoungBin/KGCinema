@@ -35,5 +35,9 @@ public class JoinDAO {
 	public void chagePass(Joinbean bean) {
 		temp.update("join.chagePass", bean);
 	}
+	
+	public void memberDel(String id) {
+		temp.delete("join.delete", id);
+	}
 
 }

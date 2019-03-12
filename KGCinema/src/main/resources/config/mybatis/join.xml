@@ -26,5 +26,9 @@
 	<update id="chagePass">
 		update join set j_pwd=#{j_pwd} where j_id=#{j_id}
 	</update>
+	
+	<delete id="delete">
+		delete from join where j_id = #{id}
+	</delete>
 
 </mapper>

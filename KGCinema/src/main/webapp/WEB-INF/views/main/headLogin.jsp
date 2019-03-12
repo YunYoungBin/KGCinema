@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+	<link rel="shortcut icon" href="./resources/images/favicon.ico">
+	
     <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
     <script src="./resources/js/jquery.magnific-popup.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

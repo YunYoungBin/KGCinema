@@ -16,7 +16,7 @@
     <script src="./resources/js/agency.min.js"></script>
     <script src="./resources/js/Head.js"></script>
     <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
-    <link href="./resources/css/agency.min.css" rel="stylesheet">
+    <link href="./resources/css/agency2.min.css" rel="stylesheet">
 </head>
   <style>
    div{display: block;}

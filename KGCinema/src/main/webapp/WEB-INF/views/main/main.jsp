@@ -151,10 +151,12 @@
         <div class="carousel-inner" role="listbox">      
          <c:forEach var="item" items="${ms}">         
           <div class="carousel-item" style="background-image: url('${pageContext.request.contextPath}/resources/storage/${item.ms_file}');height:600px;">
-	        <span class="subtitle">
+          <c:if test="${item.ms_content ne null}">
+           	 <span class="subtitle">
 	         <strong class="subtitle_st">${item.ms_title}<em>${item.ms_subtitle}</em></strong>
 	         <span>${item.ms_content}</span>
 	        </span>
+          </c:if>
             <div class="carousel-caption d-none d-md-block">
               <h3></h3>
               <p></p>

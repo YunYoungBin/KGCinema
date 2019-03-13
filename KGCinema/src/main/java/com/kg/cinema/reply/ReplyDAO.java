@@ -26,8 +26,8 @@ public class ReplyDAO {
 		dto.setSval(sval);
 		System.out.println(start);
 		System.out.println(end);
-		System.out.println(skey);
-		System.out.println(sval);
+		System.out.println("skey = " + skey);
+		System.out.println("sval = " + sval);
 		List<Replybean> list=temp.selectList("reply.replySelectAll", dto);
 		return list;
 	}//end
@@ -44,6 +44,12 @@ public class ReplyDAO {
 		int cnt=(Integer)temp.selectOne("reply.countAll");
 		return cnt;
 	}//end
+	
+	public int ReplyCountSu(int mno) {
+		System.out.println("ReplyCountSuDaomno= " + mno);
+		int cnt=(Integer)temp.selectOne("reply.countReplySu", mno);
+		return cnt;
+	}//end	
 	
 	public int Count(int mno) {
 		System.out.println("CountDaomno= " + mno);
@@ -78,6 +84,7 @@ public class ReplyDAO {
 		temp.insert("reply.replyInsert", rdto);
 	}//end
 	public void ReplyDelete(int data) {
+		 System.out.println("daodr_no: " + data);
 		 temp.delete("reply.replyDel", data);
 	}//end
 	public void ReplyEdit(int score, int dr_no, String content) {
@@ -90,8 +97,4 @@ public class ReplyDAO {
 		System.out.println("daocontent: " + content);
 		temp.update("reply.replyEdit", rdto);
 	}//end
-	public void ReplyEdit2(Replybean rdto) {
-		temp.update("reply.replyEdit",rdto);
-	}//end	
-	
 }

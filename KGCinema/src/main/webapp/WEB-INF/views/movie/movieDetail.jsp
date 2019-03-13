@@ -255,12 +255,12 @@
 			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
 			    $(".text-center").text("기대하진 말아요");
 			}else if(check1 == true && check2 == true && check3 == false && check4 == true && check5 == true) {
-			    $("#a").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
-			    $("#b").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
-			    $("#c").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
-			    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
-			    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
-			    $("#movieDetailStarScoreTxt").text("무난했어요");
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("무난했어요");
 			}else if(check1 == true && check2 == true && check3 == true && check4 == false && check5 == true) {
 			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
 			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
@@ -880,7 +880,7 @@
 				var score = this.value;
 				var mno = $(".m_no").attr("value");
 				var no = $(".dr_no").attr("value");
-				var content = $('.dr_content').attr("value");
+				var content = $('.dr_content').val();
 				
 				$.ajax({
 					url:"replyinsert.do",
@@ -906,7 +906,7 @@
 						}else {
 							$(".rate_insert .dr_no").attr("value", + data.dr_no);	
 							$(".rate_insert #score").attr("value", + data.dr_point);
-							$(".rate_insert .dr_content").attr("value", + data.dr_content);
+							$(".rate_insert .dr_content").text(data.dr_content);
 							$(".left_p Strong").text(data.dr_starscore);
 							$(".left_p .inwon").text(data.dr_cnt);
 							if(data.dr_starscore <= 1.0) {$(".fill").css({"width" : "10%"});}
@@ -934,14 +934,16 @@
 				var score = this.value;
 				var mno = $(".m_no").attr("value");
 				var no = $(".dr_no").attr("value");
-				var content = $('#txt').val();
+				var content = $('.dr_content').val();
 				$.ajax({
 					url:"replyedit.do",
 					data: "score="+score + "&id="+id + "&mno="+mno + "&no="+ no + "&content="+ content,
 					dataType: "json",
 					type: "GET",
 					success: function(data){
-							$(".rate_insert .dr_no").attr("value", + data.dr_no);	
+							$(".rate_edit .dr_no").attr("value", + data.dr_no);	
+							$(".rate_edit #score").attr("value", + data.dr_point);
+							$(".rate_edit .dr_content").text(data.dr_content);
 							$(".left_p Strong").text(data.dr_starscore);
 							$(".left_p .inwon").text(data.dr_cnt);
 							if(data.dr_starscore <= 1.0) {$(".fill").css({"width" : "10%"});}
@@ -968,8 +970,14 @@
 				var score = $("#score").attr("value");
 				var mno = $(".m_no").attr("value");
 				var no = $(".dr_no").attr("value");
-				var content = $('#txt').val();
 				
+				
+				if($('#txt').val() == null || $('#txt').val() == "" ) {
+					var content = $('.dr_content').val();
+					alert("내용을 입력해주세요.");
+				}else {
+					var content = $('#txt').val();
+				}
 				$.ajax({
 					url:"replyinsert.do",
 					data: "score="+score + "&id="+id + "&mno="+mno + "&no="+ no + "&content="+ content,
@@ -978,9 +986,11 @@
 					success: function(data){
 							$(".rate_insert .dr_no").attr("value", + data.dr_no);
 							$(".rate_insert #score").attr("value", + data.dr_point);
-							$(".rate_insert .dr_content").attr("value", + data.dr_content);
+							$(".rate_insert .dr_content").text(data.dr_content);
+							$("#movieCommentTotalCount").text("(" + data.dr_replycount + ")");
 							$(".left_p Strong").text(data.dr_starscore);
 							$(".left_p .inwon").text(data.dr_cnt);
+							//$('#txt').val("");
 							if(data.dr_starscore <= 1.0) {$(".fill").css({"width" : "10%"});}
 							else if(data.dr_starscore <= 2.0) {$(".fill").css({"width" : "20%"});}
 							else if(data.dr_starscore <=3.0) {$(".fill").css({"width" : "30%"});}
@@ -991,6 +1001,11 @@
 							else if(data.dr_starscore <=8.0) {$(".fill").css({"width" : "80%"});}
 							else if(data.dr_starscore <=9.0) {$(".fill").css({"width" : "90%"});}
 							else{$(".fill").css({"width" : "100%"});}							
+							if($('#txt').val() == null || $('#txt').val() == "" ) {
+								
+							}else {
+								location.reload();
+							}
 					},//sucess end
 					error: function(data){
 						alert("실패"+data.score+data.score);
@@ -1005,16 +1020,28 @@
 				var score = $("#score").attr("value");
 				var mno = $(".m_no").attr("value");
 				var no = $(".dr_no").attr("value");
-				var content = $('#txt').val();
+				
+			
+				
+				if($('#txt').val() == null || $('#txt').val() == "" ) {
+					var content = $('.dr_content').val();
+					alert("내용을 입력해주세요.");
+				}else {
+					var content = $('#txt').val();
+				}
 				$.ajax({
 					url:"replyedit.do",
 					data: "score="+score + "&id="+id + "&mno="+mno + "&no="+ no + "&content="+ content,
 					dataType: "json",
 					type: "GET",
 					success: function(data){
-							$(".rate_insert .dr_no").attr("value", + data.dr_no);	
+							$(".rate_edit .dr_no").attr("value", + data.dr_no);
+							$(".rate_edit #score").attr("value", + data.dr_point);
+							$(".rate_edit .dr_content").text(data.dr_content);
+							$("#movieCommentTotalCount").text("(" + data.dr_replycount + ")");
 							$(".left_p Strong").text(data.dr_starscore);
 							$(".left_p .inwon").text(data.dr_cnt);
+							//$('#txt').val("");
 							if(data.dr_starscore <= 1.0) {$(".fill").css({"width" : "10%"});}
 							else if(data.dr_starscore <= 2.0) {$(".fill").css({"width" : "20%"});}
 							else if(data.dr_starscore <=3.0) {$(".fill").css({"width" : "30%"});}
@@ -1024,10 +1051,35 @@
 							else if(data.dr_starscore <=7.0) {$(".fill").css({"width" : "70%"});}
 							else if(data.dr_starscore <=8.0) {$(".fill").css({"width" : "80%"});}
 							else if(data.dr_starscore <=9.0) {$(".fill").css({"width" : "90%"});}
-							else{$(".fill").css({"width" : "100%"});}							
+							else{$(".fill").css({"width" : "100%"});}
+							if($('#txt').val() == null || $('#txt').val() == "" ) {
+								
+							}else {
+								location.reload();
+							}
 					},//sucess end
 					error: function(data){
 						alert("실패"+data.score+data.score);
+						console.log(data);
+					}
+				});
+			});			
+			
+			var get = $(".row").children(".cell").length;
+			
+			$(".cell .btn_wrap .btn_delete").click(function() {
+				var dr_no = this.value;
+				alert("삭제완료");
+				$.ajax({
+					url:"replydelete.do",
+					data: "dr_no="+dr_no,
+					dataType: "json",
+					type: "GET",
+					success: function(data){
+						location.reload();
+					},//sucess end
+					error: function(data){
+						alert("실패");
 						console.log(data);
 					}
 				
@@ -1136,7 +1188,7 @@
         </c:choose>
        </span>      
        <p class="left_p" style="text-align: right;padding-right: 20px;padding-left: 0;">
-        <span class="inwon">${movie.m_inwon}</span>
+        <span class="inwon">${inwon}</span>
         <span>명 참여</span>
         <strong style="font-size:28px;">${movie.m_point}</strong>
         <span class="divider"></span>
@@ -1164,8 +1216,8 @@
           <input class="dr_no" type="hidden" value="">
           <input class="j_id" type="hidden" value="${bean.j_id}">
           <input class="m_no" type="hidden" value="${movie.m_no}">
-          <input class="dr_content" type="hidden" value="">
           <input type="hidden" id="score" value="">
+          <textarea style="display:none;" class="dr_content"></textarea>
           <c:choose>
  	       <c:when test="${myreply.dr_point eq '' || empty myreply.dr_point}">
 	          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점1 괜히봤어요" value="1">
@@ -1225,6 +1277,7 @@
           <input class="j_id" type="hidden" value="${bean.j_id}">
           <input class="m_no" type="hidden" value="${movie.m_no}">
           <input type="hidden" id="score" value="${myreply.dr_point}">
+          <textarea style="display:none;" class="dr_content">${myreply.dr_content}</textarea>
           <c:choose>
  	       <c:when test="${myreply.dr_point eq '' || empty myreply.dr_point}">
 	          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점1 괜히봤어요" value="1">
@@ -1290,7 +1343,7 @@
      ${movie.m_story}
     </div>
    </div>
-   <c:import url="/replywrite.do" />
+   <c:import url="/replylist.do" />
   </div>
   
  </div> <!-- 마지막 DIV -->

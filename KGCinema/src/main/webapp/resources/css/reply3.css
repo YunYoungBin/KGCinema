@@ -274,6 +274,12 @@ textarea {
     height: 12px;
     background: url(http://image2.megabox.co.kr/mop/home/star_s.png) 0 0 no-repeat;
 }
+.list .item_2block .row .cell .text .dateStarReal .small_star2 .fill2 {
+    position: absolute;
+    width: 73px;
+    height: 12px;
+    background: url(http://image2.megabox.co.kr/mop/home/star_s.png) 0 0 no-repeat;
+}
 .list .item_2block .row .cell .text>p {
     color: #333;
     font-size: 14px;
@@ -300,7 +306,7 @@ textarea {
     position: absolute;
     bottom: 20px;
     left: 100px;
-    width: 314.33px;
+    width: 280.33px;
     text-align: right;
 }
 .list .item_2block .row .cell .btn_wrap div.recommend {

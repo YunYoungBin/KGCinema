@@ -76,8 +76,8 @@ public class ReplyController {
 		//[7클릭] 숫자7을 pageNUM변수가 기억
 		start=(pageNUM-1)*10+1;
 		end=(pageNUM)*10;
-		  
-		int Gtotal=rdao.ReplyCount(); //레코드전체갯수
+		String data = request.getParameter("idx");  
+		int Gtotal=rdao.ReplyCountSu(Integer.parseInt(data)); //레코드전체갯수
 		  
 		if(SearchTotal%10==0){ pagecount=SearchTotal/10; } 
 		else {pagecount=(SearchTotal/10)+1;}
@@ -87,7 +87,6 @@ public class ReplyController {
 		endpage=startpage+9; //[31]~~~[40]
 		if(endpage > pagecount) {endpage = pagecount;}
 		
-		String data = request.getParameter("idx");
 		
 		List<Replybean> LG=rdao.ReplySelect(start,end,skey,sval,data);
 		

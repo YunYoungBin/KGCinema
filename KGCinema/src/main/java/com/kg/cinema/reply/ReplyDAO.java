@@ -18,12 +18,13 @@ public class ReplyDAO {
 	@Autowired
 	SqlSessionTemplate temp;
 	
-	public List<Replybean> ReplySelect(int start, int end, String skey, String sval){
+	public List<Replybean> ReplySelect(int start, int end, String skey, String sval, String data){
 		Replybean dto = new Replybean();
 		dto.setStart(start);
 		dto.setEnd(end);
 		dto.setSkey(skey);
 		dto.setSval(sval);
+		dto.setDr_mno(Integer.parseInt(data));
 		System.out.println(start);
 		System.out.println(end);
 		System.out.println("skey = " + skey);

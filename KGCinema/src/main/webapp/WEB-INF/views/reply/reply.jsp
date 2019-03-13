@@ -279,7 +279,7 @@
        <ul class="custom-pagination" style="margin-top:25px;">
        <c:if test="${startpage>10}">
         <li> 
-         <a href="replylist.do?pageNum=${pagecount-pagecount+1}" class="img_btn customer first" title="처음 페이지 보기">
+         <a href="replylist.do?idx=${data}&pageNum=${pagecount-pagecount+1}" class="img_btn customer first" title="처음 페이지 보기">
           <span class="blind">처음 페이지</span>
          </a>         
         </li>
@@ -287,7 +287,7 @@
         
        <c:if test="${startpage>10}">
         <li>
-         <a href="replylist.do?pageNum=${startpage-10}" class="img_btn customer prev" title="이전 10페이지 보기">
+         <a href="replylist.do?idx=${data}&pageNum=${startpage-10}" class="img_btn customer prev" title="이전 10페이지 보기">
           <span class="blind">이전 10페이지</span>
          </a>         
         </li>
@@ -297,10 +297,10 @@
        <c:forEach var="i" begin="${startpage}" end="${endpage}">
         <c:choose>
     	  <c:when test="${i==pageNUM}"> 
-    	    <li><a class="active" href="replylist.do?pageNum=${i}${returnpage}">${i}</a></li>
+    	    <li><a class="active" href="replylist.do?idx=${data}&pageNum=${i}${returnpage}">${i}</a></li>
     	  </c:when>
     	  <c:otherwise>
-    	    <li><a href="replylist.do?pageNum=${i}${returnpage}">${i}</a></li>
+    	    <li><a href="replylist.do?idx=${data}&pageNum=${i}${returnpage}">${i}</a></li>
     	  </c:otherwise>
     	</c:choose>
        </c:forEach>
@@ -309,7 +309,7 @@
     
        <c:if test="${endpage<pagecount}">  
         <li>
-         <a href="replylist.do?pageNum=${startpage+10}" class="img_btn customer next" title="다음 10페이지 보기">
+         <a href="replylist.do?idx=${data}&pageNum=${startpage+10}" class="img_btn customer next" title="다음 10페이지 보기">
           <span class="blind">다음 10페이지</span>
          </a>         
         </li>
@@ -317,7 +317,7 @@
          
        <c:if test="${endpage<pagecount}">  
         <li>
-         <a href="replylist.do?pageNum=${pagecount}" class="img_btn customer last" title="마지막 페이지 보기">
+         <a href="replylist.do?idx=${data}&pageNum=${pagecount}" class="img_btn customer last" title="마지막 페이지 보기">
           <span class="blind">마지막 페이지</span>
          </a>         
         </li>

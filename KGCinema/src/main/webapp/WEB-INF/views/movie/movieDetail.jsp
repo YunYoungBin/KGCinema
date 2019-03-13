@@ -922,7 +922,7 @@
 						}
 					},//sucess end
 					error: function(data){
-						alert("실패"+data.score+data.score);
+						alert("로그인이 필요합니다.");
 						console.log(data);
 					}
 				
@@ -1008,7 +1008,7 @@
 							}
 					},//sucess end
 					error: function(data){
-						alert("실패"+data.score+data.score);
+						alert("로그인이 필요합니다.");
 						console.log(data);
 					}
 				

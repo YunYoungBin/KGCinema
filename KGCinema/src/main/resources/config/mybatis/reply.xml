@@ -9,7 +9,7 @@
 	   select * from (
 	   select rownum rn, r.* from
 	   (select * from movie_reply where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%' order by dr_no desc) r
-	   ) where rn between #{start} and #{end}	
+	   ) where dr_mno = #{dr_mno} and rn between #{start} and #{end}		   
 	</select>
 	
 	<select id="replySelect"  resultType="com.kg.cinema.reply.Replybean" parameterType="com.kg.cinema.reply.Replybean">	   

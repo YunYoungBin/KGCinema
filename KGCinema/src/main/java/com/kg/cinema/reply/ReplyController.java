@@ -56,7 +56,7 @@ public class ReplyController {
 		skey=request.getParameter("keyfield");
 		sval=request.getParameter("keyword"); 
 		if(skey == "" || skey == null || sval == "" || sval ==null ) {
-			skey="dr_mno"; sval="";
+			skey="dr_content"; sval="";
 		}
 		  
 		//if(skey.equals("dr_id")) {AA = skey;}
@@ -87,7 +87,9 @@ public class ReplyController {
 		endpage=startpage+9; //[31]~~~[40]
 		if(endpage > pagecount) {endpage = pagecount;}
 		
-		List<Replybean> LG=rdao.ReplySelect(start,end,skey,sval);
+		String data = request.getParameter("idx");
+		
+		List<Replybean> LG=rdao.ReplySelect(start,end,skey,sval,data);
 		
 		mav.addObject("reply", LG);
 		mav.addObject("Gtotal", Gtotal);
@@ -99,6 +101,7 @@ public class ReplyController {
 		mav.addObject("returnpage", returnpage);
 		mav.addObject("skey", skey);
 		mav.addObject("sval", sval);
+		mav.addObject("data", data);
 		mav.addObject("AA", AA);
 		mav.addObject("BB", BB);
 		mav.setViewName("reply/reply");

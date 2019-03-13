@@ -305,7 +305,7 @@ textarea {
 .list .item_2block .row .cell .btn_wrap {
     position: absolute;
     bottom: 20px;
-    left: 100px;
+    right: 0px;
     width: 280.33px;
     text-align: right;
 }

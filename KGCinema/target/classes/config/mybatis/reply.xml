@@ -7,9 +7,9 @@
 
 	<select id="replySelectAll"  resultType="com.kg.cinema.reply.Replybean">	   
 	   select * from (
-	   select rownum rn, r.* from movie_reply r where dr_mno = #{dr_mno}
-	   (select * from movie_reply where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%' order by dr_mno desc) r
-	   ) where rn between #{start} and #{end}
+	   select rownum rn, r.* from
+	   (select * from movie_reply where ${skey} like '%' || #{sval,jdbcType=VARCHAR} || '%' order by dr_no desc) r
+	   ) where rn between #{start} and #{end}	
 	</select>
 	
 	<select id="replySelect"  resultType="com.kg.cinema.reply.Replybean" parameterType="com.kg.cinema.reply.Replybean">	   
@@ -26,6 +26,10 @@
  	
 	<select id="countReply" parameterType="com.kg.cinema.reply.Replybean" resultType="int">
  	   select  count(*) from movie_reply where dr_mno=#{dr_mno}  
+ 	</select>	 	
+ 	
+	<select id="countReplySu" parameterType="com.kg.cinema.reply.Replybean" resultType="int">
+ 	   select count(*) from movie_reply where dr_mno = #{dr_mno} and dr_content is not null
  	</select>	 	
  	
 	<select id="scoreSum" parameterType="String" resultType="String">

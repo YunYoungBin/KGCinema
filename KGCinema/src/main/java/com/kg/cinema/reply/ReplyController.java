@@ -56,12 +56,12 @@ public class ReplyController {
 		skey=request.getParameter("keyfield");
 		sval=request.getParameter("keyword"); 
 		if(skey == "" || skey == null || sval == "" || sval ==null ) {
-			skey="dr_id"; sval="";
+			skey="dr_mno"; sval="";
 		}
 		  
 		//if(skey.equals("dr_id")) {AA = skey;}
 		  
-		if(skey.equals("dr_id") && sval!="") {
+		if(skey.equals("dr_mno") && sval!="") {
 			BB = skey; 
 		}
 		  
@@ -89,7 +89,7 @@ public class ReplyController {
 		
 		List<Replybean> LG=rdao.ReplySelect(start,end,skey,sval);
 		
-		mav.addObject("naver", LG);
+		mav.addObject("reply", LG);
 		mav.addObject("Gtotal", Gtotal);
 		mav.addObject("SearchTotal", SearchTotal);
 		mav.addObject("startpage", startpage);
@@ -108,6 +108,9 @@ public class ReplyController {
 
 	@RequestMapping(value = "/replyinsert.do", method = RequestMethod.GET)
 	public void replyInsert(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		
 		String dr_no  = request.getParameter("no");
 		System.out.println("dr_no : " + dr_no);
 		if(dr_no.equals(null) || dr_no.equals("")) {
@@ -151,6 +154,7 @@ public class ReplyController {
 			Replybean bean = rdao.ReplySelect(Integer.parseInt(mno), id);
 			String sum= rdao.ScoreSum(mno);
 			int cnt = rdao.Count(Integer.parseInt(mno));
+			int replycnt = rdao.ReplyCountSu(Integer.parseInt(mno));
 			double starscore = Double.parseDouble(sum) / cnt * 2; 
 			System.out.println("starscore = " + starscore);	
 			Moviebean mbean = mdao.MoviePointEdit(Integer.parseInt(mno), starscore , cnt);
@@ -161,7 +165,8 @@ public class ReplyController {
 			sb.append("\"dr_no\": \"" + bean.getDr_no() + "\", " );
 			sb.append("\"dr_starscore\": \"" + starscore + "\", " );
 			sb.append("\"dr_cnt\": \"" + cnt + "\", " );
-			sb.append("\"dr_content\": \"" + bean.getDr_content() + "\" " );
+			sb.append("\"dr_content\": \"" + bean.getDr_content() + "\", " );
+			sb.append("\"dr_replycount\": \"" + replycnt + "\" " );
 			sb.append("}");
 			out.print(sb.toString());
 		}
@@ -169,6 +174,9 @@ public class ReplyController {
 	
 	@RequestMapping(value = "/replyedit.do", method = RequestMethod.GET)
 	public void replyEdit(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		
 		String dr_no  = request.getParameter("no");
 		System.out.println("dr_no : " + dr_no);
 			Replybean rdto = new Replybean();
@@ -184,6 +192,7 @@ public class ReplyController {
 			Replybean bean = rdao.ReplySelect(Integer.parseInt(mno), id);
 			String sum= rdao.ScoreSum(mno);
 			int cnt = rdao.Count(Integer.parseInt(mno));
+			int replycnt = rdao.ReplyCountSu(Integer.parseInt(mno));			
 			double starscore = Double.parseDouble(sum) / cnt * 2; 
 			System.out.println("starscore = " + starscore);	
 			Moviebean mbean = mdao.MoviePointEdit(Integer.parseInt(mno), starscore , cnt);
@@ -193,40 +202,27 @@ public class ReplyController {
 			sb.append("\"dr_point\": \"" + bean.getDr_point() + "\", " );
 			sb.append("\"dr_no\": \"" + bean.getDr_no() + "\", " );
 			sb.append("\"dr_starscore\": \"" + starscore + "\", " );
-			sb.append("\"dr_cnt\": \"" + cnt + "\" " );
+			sb.append("\"dr_cnt\": \"" + cnt + "\", " );
+			sb.append("\"dr_content\": \"" + bean.getDr_content() + "\", " );
+			sb.append("\"dr_replycount\": \"" + replycnt + "\" " );
 			sb.append("}");
 			out.print(sb.toString());
 	}//end		
-	
-	@RequestMapping(value="/replyedit2.do", method=RequestMethod.GET)
-	public ModelAndView replyEdit(HttpServletRequest request) {
-		  ModelAndView mav = new ModelAndView( );
-		  int idx=Integer.parseInt(request.getParameter("idx"));
-		  int ridx=Integer.parseInt(request.getParameter("ridx"));
-		  mav.addObject("ridx", ridx);
-		  mav.setViewName("redirect:/moviedetail.do?idx="+ idx);
-		  return mav;
-	}//end
-	
-	@RequestMapping(value="/replyeditsave.do", method=RequestMethod.GET)
-	public String replyEditSave(Replybean rdto) {
-		rdao.ReplyEdit2(rdto);
-	    System.out.println("댓글컨트롤 넘어온ridx="  + rdto.getDr_no());
-	    System.out.println("댓글컨트롤 넘어온id="  + rdto.getDr_id());
-	    System.out.println("댓글컨트롤 넘어온point="  + rdto.getDr_point());
-		System.out.println("댓글컨트롤 넘어온content="  + rdto.getDr_content());
-		System.out.println("댓글컨트롤 넘어온idx="  + rdto.getDr_mno());
-		return "redirect:/moviedetail.do?idx=" + rdto.getDr_mno();
-	}	
-		
-	@RequestMapping(value="/replydelete.do", method=RequestMethod.GET)
-	public ModelAndView replyDelete(HttpServletRequest request) {
-		  ModelAndView mav = new ModelAndView( );
-		  int idx=Integer.parseInt(request.getParameter("idx"));
-		  int ridx=Integer.parseInt(request.getParameter("ridx"));
-		  rdao.ReplyDelete(ridx);
-		  mav.setViewName("redirect:/moviedetail.do?idx=" + idx);
-		  return mav;
-	}//end	
+			
+	@RequestMapping(value = "/replydelete.do", method = RequestMethod.GET)
+	public void replyDelete(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		    String data = request.getParameter("dr_no");
+		    System.out.println("dr_no : " + data);
+		    rdao.ReplyDelete(Integer.parseInt(data));
+			PrintWriter out = response.getWriter();
+			StringBuilder sb = new StringBuilder();
+			sb.append("{");
+			sb.append("\"data\": \"" + data + "\" " );
+
+			sb.append("}");
+			out.print(sb.toString());
+	}//end		
 	
 }

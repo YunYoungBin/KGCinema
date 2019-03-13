@@ -84,6 +84,13 @@
 			iform.num1.focus();
 			return;
 		}
+		
+		if(flagB==false) {
+			alert('생년월일을 올바르게 입력하세요.');
+			iform.year.focus();
+			return;
+		}
+		
 		//위에 다 통과&체크 완료 후 submit
 		if(flag==true&&flagI==true&&flagP==true&&flagE==true&&flagN==true&&flagB==true){
 			document.iform.submit();
@@ -229,6 +236,7 @@
 		var test3=num4_reg.test(str3);
 		if(test1==false||test2==false||test3==false){
 			label.innerHTML = "&nbsp;&nbsp;형식이 올바르지 않습니다";
+			flagN=false;
 		} else {
 			label.innerHTML = "";
 			flagN=true;
@@ -255,17 +263,22 @@
 		
 		if(1900 > year || year > yearNow) {
 			label.innerHTML = msg;
+			flagB=false;
 		} else if(month < 1 || month > 12) {
 			label.innerHTML = msg;
+			flagB=false;
 		} else if(day < 1 || day > 31) {
 			label.innerHTML = msg;
+			flagB=false;
 		} else if((month==4||month==6||month==9||month==11) && day == 31) {
 			label.innerHTML = msg;
+			flagB=false;
 		} else if(month==2) {
 			var isleap = (year%4==0 && (year % 100 != 0 || year%400==0));
 			
 			if(day > 29 || (day==29 && !isleap)) {
 				label.innerHTML = msg;
+				flagB=false;
 			} else {
 				label.innerHTML = "";
 				flagB=true;

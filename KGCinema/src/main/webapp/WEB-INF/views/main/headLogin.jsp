@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+	<link rel="shortcut icon" href="./resources/images/favicon1.ico" />
+	
     <link href="./resources/vendor/bootstrap/css/bootstrap2.min.css" rel="stylesheet">
     <script src="./resources/js/jquery.magnific-popup.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -40,7 +42,7 @@
    .login_info_middle{height: 116px;border-bottom: 1px solid #e5e5e5;}
    .login_info_middle_center{padding: 0 18px;text-align: center;}
    .login_info_middle_center li{float:left;}
-   .login_info_middle_center li a{display: block;position: relative;height: 72px;width: 76px;margin: 20px 6px;background: url(http://image2.megabox.co.kr/mop/home/btns/login_middle_icon.png) no-repeat;}
+   .login_info_middle_center li a{display: block;position: relative;height: 72px;width: 76px;margin: 20px 6px;background: url(./resources/images/login_middle_icon.png) no-repeat;}
    .login_info_middle_center li .item2{background-position: -101px center;}
    .login_info_middle_center li .item3{background-position: -204px center;}
    .login_info_bottom{width: 301px;height: 80px;}
@@ -139,7 +141,9 @@
           <ul class="login_info_middle_center">
            <li><a class="item1" href="mypage.do"></a></li>
            <li><a class="item2" href="reservdetails.do"></a></li>
-           <li><a class="item3" href="msmglist.do"></a></li>
+           <c:if test="${bean.j_id eq 'admin' }">
+           		<li><a class="item3" href="msmglist.do"></a></li>
+           </c:if>
           </ul>
          </div>
          <div class="login_info_bottom">

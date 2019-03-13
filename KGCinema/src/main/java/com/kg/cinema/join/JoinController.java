@@ -146,4 +146,13 @@ public class JoinController {
 		return mav;
 	}
 	
+	@RequestMapping("/memberDel.do")
+	public void join_memberDel(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();
+		String userId = request.getParameter("userid");
+		dao.memberDel(userId);
+		out.print("1");
+	}
+	
+	
 }

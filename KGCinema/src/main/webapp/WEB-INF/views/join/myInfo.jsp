@@ -95,7 +95,30 @@
   <script type="text/javascript">
   	function del() {
   		if(confirm("회원탈퇴 하시겠습니까?") == true) {
-  			
+  			var delId = iform.j_id.value;
+  			var delPassword = iform.j_pwd.value;
+  			var nowPwd = iform.pass.value;
+  			if(delPassword == "" || delPassword == null) {
+  				alert("비밀번호를 입력해주세요.");
+  				iform.j_pwd.focus();
+  				return;
+  			}
+  			if(delPassword != nowPwd) {
+  				alert("비밀번호가 틀립니다. 다시 입력해주세요.");
+  				iform.j_pwd.focus();
+  				return;
+  			}
+  			$.ajax({
+  				url: "memberDel.do",
+  				data: "userid="+delId,
+  				dataType: "json",
+  				type: "GET",
+  				success: function(data) {
+  					location.href='logout.do';
+  				}, error: function(data) {
+					console.log(data);
+				}
+  			});
   		} else {
   			
   		}

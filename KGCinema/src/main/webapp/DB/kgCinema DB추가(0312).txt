@@ -164,6 +164,7 @@ insert into schedule values(schedule_seq.nextval,'강남','3관','항거:유관�
 insert into schedule values(schedule_seq.nextval,'강남','3관','항거:유관순 이야기',to_date('2019-03-13 17:30','yyyy-mm-dd hh24:mi'),to_date('2019-03-13 19:25','yyyy-mm-dd hh24:mi'));
 insert into schedule values(schedule_seq.nextval,'강남','3관','항거:유관순 이야기',to_date('2019-03-13 20:00','yyyy-mm-dd hh24:mi'),to_date('2019-03-13 21:55','yyyy-mm-dd hh24:mi'));
 insert into schedule values(schedule_seq.nextval,'강남','2관','극한직업',to_date('2019-03-13 21:00','yyyy-mm-dd hh24:mi'),to_date('2019-03-13 23:01','yyyy-mm-dd hh24:mi'));
+insert into schedule values(schedule_seq.nextval,'강남','4관','극한직업',to_date('2019-03-13 21:50','yyyy-mm-dd hh24:mi'),to_date('2019-03-13 23:51','yyyy-mm-dd hh24:mi'));
 
 insert into schedule values(schedule_seq.nextval,'코엑스','1관','캡틴 마블',to_date('2019-03-13 10:00','yyyy-mm-dd hh24:mi'),to_date('2019-03-13 12:13','yyyy-mm-dd hh24:mi'));
 insert into schedule values(schedule_seq.nextval,'코엑스','1관','캡틴 마블',to_date('2019-03-13 12:30','yyyy-mm-dd hh24:mi'),to_date('2019-03-13 14:43','yyyy-mm-dd hh24:mi'));
@@ -186,6 +187,7 @@ insert into schedule values(schedule_seq.nextval,'코엑스','3관','항거:유�
 insert into schedule values(schedule_seq.nextval,'코엑스','3관','항거:유관순 이야기',to_date('2019-03-13 17:30','yyyy-mm-dd hh24:mi'),to_date('2019-03-13 19:25','yyyy-mm-dd hh24:mi'));
 insert into schedule values(schedule_seq.nextval,'코엑스','3관','항거:유관순 이야기',to_date('2019-03-13 20:00','yyyy-mm-dd hh24:mi'),to_date('2019-03-13 21:55','yyyy-mm-dd hh24:mi'));
 insert into schedule values(schedule_seq.nextval,'코엑스','2관','극한직업',to_date('2019-03-13 21:00','yyyy-mm-dd hh24:mi'),to_date('2019-03-13 23:01','yyyy-mm-dd hh24:mi'));
+insert into schedule values(schedule_seq.nextval,'코엑스','4관','극한직업',to_date('2019-03-13 21:50','yyyy-mm-dd hh24:mi'),to_date('2019-03-13 23:51','yyyy-mm-dd hh24:mi'));
 
 insert into schedule values(schedule_seq.nextval,'고양스타필드','1관','캡틴 마블',to_date('2019-03-13 10:00','yyyy-mm-dd hh24:mi'),to_date('2019-03-13 12:13','yyyy-mm-dd hh24:mi'));
 insert into schedule values(schedule_seq.nextval,'고양스타필드','1관','캡틴 마블',to_date('2019-03-13 12:30','yyyy-mm-dd hh24:mi'),to_date('2019-03-13 14:43','yyyy-mm-dd hh24:mi'));

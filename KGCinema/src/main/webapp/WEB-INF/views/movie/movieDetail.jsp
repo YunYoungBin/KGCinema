@@ -1203,7 +1203,7 @@
        <li><strong>개봉일</strong> : <fmt:formatDate pattern="yyyy.MM.dd" value="${movie.m_premiere}" /></li>  
        <li><strong>감독</strong> : ${movie.m_director}</li>
        <li><strong>출연진</strong> : ${movie.m_actor}</li>
-       <li><strong>장르</strong> : ${movie.m_genre} / 125 분</li>
+       <li><strong>장르</strong> : ${movie.m_genre}</li>
       </ul>  
      </div>
      

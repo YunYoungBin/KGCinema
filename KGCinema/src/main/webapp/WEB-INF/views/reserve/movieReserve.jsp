@@ -164,6 +164,10 @@
     .theater_list ul.depth2 li.activeArea{font-weight: 700;color: #fff;background-color: #198591;}
     .theater_list ul.depth2 li.activeArea a{color: #fff;}
     
+    .age_12{background-position: -60px 0;}
+    .age_15 {background-position: -90px 0;}
+    .age_0 {background-position: 0 0}
+    .age_19 {background-position: -30px 0;}
     
     
     
@@ -437,7 +441,11 @@
         </div>
         <div class="movie">
          <p class="title">
-          <span class="age age_12">12세관람가</span>
+         <c:forEach var="type" items="${movie}">
+         <c:if test="${sbean.title eq type.m_title}">
+          <span class="age age_${type.m_grade }">12세관람가</span>
+         </c:if>
+          </c:forEach>
           <a href=#">${sbean.title }</a>
          </p>
          <p class="subtitle"><c:forEach var="type" items="${movie}">

@@ -256,7 +256,7 @@
 		<div class="btn_wrap">
 		    <c:choose>
 		     <c:when test="${bean.j_id eq 'admin' || bean.j_id eq reply.dr_id}">
-		      <button type="button" class="btn_delete" onclick="MovieComment.remove()" value="${myreply.dr_no}">삭제</button>		     
+		      <button type="button" class="btn_delete" onclick="MovieComment.remove()" value="${reply.dr_no}">삭제</button>		     
 		     </c:when>
 		     <c:otherwise>
 		      

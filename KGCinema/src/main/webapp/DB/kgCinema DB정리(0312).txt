@@ -164,15 +164,15 @@ reserve(예매)
 
 create table reserve (
  r_no number(8) primary key,
- r_theater varchar2(20) not null,
+ r_theater varchar2(30) not null,
  r_scrno varchar2(30) not null,
  r_id varchar2(15) references join(j_id) on delete cascade,
- r_title varchar2(50) not null,
- r_type varchar2(30) not null,
+ r_title varchar2(100) not null,
+ r_type varchar2(50) not null,
  r_start date not null,
- r_grade varchar2(15) not null,
- r_inwon varchar2(50) not null,
- r_seat varchar2(50) not null,
+ r_grade varchar2(30) not null,
+ r_inwon varchar2(60) not null,
+ r_seat varchar2(60) not null,
  r_price number(6) not null,
  foreign key (r_theater) references theater(t_theater) on delete cascade,
  foreign key (r_theater, r_scrno) references screen(s_theater, s_scrno) on delete cascade

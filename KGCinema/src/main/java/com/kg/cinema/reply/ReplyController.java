@@ -129,6 +129,7 @@ public class ReplyController {
 		String sum= rdao.ScoreSum(mno);
 		int cnt = rdao.Count(Integer.parseInt(mno));
 		double starscore = Double.parseDouble(sum) / cnt * 2; 
+		starscore = Double.parseDouble(String.format(Locale.KOREAN,"%.2f",starscore));
 		System.out.println("starscore = " + starscore);
 		Moviebean mbean = mdao.MoviePointEdit(Integer.parseInt(mno), starscore, cnt);		
 		PrintWriter out = response.getWriter();
@@ -158,6 +159,7 @@ public class ReplyController {
 			int cnt = rdao.Count(Integer.parseInt(mno));
 			int replycnt = rdao.ReplyCountSu(Integer.parseInt(mno));
 			double starscore = Double.parseDouble(sum) / cnt * 2; 
+			starscore = Double.parseDouble(String.format(Locale.KOREAN,"%.2f",starscore));
 			System.out.println("starscore = " + starscore);	
 			Moviebean mbean = mdao.MoviePointEdit(Integer.parseInt(mno), starscore , cnt);
 			PrintWriter out = response.getWriter();
@@ -196,6 +198,7 @@ public class ReplyController {
 			int cnt = rdao.Count(Integer.parseInt(mno));
 			int replycnt = rdao.ReplyCountSu(Integer.parseInt(mno));			
 			double starscore = Double.parseDouble(sum) / cnt * 2; 
+			starscore = Double.parseDouble(String.format(Locale.KOREAN,"%.2f",starscore));
 			System.out.println("starscore = " + starscore);	
 			Moviebean mbean = mdao.MoviePointEdit(Integer.parseInt(mno), starscore , cnt);
 			PrintWriter out = response.getWriter();

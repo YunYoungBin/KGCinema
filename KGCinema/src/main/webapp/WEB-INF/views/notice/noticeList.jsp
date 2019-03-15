@@ -167,7 +167,7 @@
           <c:forEach var="item" items="${naver}">
            <tr>
             <td headers="th_noticelist_no" class="pl25">${item.rn}</td>
-            <td headers="th_noticelist_cinema">${item.n_loc}</td>
+            <td headers="th_noticelist_cinema"><c:if test="${item.n_loc eq null}">전체</c:if><c:if test="${item.n_loc ne null}">${item.n_loc}</c:if></td>
             <td headers="th_noticelist_title"><a href="noticedetail.do?idx=${item.n_no}" style="color: #666;" href="#" title="공지사항 상세보기">${item.n_title}</a></td>
             <td headers="th_noticelist_create" class="text-right pr30"><fmt:formatDate value="${item.n_redate}" pattern="yyyy/MM/dd" /></td>       
            </tr>

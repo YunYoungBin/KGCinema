@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../main/headLogin.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -227,16 +228,16 @@
            <c:when test="${item.m_grade eq 12}">
             <img src="./resources/images/bg_grade_12.png" style="margin-top:-1px;">
            </c:when>
-           <c:when test="${item.m_grade eq '15'}">
+           <c:when test="${item.m_grade eq 15}">
             <img src="./resources/images/bg_grade_15.png" style="margin-top:-1px;">
            </c:when>
            <c:otherwise>
-             <img src="./resources/images/bg_grade_18.png" style="margin-top:-1px;">
+            <img src="./resources/images/bg_grade_18.png" style="margin-top:-1px;">
            </c:otherwise>
 
           </c:choose>
-          </span>
-          <a>${item.m_title}</a>
+          </span><c:set var="moviestr" value="${item.m_title }"></c:set>
+          <a>${fn:substring(moviestr,0,15)}<c:if test="${item.m_title.length()>14 }">…</c:if></a>
          </dt>
         </dl>
        </li>
@@ -272,21 +273,21 @@
           <span class="grade_15" style="">
            <c:choose>
            <c:when test="${nextItem.m_grade eq 0}">
-            <img src="images/bg_grade_all.png" style="margin-top:-1px;">
+            <img src="./resources/images/bg_grade_all.png" style="margin-top:-1px;">
            </c:when>
            <c:when test="${nextItem.m_grade eq 12}">
-            <img src="images/bg_grade_12.png" style="margin-top:-1px;">
+            <img src="./resources/images/bg_grade_12.png" style="margin-top:-1px;">
            </c:when>
-           <c:when test="${nextItem.m_grade eq '15'}">
-            <img src="images/bg_grade_15.png" style="margin-top:-1px;">
+           <c:when test="${nextItem.m_grade eq 15}">
+            <img src="./resources/images/bg_grade_15.png" style="margin-top:-1px;">
            </c:when>
            <c:otherwise>
-             <img src="images/bg_grade_18.png" style="margin-top:-1px;">
+             <img src="./resources/images/bg_grade_18.png" style="margin-top:-1px;">
            </c:otherwise>
 
           </c:choose>
-          </span>
-          <a>${nextItem.m_title}</a>
+          </span><c:set var="nextmoviestr" value="${nextItem.m_title }"></c:set>
+          <a>${fn:substring(nextmoviestr,0,15)}<c:if test="${nextItem.m_title.length()>14 }">…</c:if></a>
          </dt>
         </dl>
        </li>

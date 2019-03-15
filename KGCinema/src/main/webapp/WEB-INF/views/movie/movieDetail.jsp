@@ -68,6 +68,47 @@
 </head>
 
   <script type="text/javascript">
+  
+	function bodyFunction() {
+		var chDate = '${myreply.dr_point}';
+		if(chDate == 1) {
+			check1 = false;
+			check2 = true;
+			check3 = true;
+			check4 = true;
+			check5 = true;
+		}else if(chDate == 2) {
+			check1 = true;
+			check2 = false;
+			check3 = true;
+			check4 = true;
+			check5 = true;
+		}else if(chDate == 3) {
+			check1 = true;
+			check2 = true;
+			check3 = false;
+			check4 = true;
+			check5 = true;
+		}else if(chDate == 4) {
+			check1 = true;
+			check2 = true;
+			check3 = true;
+			check4 = false;
+			check5 = true;
+		}else if(chDate == 5) {
+			check1 = true;
+			check2 = true;
+			check3 = true;
+			check4 = true;
+			check5 = false;
+		}else {
+			  check1 = true;
+			  check2 = true;
+			  check3 = true;
+			  check4 = true;
+			  check5 = true;			
+		}
+	}
   $(document).on('ready', function() {
 	  $('.lazy').slick({
 		  slidesToShow: 1,
@@ -86,13 +127,7 @@
 		  centerMode: false,
 		  infinite: true,
 		  focusOnSelect: true
-		});
-		var check1 = true;
-		var check2 = true;
-		var check3 = true;
-		var check4 = true;
-		var check5 = true;
-		
+		});		
 		$("#a").click(function(){
 			check1 = false;
 			check2 = true;
@@ -220,12 +255,12 @@
 			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
 			    $(".text-center").text("기대하진 말아요");
 			}else if(check1 == true && check2 == true && check3 == false && check4 == true && check5 == true) {
-			    $("#a").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
-			    $("#b").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
-			    $("#c").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
-			    $("#d").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
-			    $("#e").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
-			    $("#movieDetailStarScoreTxt").text("무난했어요");
+			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#cc").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
+			    $("#dd").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");
+			    $("#ee").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_off.png");	    
+			    $(".text-center").text("무난했어요");
 			}else if(check1 == true && check2 == true && check3 == true && check4 == false && check5 == true) {
 			    $("#aa").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
 			    $("#bb").attr("src", "http://image2.megabox.co.kr/mop/home/star_mid_on.png");
@@ -839,30 +874,222 @@
 			}
 		});	
 		
-		$(".rate_insert input").click(function() {
-			var id = $(".j_id").attr("value");
-			var score = this.value;
-			var mno = $(".m_no").attr("value");
+	
+			$(".rate_insert input").click(function() {
+				var id = $(".j_id").attr("value");
+				var score = this.value;
+				var mno = $(".m_no").attr("value");
+				var no = $(".dr_no").attr("value");
+				var content = $('.dr_content').val();
+				
+				$.ajax({
+					url:"replyinsert.do",
+					data: "score="+score + "&id="+id + "&mno="+mno + "&no="+ no + "&content="+ content,
+					dataType: "json",
+					type: "GET",
+					success: function(data){
+						if(data.dr_no == null || data.dr_no == "") {
+							$(".rate_insert .dr_no").attr("value", + data.no);
+							$(".rate_insert #score").attr("value", + data.score);
+							$(".left_p Strong").text(data.starscore);
+							$(".left_p .inwon").text(data.cnt);
+							if(data.starscore <= 1.0) {$(".fill").css({"width" : "10%"});}
+							else if(data.starscore <= 2.0) {$(".fill").css({"width" : "20%"});}
+							else if(data.starscore <=3.0) {$(".fill").css({"width" : "30%"});}
+							else if(data.starscore <=4.0) {$(".fill").css({"width" : "40%"});}
+							else if(data.starscore <=5.0) {$(".fill").css({"width" : "50%"});}
+							else if(data.starscore <=6.0) {$(".fill").css({"width" : "60%"});}
+							else if(data.starscore <=7.0) {$(".fill").css({"width" : "70%"});}
+							else if(data.starscore <=8.0) {$(".fill").css({"width" : "80%"});}
+							else if(data.starscore <=9.0) {$(".fill").css({"width" : "90%"});}
+							else{$(".fill").css({"width" : "100%"});}
+						}else {
+							$(".rate_insert .dr_no").attr("value", + data.dr_no);	
+							$(".rate_insert #score").attr("value", + data.dr_point);
+							$(".rate_insert .dr_content").text(data.dr_content);
+							$(".left_p Strong").text(data.dr_starscore);
+							$(".left_p .inwon").text(data.dr_cnt);
+							if(data.dr_starscore <= 1.0) {$(".fill").css({"width" : "10%"});}
+							else if(data.dr_starscore <= 2.0) {$(".fill").css({"width" : "20%"});}
+							else if(data.dr_starscore <=3.0) {$(".fill").css({"width" : "30%"});}
+							else if(data.dr_starscore <=4.0) {$(".fill").css({"width" : "40%"});}
+							else if(data.dr_starscore <=5.0) {$(".fill").css({"width" : "50%"});}
+							else if(data.dr_starscore <=6.0) {$(".fill").css({"width" : "60%"});}
+							else if(data.dr_starscore <=7.0) {$(".fill").css({"width" : "70%"});}
+							else if(data.dr_starscore <=8.0) {$(".fill").css({"width" : "80%"});}
+							else if(data.dr_starscore <=9.0) {$(".fill").css({"width" : "90%"});}
+							else{$(".fill").css({"width" : "100%"});}							
+						}
+					},//sucess end
+					error: function(data){
+						alert("로그인이 필요합니다.");
+						console.log(data);
+					}
+				
+				});
+			});		
 			
-			$.ajax({
-				url:"replyinsert.do",
-				data: "score="+score + "&id="+id + "&mno="+mno, 
-				dataType: "json",
-				type: "GET",
-				success: function(data){
-					
-
-				},//sucess end
-				error: function(data){
-					alert("실패"+data.score+data.score);
-					console.log(data);
+			$(".rate_edit input").click(function() {
+				var id = $(".j_id").attr("value");
+				var score = this.value;
+				var mno = $(".m_no").attr("value");
+				var no = $(".dr_no").attr("value");
+				var content = $('.dr_content').val();
+				$.ajax({
+					url:"replyedit.do",
+					data: "score="+score + "&id="+id + "&mno="+mno + "&no="+ no + "&content="+ content,
+					dataType: "json",
+					type: "GET",
+					success: function(data){
+							$(".rate_edit .dr_no").attr("value", + data.dr_no);	
+							$(".rate_edit #score").attr("value", + data.dr_point);
+							$(".rate_edit .dr_content").text(data.dr_content);
+							$(".left_p Strong").text(data.dr_starscore);
+							$(".left_p .inwon").text(data.dr_cnt);
+							if(data.dr_starscore <= 1.0) {$(".fill").css({"width" : "10%"});}
+							else if(data.dr_starscore <= 2.0) {$(".fill").css({"width" : "20%"});}
+							else if(data.dr_starscore <=3.0) {$(".fill").css({"width" : "30%"});}
+							else if(data.dr_starscore <=4.0) {$(".fill").css({"width" : "40%"});}
+							else if(data.dr_starscore <=5.0) {$(".fill").css({"width" : "50%"});}
+							else if(data.dr_starscore <=6.0) {$(".fill").css({"width" : "60%"});}
+							else if(data.dr_starscore <=7.0) {$(".fill").css({"width" : "70%"});}
+							else if(data.dr_starscore <=8.0) {$(".fill").css({"width" : "80%"});}
+							else if(data.dr_starscore <=9.0) {$(".fill").css({"width" : "90%"});}
+							else{$(".fill").css({"width" : "100%"});}							
+					},//sucess end
+					error: function(data){
+						alert("실패"+data.score+data.score);
+						console.log(data);
+					}
+				
+				});
+			});	
+			
+			$(".rate_insert button").click(function() {
+				var id = $(".j_id").attr("value");
+				var score = $("#score").attr("value");
+				var mno = $(".m_no").attr("value");
+				var no = $(".dr_no").attr("value");
+				
+				
+				if($('#txt').val() == null || $('#txt').val() == "" ) {
+					var content = $('.dr_content').val();
+					alert("내용을 입력해주세요.");
+				}else {
+					var content = $('#txt').val();
 				}
+				$.ajax({
+					url:"replyinsert.do",
+					data: "score="+score + "&id="+id + "&mno="+mno + "&no="+ no + "&content="+ content,
+					dataType: "json",
+					type: "GET",
+					success: function(data){
+							$(".rate_insert .dr_no").attr("value", + data.dr_no);
+							$(".rate_insert #score").attr("value", + data.dr_point);
+							$(".rate_insert .dr_content").text(data.dr_content);
+							$("#movieCommentTotalCount").text("(" + data.dr_replycount + ")");
+							$(".left_p Strong").text(data.dr_starscore);
+							$(".left_p .inwon").text(data.dr_cnt);
+							//$('#txt').val("");
+							if(data.dr_starscore <= 1.0) {$(".fill").css({"width" : "10%"});}
+							else if(data.dr_starscore <= 2.0) {$(".fill").css({"width" : "20%"});}
+							else if(data.dr_starscore <=3.0) {$(".fill").css({"width" : "30%"});}
+							else if(data.dr_starscore <=4.0) {$(".fill").css({"width" : "40%"});}
+							else if(data.dr_starscore <=5.0) {$(".fill").css({"width" : "50%"});}
+							else if(data.dr_starscore <=6.0) {$(".fill").css({"width" : "60%"});}
+							else if(data.dr_starscore <=7.0) {$(".fill").css({"width" : "70%"});}
+							else if(data.dr_starscore <=8.0) {$(".fill").css({"width" : "80%"});}
+							else if(data.dr_starscore <=9.0) {$(".fill").css({"width" : "90%"});}
+							else{$(".fill").css({"width" : "100%"});}							
+							if($('#txt').val() == null || $('#txt').val() == "" ) {
+								
+							}else {
+								location.reload();
+							}
+					},//sucess end
+					error: function(data){
+						alert("로그인이 필요합니다.");
+						console.log(data);
+					}
+				
+				});
+			});	
 			
-			});
-		});		
+			$(".rate_edit button").click(function() {
+				var id = $(".j_id").attr("value");
+				var score = $("#score").attr("value");
+				var mno = $(".m_no").attr("value");
+				var no = $(".dr_no").attr("value");
+				
+			
+				
+				if($('#txt').val() == null || $('#txt').val() == "" ) {
+					var content = $('.dr_content').val();
+					alert("내용을 입력해주세요.");
+				}else {
+					var content = $('#txt').val();
+				}
+				$.ajax({
+					url:"replyedit.do",
+					data: "score="+score + "&id="+id + "&mno="+mno + "&no="+ no + "&content="+ content,
+					dataType: "json",
+					type: "GET",
+					success: function(data){
+							$(".rate_edit .dr_no").attr("value", + data.dr_no);
+							$(".rate_edit #score").attr("value", + data.dr_point);
+							$(".rate_edit .dr_content").text(data.dr_content);
+							$("#movieCommentTotalCount").text("(" + data.dr_replycount + ")");
+							$(".left_p Strong").text(data.dr_starscore);
+							$(".left_p .inwon").text(data.dr_cnt);
+							//$('#txt').val("");
+							if(data.dr_starscore <= 1.0) {$(".fill").css({"width" : "10%"});}
+							else if(data.dr_starscore <= 2.0) {$(".fill").css({"width" : "20%"});}
+							else if(data.dr_starscore <=3.0) {$(".fill").css({"width" : "30%"});}
+							else if(data.dr_starscore <=4.0) {$(".fill").css({"width" : "40%"});}
+							else if(data.dr_starscore <=5.0) {$(".fill").css({"width" : "50%"});}
+							else if(data.dr_starscore <=6.0) {$(".fill").css({"width" : "60%"});}
+							else if(data.dr_starscore <=7.0) {$(".fill").css({"width" : "70%"});}
+							else if(data.dr_starscore <=8.0) {$(".fill").css({"width" : "80%"});}
+							else if(data.dr_starscore <=9.0) {$(".fill").css({"width" : "90%"});}
+							else{$(".fill").css({"width" : "100%"});}
+							if($('#txt').val() == null || $('#txt').val() == "" ) {
+								
+							}else {
+								location.reload();
+							}
+					},//sucess end
+					error: function(data){
+						alert("실패"+data.score+data.score);
+						console.log(data);
+					}
+				});
+			});			
+			
+			var get = $(".row").children(".cell").length;
+			
+			$(".cell .btn_wrap .btn_delete").click(function() {
+				var dr_no = this.value;
+				alert("삭제완료");
+				$.ajax({
+					url:"replydelete.do",
+					data: "dr_no="+dr_no,
+					dataType: "json",
+					type: "GET",
+					success: function(data){
+						location.reload();
+					},//sucess end
+					error: function(data){
+						alert("실패");
+						console.log(data);
+					}
+				
+				});
+			});				
   });
+  
+  
   </script>
-<body>
+<body onload="bodyFunction();">
   <header style="background-color:#231f20;min-width: 980px;padding:10px;">
    <div class="lazy slider" data-sizes="50vw">
     <div>
@@ -924,16 +1151,50 @@
      <div class="text">
       <div style="overflow: hidden;margin-top: 9px;">
        <span class="star" style="position: absolute;top: 2px;left: -3px;">
-        <span class="fill" style="width: 74.3352601156%;"></span>
+        <c:choose>
+         <c:when test="${movie.m_point le null || not empty ''}">
+          <span class="fill" style="width: 0%;"></span>
+         </c:when>
+         <c:when test="${movie.m_point <= 1.0}">
+          <span class="fill" style="width: 10%;"></span>
+         </c:when>
+         <c:when test="${movie.m_point <= 2.0}">
+          <span class="fill" style="width: 20%;"></span>
+         </c:when>
+         <c:when test="${movie.m_point <= 3.0}">
+          <span class="fill" style="width: 30%;"></span>
+         </c:when> 
+         <c:when test="${movie.m_point <= 4.0}">
+          <span class="fill" style="width: 40%;"></span>
+         </c:when>          
+         <c:when test="${movie.m_point <= 5.0}">
+          <span class="fill" style="width: 50%;"></span>
+         </c:when>  
+         <c:when test="${movie.m_point <= 6.0}">
+          <span class="fill" style="width: 60%;"></span>
+         </c:when>  
+         <c:when test="${movie.m_point <= 7.0}">
+          <span class="fill" style="width: 70%;"></span>
+         </c:when>  
+         <c:when test="${movie.m_point <= 8.0}">
+          <span class="fill" style="width: 80%;"></span>
+         </c:when>  
+         <c:when test="${movie.m_point <= 9.0 || movie.m_point == 9.0}">
+          <span class="fill" style="width: 90%;"></span>
+         </c:when>  
+         <c:otherwise>
+          <span class="fill" style="width: 100%;"></span>
+         </c:otherwise>           
+        </c:choose>
        </span>      
        <p class="left_p" style="text-align: right;padding-right: 20px;padding-left: 0;">
-        <span>695</span>
+        <span class="inwon">${inwon}</span>
         <span>명 참여</span>
-        <strong style="font-size:28px;">7.4</strong>
+        <strong style="font-size:28px;">${movie.m_point}</strong>
         <span class="divider"></span>
        </p>     
        <p class="right_p">
-              예매율<strong> 2 </strong>위<span> 18.7% </span>
+              예매율<strong> 2 </strong>위<span></span>
        </p>    
        <a class="img_btn movie btn_reservation" href="reserveMovie.do?no=${movie.m_no}">예매하기</a>       
       </div>     
@@ -942,7 +1203,7 @@
        <li><strong>개봉일</strong> : <fmt:formatDate pattern="yyyy.MM.dd" value="${movie.m_premiere}" /></li>  
        <li><strong>감독</strong> : ${movie.m_director}</li>
        <li><strong>출연진</strong> : ${movie.m_actor}</li>
-       <li><strong>장르</strong> : ${movie.m_genre} / 125 분</li>
+       <li><strong>장르</strong> : ${movie.m_genre}</li>
       </ul>  
      </div>
      
@@ -952,27 +1213,121 @@
  	    <div class="my_rate rate_insert">
          <span style="font-size: 12px;margin-right:5px;">내 평점</span>
          <span style="min-width: 119px; cursor: pointer; width: 119px;">
+          <input class="dr_no" type="hidden" value="">
           <input class="j_id" type="hidden" value="${bean.j_id}">
           <input class="m_no" type="hidden" value="${movie.m_no}">
-          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점1 괜히봤어요" value="1">
-          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" value="2">
-          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
-          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
-          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
-          <input type="hidden" name="score">
+          <input type="hidden" id="score" value="">
+          <textarea style="display:none;" class="dr_content"></textarea>
+          <c:choose>
+ 	       <c:when test="${myreply.dr_point eq '' || empty myreply.dr_point}">
+	          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점1 괜히봤어요" value="1">
+	          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" value="2">
+	          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
+	          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+	          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+	          <input type="hidden" name="score">
+	       </c:when>          
+ 	       <c:when test="${myreply.dr_point eq 1}">
+	          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+	          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" value="2">
+	          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
+	          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+	          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+	          <input type="hidden" name="score">
+	       </c:when>
+ 	       <c:when test="${myreply.dr_point eq 2}">
+	          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+	          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+	          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
+	          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+	          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+	          <input type="hidden" name="score">
+	       </c:when>
+ 	       <c:when test="${myreply.dr_point eq 3}">
+	          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+	          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+	          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점3 무난했어요" value="3">
+	          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+	          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+	          <input type="hidden" name="score">
+	       </c:when>
+ 	       <c:when test="${myreply.dr_point eq 4}">
+	          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+	          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+	          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점3 무난했어요" value="3">
+	          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점4 기대해도 좋아요!" value="4">
+	          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+	          <input type="hidden" name="score">
+	       </c:when>	
+ 	       <c:otherwise>
+	          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+	          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+	          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점3 무난했어요" value="3">
+	          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점4 기대해도 좋아요!" value="4">
+	          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+	          <input type="hidden" name="score">
+	       </c:otherwise>              	       	       
+	       </c:choose>   
        </c:when>
        <c:otherwise>
         <div class="my_rate rate_edit">
          <span style="font-size: 12px;margin-right:5px;">내 평점</span>
          <span style="min-width: 119px; cursor: pointer; width: 119px;">
+          <input class="dr_no" type="hidden" value="${myreply.dr_no}">
           <input class="j_id" type="hidden" value="${bean.j_id}">
           <input class="m_no" type="hidden" value="${movie.m_no}">
-          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점1 괜히봤어요" value="1">
-          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" value="2">
-          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
-          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
-          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
-          <input type="hidden" name="score">
+          <input type="hidden" id="score" value="${myreply.dr_point}">
+          <textarea style="display:none;" class="dr_content">${myreply.dr_content}</textarea>
+          <c:choose>
+ 	       <c:when test="${myreply.dr_point eq '' || empty myreply.dr_point}">
+	          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점1 괜히봤어요" value="1">
+	          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" value="2">
+	          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
+	          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+	          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+	          <input type="hidden" name="score">
+	       </c:when>          
+ 	       <c:when test="${myreply.dr_point eq 1}">
+	          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+	          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점2 기대하진 말아요" value="2">
+	          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
+	          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+	          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+	          <input type="hidden" name="score">
+	       </c:when>
+ 	       <c:when test="${myreply.dr_point eq 2}">
+	          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+	          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+	          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점3 무난했어요" value="3">
+	          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+	          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+	          <input type="hidden" name="score">
+	       </c:when>
+ 	       <c:when test="${myreply.dr_point eq 3}">
+	          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+	          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+	          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점3 무난했어요" value="3">
+	          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점4 기대해도 좋아요!" value="4">
+	          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+	          <input type="hidden" name="score">
+	       </c:when>
+ 	       <c:when test="${myreply.dr_point eq 4}">
+	          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+	          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+	          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점3 무난했어요" value="3">
+	          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점4 기대해도 좋아요!" value="4">
+	          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_off.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+	          <input type="hidden" name="score">
+	       </c:when>	
+ 	       <c:otherwise>
+	          <input id="a" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점1 괜히봤어요" value="1">
+	          <input id="b" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점2 기대하진 말아요" value="2">
+	          <input id="c" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점3 무난했어요" value="3">
+	          <input id="d" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점4 기대해도 좋아요!" value="4">
+	          <input id="e" type="image" src="http://image2.megabox.co.kr/mop/home/star_mid_on.png" alt="별점5 너무 멋진 영화였어요!" value="5">
+	          <input type="hidden" name="score">
+	       </c:otherwise>              	       	       
+	       </c:choose>
        </c:otherwise> 
       </c:choose>
        </span>
@@ -988,7 +1343,7 @@
      ${movie.m_story}
     </div>
    </div>
-   <c:import url="/replywrite.do" />
+   <c:import url="/replylist.do" />
   </div>
   
  </div> <!-- 마지막 DIV -->

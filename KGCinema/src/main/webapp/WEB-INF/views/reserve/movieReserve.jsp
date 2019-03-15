@@ -164,6 +164,10 @@
     .theater_list ul.depth2 li.activeArea{font-weight: 700;color: #fff;background-color: #198591;}
     .theater_list ul.depth2 li.activeArea a{color: #fff;}
     
+    .age_12{background-position: -60px 0;}
+    .age_15 {background-position: -90px 0;}
+    .age_0 {background-position: 0 0}
+    .age_19 {background-position: -30px 0;}
     
     
     
@@ -236,24 +240,29 @@
          }
      });
      
-     $(".theater_list .depth2 li").click(function () { 
-        var activeSu = $(".activeArea").length
-        if(activeSu > 0) {
-             $(this).removeClass("activeArea");
-             $(this).find('a').removeClass("Area");
-              var Area = jQuery('.Area').text();
-              document.mform.theater.value = Area;
-              return false;
-         }else {
-             $(this).addClass("activeArea");
-             $(this).find('a').addClass("Area");
-              var Area = jQuery('.Area').text();
-              document.mform.theater.value = Area;                    
-          }
-     });
      
+
+    	 
+
      
    }); 
+   
+   function theaterClick(data) {
+	   var $area = $('li.activeArea', '#body_theater1 .depth2').removeClass('activeArea');
+	   var activeSu = $(".activeArea").length;
+       if(activeSu > 0) {
+            $(data).removeClass("activeArea");
+            $(data).find('a').removeClass("Area");
+             var Area = jQuery(data).attr('theatername');
+             document.mform.theater.value = Area;
+             return false;
+        }else {
+            $(data).addClass("activeArea");
+            $(data).find('a').addClass("Area");
+            var Area = jQuery(data).attr('theatername');
+             document.mform.theater.value = Area;                    
+         }
+   }
    
    
    
@@ -432,7 +441,11 @@
         </div>
         <div class="movie">
          <p class="title">
-          <span class="age age_12">12세관람가</span>
+         <c:forEach var="type" items="${movie}">
+         <c:if test="${sbean.title eq type.m_title}">
+          <span class="age age_${type.m_grade }">12세관람가</span>
+         </c:if>
+          </c:forEach>
           <a href=#">${sbean.title }</a>
          </p>
          <p class="subtitle"><c:forEach var="type" items="${movie}">
@@ -513,45 +526,43 @@
       <div id="body_theater1" class="tab-pane movie_body body_theater1 active" style="display: block;">
        <div class="theater_list">
         <ul class="depth1">
-        <li data-areacode="10" class="">
+        <li data-areacode="10" areaname="서울" class="">
          <a href="javascript:void(0);" title="서울 선택">서울<div class=""></div></a>
          <span></span>
          </li>
-         <li data-areacode="30" class="">
+         <li data-areacode="30" areaname="경기" class="">
          <a href="javascript:void(0);" title="경기 선택">경기<div class=""></div></a>
          <span></span>
          </li>
-         <li data-areacode="35" class="">
+         <li data-areacode="35" areaname="인천" class="">
          <a href="javascript:void(0);" title="인천 선택">인천<div class=""></div></a>
          <span></span>
          </li>
-         <li data-areacode="45" class="">
+         <li data-areacode="45" areaname="대전/충청/세종" class="">
          <a href="javascript:void(0);" title="대전/충청/세종 선택">대전/충청/세종<div class=""></div></a>
          <span></span>
          </li>
-         <li data-areacode="55" class="">
+         <li data-areacode="55" areaname="부산/대구/경상" class="">
          <a href="javascript:void(0);" title="부산/대구/경상 선택">부산/대구/경상<div class=""></div></a>
          <span></span>
          </li>
-         <li data-areacode="65" class="">
+         <li data-areacode="65" areaname="광주/전라" class="">
          <a href="javascript:void(0);" title="광주/전라 선택">광주/전라<div class=""></div></a>
          <span></span>
          </li>
-         <li data-areacode="70" class="">
+         <li data-areacode="70" areaname="강원" class="">
          <a href="javascript:void(0);" title="강원 선택">강원<div class=""></div></a>
          <span></span>
          </li>
-         <li data-areacode="80" class="">
+         <li data-areacode="80" areaname="제주" class="">
          <a href="javascript:void(0);" title="제주 선택">제주<div class=""></div></a>
          <span></span>
          </li>
         </ul>
+        
         <ul class="depth2">
-        <c:forEach var="item" items="${theater}">
-         <li>
-         <a style="left: 232px;top: 275px;letter-spacing: inherit;">${item.t_theater}</a>
-         </li>
-        </c:forEach>
+        	<!-- 극장 li 들어감 -->
+        
         </ul>
        </div>
       </div>

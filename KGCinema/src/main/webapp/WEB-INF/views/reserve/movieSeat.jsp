@@ -96,6 +96,9 @@
     .age, .age_m{background: url(http://image2.megabox.co.kr/mop/home/bg_age2.png) 0 -999px no-repeat;display: inline-block;width: 17px;height: 18px;margin-right: 4px;text-indent: -99999px;
     overflow: hidden;vertical-align: middle;}
     .age_12{background-position: -60px 0;}
+    .age_15 {background-position: -90px 0;}
+    .age_0 {background-position: 0 0}
+    .age_19 {background-position: -30px 0;}
     #select_seat .seat_body .right_wrap .row2 .title i, #select_pay .seat_body .right_wrap .row2 .title i{float: left;margin-left: -30px;}
     #select_seat .seat_body .right_wrap .row2 .title h4, #select_pay .seat_body .right_wrap .row2 .title h4{margin: 0;font-size: 12px;}
     #select_seat .seat_body .right_wrap .row2 ul.info li, #select_pay .seat_body .right_wrap .row2 ul.info li{padding-left: 8px;margin-bottom: 5px;font-size: 11px;color: #fff;
@@ -261,7 +264,8 @@
         </div>
         <div class="row2">
         <div class="title">
-        <i class="age age_12">12세관람가</i>
+         
+        <i class="age age_${mbean.m_grade}">12세관람가</i>
         <h4>${mbean.m_title }</h4>
         <span>${mbean.m_type }</span>
         </div>

@@ -68,11 +68,15 @@ public class MovieController {
 		  System.out.println(data);
 		  System.out.println((String)request.getSession().getAttribute("temp"));
 		  Moviebean mdto=mdao.movieDetail(data);
+		  int inwon = rdao.Count(data);
+		  int replycount = rdao.ReplyCountSu(data); 
 		  if((String)request.getSession().getAttribute("temp") != null) {			  
 			  Replybean rdto = rdao.ReplySelect(data,(String)request.getSession().getAttribute("temp"));
 			  mav.addObject("myreply", rdto);
 		  }
 		  mav.addObject("movie", mdto);
+		  mav.addObject("inwon", inwon);
+		  mav.addObject("replycnt", replycount);
 		  
 		  mav.setViewName("movie/movieDetail");
 		  return mav;

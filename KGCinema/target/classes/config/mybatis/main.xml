@@ -7,7 +7,7 @@
 	<select id="mainSlideSelectAll" resultType="com.kg.cinema.Mainbean">
 		select * from (
 		select rownum ms_rn, m.* from
-	    (select * from mainslide order by ms_no desc) m )
+	    (select * from mainslide order by ms_no asc) m )
 	</select>	
 	   
 	<select id="mainSlideCountAll" resultType="int">

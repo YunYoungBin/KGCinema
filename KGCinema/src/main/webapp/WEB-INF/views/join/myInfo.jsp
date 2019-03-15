@@ -92,6 +92,38 @@
     .modify{display: inline-block;width: 123px;height: 45px;background-position: -200px -650px;cursor: pointer;}
     .image_width{width:100px; height:100px;}
   </style>
+  <script type="text/javascript">
+  	function del() {
+  		if(confirm("회원탈퇴 하시겠습니까?") == true) {
+  			var delId = iform.j_id.value;
+  			var delPassword = iform.j_pwd.value;
+  			var nowPwd = iform.pass.value;
+  			if(delPassword == "" || delPassword == null) {
+  				alert("비밀번호를 입력해주세요.");
+  				iform.j_pwd.focus();
+  				return;
+  			}
+  			if(delPassword != nowPwd) {
+  				alert("비밀번호가 틀립니다. 다시 입력해주세요.");
+  				iform.j_pwd.focus();
+  				return;
+  			}
+  			$.ajax({
+  				url: "memberDel.do",
+  				data: "userid="+delId,
+  				dataType: "json",
+  				type: "GET",
+  				success: function(data) {
+  					location.href='logout.do';
+  				}, error: function(data) {
+					console.log(data);
+				}
+  			});
+  		} else {
+  			
+  		}
+  	}
+  </script>
 
   
 </head>
@@ -118,9 +150,9 @@
       <span> 회원님의 정보를 정확히 입력해주세요. </span>
      </div>
      <div class="personal_info_last">
-      <span class="">마지막 비밀번호 변경 : 2일 전에 함 (2019.02.20)</span>
-      <button type="button" class="img_btn mypage personal_change_pw mr6"></button>
-      <button type="button" class="img_btn mypage personal_quit"></button>
+      
+      <button type="button" class="img_btn mypage personal_change_pw mr6" onclick="location.href='changePw.do'"></button>
+      <button type="button" class="img_btn mypage personal_quit" onclick="del();"></button>
      </div>
      <div class="user_wrap">
       <div class="form-style">

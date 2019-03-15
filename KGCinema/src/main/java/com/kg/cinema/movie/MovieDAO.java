@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kg.cinema.Mainbean;
 import com.kg.cinema.event.Eventbean;
 import com.kg.cinema.notice.Noticebean;
+import com.kg.cinema.reply.Replybean;
 
 @Repository
 @Component
@@ -92,4 +93,15 @@ public class MovieDAO {
 		mvsdto=temp.selectOne("movie.movieSlideDetail",mvsdto);
 		return mvsdto;
 	}//end	
+	
+	public Moviebean MoviePointEdit(int mno, double starscore, int cnt) {
+		Moviebean mdto = new Moviebean();
+		mdto.setM_point(starscore);
+		mdto.setM_no(mno);
+		mdto.setM_inwon(cnt);
+		System.out.println("PointEditDao_no: " + mno);
+		System.out.println("PointEditDao_score: " + starscore);
+		temp.update("movie.moviePointEdit", mdto);
+		return mdto;
+	}//end		
 }

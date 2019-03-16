@@ -284,13 +284,11 @@ public class ReserveController {
 		
 		String rno = request.getParameter("rno");
 		if(diffMinites >= 20) {
-			System.out.println("취소가능시간");
 			Reservebean bean = rdao.reserveDetailOne(Integer.parseInt(rno));
 			rdao.reserveCancelInsert(bean);
 			rdao.reserveDelete(Integer.parseInt(rno));
 			out.print("{\"check\":\"1\"}");
 		} else {
-			System.out.println("취소불가");
 			out.print("{\"check\":\"0\"}");
 		}
 	}
